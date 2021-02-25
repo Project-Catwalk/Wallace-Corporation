@@ -3,6 +3,12 @@ import axios from 'axios';
 
 //Functional React Component:
 
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+
 const App = () => {
   return(
     <div>
