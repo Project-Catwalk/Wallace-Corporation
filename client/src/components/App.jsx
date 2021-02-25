@@ -1,21 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-//Functional React Component:
+// Functional React Component:
 
 function sum(a, b) {
   return a + b;
 }
 
-module.exports = sum;
 
 const App = () => {
-  return(
+  return (
     <div>
       <h1>Hello!</h1>
     </div>
-  )
-};
+  );
+}
 
 //Class-Based React Component:
 
