@@ -1,21 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-//Functional React Component:
+// import { render } from '@testing-library/react';
+// import { ThemeProvider } from 'my-ui-lib';
+// import { TranslationProvider } from 'my-i18n-lib';
+// import defaultStrings from 'i18n/en-x-default';
 
-function sum(a, b) {
-  return a + b;
-}
-
-module.exports = sum;
+// Functional React Component:
 
 const App = () => {
-  return(
+  return (
     <div>
       <h1>Hello!</h1>
     </div>
-  )
-};
+  );
+}
 
 //Class-Based React Component:
 

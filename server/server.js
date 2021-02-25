@@ -8,6 +8,7 @@ const morgan = require('morgan');
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
+app.use(morgan('dev'));
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
