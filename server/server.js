@@ -11,19 +11,18 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.get('/products/:product_id', (req, res) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products`,
-    method: "GET",
-    headers: {
-      "User-Agent": "request",
-      Authorization: `${ATELIER_API_KEY}`,
-    },
-  };
+let options = {
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',
+  headers: {
+    Authorization: `${ATELIER_API_KEY}`,
+  },
+};
 
-  axios(options)
+app.get('/products', (req, res) => {
+
+  axios.get(`${options.url}/products`, options)
     .then((results) => {
-      res.send(results);
+      console.log(results.data);
     })
     .catch(console.error);
 });
