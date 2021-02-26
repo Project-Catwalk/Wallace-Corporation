@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Overview from './Overview.jsx';
 
 
 // Functional React Component:
@@ -8,6 +9,7 @@ const App = () => {
   return (
     <div>
       <h1>Hello!</h1>
+      <Overview />
     </div>
   );
 }
