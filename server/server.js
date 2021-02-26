@@ -18,12 +18,14 @@ let options = {
   },
 };
 
-app.get("/products", (req, res) => {
+app.get("/products/:products_id", (req, res) => {
+  let { products_id } = req.params;
 
   axios
-    .get(`${options.url}/products`, options)
+    .get(`${options.url}/products/${products_id}`, options)
     .then((results) => {
       console.log(results.data);
+      res.send(results.data);
     })
     .catch(console.error);
 });
