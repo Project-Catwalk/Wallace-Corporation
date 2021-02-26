@@ -19,6 +19,7 @@ let options = {
 };
 
 app.get("/products", (req, res) => {
+
   axios
     .get(`${options.url}/products`, options)
     .then((results) => {
