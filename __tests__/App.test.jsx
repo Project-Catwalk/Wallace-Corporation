@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../client/src/components/App';
-// import { getQueriesForElement } from '@testing-library/dom';
 import { render, screen } from '@testing-library/react';
+// import { getQueriesForElement } from '@testing-library/dom';
 
 // import '@testing-library/jest-dom';
 // import { rest } from 'msw';
