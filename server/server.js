@@ -5,7 +5,7 @@ const port = 3000;
 const axios = require("axios");
 const path = require("path");
 const morgan = require("morgan");
-const ATELIER_API_KEY = require("./config/config.js");
+const ATELIER_API_KEY = require("./config.js");
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());

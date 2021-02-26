@@ -1,4 +1,5 @@
 import React from 'react';
+import QA from './QA.jsx';
 import axios from 'axios';
 
 
@@ -8,6 +9,7 @@ const App = () => {
   return (
     <div>
       <h1>Hello!</h1>
+      <QA />
     </div>
   );
 }
