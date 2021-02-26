@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Reviews from '/Reviews.jsx';
+import Reviews from './Reviews.jsx';
 
 
 // Functional React Component:
