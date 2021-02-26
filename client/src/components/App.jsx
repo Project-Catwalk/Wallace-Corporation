@@ -27,15 +27,18 @@ class App extends React.Component {
       })
       .catch((err) => {
         console.log('Error: ', err);
-      })
+      });
   }
 
   render() {
-    return(
+    return (
       <div>
+        <Overview />
+        <Reviews />
+        <QA />
         <h1>Hello!</h1>
       </div>
-    )
+    );
   }
 }
 
