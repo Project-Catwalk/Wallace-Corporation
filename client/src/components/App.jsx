@@ -1,7 +1,9 @@
 import React from 'react';
 import QA from './QA.jsx';
 import axios from 'axios';
+import Reviews from './Reviews.jsx';
 import Overview from './Overview.jsx';
+
 
 
 // Functional React Component:
@@ -12,7 +14,7 @@ const App = () => {
       <h1>Hello!</h1>
       <Overview />
       <QA />
-=======
+      <Reviews /> 
     </div>
   );
 }
