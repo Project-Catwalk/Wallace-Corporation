@@ -1,4 +1,5 @@
 import React from 'react';
+import QA from './QA.jsx';
 import axios from 'axios';
 import Overview from './Overview.jsx';
 
@@ -10,6 +11,8 @@ const App = () => {
     <div>
       <h1>Hello!</h1>
       <Overview />
+      <QA />
+=======
     </div>
   );
 }
