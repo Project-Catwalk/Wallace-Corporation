@@ -2,9 +2,16 @@
   "name": "wallace-corporation",
   "jest": {
     "verbose": true,
-    "modulePaths": ["/__tests__"],
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules"]
+    "modulePaths": [
+      "/__tests__"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   },
   "version": "1.0.0",
   "description": "",

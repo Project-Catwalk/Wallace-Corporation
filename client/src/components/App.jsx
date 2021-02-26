@@ -11,7 +11,7 @@ const App = () => {
   );
 }
 
-//Class-Based React Component:
+// Class-Based React Component:
 
 // class App extends React.Component {
 //   constructor(props) {
