@@ -7,17 +7,17 @@ import ReviewsFooter from './ReviewsFooter';
 import styles from '../styleComponents/Reviews.module.css';
 
 const Reviews = ({ productId }) => (
-  <div className={styles.container}>
-    <div className={styles.breakdown}>
+  <div className={styles.parentContainer}>
+    <div className={styles.parentBreakdown}>
       <RatingBreakdown />
     </div>
-    <div className={styles.header}>
+    <div className={styles.parentHeader}>
       <ReviewsSortHeader />
     </div>
-    <div className={styles.individualReview}>
-      <ReviewsList />
+    <div className={styles.parentIndividualReview}>
+      <ReviewsList productId={productId} />
     </div>
-    <div className={styles.footer}>
+    <div className={styles.parentFooter}>
       <ReviewsFooter />
     </div>
   </div>

@@ -1,11 +1,18 @@
-import React from "react";
-import axios from "axios";
-import ReviewTemplate from "./ReviewTemplate.jsx";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ReviewTemplate from './ReviewTemplate';
 
 const ReviewsList = ({ productId }) => {
+  const [reviews, getReviews] = useState({});
+
+  useEffect(() => getProductReviews(productId));
+  const getProductReviews = (id) => {
+    axios.get(`/reviews/${id}`).then(({ data }) => console.log(data)).catch(console.log);
+  };
+
   return (
     <div>
-      ReviewsList
+      <ReviewTemplate />
       <ReviewTemplate />
     </div>
   );
