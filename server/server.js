@@ -24,7 +24,6 @@ app.get("/products/:products_id", (req, res) => {
   axios
     .get(`${options.url}/products/${products_id}`, options)
     .then((results) => {
-      console.log(results.data);
       res.send(results.data);
     })
     .catch(console.error);
