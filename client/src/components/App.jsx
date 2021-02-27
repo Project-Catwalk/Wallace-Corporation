@@ -33,10 +33,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Hello!</h1>
         <Overview />
         <Reviews />
         <QA />
-        <h1>Hello!</h1>
       </div>
     );
   }
