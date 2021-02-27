@@ -18,7 +18,11 @@ const Overview = () => (
       <button>7</button>
     </div>
     <p className={styles.seven}>Description</p>
-    <button className={styles.eight}>Social Media</button>
+    <div className={styles.eight}>
+      <button>Facebook</button>
+      <button>Twitter</button>
+      <button>Pinterest</button>
+    </div>
   </div>
 );
 
