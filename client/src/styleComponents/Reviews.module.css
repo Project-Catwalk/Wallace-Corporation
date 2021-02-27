@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  justify-items: center;
+  gap: 20px 20px;
+  grid-template-columns: 27% 73%;
+  grid-template-rows: 1fr 2fr 1fr;
+}
+
+.header {
+  background-color: #6d8c8c;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.individualReview {
+  background-color: #a8bfbf;
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.footer {
+  background-color: #d98982;
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.breakdown {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  background-color: #f2b694;
+}
