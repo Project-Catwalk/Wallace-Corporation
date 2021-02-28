@@ -34,10 +34,10 @@ class App extends React.Component {
     const { id } = this.state;
     return (
       <div>
+        <h1>Hello!</h1>
         <Overview />
         <Reviews productId={id} />
         <QA />
-        <h1>Hello!</h1>
       </div>
     );
   }
