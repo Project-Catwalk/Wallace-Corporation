@@ -4,6 +4,7 @@ import ReviewTemplate from './ReviewTemplate';
 
 const ReviewsList = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
+  console.log(reviews);
   const getReviews = (id) => {
     axios
       .get(`/reviews/${id}`)
