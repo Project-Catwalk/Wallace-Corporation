@@ -1,22 +1,49 @@
 import React from 'react';
 import styles from '../styleComponents/Overview.module.css';
+import MainDisplay from './OverviewMainDisplay';
+import ReviewStars from './OverviewRatingsDisplay';
+import Category from './OverviewCategory';
+import Product from './OverviewProductTitle';
+import Price from './OverviewPrice';
+import StylesButtons from './OverviewStyles';
+import Size from './OverviewSize';
+import Quantity from './OverviewQuantity';
+import AddToCart from './OverviewCart';
+import RelatedProducts from './OverviewRelatedProducts';
 
 const Overview = () => (
   <div className={styles.wrapper}>
-    <img title ='Display Image' className={styles.one}/>
-    <p className={styles.two}>Read All Reviews</p>
-    <p className={styles.three}>Category</p>
-    <p className={styles.four}>Product Name</p>
-    <p className={styles.five}>Price</p>
-    <p className={styles.nine}>Styles</p>
-    <div className={styles.six}>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
+    <div className={styles.one}>
+      <MainDisplay />
+    </div>
+    <div className={styles.two}>
+      <ReviewStars />
+    </div>
+    <div className={styles.three}>
+      <Category />
+    </div>
+    <div className={styles.four}>
+      <Product />
+    </div>
+    <div className={styles.five}>
+      <Price />
+    </div>
+    <div className={styles.nine}>
+      Style:
+      <StylesButtons />
+    </div>
+    {/* <div className={styles.six}>This is for styles buttons</div> */}
+    <select>
+      <Size />
+    </select>
+    <select>
+      <Quantity />
+    </select>
+    <div>
+      <AddToCart />
+    </div>
+    <div>
+      <RelatedProducts />
     </div>
     <p className={styles.seven}>Description</p>
     <div className={styles.eight}>
