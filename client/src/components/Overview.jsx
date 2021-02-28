@@ -10,46 +10,51 @@ import Size from './OverviewSize';
 import Quantity from './OverviewQuantity';
 import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
+import Description from './OverviewProductDescription';
+import Slogan from './OverviewProductSlogan';
+import Socials from './OverviewSocialMedia';
 
 const Overview = () => (
   <div className={styles.wrapper}>
-    <div className={styles.one}>
+    <div className={styles.mainDisplay}>
       <MainDisplay />
     </div>
-    <div className={styles.two}>
+    <div className={styles.reviews}>
       <ReviewStars />
     </div>
-    <div className={styles.three}>
+    <div className={styles.productCategory}>
       <Category />
     </div>
-    <div className={styles.four}>
+    <div className={styles.productTitle}>
       <Product />
     </div>
-    <div className={styles.five}>
+    <div className={styles.productPrice}>
       <Price />
     </div>
-    <div className={styles.nine}>
+    <div className={styles.productStyles}>
       Style:
       <StylesButtons />
     </div>
-    {/* <div className={styles.six}>This is for styles buttons</div> */}
-    <select>
+    <select className={styles.sizeDropDown}>
       <Size />
     </select>
-    <select>
+    <select className={styles.quantityDropDown}>
       <Quantity />
     </select>
-    <div>
+    <div className={styles.cart}>
       <AddToCart />
     </div>
-    <div>
+    <div className={styles.relatedProducts}>
       <RelatedProducts />
     </div>
-    <p className={styles.seven}>Description</p>
-    <div className={styles.eight}>
-      <button>Facebook</button>
-      <button>Twitter</button>
-      <button>Pinterest</button>
+    <div className={styles.slogan}>
+      <Slogan />
+    </div>
+    <div className={styles.productDescription}>
+      <Description />
+    </div>
+    <div className={styles.socialMedia}>
+      <Socials />
     </div>
   </div>
 );
