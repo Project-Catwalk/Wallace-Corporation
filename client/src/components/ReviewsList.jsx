@@ -3,17 +3,19 @@ import axios from 'axios';
 import ReviewTemplate from './ReviewTemplate';
 
 const ReviewsList = ({ productId }) => {
-  const [reviews, getReviews] = useState({});
+  const [reviews, setReviews] = useState([]);
 
-  useEffect(() => getProductReviews(productId));
-  const getProductReviews = (id) => {
-    axios.get(`/reviews/${id}`).then(({ data }) => console.log(data)).catch(console.log);
+  const getReviews = (id) => {
+    axios
+      .get(`/reviews/${id}`)
+      .then(({ data }) => setReviews(data))
+      .catch((err) => console.log(err));
   };
+  useEffect(() => getReviews(productId), [productId]);
 
   return (
     <div>
-      <ReviewTemplate />
-      <ReviewTemplate />
+      <ReviewTemplate reviews={reviews} />
     </div>
   );
 };

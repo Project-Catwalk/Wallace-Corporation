@@ -29,17 +29,14 @@ app.get('/products/:products_id', (req, res) => {
     .catch(console.error);
 });
 
-app.get('/reviews/:id', async (req, res) => {
+app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
-  try {
-    const { data } = await axios(
+  axios
+    .get(
       `${options.url}/reviews/?product_id=${id}`,
       options,
-    );
-    res.send(data.results);
-  } catch (e) {
-    res.sendStatus(500);
-  }
+    ).then(({ data }) => res.send(data.results))
+    .catch((err) => console.log(err));
 });
 
 app.listen(port, () => {

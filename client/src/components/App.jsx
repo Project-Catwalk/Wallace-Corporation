@@ -31,10 +31,11 @@ class App extends React.Component {
   }
 
   render() {
+    const { id } = this.state;
     return (
       <div>
         <Overview />
-        <Reviews productId={this.state.id} />
+        <Reviews productId={id} />
         <QA />
         <h1>Hello!</h1>
       </div>
