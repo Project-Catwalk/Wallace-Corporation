@@ -125,6 +125,7 @@
   border-right: solid;
   border-bottom: solid;
   border-color: black;
+  justify-items: right;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em;

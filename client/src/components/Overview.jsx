@@ -12,7 +12,6 @@ import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
 import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
-import Socials from './OverviewSocialMedia';
 
 const Overview = () => (
   <div className={styles.wrapper}>
@@ -54,7 +53,15 @@ const Overview = () => (
       <Description />
     </div>
     <div className={styles.socialMedia}>
-      <Socials />
+      <a href="https://www.facebook.com/BladeRunner.original1982/">
+        <button type="submit">Facebook</button>
+      </a>
+      <a href="https://twitter.com/bladerunner">
+        <button type="submit">Twitter</button>
+      </a>
+      <a href="https://www.pinterest.com/umbersun/blade-runner/">
+        <button type="submit">Pinterest</button>
+      </a>
     </div>
   </div>
 );
