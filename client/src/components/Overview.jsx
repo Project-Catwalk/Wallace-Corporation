@@ -8,6 +8,7 @@ const Overview = () => (
     <p className={styles.three}>Category</p>
     <p className={styles.four}>Product Name</p>
     <p className={styles.five}>Price</p>
+    <p className={styles.nine}>Styles</p>
     <div className={styles.six}>
       <button>1</button>
       <button>2</button>
