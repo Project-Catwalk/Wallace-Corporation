@@ -1,0 +1,29 @@
+/* modules.export = {
+
+} */
+.QA {
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+  /* grid-auto-rows: minmax(50px, auto); */
+}
+
+.search {
+  background-color: #6D8C8C;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.qa {
+  background-color: #F2B694;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.buttons {
+  background-color: #D98982;
+  grid-row-start: 3;
+}
+
+.searchBar {
+  width: 20%;
+}

@@ -1,8 +1,26 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
+import RatingBreakdown from './RatingBreakdown';
+import ReviewsList from './ReviewsList';
+import ReviewsSortHeader from './ReviewsSortHeader';
+import ReviewsFooter from './ReviewsFooter';
+import styles from '../styleComponents/Reviews.module.css';
 
-const Reviews = () => {
-  return <div>hi</div>;
-};
+const Reviews = ({ productId }) => (
+  <div className={styles.parentContainer}>
+    <div className={styles.parentBreakdown}>
+      <RatingBreakdown />
+    </div>
+    <div className={styles.parentHeader}>
+      <ReviewsSortHeader />
+    </div>
+    <div className={styles.parentIndividualReview}>
+      <ReviewsList productId={productId} />
+    </div>
+    <div className={styles.parentFooter}>
+      <ReviewsFooter />
+    </div>
+  </div>
+);
 
 export default Reviews;
