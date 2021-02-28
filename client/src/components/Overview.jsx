@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Overview.module.css';
+import styles from '../styleComponents/Overview.module.css';
 
 const Overview = () => (
   <div className={styles.wrapper}>
