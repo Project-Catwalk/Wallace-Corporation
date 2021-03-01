@@ -3,7 +3,7 @@
   justify-items: stretch;
   gap: 5px 5px;
   grid: 50px auto 75px/27% auto;
-  margin: 50px;
+  margin: 15px;
 }
 
 .parentHeader {
