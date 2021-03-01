@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 // import axios from "axios";
 import styles from '../styleComponents/Reviews.module.css';
+import Helpful from './Helpful';
 
 const ReviewTemplate = ({ reviews }) => (
   <div>
@@ -13,20 +14,32 @@ const ReviewTemplate = ({ reviews }) => (
           <UserDateBar review={review} />
         </div>
         <div className={styles.templateHelpfulReportBar}>
+          <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
         </div>
         <div className={styles.templateResponseFromSeller}>{review.response}</div>
         {/* <div className={styles.templateImages}>{review.photos}</div> */}
-        <div className={styles.templateRecommendsBar}>{review.recommend}</div>
+        <div className={styles.templateRecommendsBar}> I recomend this product</div>
       </div>
     ))}
   </div>
 );
 
-const UserDateBar = ({ review }) => (
-  <div>
-    <div>{review.reviewer_name}</div>
-    <div>{review.date}</div>
-  </div>
-);
+const UserDateBar = ({ review }) => {
+  const getDate = (date) => {
+    const dateArr = date.slice(0, date.indexOf('T')).split('-');
+    const year = dateArr.shift();
+    dateArr.push(year);
+    return dateArr.join('-');
+  };
+
+  const date = getDate(review.date);
+
+  return (
+    <div>
+      <div className={styles.userDateBar}>{review.reviewer_name}</div>
+      <div className={styles.userDateBar}>{date}</div>
+    </div>
+  );
+};
 
 export default ReviewTemplate;
