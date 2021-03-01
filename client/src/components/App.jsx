@@ -4,6 +4,10 @@ import axios from "axios";
 import Reviews from "./Reviews.jsx";
 import Overview from "./Overview.jsx";
 
+const titleBarStyle = {
+  backgroundColor: '#6D8C8C'
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +51,7 @@ class App extends React.Component {
     const { id, questions } = this.state;
     return (
       <div>
-        <h1>Hello!</h1>
+        <h1 style={titleBarStyle}>Hello!</h1>
         <Overview />
         <Reviews productId={id} />
         <QA questions={questions} />

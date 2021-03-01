@@ -1,28 +1,67 @@
 import React from 'react';
 import styles from '../styleComponents/Overview.module.css';
+import MainDisplay from './OverviewMainDisplay';
+import ReviewStars from './OverviewRatingsDisplay';
+import Category from './OverviewCategory';
+import Product from './OverviewProductTitle';
+import Price from './OverviewPrice';
+import StylesButtons from './OverviewStyles';
+import Size from './OverviewSize';
+import Quantity from './OverviewQuantity';
+import AddToCart from './OverviewCart';
+import RelatedProducts from './OverviewRelatedProducts';
+import Description from './OverviewProductDescription';
+import Slogan from './OverviewProductSlogan';
 
 const Overview = () => (
   <div className={styles.wrapper}>
-    <img title ='Display Image' className={styles.one}/>
-    <p className={styles.two}>Read All Reviews</p>
-    <p className={styles.three}>Category</p>
-    <p className={styles.four}>Product Name</p>
-    <p className={styles.five}>Price</p>
-    <p className={styles.nine}>Styles</p>
-    <div className={styles.six}>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
+    <div className={styles.mainDisplay}>
+      <MainDisplay />
     </div>
-    <p className={styles.seven}>Description</p>
-    <div className={styles.eight}>
-      <button>Facebook</button>
-      <button>Twitter</button>
-      <button>Pinterest</button>
+    <div className={styles.reviews}>
+      <ReviewStars />
+    </div>
+    <div className={styles.productCategory}>
+      <Category />
+    </div>
+    <div className={styles.productTitle}>
+      <Product />
+    </div>
+    <div className={styles.productPrice}>
+      <Price />
+    </div>
+    <div className={styles.productStyles}>
+      Style:
+      <StylesButtons />
+    </div>
+    <select className={styles.sizeDropDown}>
+      <Size />
+    </select>
+    <select className={styles.quantityDropDown}>
+      <Quantity />
+    </select>
+    <div className={styles.cart}>
+      <AddToCart />
+    </div>
+    <div className={styles.relatedProducts}>
+      <RelatedProducts />
+    </div>
+    <div className={styles.slogan}>
+      <Slogan />
+    </div>
+    <div className={styles.productDescription}>
+      <Description />
+    </div>
+    <div className={styles.socialMedia}>
+      <a href="https://www.facebook.com/BladeRunner.original1982/">
+        <button type="submit">Facebook</button>
+      </a>
+      <a href="https://twitter.com/bladerunner">
+        <button type="submit">Twitter</button>
+      </a>
+      <a href="https://www.pinterest.com/umbersun/blade-runner/">
+        <button type="submit">Pinterest</button>
+      </a>
     </div>
   </div>
 );
