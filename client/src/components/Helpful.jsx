@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styleComponents/App.module.css';
+import axios from 'axios';
 
 const Helpful = (props) => {
   const { helpfulness } = props;
@@ -13,6 +14,17 @@ const Helpful = (props) => {
     } else if (count.yes > 0 && value === 'no') {
       const tempCount = count.yes - 1;
       setCount({ yes: tempCount });
+    }
+    if (props.review_id) {
+      const { review_id } = props;
+      axios.put(`/reviews/${review_id}/helpful`)
+        .then((status) => console.log(status))
+        .catch((err) => console.log(err));
+    } else if (props.question_id) {
+      const { question_id } = props;
+      axios.put(`/qa/questions/${question_id}/helpful`)
+        .then((status) => console.log(status))
+        .catch((err) => console.log(err));
     }
   };
 

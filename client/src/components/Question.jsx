@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
 import styles from '../styleComponents/QA.modules.css';
+import Helpful from './Helpful';
 
 const Question = (props) => {
-  const { question_body, answers } = props.question;
+  const { question_body, answers, question_id, question_helpfulness } = props.question;
   const [answerList, setAnswerList] = useState([]);
   // answers = Array.from(answers);
   let answerArray = Object.values(answers);
@@ -12,11 +13,10 @@ const Question = (props) => {
     setAnswerList(answerArray);
   }, []);
 
-  console.log(answerList);
-
   return (
     <div className={styles.question}>
       <div>Q: {question_body}</div>
+      <Helpful question_id={question_id} helpfulness={question_helpfulness} />
       <div>
         A:
         {answerList.map((answer, idx) => <Answer key={idx} answer={answer} />)}

@@ -5,7 +5,6 @@ import Question from './Question';
 
 const QA = (props) => {
   let { questions } = props;
-  console.log(questions);
   return (
     <div className={styles.QA}>
       <div className={styles.search}>
