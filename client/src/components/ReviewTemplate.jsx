@@ -18,7 +18,7 @@ const ReviewTemplate = ({ reviews }) => (
         </div>
         <div className={styles.templateResponseFromSeller}>{review.response}</div>
         {/* <div className={styles.templateImages}>{review.photos}</div> */}
-        <div className={styles.templateRecommendsBar}> I recomend this product</div>
+        <div className={styles.templateRecommendsBar}>I recommend this product</div>
       </div>
     ))}
   </div>

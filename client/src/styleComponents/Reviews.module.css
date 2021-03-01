@@ -2,7 +2,7 @@
   display: grid;
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 50px auto 75px/27% auto;
+  grid: 50px 250px 75px/27% auto;
   margin: 15px;
 }
 
@@ -16,6 +16,7 @@
   background-color: #a8bfbf;
   grid-column: 2;
   grid-row: 2/3;
+  overflow-y: scroll;
 }
 
 .parentFooter {
