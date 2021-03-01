@@ -10,14 +10,27 @@ class App extends React.Component {
 
     this.state = {
       id: "",
+      questions: [],
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
     this.defaultProduct(20103);
+    this.getQuestions(20103);
   }
+
+  getQuestions(id) {
+    axios.get(`/qa/questions/${id}`)
+      .then((results) => {
+        this.setState({
+          questions: results.data,
+        });
+      })
+      .catch(console.log);
+  };
 
   defaultProduct(productId) {
     axios
@@ -31,13 +44,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { id } = this.state;
+    const { id, questions } = this.state;
     return (
       <div>
         <h1>Hello!</h1>
         <Overview />
         <Reviews productId={id} />
-        <QA />
+        <QA questions={questions} />
       </div>
     );
   }
