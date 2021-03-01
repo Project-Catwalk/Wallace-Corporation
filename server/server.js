@@ -40,7 +40,7 @@ app.get('/reviews/:id', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.post('/reviews/:review_id/helpful', (req, res) => {
+app.put('/reviews/:review_id/helpful', (req, res) => {
   const { review_id } = req.params;
   axios.put(`${options.url}/reviews/${review_id}/helpful`, { body: {review_id: review_id } }, options)
     .then(() => res.send(204))
@@ -54,6 +54,13 @@ app.get('/qa/questions/:id', (req, res) => {
     .then(({ data }) => {
       res.send(data.results);
     })
+    .catch(console.log);
+});
+
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  const { question_id } = req.params;
+  axios.put(`${options.url}/qa/questions/${question_id}/helpful`, { body: { question_id: question_id } }, options)
+    .then(() => res.send(204))
     .catch(console.log);
 });
 
