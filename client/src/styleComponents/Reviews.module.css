@@ -87,3 +87,8 @@
   grid-row: 6;
   justify-self: end;
 }
+
+.userDateBar {
+  display: inline;
+  margin: 4px;
+}

@@ -18,7 +18,7 @@ const ReviewTemplate = ({ reviews }) => (
         </div>
         <div className={styles.templateResponseFromSeller}>{review.response}</div>
         {/* <div className={styles.templateImages}>{review.photos}</div> */}
-        <div className={styles.templateRecommendsBar}>{review.recommend}</div>
+        <div className={styles.templateRecommendsBar}> I recomend this product</div>
       </div>
     ))}
   </div>
@@ -26,8 +26,8 @@ const ReviewTemplate = ({ reviews }) => (
 
 const UserDateBar = ({ review }) => (
   <div>
-    <div>{review.reviewer_name}</div>
-    <div>{review.date}</div>
+    <div className={styles.userDateBar}>{review.reviewer_name}</div>
+    <div className={styles.userDateBar}>{review.date}</div>
   </div>
 );
 
