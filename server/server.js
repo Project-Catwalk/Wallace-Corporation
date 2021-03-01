@@ -39,6 +39,16 @@ app.get('/reviews/:id', (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// Q&A
+app.get('/qa/questions/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`${options.url}/qa/questions/?product_id=${id}`, options)
+    .then(({ data }) => {
+      res.send(data.results);
+    })
+    .catch(console.log);
+});
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
