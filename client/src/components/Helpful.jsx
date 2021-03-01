@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../styleComponents/App.module.css';
-import axios from 'axios';
 
 const Helpful = (props) => {
   const { helpfulness } = props;
