@@ -1,5 +1,5 @@
 import React from "react";
-import QA from "./QA.jsx";
+import QA from "./qa/QA.jsx";
 import axios from "axios";
 import Reviews from "./Reviews.jsx";
 import Overview from "./Overview.jsx";

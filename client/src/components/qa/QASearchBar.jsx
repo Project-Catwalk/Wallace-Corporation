@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styleComponents/QA.modules.css';
+import styles from '../../styleComponents/QA.modules.css';
 
 const QASearchBar = () => {
   const handleChange = () => {

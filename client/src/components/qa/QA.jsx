@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from '../styleComponents/QA.modules.css';
+import styles from '../../styleComponents/QA.modules.css';
 import QASearchBar from './QASearchBar.jsx'
 import Question from './Question';
+import QuestionModal from './QuestionModal';
 
 const QA = (props) => {
   let { questions } = props;
@@ -16,7 +17,8 @@ const QA = (props) => {
         }
       </div>
       <div className={styles.buttons}>
-        Buttons
+        <button>More Answered Questions</button>
+        <button>Add A Question + </button>
       </div>
     </div>
   );
