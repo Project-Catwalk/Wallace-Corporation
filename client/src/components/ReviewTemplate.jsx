@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 // import axios from "axios";
 import styles from '../styleComponents/Reviews.module.css';
 import Helpful from './Helpful';
@@ -32,7 +32,7 @@ const UserDateBar = ({ review }) => {
     return dateArr.join('-');
   };
 
-  const date = getDate(review.date)
+  const date = getDate(review.date);
 
   return (
     <div>

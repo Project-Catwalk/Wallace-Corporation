@@ -12,8 +12,6 @@ const Question = (props) => {
     setAnswerList(answerArray);
   }, []);
 
-  console.log(answerList);
-
   return (
     <div className={styles.question}>
       <div>Q: {question_body}</div>

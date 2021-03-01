@@ -29,6 +29,7 @@ app.get('/products/:products_id', (req, res) => {
     .catch(console.error);
 });
 
+//REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
   axios
@@ -37,6 +38,13 @@ app.get('/reviews/:id', (req, res) => {
       options,
     ).then(({ data }) => res.send(data.results))
     .catch((err) => console.log(err));
+});
+
+app.post('/reviews/:review_id/helpful', (req, res) => {
+  const { review_id } = req.params;
+  axios.put(`${options.url}/reviews/${review_id}/helpful`, { body: {review_id: review_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
 });
 
 // Q&A
