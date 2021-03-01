@@ -14,7 +14,7 @@ const ReviewTemplate = ({ reviews }) => (
           <UserDateBar review={review} />
         </div>
         <div className={styles.templateHelpfulReportBar}>
-          <Helpful helpfulness={review.helpfulness} />
+          <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
         </div>
         <div className={styles.templateResponseFromSeller}>{review.response}</div>
         {/* <div className={styles.templateImages}>{review.photos}</div> */}
