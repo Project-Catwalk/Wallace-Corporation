@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
-import styles from '../styleComponents/QA.modules.css';
+import styles from '../../styleComponents/QA.modules.css';
+import Helpful from '../Helpful';
 
 const Question = (props) => {
   const { question_body, answers } = props.question;
   const [answerList, setAnswerList] = useState([]);
-  // answers = Array.from(answers);
-  let answerArray = Object.values(answers);
-  // console.log(answerArray);
+  const answerArray = Object.values(answers);
   useEffect(() => {
     setAnswerList(answerArray);
   }, []);
 
-  console.log(answerList);
-
   return (
     <div className={styles.question}>
       <div>Q: {question_body}</div>
+      <button type="button">  Add Answer </button>
       <div>
         A:
         {answerList.map((answer, idx) => <Answer key={idx} answer={answer} />)}

@@ -29,6 +29,7 @@ app.get('/products/:products_id', (req, res) => {
     .catch(console.error);
 });
 
+// REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
   axios
@@ -48,6 +49,8 @@ app.get('/qa/questions/:id', (req, res) => {
     })
     .catch(console.log);
 });
+
+
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
