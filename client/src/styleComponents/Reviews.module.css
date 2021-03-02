@@ -2,7 +2,7 @@
   display: grid;
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 50px 250px 75px/27% auto;
+  grid: 50px auto 50px/27% auto;
   margin: 15px;
 }
 
@@ -36,7 +36,7 @@
   border: solid 3px black;
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 30px 60px 60px 60px 25px / auto auto;
+  grid: 30px auto auto auto 25px / auto auto;
   margin: 20px;
 }
 
@@ -92,4 +92,10 @@
 .userDateBar {
   display: inline;
   margin: 4px;
+}
+
+.footerButton {
+  height: 40px;
+  width: 115px;
+  display: inline;
 }
