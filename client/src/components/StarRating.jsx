@@ -3,7 +3,7 @@ import styles from '../styleComponents/Reviews.module.css';
 
 const StarRating = ({ average }) => (
   <div className={styles.starRating}>
-    <div className={styles.starRatingTop} style={{ width: average() }}>
+    <div className={styles.starRatingTop} style={{ width: average }}>
       <span>★</span>
       <span>★</span>
       <span>★</span>
