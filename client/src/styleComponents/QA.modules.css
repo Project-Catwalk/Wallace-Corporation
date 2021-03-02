@@ -30,3 +30,10 @@
   border: solid black;
   padding: 1em;
 }
+
+/* MODALS */
+
+.qInput {
+  width: 20%;
+  height: 20%;
+}
