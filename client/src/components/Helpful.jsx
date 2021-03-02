@@ -18,12 +18,12 @@ const Helpful = (props) => {
     if (props.review_id) {
       const { review_id } = props;
       axios.put(`/reviews/${review_id}/helpful`)
-        .then((status) => console.log(status))
+        .then((status) => console.log(status.status))
         .catch((err) => console.log(err));
     } else if (props.question_id) {
       const { question_id } = props;
       axios.put(`/qa/questions/${question_id}/helpful`)
-        .then((status) => console.log(status))
+        .then((status) => console.log(status.status))
         .catch((err) => console.log(err));
     }
   };
