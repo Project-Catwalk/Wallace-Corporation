@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styleComponents/QA.modules.css';
 import QASearchBar from './QASearchBar.jsx'
 import Question from './Question';
-import QuestionModal from './QuestionModal';
+import Modal from './QuestionModal';
 
 const QA = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   let { questions } = props;
   return (
+    <>
     <div className={styles.QA}>
       <div className={styles.search}>
         <QASearchBar />
@@ -18,10 +20,12 @@ const QA = (props) => {
       </div>
       <div className={styles.buttons}>
         <button>More Answered Questions</button>
-        <button>Add A Question + </button>
+        <button onClick={() => setIsOpen(true)}>Add A Question + </button>
+        <Modal onClose={() => setIsOpen(false)} open={isOpen}></Modal>
       </div>
     </div>
+    </>
   );
-}
+};
 
 export default QA;
