@@ -10,6 +10,7 @@ const StylesButtons = (props) => {
   const { stylesArr } = props;
 
   // console.log('stylesArr in OverviewStyles: ', stylesArr);
+
   // has default? with one set to true and the rest to false
   // has name: for name of style
   // has original_price and sale_price

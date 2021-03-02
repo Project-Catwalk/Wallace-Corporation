@@ -69,6 +69,7 @@ class App extends React.Component {
       .then((results) => {
         this.setState({ id: results.data.id });
         this.setState({ overview: results.data });
+        // console.log('state: ', this.state);
       })
       .catch((err) => {
         console.log("Error: ", err);
