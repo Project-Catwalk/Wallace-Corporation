@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import Helpful from '../Helpful';
 
 const Answer = (props) => {
   const { answer } = props;
-  const { body, answerer_name, date } = answer;
+  const { body, answerer_name, date, id, helpfulness } = answer;
   // date = date.slice(0, date.indexOf(T));
 
   const getProperDate = (weirdDate) => {
@@ -15,7 +16,8 @@ const Answer = (props) => {
   return (
     <>
       <p>{body}</p>
-      <p>by {answerer_name}, {getProperDate(date)} | Helpful? | Report </p>
+      <p>by {answerer_name}, {getProperDate(date)}</p>
+      <Helpful answer_id={id} helpfulness={helpfulness} />
     </>
   );
 };
