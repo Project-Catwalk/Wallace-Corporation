@@ -29,6 +29,7 @@ app.get('/products/:products_id', (req, res) => {
     .catch(console.error);
 });
 
+//REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
   axios
@@ -37,6 +38,30 @@ app.get('/reviews/:id', (req, res) => {
       options,
     ).then(({ data }) => res.send(data.results))
     .catch((err) => console.log(err));
+});
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  const { review_id } = req.params;
+  axios.put(`${options.url}/reviews/${review_id}/helpful`, { body: {review_id: review_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
+});
+
+// Q&A
+app.get('/qa/questions/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`${options.url}/qa/questions/?product_id=${id}`, options)
+    .then(({ data }) => {
+      res.send(data.results);
+    })
+    .catch(console.log);
+});
+
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  const { question_id } = req.params;
+  axios.put(`${options.url}/qa/questions/${question_id}/helpful`, { body: { question_id: question_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
 });
 
 app.listen(port, () => {
