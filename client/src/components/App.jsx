@@ -17,16 +17,18 @@ class App extends React.Component {
       questions: [],
       reviews: [],
       overview: [],
+      styles: [],
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getReviews = this.getReviews.bind(this);
-    // this.getOverview = this.getOverview.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
     this.defaultProduct(20103);
+    this.getStyles(20103);
     this.getQuestions(20103);
     this.getReviews(20103);
   }
@@ -51,15 +53,15 @@ class App extends React.Component {
       .catch(console.log);
   }
 
-  // getOverview(id) {
-  //   axios.get(`/products/${id}`)
-  //     .then((results) => {
-  //       this.setState({
-  //         overview: results.data,
-  //       });
-  //     })
-  //     .catch(console.log);
-  // }
+  getStyles(id) {
+    axios.get(`/products/${id}/styles`)
+      .then((results) => {
+        this.setState({
+          styles: results.data.results,
+        });
+      })
+      .catch(console.log);
+  }
 
   defaultProduct(productId) {
     axios
@@ -75,11 +77,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { reviews, questions, overview } = this.state;
+    const { reviews, questions, overview, styles } = this.state;
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
-        <Overview overview={overview} />
+        <Overview overview={overview} productStyles={styles} />
         <Reviews reviews={reviews} />
         <QA questions={questions} />
       </div>

@@ -16,7 +16,11 @@ const MainDisplay = (props) => {
   // Sliding the mouse should re-orient the image display accordingly
   // Thumbnail icons disappear and mouse icon changes to "-"
   // Clicking in zoomed mode will return to expanded view
-  return <img title="Display Image"/>
+  const { stylesArr } = props;
+
+  // stylesArr[0].photos[0].thumbnail_url is the current src
+
+  return <img  src="https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"/>
 };
 
 export default MainDisplay;

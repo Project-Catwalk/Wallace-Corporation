@@ -14,12 +14,12 @@ import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
 
 const Overview = (props) => {
-  const { overview } = props;
+  const { overview, productStyles } = props;
   const { category, default_price, description, name, slogan } = overview;
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainDisplay}>
-        <MainDisplay />
+        <MainDisplay stylesArr={productStyles} />
       </div>
       <div className={styles.reviews}>
         <ReviewStars />
@@ -31,17 +31,17 @@ const Overview = (props) => {
         <Product name={name} />
       </div>
       <div className={styles.productPrice}>
-        <Price default_price={default_price} />
+        <Price stylesArr={productStyles} />
       </div>
       <div className={styles.productStyles}>
         Style:
-        <StylesButtons />
+        <StylesButtons stylesArr={productStyles} />
       </div>
       <select className={styles.sizeDropDown}>
-        <Size />
+        <Size stylsArr={productStyles} />
       </select>
       <select className={styles.quantityDropDown}>
-        <Quantity />
+        <Quantity stylsArr={productStyles} />
       </select>
       <div className={styles.cart}>
         <AddToCart />
