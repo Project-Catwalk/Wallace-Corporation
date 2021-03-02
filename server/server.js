@@ -70,6 +70,13 @@ app.post('/qa/questions', (req, res) => {
     .catch(console.log);
 });
 
+app.post(`/qa/questions/:question_id/answers`, (req, res) => {
+  const { question_id } = req.params;
+  axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
+    .then(() => res.send(201))
+    .catch(console.log);
+});
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
