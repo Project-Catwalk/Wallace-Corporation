@@ -1,7 +1,7 @@
-import React from "react";
-import QA from "./qa/QA.jsx";
-import axios from "axios";
-import Reviews from "../reviews/Reviews.jsx";
+import React from 'react';
+import axios from 'axios';
+import QA from './qa/QA';
+import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
 
 const titleBarStyle = {
@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      id: "",
+      id: '',
       questions: [],
       reviews: [],
       overview: [],
@@ -69,7 +69,6 @@ class App extends React.Component {
       .then((results) => {
         this.setState({ id: results.data.id });
         this.setState({ overview: results.data });
-        console.log('state: ', this.state);
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -77,7 +76,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { reviews, questions, id, overview, styles } = this.state;
+    const {
+      reviews, questions, id, overview, styles,
+    } = this.state;
 
     return (
       <div>

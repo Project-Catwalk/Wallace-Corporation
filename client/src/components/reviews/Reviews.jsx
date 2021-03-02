@@ -4,7 +4,7 @@ import RatingBreakdown from './RatingBreakdown';
 import ReviewsList from './ReviewsList';
 import ReviewsSortHeader from './ReviewsSortHeader';
 import ReviewsFooter from './ReviewsFooter';
-import styles from '../styleComponents/Reviews.module.css';
+import styles from '../../styleComponents/Reviews.module.css';
 
 const Reviews = ({ reviews }) => (
   <div className={styles.parentContainer}>
