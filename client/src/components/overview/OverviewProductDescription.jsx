@@ -4,7 +4,11 @@ const Description = (props) => {
   // Hide this if no description available
   // Import product description
   // Display based on whatever style is selected
-  return <p>Product Description</p>
+  const { description } = props;
+
+  return (
+    <p>{description}</p>
+  );
 };
 
 export default Description;
