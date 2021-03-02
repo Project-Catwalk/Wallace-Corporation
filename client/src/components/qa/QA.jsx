@@ -6,7 +6,7 @@ import Modal from './QuestionModal';
 
 const QA = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  let { questions, getQuestions, productId } = props;
+  const { questions, getQuestions, productId } = props;
   return (
     <>
     <div className={styles.QA}>
@@ -15,7 +15,7 @@ const QA = (props) => {
       </div>
       <div className={styles.qa}>
         {
-        questions.map((question) => <Question question={question} />)
+        questions.map((question) => <Question productId={productId} getQuestions={getQuestions} question={question} />)
         }
       </div>
       <div className={styles.buttons}>
