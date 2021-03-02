@@ -29,6 +29,18 @@ app.get('/products/:products_id', (req, res) => {
     .catch(console.error);
 });
 
+//OVERVIEW
+app.get('/products/:products_id/styles', (req, res) => {
+  let { products_id } = req.params;
+
+  axios
+    .get(`${options.url}/products/${products_id}/styles`, options)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch(console.error);
+});
+
 //REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
