@@ -7,9 +7,27 @@ const Quantity = (props) => {
   // Use map to add options with integers
   const { stylesArr } = props;
 
-  // props.whateverArrayIndex.skus.whateverNumbersku_id.quantity
+  let quantityArr = [];
 
-  return <option>1</option>;
+  if (stylesArr.length > 0) {
+    const sizeAndQuantity = stylesArr[0].skus;
+
+    let arrOfSizeAndQuantityObjs = Object.values(sizeAndQuantity);
+
+    for (let i = 0; i < arrOfSizeAndQuantityObjs.length; i++) {
+      quantityArr.push(arrOfSizeAndQuantityObjs[i].quantity);
+    }
+  }
+
+  const quantityOptions = quantityArr.map((productQuantity, sku_id) => (
+    <option key={sku_id}>{productQuantity}</option>
+  ));
+
+  return (
+    <select>
+      {quantityOptions}
+    </select>
+  );
 };
 
 export default Quantity;

@@ -37,12 +37,12 @@ const Overview = (props) => {
         Style:
         <StylesButtons stylesArr={productStyles} />
       </div>
-      <select className={styles.sizeDropDown}>
+      <div className={styles.sizeDropDown}>
         <Size stylesArr={productStyles} />
-      </select>
-      <select className={styles.quantityDropDown}>
-        <Quantity stylsArr={productStyles} />
-      </select>
+      </div>
+      <div className={styles.quantityDropDown}>
+        <Quantity stylesArr={productStyles} />
+      </div>
       <div className={styles.cart}>
         <AddToCart />
       </div>
