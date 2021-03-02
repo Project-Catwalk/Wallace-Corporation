@@ -14,7 +14,6 @@ const Price = (props) => {
   for (let i = 0; i < stylesArr.length; i++) {
     normalPrice = stylesArr[i].original_price;
   }
-  console.log('normalPrice: ', normalPrice);
 
   return (
     <p>{normalPrice}</p>

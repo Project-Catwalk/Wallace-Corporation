@@ -1,7 +1,7 @@
 import React from 'react';
 // import axios from "axios";
-import styles from '../styleComponents/Reviews.module.css';
-import Helpful from '../components/Helpful';
+import styles from '../../styleComponents/Reviews.module.css';
+import Helpful from '../Helpful';
 
 const ReviewTemplate = ({ reviews }) => (
   <div>
@@ -33,13 +33,25 @@ const ReviewTemplate = ({ reviews }) => (
 );
 
 const StarRating = ({ rating }) => {
-  const roundedPercentage = (Math.round((rating / 5) * 4) / 4).toFixed(2);
-  const starPercentage = roundedPercentage * 100;
-  console.log(rating)
+  const starPercentage = (rating / 5) * 100;
+  const roundedPercentage = (Math.round(starPercentage * 5) / 5);
+
   return (
     <div className={styles.starRating}>
-      <div className={styles.starRatingTop} style={{width: starPercentage}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div className={styles.starRatingBottom}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div className={styles.starRatingTop} style={{ width: roundedPercentage }}>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+      </div>
+      <div className={styles.starRatingBottom}>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+        <span>★</span>
+      </div>
     </div>
   );
 };
