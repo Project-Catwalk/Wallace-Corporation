@@ -14,8 +14,8 @@ import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
 
 const Overview = (props) => {
-  const { overview, productStyles } = props;
-  const { category, default_price, description, name, slogan } = overview;
+  const { overview, productStyles, relatedProducts } = props;
+  const { category, description, name, slogan } = overview;
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainDisplay}>
@@ -38,7 +38,7 @@ const Overview = (props) => {
         <StylesButtons stylesArr={productStyles} />
       </div>
       <select className={styles.sizeDropDown}>
-        <Size stylsArr={productStyles} />
+        <Size stylesArr={productStyles} />
       </select>
       <select className={styles.quantityDropDown}>
         <Quantity stylsArr={productStyles} />
@@ -47,7 +47,7 @@ const Overview = (props) => {
         <AddToCart />
       </div>
       <div className={styles.relatedProducts}>
-        <RelatedProducts />
+        <RelatedProducts relatedArr={relatedProducts} />
       </div>
       <div className={styles.slogan}>
         <Slogan slogan={slogan} />

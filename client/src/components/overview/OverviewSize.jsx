@@ -6,7 +6,9 @@ const Size = (props) => {
   // Map over sizes and place in an option
   const { stylesArr } = props;
 
-  // props.whateverArrayIndex.skus.${sku_id}.size
+  console.log('overview size stylesArr: ', stylesArr);
+
+  // props.whateverArrayIndex.skus.whateverNumbersku_id.size
 
   return <option>S</option>;
 };
