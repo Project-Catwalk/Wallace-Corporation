@@ -21,6 +21,7 @@
   padding: 0 2em 2em 2em;
   z-index: 1000;
   width: 60%;
+  border-radius: 10px;
 }
 
 .overlay {
@@ -33,6 +34,16 @@
   z-index: 1000;
 }
 
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalBody {
+  display: flex;
+}
+
 .closeModal:hover {
   cursor: pointer;
 }
@@ -41,28 +52,26 @@ button:hover {
   cursor:pointer;
 }
 
-.modalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .closeModal {
   font-weight: bold;
   align-items: center;
 }
 
 .modalButton {
-  background-color: blue;
+  background-color: rgb(52, 52, 255);
   color: white;
   border: none;
-  padding: 15px;
-  align-self: right;
+  padding: 10px;
+  align-self: flex-end;
+  margin: 15px 0 0 0;
+  border-radius: 8px;
 }
 
+/* for a text area, could be for reviews as well Lu */
 .qInput {
   width: 500px;
   height: 100px;
   resize: none;
   outline: none;
+  border-width: thin;
 }

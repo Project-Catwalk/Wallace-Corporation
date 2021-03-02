@@ -16,9 +16,17 @@ const ReviewTemplate = ({ reviews }) => (
         <div className={styles.templateHelpfulReportBar}>
           <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
         </div>
-        <div className={styles.templateResponseFromSeller}>{review.response}</div>
+        {(review.response.length > 0)
+          ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
+          : <div />}
+        {/* // <div className={styles.templateResponseFromSeller}>{review.response}</div> */}
+        {/* {(review.photos.length > 0)
+          ? <div className={styles.templateImages}>{review.photos}</div>
+          : <div />} */}
         {/* <div className={styles.templateImages}>{review.photos}</div> */}
-        <div className={styles.templateRecommendsBar}> I recomend this product</div>
+        {(review.recommend)
+          ? <div className={styles.templateRecommendsBar}>I recommend this product</div>
+          : <div />}
       </div>
     ))}
   </div>
