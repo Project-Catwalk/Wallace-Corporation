@@ -1,7 +1,7 @@
 import React from "react";
 import QA from "./qa/QA.jsx";
 import axios from "axios";
-import Reviews from "./reviews/Reviews.jsx";
+import Reviews from "../reviews/Reviews.jsx";
 import Overview from './overview/Overview';
 
 const titleBarStyle = {
