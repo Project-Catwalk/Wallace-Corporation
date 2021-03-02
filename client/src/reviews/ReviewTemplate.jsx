@@ -1,13 +1,13 @@
 import React from 'react';
 // import axios from "axios";
 import styles from '../styleComponents/Reviews.module.css';
-import Helpful from './Helpful';
+import Helpful from '../components/Helpful';
 
 const ReviewTemplate = ({ reviews }) => (
   <div>
     {reviews.map((review, id) => (
       <div key={id} className={styles.reviewTemplate}>
-        <div className={styles.templateRating}>{review.rating}</div>
+        <StarRating rating={review.rating} />
         <div className={styles.templateSummary}>{review.summary}</div>
         <div className={styles.templateBody}>{review.body}</div>
         <div className={styles.templateUserDateBar}>
@@ -31,6 +31,18 @@ const ReviewTemplate = ({ reviews }) => (
     ))}
   </div>
 );
+
+const StarRating = ({ rating }) => {
+  const roundedPercentage = (Math.round((rating / 5) * 4) / 4).toFixed(2);
+  const starPercentage = roundedPercentage * 100;
+  console.log(rating)
+  return (
+    <div className={styles.starRating}>
+      <div className={styles.starRatingTop} style={{width: starPercentage}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div className={styles.starRatingBottom}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+    </div>
+  );
+};
 
 const UserDateBar = ({ review }) => {
   const getDate = (date) => {

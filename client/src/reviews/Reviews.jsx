@@ -9,7 +9,7 @@ import styles from '../styleComponents/Reviews.module.css';
 const Reviews = ({ reviews }) => (
   <div className={styles.parentContainer}>
     <div className={styles.parentBreakdown}>
-      <RatingBreakdown />
+      <RatingBreakdown reviews={reviews} />
     </div>
     <div className={styles.parentHeader}>
       <ReviewsSortHeader />
