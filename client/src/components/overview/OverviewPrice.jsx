@@ -5,7 +5,11 @@ const Price = (props) => {
   // If sale_price is present and is greater than 0, display sale price in red
     // Strike through original price and place to the right of the sale price
   // Create a "Read all reviews" link to scroll down to the Reviews section
-  return <p>$ + 140</p>
+  const { default_price } = props;
+
+  return (
+    <p>{default_price}</p>
+  );
 };
 
 export default Price;

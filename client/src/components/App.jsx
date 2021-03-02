@@ -2,7 +2,7 @@ import React from "react";
 import QA from "./qa/QA.jsx";
 import axios from "axios";
 import Reviews from "./Reviews.jsx";
-import Overview from "./Overview.jsx";
+import Overview from './overview/Overview';
 
 const titleBarStyle = {
   backgroundColor: '#6D8C8C',
@@ -16,11 +16,13 @@ class App extends React.Component {
       id: "",
       questions: [],
       reviews: [],
+      overview: [],
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getReviews = this.getReviews.bind(this);
+    // this.getOverview = this.getOverview.bind(this);
   }
 
   componentDidMount() {
@@ -49,11 +51,23 @@ class App extends React.Component {
       .catch(console.log);
   }
 
+  // getOverview(id) {
+  //   axios.get(`/products/${id}`)
+  //     .then((results) => {
+  //       this.setState({
+  //         overview: results.data,
+  //       });
+  //     })
+  //     .catch(console.log);
+  // }
+
   defaultProduct(productId) {
     axios
       .get(`/products/${productId}`)
       .then((results) => {
         this.setState({ id: results.data.id });
+        this.setState({ overview: results.data });
+        console.log('state: ', this.state);
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -61,11 +75,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { reviews, questions } = this.state;
+    const { reviews, questions, overview } = this.state;
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
-        <Overview />
+        <Overview overview={overview} />
         <Reviews reviews={reviews} />
         <QA questions={questions} />
       </div>
