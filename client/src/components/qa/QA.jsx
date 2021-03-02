@@ -6,7 +6,7 @@ import Modal from './QuestionModal';
 
 const QA = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  let { questions } = props;
+  let { questions, getQuestions, productId } = props;
   return (
     <>
     <div className={styles.QA}>
@@ -21,7 +21,7 @@ const QA = (props) => {
       <div className={styles.buttons}>
         <button>More Answered Questions</button>
         <button onClick={() => setIsOpen(true)}>Add A Question + </button>
-        <Modal onClose={() => setIsOpen(false)} open={isOpen}></Modal>
+        <Modal productId={productId} getQuestions={getQuestions} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
       </div>
     </div>
     </>

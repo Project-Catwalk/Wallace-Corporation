@@ -1,7 +1,7 @@
 /* MAIN GRID */
 .QA {
   display: grid;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
 }
 
 .search {
@@ -33,7 +33,6 @@
 
 /* MODALS */
 
-.qInput {
-  width: 20%;
-  height: 20%;
+.modalInput {
+  width: 75%;
 }
