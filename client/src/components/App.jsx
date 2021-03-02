@@ -14,16 +14,19 @@ class App extends React.Component {
 
     this.state = {
       id: '',
+      name: '',
       questions: [],
       reviews: [],
       overview: [],
       styles: [],
+      metaReviews: [],
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getStyles = this.getStyles.bind(this);
+    this.getMetaReviews = this.getMetaReviews.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +34,7 @@ class App extends React.Component {
     this.getStyles(20103);
     this.getQuestions(20103);
     this.getReviews(20103);
+    this.getMetaReviews(20103);
   }
 
   getQuestions(id) {
@@ -45,9 +49,9 @@ class App extends React.Component {
 
   getReviews(id) {
     axios.get(`/reviews/${id}`)
-      .then((results) => {
+      .then(({ data }) => {
         this.setState({
-          reviews: results.data,
+          reviews: data,
         });
       })
       .catch(console.log);
@@ -63,13 +67,23 @@ class App extends React.Component {
       .catch(console.log);
   }
 
+  getMetaReviews(id) {
+    axios.get(`/reviews/meta/${id}`)
+      .then(({ data }) => {
+        this.setState({ metaReviews: data });
+      })
+      .catch(console.log);
+  }
+
   defaultProduct(productId) {
     axios
       .get(`/products/${productId}`)
       .then((results) => {
-        this.setState({ id: results.data.id });
-        this.setState({ overview: results.data });
-        // console.log('state: ', this.state);
+        this.setState({
+          id: results.data.id,
+          name: results.data.name,
+          overview: results.data,
+        });
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -78,14 +92,20 @@ class App extends React.Component {
 
   render() {
     const {
-      reviews, questions, id, overview, styles,
+      reviews, questions, id, overview, styles, name, metaReviews
     } = this.state;
 
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
         <Overview overview={overview} productStyles={styles} />
-        <Reviews reviews={reviews} />
+        <Reviews
+          reviews={reviews}
+          getReviews={this.getReviews}
+          productId={id}
+          name={name}
+          metaReviews={metaReviews}
+        />
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );

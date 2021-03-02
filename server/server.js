@@ -52,6 +52,16 @@ app.get('/reviews/:id', (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.get('/reviews/meta/:id', (req, res) => {
+  const { id } = req.params;
+  axios
+    .get(
+      `${options.url}/reviews/meta/?product_id=${id}`,
+      options,
+    ).then(({ data }) => res.send(data))
+    .catch((err) => console.log(err));
+});
+
 app.put('/reviews/:review_id/helpful', (req, res) => {
   const { review_id } = req.params;
   axios.put(`${options.url}/reviews/${review_id}/helpful`, { body: {review_id: review_id } }, options)
