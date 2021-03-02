@@ -3,11 +3,11 @@ import ReviewTemplate from './ReviewTemplate';
 import styles from '../styleComponents/Reviews.module.css';
 
 const ReviewsList = ({ reviews }) => {
-  const initialReviews = reviews.slice(0, 2);
+  // const initialReviews = reviews.slice(0, 2);
 
   return (
     <div>
-      <ReviewTemplate reviews={initialReviews} />
+      <ReviewTemplate reviews={reviews} />
     </div>
   );
 };
