@@ -29,6 +29,10 @@ class App extends React.Component {
     this.getReviews(20103);
   }
 
+  addQuestion(question) {
+    
+  }
+
   getQuestions(id) {
     axios.get(`/qa/questions/${id}`)
       .then((results) => {
