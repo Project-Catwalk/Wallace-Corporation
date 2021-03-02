@@ -1,7 +1,7 @@
 import React from 'react';
 // import axios from "axios";
 import styles from '../styleComponents/Reviews.module.css';
-import Helpful from './Helpful';
+import Helpful from '../components/Helpful';
 
 const ReviewTemplate = ({ reviews }) => (
   <div>
