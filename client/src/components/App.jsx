@@ -29,10 +29,6 @@ class App extends React.Component {
     this.getReviews(20103);
   }
 
-  addQuestion(question) {
-    
-  }
-
   getQuestions(id) {
     axios.get(`/qa/questions/${id}`)
       .then((results) => {
@@ -65,13 +61,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { reviews, questions } = this.state;
+    const { reviews, questions, id } = this.state;
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
         <Overview />
         <Reviews reviews={reviews} />
-        <QA questions={questions} />
+        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );
   }

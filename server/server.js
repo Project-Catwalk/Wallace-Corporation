@@ -64,6 +64,12 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     .catch(console.log);
 });
 
+app.post('/qa/questions', (req, res) => {
+  axios.post(`${options.url}/qa/questions`, req.body, options)
+    .then(() => res.send(201))
+    .catch(console.log);
+});
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });

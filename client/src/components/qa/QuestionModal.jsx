@@ -1,9 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
+import App from '../App';
 
-function Modal({ open, children, onClose }) {
+function Modal({ open, onClose, getQuestions, productId }) {
   if (!open) {
     return null;
   }
@@ -14,7 +16,15 @@ function Modal({ open, children, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(question, username, email);
+    let questionInfo = {
+      body: question,
+      name: username,
+      email: email,
+      product_id: productId,
+    };
+    axios.post('/qa/questions', questionInfo)
+      .then(() => getQuestions(productId))
+      .catch(console.log);
   };
 
   return ReactDOM.createPortal(
