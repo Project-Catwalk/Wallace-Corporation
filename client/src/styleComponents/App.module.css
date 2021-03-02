@@ -11,3 +11,58 @@
 .helpful {
   display: inline;
 }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 0 2em 2em 2em;
+  z-index: 1000;
+  width: 60%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.555);
+  z-index: 1000;
+}
+
+.closeModal:hover {
+  cursor: pointer;
+}
+
+button:hover {
+  cursor:pointer;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeModal {
+  font-weight: bold;
+  align-items: center;
+}
+
+.modalButton {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 15px;
+  align-self: right;
+}
+
+.qInput {
+  width: 500px;
+  height: 100px;
+  resize: none;
+  outline: none;
+}
