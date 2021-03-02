@@ -77,13 +77,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { reviews, questions, overview, styles } = this.state;
+    const { reviews, questions, id, overview, styles } = this.state;
+
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
         <Overview overview={overview} productStyles={styles} />
         <Reviews reviews={reviews} />
-        <QA questions={questions} />
+        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );
   }
