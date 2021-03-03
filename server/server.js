@@ -18,11 +18,11 @@ const options = {
   },
 };
 
-app.get('/products/:products_id', (req, res) => {
-  let { products_id } = req.params;
+app.get('/products/:product_id', (req, res) => {
+  let { product_id } = req.params;
 
   axios
-    .get(`${options.url}/products/${products_id}`, options)
+    .get(`${options.url}/products/${product_id}`, options)
     .then((results) => {
       res.send(results.data);
     })
@@ -30,11 +30,22 @@ app.get('/products/:products_id', (req, res) => {
 });
 
 //OVERVIEW
-app.get('/products/:products_id/styles', (req, res) => {
-  let { products_id } = req.params;
+app.get('/products/:product_id/styles', (req, res) => {
+  let { product_id } = req.params;
 
   axios
-    .get(`${options.url}/products/${products_id}/styles`, options)
+    .get(`${options.url}/products/${product_id}/styles`, options)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch(console.error);
+});
+
+app.get('/products/:product_id/related', (req, res) => {
+  let { product_id } = req.params;
+
+  axios
+    .get(`${options.url}/products/${product_id}/related`, options)
     .then((results) => {
       res.send(results.data);
     })
