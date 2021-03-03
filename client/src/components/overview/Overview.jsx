@@ -4,7 +4,6 @@ import MainDisplay from './OverviewMainDisplay';
 import ReviewStars from './OverviewRatingsDisplay';
 import Category from './OverviewCategory';
 import Product from './OverviewProductTitle';
-import Price from './OverviewPrice';
 import OverviewStyles from './OverviewStyles';
 import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
@@ -20,19 +19,13 @@ const Overview = (props) => {
 
   const [skus, setSkus] = useState({});
   const [photos, setPhotos] = useState([]);
-  const [normalPrice, setNormalPrice] = useState('');
-  const [priceOnSale, setPriceOnSale] = useState('');
 
   useEffect(() => {
     if (productStyles.length > 0) {
       const listOfSkus = productStyles[0].skus;
       const listOfPhotos = productStyles[0].photos;
-      const originalPrice = productStyles[0].original_price;
-      const salePrice = productStyles[0].sale_price;
       setSkus(listOfSkus);
       setPhotos(listOfPhotos);
-      setNormalPrice(originalPrice);
-      setPriceOnSale(salePrice);
     }
   }, [productStyles]);
 
@@ -50,14 +43,8 @@ const Overview = (props) => {
       <div className={styles.productTitle}>
         <Product name={name} />
       </div>
-      <div className={styles.productPrice}>
-        <Price stylesArr={productStyles} />
-      </div>
       <div>
-        <label>
-          Style:
-          <OverviewStyles stylesArr={productStyles} skus={skus} />
-        </label>
+        <OverviewStyles stylesArr={productStyles} skus={skus} />
       </div>
       <div className={styles.cart}>
         <AddToCart />

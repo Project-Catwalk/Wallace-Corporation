@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewSize from './OverviewSize';
+import Price from './OverviewPrice';
 
 const OverviewStyles = (props) => {
   // Map over all possible styles and place in a button
@@ -13,6 +14,8 @@ const OverviewStyles = (props) => {
 
   const [styleChoice, setStyleChoice] = useState('');
   const [skuOfChoice, setSkuOfChoice] = useState({});
+  const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
+  const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -51,14 +54,22 @@ const OverviewStyles = (props) => {
     for (let i = 0; i < stylesArr.length; i++) {
       if (styleChoice === stylesArr[i].name) {
         setSkuOfChoice(stylesArr[i].skus);
+        setOriginalPriceOfChoice(stylesArr[i].original_price);
+        setSalePriceOfChoice(stylesArr[i].sale_price);
       }
     }
   });
 
   return (
     <>
+      <div className={styles.productPrice}>
+        <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
+      </div>
       <div className={styles.productStyles}>
-        {styleButtonNames.map((styleName, index) => <button key={index} onClick={styleButtonHandler}>{styleName}</button>)}
+        <label>
+          Style:
+          {styleButtonNames.map((styleName, index) => <button key={index} onClick={styleButtonHandler}>{styleName}</button>)}
+        </label>
       </div>
       <div className={styles.sizeDropDown}>
         <OverviewSize sizesAndQuantities={sizesAndQuantities} />
