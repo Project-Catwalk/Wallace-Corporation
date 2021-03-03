@@ -19,27 +19,21 @@ const Overview = (props) => {
 
   const [skus, setSkus] = useState({});
   const [photos, setPhotos] = useState([]);
+  const [normalPrice, setNormalPrice] = useState('');
+  const [priceOnSale, setPriceOnSale] = useState('');
 
-
-  // const testFunction = () => {
-  //   if (productStyles.length > 0) {
-  //     const listOfSkus = productStyles[0].skus;
-  //     console.log('listOfSkus: ', listOfSkus);
-  //     setSkus(listOfSkus);
-  //   }
-  // };
   useEffect(() => {
     if (productStyles.length > 0) {
       const listOfSkus = productStyles[0].skus;
-      console.log('listOfSkus: ', listOfSkus);
+      const listOfPhotos = productStyles[0].photos;
+      const originalPrice = productStyles[0].original_price;
+      const salePrice = productStyles[0].sale_price;
       setSkus(listOfSkus);
+      setPhotos(listOfPhotos);
+      setNormalPrice(originalPrice);
+      setPriceOnSale(salePrice);
     }
   }, [productStyles]);
-
-  // state will need to include skus from styles
-    // this will need to include a function make a key the value of the sku_id
-    // click handler will use the sku_id to make sure the size and quantity drop downs sync up
-  // Need a state to take care of style, so that when a new style is clicked it influences size, price, and style components
 
   return (
     <div className={styles.wrapper}>
