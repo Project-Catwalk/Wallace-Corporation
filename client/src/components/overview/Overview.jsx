@@ -20,12 +20,21 @@ const Overview = (props) => {
   const [skus, setSkus] = useState({});
   const [photos, setPhotos] = useState([]);
 
+
+  // const testFunction = () => {
+  //   if (productStyles.length > 0) {
+  //     const listOfSkus = productStyles[0].skus;
+  //     console.log('listOfSkus: ', listOfSkus);
+  //     setSkus(listOfSkus);
+  //   }
+  // };
   useEffect(() => {
     if (productStyles.length > 0) {
       const listOfSkus = productStyles[0].skus;
+      console.log('listOfSkus: ', listOfSkus);
       setSkus(listOfSkus);
     }
-  }, []);
+  }, [productStyles]);
 
   // state will need to include skus from styles
     // this will need to include a function make a key the value of the sku_id

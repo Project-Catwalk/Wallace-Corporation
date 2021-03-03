@@ -10,7 +10,7 @@ const AllStylesForProduct = (props) => {
   // Ensure a default style is selected on page load
   const { stylesArr } = props;
 
-  console.log('stylesArr in OverviewStyles: ', stylesArr);
+  // console.log('stylesArr in OverviewStyles: ', stylesArr);
 
   // has default? with one set to true and the rest to false
   // has name: for name of style
