@@ -126,3 +126,7 @@
   display: block;
   z-index: 0;
 }
+
+.modalInput {
+  width: 75%;
+}
