@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
+import Photo from './Photo';
 
 function Modal({open, onClose, question_id, getQuestions, productId}) {
   const [answer, setAnswer] = useState('');
@@ -19,6 +20,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
     setAnswer('');
     setUsername('');
     setEmail('');
+    setPhotos([]);
   };
 
   const handleSubmit = (e) => {
@@ -39,6 +41,15 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
       .catch(console.log);
   };
 
+  const handleChange = (e) => {
+    if (photos.length < 5) {
+      setPhotos([
+        ...photos,
+        URL.createObjectURL(e.target.files[0]),
+      ]);
+    }
+  };
+
   return ReactDOM.createPortal(
     <>
       <div 
@@ -57,7 +68,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
       >
         <div className={styles.modalHeader}>
           <h3>Add an Answer</h3>
-          <p 
+          <p
             className={styles.closeModal}
             onClick={() => {
               onClose();
@@ -73,15 +84,16 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
             <textarea value={answer} required="required" onChange={(e) => setAnswer(e.target.value)} className={styles.qInput} maxLength="1000" />
             <p>What is your nickname? *</p>
             <input value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack543!" />
-            <p className={qastyles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
+            <p className={styles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
             <p>Your Email *</p>
             <input value={email} required="required" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack@email.com" />
-            <p className={qastyles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
+            <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div>
-              <button>Add Photos</button>
+              {photos.length < 5 ? <input onChange={handleChange} type="file" multiple /> : null}
+              {photos.map((photo, idx) => <Photo key={idx} photo={photo}/>)}
             </div>
             <button type="submit" className={styles.modalButton}>Submit Answer</button>
-            <p className={qastyles.finePrint}>{error}</p>
+            <p className={styles.finePrint}>{error}</p>
           </form>
         </div>
       </div>

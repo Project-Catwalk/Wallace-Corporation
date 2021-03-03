@@ -71,7 +71,19 @@ button:hover {
   border-radius: 8px;
 }
 
+.finePrint {
+  color: red;
+  font-size: 10px;
+  height: 8px;
+}
+
+.imgThumbnail {
+  height: 50px;
+  width: 50px;
+}
+
 /* for a text area, could be for reviews as well Lu */
+
 .qInput {
   width: 500px;
   height: 100px;
@@ -79,3 +91,4 @@ button:hover {
   outline: none;
   border-width: thin;
 }
+

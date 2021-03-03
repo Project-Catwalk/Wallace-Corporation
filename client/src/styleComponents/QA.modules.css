@@ -1,7 +1,7 @@
 /* MAIN GRID */
 .QA {
   display: grid;
-  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-rows: auto auto auto;
 }
 
 .search {
@@ -41,4 +41,9 @@
   color: red;
   font-size: 10px;
   height: 8px;
+}
+
+.imgThumbnail {
+  height: 50px;
+  width: 50px;
 }
