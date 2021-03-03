@@ -57,7 +57,7 @@ const Overview = (props) => {
         <OverviewStyles stylesArr={productStyles} />
       </div>
       <div className={styles.sizeDropDown}>
-        <Size stylesArr={productStyles} />
+        <Size skus={skus} />
       </div>
       <div className={styles.quantityDropDown}>
         <Quantity stylesArr={productStyles} />
