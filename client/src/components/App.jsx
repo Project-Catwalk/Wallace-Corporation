@@ -75,6 +75,9 @@ class App extends React.Component {
     axios.get(`/reviews/meta/${id}`)
       .then(({ data }) => {
         this.setState({ metaReviews: data });
+      })
+      .catch((err) => console.log(err));
+  }
 
   getRelated(id) {
     axios.get(`/products/${id}/related`)
@@ -82,7 +85,6 @@ class App extends React.Component {
         this.setState({
           related: results.data,
         });
-
       })
       .catch(console.log);
   }
@@ -91,17 +93,11 @@ class App extends React.Component {
     axios
       .get(`/products/${productId}`)
       .then((results) => {
-
         this.setState({
           id: results.data.id,
           name: results.data.name,
           overview: results.data,
         });
-
-        this.setState({ id: results.data.id });
-        this.setState({ overview: results.data });
-        console.log('state: ', this.state);
-
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -110,18 +106,13 @@ class App extends React.Component {
 
   render() {
     const {
-
-      reviews, questions, id, overview, styles, name, metaReviews
-
-      reviews, questions, id, overview, styles, related,
-
+      reviews, questions, id, overview, styles, name, metaReviews, related,
     } = this.state;
 
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
-
-        <Overview overview={overview} productStyles={styles} />
+        <Overview overview={overview} productStyles={styles} relatedProducts={related} />
         <Reviews
           reviews={reviews}
           getReviews={this.getReviews}
@@ -129,10 +120,6 @@ class App extends React.Component {
           name={name}
           metaReviews={metaReviews}
         />
-
-        <Overview overview={overview} productStyles={styles} relatedProducts={related} />
-        <Reviews reviews={reviews} />
-
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );
