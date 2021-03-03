@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
-import MainDisplay from './OverviewMainDisplay';
+// import MainDisplay from './OverviewMainDisplay';
 import ReviewStars from './OverviewRatingsDisplay';
 import Category from './OverviewCategory';
 import Product from './OverviewProductTitle';
@@ -10,30 +10,27 @@ import RelatedProducts from './OverviewRelatedProducts';
 import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
 
-import OverviewSize from './OverviewSize';
-import OverviewQuantity from './OverviewQuantity';
-
 const Overview = (props) => {
   const { overview, productStyles, relatedProducts } = props;
   const { category, description, name, slogan } = overview;
 
-  const [skus, setSkus] = useState({});
-  const [photos, setPhotos] = useState([]);
+  // const [skus, setSkus] = useState({});
+  // const [photos, setPhotos] = useState([]);
 
-  useEffect(() => {
-    if (productStyles.length > 0) {
-      const listOfSkus = productStyles[0].skus;
-      const listOfPhotos = productStyles[0].photos;
-      setSkus(listOfSkus);
-      setPhotos(listOfPhotos);
-    }
-  }, [productStyles]);
+  // useEffect(() => {
+  //   if (productStyles.length > 0) {
+  //     const listOfSkus = productStyles[0].skus;
+  //     const listOfPhotos = productStyles[0].photos;
+  //     setSkus(listOfSkus);
+  //     setPhotos(listOfPhotos);
+  //   }
+  // }, [productStyles]);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.mainDisplay}>
+      {/* <div className={styles.mainDisplay}>
         <MainDisplay photos={photos} />
-      </div>
+      </div> */}
       <div className={styles.reviews}>
         <ReviewStars />
       </div>
@@ -44,7 +41,7 @@ const Overview = (props) => {
         <Product name={name} />
       </div>
       <div>
-        <OverviewStyles stylesArr={productStyles} skus={skus} />
+        <OverviewStyles stylesArr={productStyles} />
       </div>
       <div className={styles.cart}>
         <AddToCart />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MainDisplay = (props) => {
   // Import thumbnail_urls
@@ -17,6 +17,8 @@ const MainDisplay = (props) => {
   // Thumbnail icons disappear and mouse icon changes to "-"
   // Clicking in zoomed mode will return to expanded view
   const { photos } = props;
+
+  console.log('photos: ', photos);
 
   let defaultThumbnail;
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewSize from './OverviewSize';
 import Price from './OverviewPrice';
+import MainDisplay from './OverviewMainDisplay';
 
 const OverviewStyles = (props) => {
   // Map over all possible styles and place in a button
@@ -16,6 +17,7 @@ const OverviewStyles = (props) => {
   const [skuOfChoice, setSkuOfChoice] = useState({});
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -23,6 +25,7 @@ const OverviewStyles = (props) => {
     if (stylesArr.length > 0) {
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
+      setPhotos(defaultStyle[0].photos);
     }
   }, [stylesArr]);
 
@@ -36,7 +39,7 @@ const OverviewStyles = (props) => {
     }
   }
 
-  let styleButtonNames = [];
+  const styleButtonNames = [];
 
   if (stylesArr.length > 0) {
     for (let i = 0; i < stylesArr.length; i++) {
@@ -48,6 +51,8 @@ const OverviewStyles = (props) => {
     event.preventDefault();
 
     setStyleChoice(event.target.innerHTML);
+
+    setSelectedStyle(event.target.innerHTML);
   };
 
   useEffect(() => {
@@ -56,12 +61,16 @@ const OverviewStyles = (props) => {
         setSkuOfChoice(stylesArr[i].skus);
         setOriginalPriceOfChoice(stylesArr[i].original_price);
         setSalePriceOfChoice(stylesArr[i].sale_price);
+        setPhotos(stylesArr[i].photos);
       }
     }
   });
 
   return (
     <>
+      <div className={styles.mainDisplay}>
+        <MainDisplay photos={photos} />
+      </div>
       <div className={styles.productPrice}>
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>
