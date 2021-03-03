@@ -34,12 +34,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20100);
-    this.getStyles(20100);
-    this.getQuestions(20100);
-    this.getReviews(20100);
-    this.getMetaReviews(20100);
-    this.getRelated(20100);
+    this.defaultProduct(20101);
+    this.getStyles(20101);
+    this.getQuestions(20101);
+    this.getReviews(20101);
+    this.getMetaReviews(20101);
+    this.getRelated(20101);
   }
 
   getQuestions(id) {

@@ -20,10 +20,10 @@ const ReviewsModal = ({
     characteristics: {},
   });
 
-  console.log(metaReviews)
+  // console.log(metaReviews)
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(review);
+    // console.log(review);
     // axios.post('/reviews', review)
     //   .then(() => getReviews(productId))
     //   .catch(console.log);
