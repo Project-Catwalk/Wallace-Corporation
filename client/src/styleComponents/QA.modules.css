@@ -36,3 +36,9 @@
 .modalInput {
   width: 75%;
 }
+
+.finePrint {
+  color: red;
+  font-size: 10px;
+  height: 8px;
+}
