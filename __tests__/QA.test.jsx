@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import QA from '../client/src/components/qa/QA';
 import QASearchBar from '../client/src/components/qa/QASearchBar';
 import MockedApp from '../client/src/components/App';
+
 // it('renders without crashing', () => {
 //   const div = document.createElement('div');
 //   ReactDOM.render(<QA />, div);

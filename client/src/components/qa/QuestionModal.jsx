@@ -38,7 +38,7 @@ function Modal({ open, onClose, getQuestions, productId }) {
     }
     axios.post('/qa/questions', questionInfo)
       .then(() => getQuestions(productId))
-      .then(() => clearForm())
+      // .then(() => clearForm())
       .catch(console.log);
   };
 
@@ -77,13 +77,13 @@ function Modal({ open, onClose, getQuestions, productId }) {
             <textarea value={question} required="required" onChange={(e) => setQuestion(e.target.value)} maxLength="1000" className={styles.qInput} type="text" />
             <p>What is your nickname? *</p>
             <input value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} maxLength="60" placeholder="example: jackson11!" type="text" />
-            <p className={qastyles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
+            <p className={styles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
             <p>Your Email *</p>
             <input value={email} required="required" placeholder="example: jackson11!@gmail.com" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} maxLength="60" type="text" />
-            <p className={qastyles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
+            <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div />
             <button type="submit" className={styles.modalButton}>Submit Question</button>
-            <p className={qastyles.finePrint}>{error}</p>
+            <p className={styles.finePrint}>{error}</p>
           </form>
         </div>
       </div>
