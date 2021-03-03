@@ -5,42 +5,36 @@ const OverviewQuantity = (props) => {
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { quan } = props;
+  const { quantityForSize } = props;
 
   const [defaultQuan, setDefaultQuan] = useState('');
 
   useEffect(() => {
     setDefaultQuan('-');
+    return (
+      <select>
+        {defaultQuan}
+      </select>
+    );
   }, []);
+
+  let integers = [];
+
+  if (quantityForSize > 15) {
+    for (let i = 1; i <= 15; i++) {
+      integers.push(i);
+    }
+  } else {
+    for (let i = 1; i <= quantityForSize || i === 15; i++) {
+      integers.push(i);
+    }
+  }
 
   return (
     <select>
-      1
+      {integers.map((num, index) => <option key={index}>{num}</option>)}
     </select>
   );
-
-  // console.log('quan on quantity: ', quan);
-
-  // let quantityArr = [];
-
-  // if (quan.length > 0) {
-  //   for (let i = 0; i < quan.length; i++) {
-  //     let quantityForOneSize = Object.entries(quan[i]);
-  //     quantityArr.push(quantityForOneSize[i]);
-  //   }
-  // }
-
-  // console.log(quantityArr);
-
-  // const quantityOptions = quantityArr.map((productQuantity) => (
-  //   <option key={sku_id}>{productQuantity}</option>
-  // ));
-
-  // return (
-  //   <select>
-  //     {quantityOptions}
-  //   </select>
-  // );
 };
 
 export default OverviewQuantity;

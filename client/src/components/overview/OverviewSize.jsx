@@ -9,15 +9,29 @@ const OverviewSize = (props) => {
   const { sizesAndQuantities } = props;
 
   const [defaultString, setDefaultString] = useState('');
-  const [currentSize, setcurrentSize] = useState('');
-  const [currentQuantityAvailable, setcurrentQuantityAvailable] = useState('');
+  const [currentSize, setCurrentSize] = useState('');
+  const [currentQuantityAvailable, setCurrentQuantityAvailable] = useState(0);
 
   useEffect(() => {
     setDefaultString('Select Size');
+    return (
+      <select>
+        {defaultString}
+      </select>
+    );
   }, []);
 
-  // On click handler to set state, then pass whatever is in state down to quantity
+  const selectedSizeHandler = (event) => {
+    event.preventDefault();
 
+    for (let i = 0; i < sizesAndQuantities.length; i++) {
+      if (event.target.value === sizesAndQuantities[i].size) {
+        setCurrentQuantityAvailable(sizesAndQuantities[i].quantity);
+      }
+    }
+
+    setCurrentSize(event.target.value);
+  };
 
   const sizeOptions = sizesAndQuantities.map((productSize, index) => (
     <option key={index}>{productSize.size}</option>
@@ -25,11 +39,11 @@ const OverviewSize = (props) => {
 
   return (
     <div>
-      <select>
+      <select onChange={selectedSizeHandler}>
         {sizeOptions}
       </select>
       <div>
-        <OverviewQuantity quan={keyAndQuan} />
+        <OverviewQuantity quantityForSize={currentQuantityAvailable} />
       </div>
     </div>
   );
