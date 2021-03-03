@@ -6,7 +6,7 @@ import ReviewsSortHeader from './ReviewsSortHeader';
 import ReviewsFooter from './ReviewsFooter';
 import styles from '../../styleComponents/Reviews.module.css';
 
-const Reviews = ({ reviews, getReviews, productId, name, metaReviews }) => (
+const Reviews = ({ reviews, getReviews, productId, name, metaReviews, characteristics }) => (
   <div className={styles.parentContainer}>
     <div className={styles.parentBreakdown}>
       <RatingBreakdown
@@ -26,6 +26,7 @@ const Reviews = ({ reviews, getReviews, productId, name, metaReviews }) => (
         productId={productId}
         name={name}
         metaReviews={metaReviews}
+        characteristics={characteristics}
       />
     </div>
   </div>

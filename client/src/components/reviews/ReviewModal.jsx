@@ -6,7 +6,7 @@ import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
 
 const ReviewsModal = ({
-  productId, onClose, open, getReviews, name, metaReviews,
+  productId, onClose, open, getReviews, name, metaReviews, characteristics,
 }) => {
   const [review, setReview] = useState({
     product_id: productId,
@@ -17,21 +17,20 @@ const ReviewsModal = ({
     name: '',
     email: '',
     photos: [],
-    characteristics: metaReviews,
+    characteristics: {},
   });
-  const [characteristics, setCharacteristics] = useState([]);
+
   // console.log(metaReviews)
-
-  useEffect(() => {
-    setCharacteristics(metaReviews.characteristics);
-  }, [metaReviews]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(review);
     // axios.post('/reviews', review)
     //   .then(() => getReviews(productId))
     //   .catch(console.log);
+  };
+
+  const handleCharacteristics = (e) => {
+    console.log(e.target.value);
   };
 
   return ReactDOM.createPortal(
@@ -73,13 +72,19 @@ const ReviewsModal = ({
             <div>
               <input type="radio" id="Yes" name="recommend" value="true" />
               <label htmlFor="Yes">Yes</label>
-            </div>
-            <div>
               <input type="radio" id="No" name="recommend" value="false" />
               <label htmlFor="No">No</label>
             </div>
-            {/* {for ( let key in metaReviews.characteristics) <div>{key}</div>
-            } */}
+            {characteristics.map((characteristic) => (
+              <div key={characteristic}>
+                <p>{characteristic}</p>
+                <input type="radio" value="1" onChange={handleCharacteristics} />
+                <input type="radio" value="2" onChange={handleCharacteristics} />
+                <input type="radio" value="3" onChange={handleCharacteristics} />
+                <input type="radio" value="4" onChange={handleCharacteristics} />
+                <input type="radio" value="5" onChange={handleCharacteristics} />
+              </div>
+            ))}
             <p>Review Title:</p>
             <input
               onChange={(e) => setReview({ summary: e.target.value })}

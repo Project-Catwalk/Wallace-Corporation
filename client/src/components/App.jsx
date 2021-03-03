@@ -21,6 +21,7 @@ class App extends React.Component {
       overview: [],
       styles: [],
       metaReviews: [],
+      characteristics: [],
       related: [],
     };
 
@@ -74,7 +75,10 @@ class App extends React.Component {
   getMetaReviews(id) {
     axios.get(`/reviews/meta/${id}`)
       .then(({ data }) => {
-        this.setState({ metaReviews: data });
+        this.setState({
+          characteristics: Object.keys(data.characteristics),
+          metaReviews: data.characteristics,
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -106,7 +110,7 @@ class App extends React.Component {
 
   render() {
     const {
-      reviews, questions, id, overview, styles, name, metaReviews, related,
+      reviews, questions, id, overview, styles, name, metaReviews, related, characteristics
     } = this.state;
 
     return (
@@ -119,6 +123,7 @@ class App extends React.Component {
           productId={id}
           name={name}
           metaReviews={metaReviews}
+          characteristics={characteristics}
         />
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
