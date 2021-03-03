@@ -16,14 +16,15 @@ const MainDisplay = (props) => {
   // Sliding the mouse should re-orient the image display accordingly
   // Thumbnail icons disappear and mouse icon changes to "-"
   // Clicking in zoomed mode will return to expanded view
-  const { stylesArr } = props;
+  const { photos } = props;
 
-  // Need state here to handle default photo from default style thumbnail, it will have to re-render based on click handler from styles component
-  // Will need a useEffect to render thumbnail on page load
+  let defaultThumbnail;
 
-  // stylesArr[0].photos[0].thumbnail_url is the current src
+  if (photos.length > 0) {
+    defaultThumbnail = photos[0].thumbnail_url;
+  }
 
-  return <img  src="https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"/>
+  return <img src={defaultThumbnail}/>
 };
 
 export default MainDisplay;

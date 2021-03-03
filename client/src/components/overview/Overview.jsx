@@ -38,7 +38,7 @@ const Overview = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainDisplay}>
-        <MainDisplay stylesArr={productStyles} />
+        <MainDisplay photos={photos} />
       </div>
       <div className={styles.reviews}>
         <ReviewStars />
