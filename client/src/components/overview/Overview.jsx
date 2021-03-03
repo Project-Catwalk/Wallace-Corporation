@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import MainDisplay from './OverviewMainDisplay';
 import ReviewStars from './OverviewRatingsDisplay';
 import Category from './OverviewCategory';
 import Product from './OverviewProductTitle';
 import Price from './OverviewPrice';
-import StylesButtons from './OverviewStyles';
+import OverviewStyles from './OverviewStyles';
 import Size from './OverviewSize';
 import Quantity from './OverviewQuantity';
 import AddToCart from './OverviewCart';
@@ -14,12 +14,31 @@ import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
 
 const Overview = (props) => {
-  const { overview, productStyles } = props;
-  const { category, default_price, description, name, slogan } = overview;
+  const { overview, productStyles, relatedProducts } = props;
+  const { category, description, name, slogan } = overview;
+
+  const [skus, setSkus] = useState({});
+  const [photos, setPhotos] = useState([]);
+  const [normalPrice, setNormalPrice] = useState('');
+  const [priceOnSale, setPriceOnSale] = useState('');
+
+  useEffect(() => {
+    if (productStyles.length > 0) {
+      const listOfSkus = productStyles[0].skus;
+      const listOfPhotos = productStyles[0].photos;
+      const originalPrice = productStyles[0].original_price;
+      const salePrice = productStyles[0].sale_price;
+      setSkus(listOfSkus);
+      setPhotos(listOfPhotos);
+      setNormalPrice(originalPrice);
+      setPriceOnSale(salePrice);
+    }
+  }, [productStyles]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainDisplay}>
-        <MainDisplay stylesArr={productStyles} />
+        <MainDisplay photos={photos} />
       </div>
       <div className={styles.reviews}>
         <ReviewStars />
@@ -35,19 +54,19 @@ const Overview = (props) => {
       </div>
       <div className={styles.productStyles}>
         Style:
-        <StylesButtons stylesArr={productStyles} />
+        <OverviewStyles stylesArr={productStyles} />
       </div>
-      <select className={styles.sizeDropDown}>
-        <Size stylsArr={productStyles} />
-      </select>
-      <select className={styles.quantityDropDown}>
-        <Quantity stylsArr={productStyles} />
-      </select>
+      <div className={styles.sizeDropDown}>
+        <Size stylesArr={productStyles} />
+      </div>
+      <div className={styles.quantityDropDown}>
+        <Quantity stylesArr={productStyles} />
+      </div>
       <div className={styles.cart}>
         <AddToCart />
       </div>
       <div className={styles.relatedProducts}>
-        <RelatedProducts />
+        <RelatedProducts relatedArr={relatedProducts} />
       </div>
       <div className={styles.slogan}>
         <Slogan slogan={slogan} />

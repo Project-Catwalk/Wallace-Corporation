@@ -12,6 +12,17 @@ function Modal({ open, onClose, getQuestions, productId }) {
   const [question, setQuestion] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
+
+  const clearForm = (e) => {
+    setQuestion('');
+    setUsername('');
+    setEmail('');
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,14 +32,27 @@ function Modal({ open, onClose, getQuestions, productId }) {
       email: email,
       product_id: productId,
     };
+    if (!validEmailRegex.test(email)) {
+      setError('*You must enter a valid email');
+      return;
+    }
     axios.post('/qa/questions', questionInfo)
       .then(() => getQuestions(productId))
+      .then(() => clearForm())
       .catch(console.log);
   };
 
+
   return ReactDOM.createPortal(
     <>
-      <div onClick={onClose} className={open ? styles.overlay : ''}></div>
+      <div 
+        onClick={() => {
+          onClose();
+          clearForm();
+        }} 
+        className={open ? styles.overlay : ''}
+      >
+      </div>
       <div 
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
@@ -37,18 +61,29 @@ function Modal({ open, onClose, getQuestions, productId }) {
       >
         <div className={styles.modalHeader}>
           <h3>Ask Your Question about the Product</h3>
-          <p className={styles.closeModal} onClick={onClose}>x</p>
+          <p 
+            className={styles.closeModal} 
+            onClick={() => {
+              onClose();
+              clearForm();
+            } }
+          >
+            x
+          </p>
         </div>
         <div className={styles.modalBody}>
-          <form onSubmit={(e) => handleSubmit(e)} action="">
-            <p>Question:</p>
-            <textarea onChange={(e) => setQuestion(e.target.value)} maxLength="1000" className={styles.qInput} type="text" />
-            <p>What is your nickname?</p>
-            <input onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} maxLength="60" placeholder="example: jackson11!" type="text" />
-            <p>email</p>
-            <input onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} maxLength="60" type="text" />
+          <form id="questionForm" onSubmit={(e) => handleSubmit(e)} action="">
+            <p>Question *</p>
+            <textarea value={question} required="required" onChange={(e) => setQuestion(e.target.value)} maxLength="1000" className={styles.qInput} type="text" />
+            <p>What is your nickname? *</p>
+            <input value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} maxLength="60" placeholder="example: jackson11!" type="text" />
+            <p className={qastyles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
+            <p>Your Email *</p>
+            <input value={email} required="required" placeholder="example: jackson11!@gmail.com" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} maxLength="60" type="text" />
+            <p className={qastyles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div />
             <button type="submit" className={styles.modalButton}>Submit Question</button>
+            <p className={qastyles.finePrint}>{error}</p>
           </form>
         </div>
       </div>
