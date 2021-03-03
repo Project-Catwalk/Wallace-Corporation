@@ -1,33 +1,46 @@
 import React, { useState, useEffect } from 'react';
 
-const Quantity = (props) => {
+const OverviewQuantity = (props) => {
   // Import quantity
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { stylesArr } = props;
+  const { quan } = props;
 
-  let quantityArr = [];
+  const [defaultQuan, setDefaultQuan] = useState('');
 
-  if (stylesArr.length > 0) {
-    const sizeAndQuantity = stylesArr[0].skus;
-
-    let arrOfSizeAndQuantityObjs = Object.values(sizeAndQuantity);
-
-    for (let i = 0; i < arrOfSizeAndQuantityObjs.length; i++) {
-      quantityArr.push(arrOfSizeAndQuantityObjs[i].quantity);
-    }
-  }
-
-  const quantityOptions = quantityArr.map((productQuantity, sku_id) => (
-    <option key={sku_id}>{productQuantity}</option>
-  ));
+  useEffect(() => {
+    setDefaultQuan('-');
+  }, []);
 
   return (
     <select>
-      {quantityOptions}
+      1
     </select>
   );
+
+  // console.log('quan on quantity: ', quan);
+
+  // let quantityArr = [];
+
+  // if (quan.length > 0) {
+  //   for (let i = 0; i < quan.length; i++) {
+  //     let quantityForOneSize = Object.entries(quan[i]);
+  //     quantityArr.push(quantityForOneSize[i]);
+  //   }
+  // }
+
+  // console.log(quantityArr);
+
+  // const quantityOptions = quantityArr.map((productQuantity) => (
+  //   <option key={sku_id}>{productQuantity}</option>
+  // ));
+
+  // return (
+  //   <select>
+  //     {quantityOptions}
+  //   </select>
+  // );
 };
 
-export default Quantity;
+export default OverviewQuantity;

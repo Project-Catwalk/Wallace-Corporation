@@ -6,12 +6,13 @@ import Category from './OverviewCategory';
 import Product from './OverviewProductTitle';
 import Price from './OverviewPrice';
 import OverviewStyles from './OverviewStyles';
-import Size from './OverviewSize';
-import Quantity from './OverviewQuantity';
 import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
 import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
+
+import OverviewSize from './OverviewSize';
+import OverviewQuantity from './OverviewQuantity';
 
 const Overview = (props) => {
   const { overview, productStyles, relatedProducts } = props;
@@ -52,15 +53,11 @@ const Overview = (props) => {
       <div className={styles.productPrice}>
         <Price stylesArr={productStyles} />
       </div>
-      <div className={styles.productStyles}>
-        Style:
-        <OverviewStyles stylesArr={productStyles} />
-      </div>
-      <div className={styles.sizeDropDown}>
-        <Size skus={skus} />
-      </div>
-      <div className={styles.quantityDropDown}>
-        <Quantity stylesArr={productStyles} />
+      <div>
+        <label>
+          Style:
+          <OverviewStyles stylesArr={productStyles} skus={skus} />
+        </label>
       </div>
       <div className={styles.cart}>
         <AddToCart />
