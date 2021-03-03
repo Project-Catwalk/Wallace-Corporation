@@ -19,7 +19,7 @@ class App extends React.Component {
       reviews: [],
       overview: [],
       styles: [],
-      metaReviews: [],
+      metaReviews: {},
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
@@ -70,7 +70,8 @@ class App extends React.Component {
   getMetaReviews(id) {
     axios.get(`/reviews/meta/${id}`)
       .then(({ data }) => {
-        this.setState({ metaReviews: data });
+        const characteristics = Object.keys(data.characteristics);
+        this.setState({ metaReviews: characteristics });
       })
       .catch(console.log);
   }

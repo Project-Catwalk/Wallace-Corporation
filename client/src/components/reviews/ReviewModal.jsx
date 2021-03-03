@@ -17,9 +17,10 @@ const ReviewsModal = ({
     name: '',
     email: '',
     photos: [],
-    characteristics: {},
+    characteristics: metaReviews
   });
   const [characteristics, setCharacteristics] = useState([]);
+  console.log(metaReviews)
 
   useEffect(() => {
     setCharacteristics(metaReviews.characteristics);
