@@ -10,6 +10,7 @@ const Question = (props) => {
   const [answerList, setAnswerList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const answerArray = Object.values(answers);
+
   useEffect(() => {
     setAnswerList(answerArray);
   }, [question]);

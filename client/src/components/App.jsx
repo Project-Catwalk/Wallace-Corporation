@@ -15,10 +15,12 @@ class App extends React.Component {
 
     this.state = {
       id: '',
+      name: '',
       questions: [],
       reviews: [],
       overview: [],
       styles: [],
+      metaReviews: [],
       related: [],
     };
 
@@ -26,6 +28,7 @@ class App extends React.Component {
     this.getQuestions = this.getQuestions.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getStyles = this.getStyles.bind(this);
+    this.getMetaReviews = this.getMetaReviews.bind(this);
     this.getRelated = this.getRelated.bind(this);
   }
 
@@ -34,6 +37,7 @@ class App extends React.Component {
     this.getStyles(20103);
     this.getQuestions(20103);
     this.getReviews(20103);
+    this.getMetaReviews(20103);
     this.getRelated(20103);
   }
 
@@ -49,9 +53,9 @@ class App extends React.Component {
 
   getReviews(id) {
     axios.get(`/reviews/${id}`)
-      .then((results) => {
+      .then(({ data }) => {
         this.setState({
-          reviews: results.data,
+          reviews: data,
         });
       })
       .catch(console.log);
@@ -67,12 +71,18 @@ class App extends React.Component {
       .catch(console.log);
   }
 
+  getMetaReviews(id) {
+    axios.get(`/reviews/meta/${id}`)
+      .then(({ data }) => {
+        this.setState({ metaReviews: data });
+
   getRelated(id) {
     axios.get(`/products/${id}/related`)
       .then((results) => {
         this.setState({
           related: results.data,
         });
+
       })
       .catch(console.log);
   }
@@ -81,9 +91,17 @@ class App extends React.Component {
     axios
       .get(`/products/${productId}`)
       .then((results) => {
+
+        this.setState({
+          id: results.data.id,
+          name: results.data.name,
+          overview: results.data,
+        });
+
         this.setState({ id: results.data.id });
         this.setState({ overview: results.data });
         console.log('state: ', this.state);
+
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -92,14 +110,29 @@ class App extends React.Component {
 
   render() {
     const {
+
+      reviews, questions, id, overview, styles, name, metaReviews
+
       reviews, questions, id, overview, styles, related,
+
     } = this.state;
 
     return (
       <div>
         <h1 style={titleBarStyle}>Hello!</h1>
+
+        <Overview overview={overview} productStyles={styles} />
+        <Reviews
+          reviews={reviews}
+          getReviews={this.getReviews}
+          productId={id}
+          name={name}
+          metaReviews={metaReviews}
+        />
+
         <Overview overview={overview} productStyles={styles} relatedProducts={related} />
         <Reviews reviews={reviews} />
+
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );

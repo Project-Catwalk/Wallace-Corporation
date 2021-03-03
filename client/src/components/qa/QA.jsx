@@ -15,7 +15,7 @@ const QA = (props) => {
       </div>
       <div className={styles.qa}>
         {
-        questions.map((question) => <Question productId={productId} getQuestions={getQuestions} question={question} />)
+        questions.map((question , idx) => <Question key={idx} productId={productId} getQuestions={getQuestions} question={question} />)
         }
       </div>
       <div className={styles.buttons}>
