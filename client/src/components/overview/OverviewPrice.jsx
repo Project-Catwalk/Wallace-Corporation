@@ -9,6 +9,8 @@ const Price = (props) => {
   const { stylesArr } = props;
   // stylesArr has an original price and a sales price
 
+  // Need to manage state of original vs sale here, not in overview
+
   const [price, setPrice] = useState('');
 
   // useEffect(() => {

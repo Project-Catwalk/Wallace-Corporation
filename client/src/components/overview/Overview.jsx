@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import MainDisplay from './OverviewMainDisplay';
 import ReviewStars from './OverviewRatingsDisplay';
 import Category from './OverviewCategory';
 import Product from './OverviewProductTitle';
 import Price from './OverviewPrice';
-import StylesButtons from './OverviewStyles';
+import OverviewStyles from './OverviewStyles';
 import Size from './OverviewSize';
 import Quantity from './OverviewQuantity';
 import AddToCart from './OverviewCart';
@@ -16,6 +16,22 @@ import Slogan from './OverviewProductSlogan';
 const Overview = (props) => {
   const { overview, productStyles, relatedProducts } = props;
   const { category, description, name, slogan } = overview;
+
+  const [skus, setSkus] = useState({});
+  const [photos, setPhotos] = useState([]);
+
+  useEffect(() => {
+    if (productStyles.length > 0) {
+      const listOfSkus = productStyles[0].skus;
+      setSkus(listOfSkus);
+    }
+  }, []);
+
+  // state will need to include skus from styles
+    // this will need to include a function make a key the value of the sku_id
+    // click handler will use the sku_id to make sure the size and quantity drop downs sync up
+  // Need a state to take care of style, so that when a new style is clicked it influences size, price, and style components
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainDisplay}>
@@ -35,7 +51,7 @@ const Overview = (props) => {
       </div>
       <div className={styles.productStyles}>
         Style:
-        <StylesButtons stylesArr={productStyles} />
+        <OverviewStyles stylesArr={productStyles} />
       </div>
       <div className={styles.sizeDropDown}>
         <Size stylesArr={productStyles} />

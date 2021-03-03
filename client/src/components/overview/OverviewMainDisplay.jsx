@@ -18,6 +18,9 @@ const MainDisplay = (props) => {
   // Clicking in zoomed mode will return to expanded view
   const { stylesArr } = props;
 
+  // Need state here to handle default photo from default style thumbnail, it will have to re-render based on click handler from styles component
+  // Will need a useEffect to render thumbnail on page load
+
   // stylesArr[0].photos[0].thumbnail_url is the current src
 
   return <img  src="https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"/>
