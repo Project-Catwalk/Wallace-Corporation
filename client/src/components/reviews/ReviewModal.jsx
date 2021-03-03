@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 // import styles from '../../styleComponents/App.module.css';
 import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
 
 const ReviewsModal = ({
-  productId, onClose, open, getReviews, name, metaReviews
+  productId, onClose, open, getReviews, name, metaReviews,
 }) => {
   const [review, setReview] = useState({
     product_id: productId,
@@ -19,6 +19,11 @@ const ReviewsModal = ({
     photos: [],
     characteristics: {},
   });
+  const [characteristics, setCharacteristics] = useState([]);
+
+  useEffect(() => {
+    setCharacteristics(metaReviews.characteristics);
+  }, [metaReviews]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,12 +32,6 @@ const ReviewsModal = ({
     //   .then(() => getReviews(productId))
     //   .catch(console.log);
   };
-  const container = [];
-  const arr = metaReviews.characteristics;
-  for (let key in metaReviews.characteristics) {
-    container.push(key)
-  }
- console.log(container)
 
   return ReactDOM.createPortal(
     <>
