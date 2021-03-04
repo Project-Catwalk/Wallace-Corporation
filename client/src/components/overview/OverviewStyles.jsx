@@ -18,7 +18,6 @@ const OverviewStyles = (props) => {
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
-  // const [defaultToDisplay, setDefaultToDisplay] = useState([]);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -28,28 +27,39 @@ const OverviewStyles = (props) => {
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
       setPhotos(defaultStyle[0].photos);
-      console.log('photos in Styles useEffect: ', photos);
     }
   }, [stylesArr]);
 
-  // if (styleChoice === stylesArr[i].name) {
-  //   const skus = []; // <-- arr key value pairs with value = obj
-  //   const startPrice = [];
-  //   const onSalePrice = [];
-  //   const photosForThisStyle = [];
+  useEffect(() => {
+    console.log('styleChoice in second useEffect: ', styleChoice);
+    for (let i = 0; i < stylesArr.length; i++) {
+      if (styleChoice === stylesArr[i].name) {
+        setSkuOfChoice(stylesArr[i].skus);
+        setOriginalPriceOfChoice(stylesArr[i].original_price);
+        setSalePriceOfChoice(stylesArr[i].sale_price);
+        setPhotos(stylesArr[i].photos);
+        console.log('stylesArr[i] in second useEffect: ', stylesArr[i]);
+      }
+      // if (styleChoice === stylesArr[i].name) {
+      //   const skus = []; // <-- arr key value pairs with value = obj
+      //   const startPrice = [];
+      //   const onSalePrice = [];
+      //   const photosForThisStyle = [];
 
-  //   for (let i = 0; i < stylesArr.length; i++) {
-  //     skus.push(stylesArr[i].skus);
-  //     startPrice.push(stylesArr[i].original_price);
-  //     onSalePrice.push(stylesArr[i].sale_price);
-  //     photosForThisStyle.push(stylesArr[i].photos);
-  //   }
+      //   for (let j = 0; j < stylesArr.length; j++) {
+      //     skus.push(stylesArr[i].skus);
+      //     startPrice.push(stylesArr[i].original_price);
+      //     onSalePrice.push(stylesArr[i].sale_price);
+      //     photosForThisStyle.push(stylesArr[i].photos);
+      //   }
 
-  //   setSkuOfChoice(skus);
-  //   setOriginalPriceOfChoice(startPrice);
-  //   setSalePriceOfChoice(onSalePrice);
-  //   setPhotos(photosForThisStyle);
-  // }
+      //   setSkuOfChoice(skus);
+      //   setOriginalPriceOfChoice(startPrice);
+      //   setSalePriceOfChoice(onSalePrice);
+      //   setPhotos(photosForThisStyle);
+      // }
+    }
+  }, [styleChoice]);
 
   const sizesAndQuantities = [];
 
@@ -72,19 +82,8 @@ const OverviewStyles = (props) => {
   const styleButtonHandler = (event) => {
     event.preventDefault();
 
-    setStyleChoice(event.target.innerHTML);
+    setStyleChoice(event.target.innerText);
   };
-
-  useEffect(() => {
-    for (let i = 0; i < stylesArr.length; i++) {
-      if (styleChoice === stylesArr[i].name) {
-        setSkuOfChoice(stylesArr[i].skus);
-        setOriginalPriceOfChoice(stylesArr[i].original_price);
-        setSalePriceOfChoice(stylesArr[i].sale_price);
-        setPhotos(stylesArr[i].photos);
-      }
-    }
-  });
 
   return (
     <>

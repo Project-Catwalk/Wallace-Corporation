@@ -25,7 +25,6 @@ const MainDisplay = (props) => {
   const [imgIndex, setImgIndex] = useState(0);
 
   useEffect(() => {
-    console.log('photos in Main Display useEffect: ', photos);
     const thumbnails = [];
     const expanded = [];
 

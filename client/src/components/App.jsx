@@ -27,9 +27,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20103);
-    this.getStyles(20103);
-    this.getRelated(20103);
+    this.defaultProduct(20100);
+    this.getStyles(20100);
+    this.getRelated(20100);
   }
 
   getStyles(id) {
