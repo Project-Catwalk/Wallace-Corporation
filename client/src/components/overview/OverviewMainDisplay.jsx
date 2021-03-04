@@ -43,14 +43,14 @@ const MainDisplay = (props) => {
     setDisplayedImg(mainGallery[imgIndex]);
   }, [imgIndex]);
 
-  const leftArrow = (event) => {
+  const decrementImgIndex = (event) => {
     event.preventDefault();
     // Need conditional to make arrow disappear if at start index
 
     setImgIndex(imgIndex - 1);
   };
 
-  const rightArrow = (event) => {
+  const incrementImgIndex = (event) => {
     event.preventDefault();
     // Need conditional to make arrow disappear if at end index
 
@@ -60,18 +60,23 @@ const MainDisplay = (props) => {
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
+    let displayedThumbnailIndex = mainGallery.indexOf(event.target.src);
+
+    setImgIndex(displayedThumbnailIndex);
     setDisplayedImg(event.target.src);
   };
 
   return (
     <div>
       <div>
-        <button onClick={leftArrow}>Left</button>
+        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Left</button>)}
         <img className={styles.mainDisplay} src={displayedImg}/>
-        <button onClick={rightArrow}>Right</button>
+        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
       </div>
       <div>
+        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
         {mainGallery.map((img, index) => <input type="image" className={styles.thumbnails} key={index} onClick={thumbnailClickHandler} src={img}/>)}
+        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
       </div>
     </div>
   );
