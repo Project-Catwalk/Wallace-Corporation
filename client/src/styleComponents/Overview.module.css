@@ -14,6 +14,10 @@
   border-color: black;
 }
 
+.thumbnails {
+  background-color: transparent;
+}
+
 .reviews {
   background-color: #a8bfbf;
   grid-column: 2 / 4;

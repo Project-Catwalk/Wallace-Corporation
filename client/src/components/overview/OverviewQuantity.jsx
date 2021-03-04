@@ -1,33 +1,48 @@
 import React, { useState, useEffect } from 'react';
 
-const Quantity = (props) => {
+const OverviewQuantity = (props) => {
   // Import quantity
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { stylesArr } = props;
+  const { quantityForSize } = props;
 
-  let quantityArr = [];
+  const [defaultQuan, setDefaultQuan] = useState('');
 
-  if (stylesArr.length > 0) {
-    const sizeAndQuantity = stylesArr[0].skus;
+  useEffect(() => {
+    setDefaultQuan('-');
+    return (
+      <select>
+        {defaultQuan}
+      </select>
+    );
+  }, []);
 
-    let arrOfSizeAndQuantityObjs = Object.values(sizeAndQuantity);
+  let integers = [];
 
-    for (let i = 0; i < arrOfSizeAndQuantityObjs.length; i++) {
-      quantityArr.push(arrOfSizeAndQuantityObjs[i].quantity);
+  if (quantityForSize > 15) {
+    for (let i = 1; i <= 15; i++) {
+      integers.push(i);
+    }
+  } else {
+    for (let i = 1; i <= quantityForSize || i === 15; i++) {
+      integers.push(i);
     }
   }
 
-  const quantityOptions = quantityArr.map((productQuantity, sku_id) => (
-    <option key={sku_id}>{productQuantity}</option>
-  ));
+  // if (defaultQuan === '-') {
+  //   return (
+  //     <select>
+  //       -
+  //     </select>
+  //   );
+  // }
 
   return (
     <select>
-      {quantityOptions}
+      {integers.map((num, index) => <option key={index}>{num}</option>)}
     </select>
   );
 };
 
-export default Quantity;
+export default OverviewQuantity;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from '../../styleComponents/Reviews.module.css';
 import ReviewsModal from './ReviewModal';
 
-const ReviewsFooter = ({ productId, getReviews, name, metaReviews }) => {
+const ReviewsFooter = ({ productId, getReviews, name, metaReviews, characteristics }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,6 +17,7 @@ const ReviewsFooter = ({ productId, getReviews, name, metaReviews }) => {
         open={isOpen}
         name={name}
         metaReviews={metaReviews}
+        characteristics={characteristics}
       />
     </div>
   );
