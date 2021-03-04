@@ -23,6 +23,7 @@ const MainDisplay = (props) => {
   const [mainGallery, setMainGallery] = useState([]);
   const [expandedImg, setExpandedImg] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
+  const [displayedImg, setDisplayedImg] = useState('');
 
   useEffect(() => {
     const thumbnails = [];
@@ -35,8 +36,12 @@ const MainDisplay = (props) => {
 
     setMainGallery(thumbnails);
     setExpandedImg(expanded);
-    setImgIndex(0);
+    setDisplayedImg(thumbnails[imgIndex]);
   }, [photos]);
+
+  useEffect(() => {
+    setDisplayedImg(mainGallery[imgIndex]);
+  }, [imgIndex]);
 
   const leftArrow = (event) => {
     event.preventDefault();
@@ -52,11 +57,22 @@ const MainDisplay = (props) => {
     setImgIndex(imgIndex + 1);
   };
 
+  const thumbnailClickHandler = (event) => {
+    event.preventDefault();
+
+    setDisplayedImg(event.target.src);
+  };
+
   return (
     <div>
-      <button onClick={leftArrow}>Left</button>
-      <img className={styles.mainDisplay} src={mainGallery[imgIndex]}/>
-      <button onClick={rightArrow}>Right</button>
+      <div>
+        <button onClick={leftArrow}>Left</button>
+        <img className={styles.mainDisplay} src={displayedImg}/>
+        <button onClick={rightArrow}>Right</button>
+      </div>
+      <div>
+        {mainGallery.map((img, index) => <input type="image" className={styles.thumbnails} key={index} onClick={thumbnailClickHandler} src={img}/>)}
+      </div>
     </div>
   );
 };

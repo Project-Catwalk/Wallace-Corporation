@@ -18,12 +18,13 @@ const OverviewStyles = (props) => {
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
+  // const [listOfImgs, setListOfImgs] = useState([]);
+  // const [imgIndex, setImgIndex] = useState(0);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
   useEffect(() => {
     if (stylesArr.length > 0) {
-      // setDefaultToDisplay(defaultStyle);
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
       setPhotos(defaultStyle[0].photos);
@@ -31,35 +32,26 @@ const OverviewStyles = (props) => {
   }, [stylesArr]);
 
   useEffect(() => {
-    console.log('styleChoice in second useEffect: ', styleChoice);
     for (let i = 0; i < stylesArr.length; i++) {
       if (styleChoice === stylesArr[i].name) {
         setSkuOfChoice(stylesArr[i].skus);
         setOriginalPriceOfChoice(stylesArr[i].original_price);
         setSalePriceOfChoice(stylesArr[i].sale_price);
         setPhotos(stylesArr[i].photos);
-        console.log('stylesArr[i] in second useEffect: ', stylesArr[i]);
       }
-      // if (styleChoice === stylesArr[i].name) {
-      //   const skus = []; // <-- arr key value pairs with value = obj
-      //   const startPrice = [];
-      //   const onSalePrice = [];
-      //   const photosForThisStyle = [];
-
-      //   for (let j = 0; j < stylesArr.length; j++) {
-      //     skus.push(stylesArr[i].skus);
-      //     startPrice.push(stylesArr[i].original_price);
-      //     onSalePrice.push(stylesArr[i].sale_price);
-      //     photosForThisStyle.push(stylesArr[i].photos);
-      //   }
-
-      //   setSkuOfChoice(skus);
-      //   setOriginalPriceOfChoice(startPrice);
-      //   setSalePriceOfChoice(onSalePrice);
-      //   setPhotos(photosForThisStyle);
-      // }
     }
   }, [styleChoice]);
+
+  // useEffect(() => {
+  //   const thumbnails = [];
+
+  //   for (let i = 0; i < photos.length; i++) {
+  //     thumbnails.push(photos[i].thumbnail_url);
+  //   }
+
+  //   setListOfImgs(thumbnails);
+  //   setImgIndex(0);
+  // }, [photos]);
 
   const sizesAndQuantities = [];
 
@@ -85,11 +77,27 @@ const OverviewStyles = (props) => {
     setStyleChoice(event.target.innerText);
   };
 
+  // const thumbnailClickHandler = (event) => {
+  //   event.preventDefault();
+
+  //   console.log('evt: ', event.target);
+
+  //   for (let i = 0; i < listOfImgs.length; i++) {
+  //     console.log('listOfImgs[i]: ', listOfImgs[i]);
+  //   }
+
+  //   // setImgIndex(event.target.value);
+  // };
+
   return (
     <>
       <div>
         <MainDisplay photos={photos} />
       </div>
+      {/* <div>
+        {listOfImgs.map((img, index) => <img className={styles.thumbnails} key={index} onClick={styleButtonHandler} src={img}/>)}
+        {listOfImgs.map((img, index) => <input type="image" className={styles.thumbnails} key={listOfImgs[imgIndex]} onClick={thumbnailClickHandler} src={img}/>)}
+      </div> */}
       <div className={styles.productPrice}>
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>

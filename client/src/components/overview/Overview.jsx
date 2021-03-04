@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import ReviewStars from './OverviewRatingsDisplay';
-import Category from './OverviewCategory';
-import Product from './OverviewProductTitle';
 import OverviewStyles from './OverviewStyles';
 import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
@@ -19,10 +17,10 @@ const Overview = (props) => {
         <ReviewStars />
       </div>
       <div className={styles.productCategory}>
-        <Category category={category} />
+        {category}
       </div>
       <div className={styles.productTitle}>
-        <Product name={name} />
+        {name}
       </div>
       <div>
         <OverviewStyles stylesArr={productStyles} />
