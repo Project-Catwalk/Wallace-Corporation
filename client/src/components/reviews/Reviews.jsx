@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown';
 import ReviewTemplate from './ReviewTemplate';
-import ReviewsSortHeader from './ReviewsSortHeader';
+// import ReviewsSortHeader from './ReviewsSortHeader';
 import styles from '../../styleComponents/Reviews.module.css';
 import ReviewsModal from './ReviewModal';
 
@@ -10,11 +10,13 @@ const Reviews = ({ productId, name }) => {
   const [reviews, setReviews] = useState([]);
   const [metaReviews, setMetaReviews] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [dependencies, setDependencies] = useState({ expanded: false, sort: 'relevant' });
   const [moreButton, setMoreButton] = useState('More Reviews');
 
   const getReviews = (id) => {
-    axios.get(`/reviews/${id}/${expanded}`)
+    const { expanded, sort } = dependencies;
+    console.log(dependencies)
+    axios.get(`/reviews/${id}/${expanded}/${sort}`)
       .then(({ data }) => {
         setReviews(data);
       })
@@ -32,7 +34,7 @@ const Reviews = ({ productId, name }) => {
   useEffect(() => {
     getReviews(20101);
     getMetaReviews(20101);
-  }, [expanded]);
+  }, [dependencies]);
 
   return (
     <div className={styles.parentContainer}>
@@ -43,7 +45,14 @@ const Reviews = ({ productId, name }) => {
         />
       </div>
       <div className={styles.parentHeader}>
-        <ReviewsSortHeader />
+        <div>
+          Sort on:
+          <select onChange={(e) => setDependencies({ ...dependencies, sort: e.target.value })}>
+            <option>Relevant</option>
+            <option>Helpful</option>
+            <option>Newest</option>
+          </select>
+        </div>
       </div>
       <div style={{ maxHeight: '800px', overflowY: 'scroll' }} className={styles.parentIndividualReview}>
         {reviews.map((review, id) => (
@@ -55,8 +64,9 @@ const Reviews = ({ productId, name }) => {
           className={styles.footerButton}
           type="submit"
           onClick={() => {
-            setExpanded(!expanded);
-            (expanded)
+            const temp = (!dependencies.expanded);
+            setDependencies({ ...dependencies, expanded: !dependencies.expanded });
+            (dependencies.expanded)
               ? setMoreButton('More Reviews')
               : setMoreButton('Show Less Reviews')
           }}

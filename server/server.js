@@ -56,8 +56,9 @@ app.get('/products/:product_id/related', (req, res) => {
 });
 
 //REVIEWS
-app.get('/reviews/:id/:expanded', (req, res) => {
-  const { id, expanded } = req.params;
+app.get('/reviews/:id/:expanded/:sort', (req, res) => {
+  const { id, expanded, sort } = req.params;
+  const lowerSort = sort.toLowerCase();
   let count;
   if (expanded === 'true') {
     count = 100;
@@ -66,7 +67,7 @@ app.get('/reviews/:id/:expanded', (req, res) => {
   }
   axios
     .get(
-      `${options.url}/reviews/?product_id=${id}&count=${count}`,
+      `${options.url}/reviews/?product_id=${id}&count=${count}&sort=${lowerSort}`,
       options,
     ).then(({ data }) => res.send(data.results))
     .catch((err) => console.log(err));
