@@ -34,12 +34,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20101);
-    this.getStyles(20101);
-    this.getQuestions(20101);
-    this.getReviews(20101);
-    this.getMetaReviews(20101);
-    this.getRelated(20101);
+    this.defaultProduct(20100);
+    this.getStyles(20100);
+    this.getQuestions(20100);
+    this.getReviews(20100);
+    this.getMetaReviews(20100);
+    this.getRelated(20100);
   }
 
   getQuestions(id) {
@@ -76,8 +76,7 @@ class App extends React.Component {
     axios.get(`/reviews/meta/${id}`)
       .then(({ data }) => {
         this.setState({
-          characteristics: Object.keys(data.characteristics),
-          metaReviews: data.characteristics,
+          metaReviews: Object.entries(data.characteristics),
         });
       })
       .catch((err) => console.log(err));
