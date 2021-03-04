@@ -1,45 +1,43 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-// import styles from '../../styleComponents/App.module.css';
 import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
+// import Characteristics from './Characteristics';
 
 const ReviewsModal = ({
   productId, onClose, open, getReviews, name, metaReviews,
 }) => {
   const [review, setReview] = useState({
-    product_id: productId,
+    product_id: '',
     rating: 0,
     summary: '',
     body: '',
-    recommend: false,
+    recommend: '',
     name: '',
     email: '',
     photos: [],
-    characteristics: metaReviews,
   });
-  const [characteristics, setCharacteristics] = useState([]);
-  // console.log(metaReviews)
-
-  useEffect(() => {
-    setCharacteristics(metaReviews.characteristics);
-  }, [metaReviews]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(review);
+    setReview({ ...review, product_id: productId });
+    const finalReview = { ...review };
     // axios.post('/reviews', review)
     //   .then(() => getReviews(productId))
     //   .catch(console.log);
   };
 
-  return ReactDOM.createPortal(
+  return (
     <>
       <div 
-        onClick={onClose} 
+        onClick={() => {
+          onClose();
+          clearForm();
+        }} 
         className={open ? styles.overlay : ''}
-      ></div>
+      >
+      </div>
       <div
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)',
@@ -52,44 +50,44 @@ const ReviewsModal = ({
             About the {name}
             ...
           </h4>
-          <div
-            className={styles.closeModal}
-            onClick={onClose}
+          <p 
+            className={styles.closeModal} 
+            onClick={() => {
+              onClose();
+              clearForm();
+            } }
           >
             x
-          </div>
+          </p>
         </div>
         <div className={styles.modalBody}>
           <form onSubmit={(e) => handleSubmit(e)} action="">
             <p>Overall Rating:</p>
             <div className={Rstyles.starRating}>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
+              <span onClick={() => setReview({ rating: 1 })}>★</span>
+              <span onClick={() => setReview({ rating: 2 })}>★</span>
+              <span onClick={() => setReview({ rating: 3 })}>★</span>
+              <span onClick={() => setReview({ rating: 4 })}>★</span>
+              <span onClick={() => setReview({ rating: 5 })}>★</span>
             </div>
             <p>Would you recommend this product?</p>
             <div>
-              <input type="radio" id="Yes" name="recommend" value="true" />
+              <input type="radio" id="Yes" name="recommend" onClick={() => setReview({ ...review, recommend: true })} />
               <label htmlFor="Yes">Yes</label>
-            </div>
-            <div>
-              <input type="radio" id="No" name="recommend" value="false" />
+              <input type="radio" id="No" name="recommend" onClick={() => setReview({ ...review, recommend: false })} />
               <label htmlFor="No">No</label>
             </div>
-            {/* {for ( let key in metaReviews.characteristics) <div>{key}</div>
-            } */}
+            {/* <Characteristics metaReviews={metaReviews} /> */}
             <p>Review Title:</p>
             <input
-              onChange={(e) => setReview({ summary: e.target.value })}
+              onChange={(e) => setReview({ ...review, summary: e.target.value })}
               className={Rstyles.modalInput}
               maxLength="60"
               placeholder="Example: Best purchase ever!"
               type="text"
             />
             <textarea
-              onChange={(e) => setReview({ body: e.target.value })}
+              onChange={(e) => setReview({ ...review, body: e.target.value })}
               minLength="50"
               maxLength="1000"
               className={styles.qInput}
@@ -98,7 +96,7 @@ const ReviewsModal = ({
             />
             <p>What is your nickname?</p>
             <input
-              onChange={(e) => setReview({ name: e.target.value })}
+              onChange={(e) => setReview({ ...review, name: e.target.value })}
               className={Rstyles.modalInput}
               maxLength="60"
               type="text"
@@ -106,7 +104,7 @@ const ReviewsModal = ({
             />
             <p>What is your email?</p>
             <input
-              onChange={(e) => setReview({ email: e.target.value })}
+              onChange={(e) => setReview({ ...review, email: e.target.value })}
               className={Rstyles.modalInput}
               maxLength="60"
               type="text"
@@ -122,8 +120,7 @@ const ReviewsModal = ({
           </form>
         </div>
       </div>
-    </>,
-    document.getElementById('modal'),
+    </>
   );
 };
 

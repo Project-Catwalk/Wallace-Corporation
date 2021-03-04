@@ -1,23 +1,22 @@
 /* MAIN GRID */
 .QA {
   display: grid;
-  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .search {
-  background-color: #6D8C8C;
+  background-color: #6d8c8c;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 .qa {
-  background-color: #F2B694;
+  background-color: #f2b694;
   grid-row-start: 2;
-  grid-row-end: 3;
 }
 
 .buttons {
-  background-color: #D98982;
+  background-color: #d98982;
   grid-row-start: 3;
 }
 
@@ -35,10 +34,4 @@
 
 .modalInput {
   width: 75%;
-}
-
-.finePrint {
-  color: red;
-  font-size: 10px;
-  height: 8px;
 }

@@ -5,23 +5,32 @@ import { render, screen } from '@testing-library/react';
 import QA from '../client/src/components/qa/QA';
 import QASearchBar from '../client/src/components/qa/QASearchBar';
 import MockedApp from '../client/src/components/App';
+import App from '../client/src/components/App';
+
 // it('renders without crashing', () => {
 //   const div = document.createElement('div');
 //   ReactDOM.render(<QA />, div);
 // });
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+// let container = null;
+// beforeEach(() => {
+//   // setup a DOM element as a render target
+//   container = document.createElement("div");
+//   document.body.appendChild(container);
+// });
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
+// afterEach(() => {
+//   // cleanup on exiting
+//   unmountComponentAtNode(container);
+//   container.remove();
+//   container = null;
+// });
+
+describe('App', () => {
+  test('renders App Component', () => {
+    render(<App />);
+    screen.getByText('Hello!');
+  });
 });
 
 // it('Should contain the heading "Questions & Answers', () => {
