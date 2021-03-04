@@ -30,8 +30,8 @@ const Reviews = ({ productId, name }) => {
   };
 
   useEffect(() => {
-    getReviews(20100);
-    getMetaReviews(20100);
+    getReviews(20101);
+    getMetaReviews(20101);
   }, [expanded]);
 
   return (
