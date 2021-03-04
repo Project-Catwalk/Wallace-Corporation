@@ -20,6 +20,7 @@ class App extends React.Component {
       overview: [],
       styles: [],
       metaReviews: [],
+      characteristics: [],
       related: [],
     };
 
@@ -32,9 +33,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
     this.defaultProduct(20101);
     this.getStyles(20101);
-    // this.getQuestions(20101);
     this.getReviews(20101);
     this.getMetaReviews(20101);
     this.getRelated(20101);
@@ -63,7 +64,9 @@ class App extends React.Component {
   getMetaReviews(id) {
     axios.get(`/reviews/meta/${id}`)
       .then(({ data }) => {
-        this.setState({ metaReviews: data });
+        this.setState({
+          metaReviews: Object.entries(data.characteristics),
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -95,7 +98,7 @@ class App extends React.Component {
 
   render() {
     const {
-      reviews, questions, id, overview, styles, name, metaReviews, related,
+      reviews, questions, id, overview, styles, name, metaReviews, related, characteristics
     } = this.state;
 
     return (
@@ -108,6 +111,7 @@ class App extends React.Component {
           productId={id}
           name={name}
           metaReviews={metaReviews}
+          characteristics={characteristics}
         />
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
