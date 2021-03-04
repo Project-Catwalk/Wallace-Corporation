@@ -19,7 +19,7 @@ const AllStylesForProduct = (props) => {
 
   return (
     <>
-      {stylesArr.map((styleName, index) => <StyleButtons styleName={styleName} />)}
+      {stylesArr.map((styleName, index) => <StyleButtons styleName={styleName} key={index} />)}
     </>
   );
 };
