@@ -68,7 +68,7 @@ const OverviewStyles = (props) => {
 
   return (
     <>
-      <div className={styles.mainDisplay}>
+      <div>
         <MainDisplay photos={photos} />
       </div>
       <div className={styles.productPrice}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from '../../styleComponents/Overview.module.css';
 
 const MainDisplay = (props) => {
   // Import thumbnail_urls
@@ -18,15 +19,42 @@ const MainDisplay = (props) => {
   // Clicking in zoomed mode will return to expanded view
   const { photos } = props;
 
-  console.log('photos: ', photos);
+  const [mainGallery, setMainGallery] = useState('');
 
-  let defaultThumbnail;
+  useEffect(() => {
+    if (photos.length > 0) {
+      setMainGallery(photos[0].thumbnail_url);
+    }
+  }, [photos]);
 
-  if (photos.length > 0) {
-    defaultThumbnail = photos[0].thumbnail_url;
-  }
+  const leftArrow = (event) => {
+    event.preventDefault();
+    // Need conditional to make arrow disappear if at start index
+    for (let i = 0; i < photos.length; i++) {
+      console.log('photos in left: ', photos[i]);
+      setMainGallery(photos[i].thumbnail_url);
+    }
+  };
 
-  return <img src={defaultThumbnail}/>
+  const rightArrow = (event) => {
+    event.preventDefault();
+
+    // Need conditional to make arrow disappear if at end index
+    for (let i = 0; i < photos.length; i++) {
+      setMainGallery(photos[i].thumbnail_url);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={leftArrow}>Left</button>
+      <img className={styles.mainDisplay} src={mainGallery}/>
+      <button onClick={rightArrow}>Right</button>
+      {/* <div>
+        <img className={styles.thumbnails} src={''}/>
+      </div> */}
+    </div>
+  );
 };
 
 export default MainDisplay;

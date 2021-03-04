@@ -30,6 +30,14 @@ const OverviewQuantity = (props) => {
     }
   }
 
+  // if (defaultQuan === '-') {
+  //   return (
+  //     <select>
+  //       -
+  //     </select>
+  //   );
+  // }
+
   return (
     <select>
       {integers.map((num, index) => <option key={index}>{num}</option>)}

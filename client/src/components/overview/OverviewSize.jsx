@@ -37,6 +37,14 @@ const OverviewSize = (props) => {
     <option key={index}>{productSize.size}</option>
   ));
 
+  // if (currentSize === '') {
+  //   return (
+  //     <select onChange={selectedSizeHandler}>
+  //       {defaultString}
+  //     </select>
+  //   );
+  // }
+
   return (
     <div>
       <select onChange={selectedSizeHandler}>
