@@ -19,40 +19,45 @@ const MainDisplay = (props) => {
   // Clicking in zoomed mode will return to expanded view
   const { photos } = props;
 
-  const [mainGallery, setMainGallery] = useState('');
+  // const [defaultImage, setDefaultImage] = useState('');
+  const [mainGallery, setMainGallery] = useState([]);
+  const [expandedImg, setExpandedImg] = useState([]);
+  const [imgIndex, setImgIndex] = useState(0);
 
   useEffect(() => {
-    if (photos.length > 0) {
-      setMainGallery(photos[0].thumbnail_url);
+    console.log('photos in Main Display useEffect: ', photos);
+    const thumbnails = [];
+    const expanded = [];
+
+    for (let i = 0; i < photos.length; i++) {
+      thumbnails.push(photos[i].thumbnail_url);
+      expanded.push(photos[i].url);
     }
+
+    setMainGallery(thumbnails);
+    setExpandedImg(expanded);
+    setImgIndex(0);
   }, [photos]);
 
   const leftArrow = (event) => {
     event.preventDefault();
     // Need conditional to make arrow disappear if at start index
-    for (let i = 0; i < photos.length; i++) {
-      console.log('photos in left: ', photos[i]);
-      setMainGallery(photos[i].thumbnail_url);
-    }
+
+    setImgIndex(imgIndex - 1);
   };
 
   const rightArrow = (event) => {
     event.preventDefault();
-
     // Need conditional to make arrow disappear if at end index
-    for (let i = 0; i < photos.length; i++) {
-      setMainGallery(photos[i].thumbnail_url);
-    }
+
+    setImgIndex(imgIndex + 1);
   };
 
   return (
     <div>
       <button onClick={leftArrow}>Left</button>
-      <img className={styles.mainDisplay} src={mainGallery}/>
+      <img className={styles.mainDisplay} src={mainGallery[imgIndex]}/>
       <button onClick={rightArrow}>Right</button>
-      {/* <div>
-        <img className={styles.thumbnails} src={''}/>
-      </div> */}
     </div>
   );
 };
