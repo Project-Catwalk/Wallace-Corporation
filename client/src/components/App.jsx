@@ -16,39 +16,20 @@ class App extends React.Component {
     this.state = {
       id: '',
       name: '',
-      reviews: [],
       overview: [],
       styles: [],
-      metaReviews: [],
-      characteristics: [],
       related: [],
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
-    // this.getQuestions = this.getQuestions.bind(this);
-    this.getReviews = this.getReviews.bind(this);
     this.getStyles = this.getStyles.bind(this);
-    this.getMetaReviews = this.getMetaReviews.bind(this);
     this.getRelated = this.getRelated.bind(this);
   }
 
   componentDidMount() {
-
     this.defaultProduct(20101);
     this.getStyles(20101);
-    this.getReviews(20101);
-    this.getMetaReviews(20101);
     this.getRelated(20101);
-  }
-
-  getReviews(id) {
-    axios.get(`/reviews/${id}`)
-      .then(({ data }) => {
-        this.setState({
-          reviews: data,
-        });
-      })
-      .catch(console.log);
   }
 
   getStyles(id) {
@@ -59,16 +40,6 @@ class App extends React.Component {
         });
       })
       .catch(console.log);
-  }
-
-  getMetaReviews(id) {
-    axios.get(`/reviews/meta/${id}`)
-      .then(({ data }) => {
-        this.setState({
-          metaReviews: Object.entries(data.characteristics),
-        });
-      })
-      .catch((err) => console.log(err));
   }
 
   getRelated(id) {
@@ -98,7 +69,7 @@ class App extends React.Component {
 
   render() {
     const {
-      reviews, questions, id, overview, styles, name, metaReviews, related, characteristics
+      questions, id, overview, styles, name, related,
     } = this.state;
 
     return (
@@ -106,12 +77,8 @@ class App extends React.Component {
         <h1 style={titleBarStyle}>Hello!</h1>
         <Overview overview={overview} productStyles={styles} relatedProducts={related} />
         <Reviews
-          reviews={reviews}
-          getReviews={this.getReviews}
           productId={id}
           name={name}
-          metaReviews={metaReviews}
-          characteristics={characteristics}
         />
         <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>

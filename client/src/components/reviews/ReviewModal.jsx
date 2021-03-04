@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-// import styles from '../../styleComponents/App.module.css';
 import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
-import Characteristics from './Characteristics';
+// import Characteristics from './Characteristics';
 
 const ReviewsModal = ({
   productId, onClose, open, getReviews, name, metaReviews,
@@ -78,7 +77,7 @@ const ReviewsModal = ({
               <input type="radio" id="No" name="recommend" onClick={() => setReview({ ...review, recommend: false })} />
               <label htmlFor="No">No</label>
             </div>
-            <Characteristics metaReviews={metaReviews} />
+            {/* <Characteristics metaReviews={metaReviews} /> */}
             <p>Review Title:</p>
             <input
               onChange={(e) => setReview({ ...review, summary: e.target.value })}
