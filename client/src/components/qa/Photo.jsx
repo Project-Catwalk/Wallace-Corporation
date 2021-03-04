@@ -9,4 +9,4 @@ const Photo = (props) => {
   );
 };
 
-export default Photo
+export default Photo;

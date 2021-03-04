@@ -34,7 +34,7 @@ const ReviewsModal = ({
     //   .catch(console.log);
   };
 
-  return ReactDOM.createPortal(
+  return (
     <>
       <div 
         onClick={onClose} 
@@ -122,8 +122,7 @@ const ReviewsModal = ({
           </form>
         </div>
       </div>
-    </>,
-    document.getElementById('modal'),
+    </>
   );
 };
 

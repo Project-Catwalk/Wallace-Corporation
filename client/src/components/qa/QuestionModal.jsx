@@ -43,7 +43,7 @@ function Modal({ open, onClose, getQuestions, productId }) {
   };
 
 
-  return ReactDOM.createPortal(
+  return (
     <>
       <div 
         onClick={() => {
@@ -87,8 +87,7 @@ function Modal({ open, onClose, getQuestions, productId }) {
           </form>
         </div>
       </div>
-    </>,
-    document.getElementById('modal'),
+    </>
   );
 }
 
