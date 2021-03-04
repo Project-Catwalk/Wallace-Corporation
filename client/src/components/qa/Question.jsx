@@ -6,6 +6,7 @@ import Modal from './AnswerModal';
 
 const Question = (props) => {
   const { question, getQuestions, productId } = props;
+  // console.log(props);
   const { question_body, answers, question_id, question_helpfulness } = question;
   const [answerList, setAnswerList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);

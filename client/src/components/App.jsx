@@ -16,7 +16,6 @@ class App extends React.Component {
     this.state = {
       id: '',
       name: '',
-      questions: [],
       reviews: [],
       overview: [],
       styles: [],
@@ -26,7 +25,7 @@ class App extends React.Component {
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
-    this.getQuestions = this.getQuestions.bind(this);
+    // this.getQuestions = this.getQuestions.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.getMetaReviews = this.getMetaReviews.bind(this);
@@ -34,22 +33,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20100);
-    this.getStyles(20100);
-    this.getQuestions(20100);
-    this.getReviews(20100);
-    this.getMetaReviews(20100);
-    this.getRelated(20100);
-  }
 
-  getQuestions(id) {
-    axios.get(`/qa/questions/${id}`)
-      .then((results) => {
-        this.setState({
-          questions: results.data,
-        });
-      })
-      .catch(console.log);
+    this.defaultProduct(20101);
+    this.getStyles(20101);
+    this.getReviews(20101);
+    this.getMetaReviews(20101);
+    this.getRelated(20101);
   }
 
   getReviews(id) {

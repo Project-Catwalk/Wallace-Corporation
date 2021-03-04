@@ -1,7 +1,8 @@
 /* MAIN GRID */
 .QA {
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 1fr 8fr 1fr;
+
 }
 
 .search {
@@ -13,7 +14,6 @@
 .qa {
   background-color: #F2B694;
   grid-row-start: 2;
-  grid-row-end: 3;
 }
 
 .buttons {
@@ -37,13 +37,5 @@
   width: 75%;
 }
 
-.finePrint {
-  color: red;
-  font-size: 10px;
-  height: 8px;
-}
 
-.imgThumbnail {
-  height: 50px;
-  width: 50px;
-}
+
