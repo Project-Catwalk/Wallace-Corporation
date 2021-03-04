@@ -1,34 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import OverviewQuantity from './OverviewQuantity';
 
-const Size = (props) => {
+const OverviewSize = (props) => {
   // Import all possible sizes of a product
   // Import cart data to check count, if count = 0 disable button and label "OUT OF STOCK"
   // Map over sizes and place in an option
-  const { stylesArr } = props;
 
-  // CURRENTLY SET UP AS A HARDCODED RESULT TO MAP OVER
+  const { sizesAndQuantities } = props;
 
-  let sizesArr = [];
+  const [defaultString, setDefaultString] = useState('');
+  const [currentSize, setCurrentSize] = useState('');
+  const [currentQuantityAvailable, setCurrentQuantityAvailable] = useState(0);
 
-  if (stylesArr.length > 0) {
-    const sizeAndQuantity = stylesArr[0].skus;
+  useEffect(() => {
+    setDefaultString('Select Size');
+    return (
+      <select>
+        {defaultString}
+      </select>
+    );
+  }, []);
 
-    let arrOfSizeAndQuantityObjs = Object.values(sizeAndQuantity);
+  const selectedSizeHandler = (event) => {
+    event.preventDefault();
 
-    for (let i = 0; i < arrOfSizeAndQuantityObjs.length; i++) {
-      sizesArr.push(arrOfSizeAndQuantityObjs[i].size);
+    for (let i = 0; i < sizesAndQuantities.length; i++) {
+      if (event.target.value === sizesAndQuantities[i].size) {
+        setCurrentQuantityAvailable(sizesAndQuantities[i].quantity);
+      }
     }
-  }
 
-  const sizeOptions = sizesArr.map((productSize, sku_id) => (
-    <option key={sku_id}>{productSize}</option>
+    setCurrentSize(event.target.value);
+  };
+
+  const sizeOptions = sizesAndQuantities.map((productSize, index) => (
+    <option key={index}>{productSize.size}</option>
   ));
 
+  // if (currentSize === '') {
+  //   return (
+  //     <select onChange={selectedSizeHandler}>
+  //       {defaultString}
+  //     </select>
+  //   );
+  // }
+
   return (
-    <select>
-      {sizeOptions}
-    </select>
+    <div>
+      <select onChange={selectedSizeHandler}>
+        {sizeOptions}
+      </select>
+      <div>
+        <OverviewQuantity quantityForSize={currentQuantityAvailable} />
+      </div>
+    </div>
   );
 };
 
-export default Size;
+export default OverviewSize;
