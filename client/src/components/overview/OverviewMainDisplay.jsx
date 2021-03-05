@@ -25,22 +25,22 @@ const MainDisplay = (props) => {
   const { photos } = props;
 
   const [mainGallery, setMainGallery] = useState([]);
-  const [expandedImg, setExpandedImg] = useState([]);
+  const [thumbnailGallery, setThumbnailGallery] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
 
   useEffect(() => {
     const thumbnails = [];
-    const expanded = [];
+    const normal = [];
 
     for (let i = 0; i < photos.length; i++) {
       thumbnails.push(photos[i].thumbnail_url);
-      expanded.push(photos[i].url);
+      normal.push(photos[i].url);
     }
 
-    setMainGallery(thumbnails);
-    setExpandedImg(expanded);
-    setDisplayedImg(thumbnails[imgIndex]);
+    setMainGallery(normal);
+    setThumbnailGallery(thumbnails);
+    setDisplayedImg(normal[imgIndex]);
   }, [photos]);
 
   useEffect(() => {
@@ -59,12 +59,18 @@ const MainDisplay = (props) => {
     setImgIndex(imgIndex + 1);
   };
 
+  const expandView = (event) => {
+    event.preventDefault();
+
+    setDisplayedImg(mainGallery[imgIndex]);
+  };
+
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
-    let displayedThumbnailIndex = mainGallery.indexOf(event.target.src);
+    let displayedImgIndex = mainGallery.indexOf(event.target.src);
 
-    setImgIndex(displayedThumbnailIndex);
+    setImgIndex(displayedImgIndex);
     setDisplayedImg(event.target.src);
   };
 
@@ -72,13 +78,13 @@ const MainDisplay = (props) => {
     <div>
       <div className={styles.mainDisplay}>
         {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Left</button>)}
-        <img src={displayedImg}/>
+        <img src={displayedImg} onClick={expandView}/>
         {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
       </div>
       {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
       <div className={styles.slider}>
-        {mainGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
-        {/* {mainGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={(mainGallery[imgIndex] ? styles.active : null)}/>)} */}
+        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
+        {/* {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={(mainGallery[imgIndex] ? styles.active : null)}/>)} */}
       </div>
       {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
     </div>
