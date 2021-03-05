@@ -44,10 +44,10 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
     formData.append('photo', photos[0]);
     console.log(formData);
 
-    // axios.post(`/qa/questions/${question_id}/answers`, answerInfo)
-    //   .then(() => getQuestions(productId))
-    //   .then(() => clearForm())
-    //   .catch(console.log);
+    axios.post(`/qa/questions/${question_id}/answers`, formData)
+      .then(() => getQuestions(20111))
+      .then(() => clearForm())
+      .catch(console.log);
   };
 
   const handleChange = (e) => {
@@ -61,7 +61,6 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
         URL.createObjectURL(e.target.files[0]),
       ]);
     }
-    // console.log(photos);
   };
 
   return (
@@ -93,7 +92,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
           </p>
         </div>
         <div className={styles.modalBody}>
-          <form onSubmit={(e) => handleSubmit(e)} action="">
+          <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)} action="">
             <p>Your Answer *</p>
             <textarea value={answer} required="required" onChange={(e) => setAnswer(e.target.value)} className={styles.qInput} maxLength="1000" />
             <p>What is your nickname? *</p>
