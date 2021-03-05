@@ -15,7 +15,12 @@
 }
 
 .thumbnails {
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
+  width: 45px;
+  height: auto;
+  padding: 2px;
 }
 
 .reviews {

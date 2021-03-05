@@ -18,6 +18,8 @@ const OverviewStyles = (props) => {
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
+  // const [listOfImgs, setListOfImgs] = useState([]);
+  // const [imgIndex, setImgIndex] = useState(0);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -28,6 +30,28 @@ const OverviewStyles = (props) => {
       setPhotos(defaultStyle[0].photos);
     }
   }, [stylesArr]);
+
+  useEffect(() => {
+    for (let i = 0; i < stylesArr.length; i++) {
+      if (styleChoice === stylesArr[i].name) {
+        setSkuOfChoice(stylesArr[i].skus);
+        setOriginalPriceOfChoice(stylesArr[i].original_price);
+        setSalePriceOfChoice(stylesArr[i].sale_price);
+        setPhotos(stylesArr[i].photos);
+      }
+    }
+  }, [styleChoice]);
+
+  // useEffect(() => {
+  //   const thumbnails = [];
+
+  //   for (let i = 0; i < photos.length; i++) {
+  //     thumbnails.push(photos[i].thumbnail_url);
+  //   }
+
+  //   setListOfImgs(thumbnails);
+  //   setImgIndex(0);
+  // }, [photos]);
 
   const sizesAndQuantities = [];
 
@@ -50,27 +74,30 @@ const OverviewStyles = (props) => {
   const styleButtonHandler = (event) => {
     event.preventDefault();
 
-    setStyleChoice(event.target.innerHTML);
-
-    setSelectedStyle(event.target.innerHTML);
+    setStyleChoice(event.target.innerText);
   };
 
-  useEffect(() => {
-    for (let i = 0; i < stylesArr.length; i++) {
-      if (styleChoice === stylesArr[i].name) {
-        setSkuOfChoice(stylesArr[i].skus);
-        setOriginalPriceOfChoice(stylesArr[i].original_price);
-        setSalePriceOfChoice(stylesArr[i].sale_price);
-        setPhotos(stylesArr[i].photos);
-      }
-    }
-  });
+  // const thumbnailClickHandler = (event) => {
+  //   event.preventDefault();
+
+  //   console.log('evt: ', event.target);
+
+  //   for (let i = 0; i < listOfImgs.length; i++) {
+  //     console.log('listOfImgs[i]: ', listOfImgs[i]);
+  //   }
+
+  //   // setImgIndex(event.target.value);
+  // };
 
   return (
     <>
       <div>
         <MainDisplay photos={photos} />
       </div>
+      {/* <div>
+        {listOfImgs.map((img, index) => <img className={styles.thumbnails} key={index} onClick={styleButtonHandler} src={img}/>)}
+        {listOfImgs.map((img, index) => <input type="image" className={styles.thumbnails} key={listOfImgs[imgIndex]} onClick={thumbnailClickHandler} src={img}/>)}
+      </div> */}
       <div className={styles.productPrice}>
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>

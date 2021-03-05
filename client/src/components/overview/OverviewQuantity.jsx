@@ -38,6 +38,20 @@ const OverviewQuantity = (props) => {
   //   );
   // }
 
+  // Line 57 is how to disable a button
+  // function App() {
+
+  //   const [name, setName] = useState('');
+  //   const nameChange = e => setName(e.target.value);
+
+  //   return (
+  //     <div className="App">
+  //       <input value={name} onChange={nameChange} placeholder="Name"/>
+  //       <button disabled={!name}>Search</button>
+  //     </div>
+  //   );
+  // }
+
   return (
     <select>
       {integers.map((num, index) => <option key={index}>{num}</option>)}
