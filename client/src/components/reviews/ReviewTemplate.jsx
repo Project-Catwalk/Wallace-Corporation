@@ -17,6 +17,11 @@ const ReviewTemplate = ({ review }) => (
       {(review.response)
         ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
         : null}
+      <div className={styles.templateImages}>
+        {(review.photos.length > 0)
+          ? review.photos.map((photo, id) => <img src={photo.url} alt="review" className={styles.imgThumbnail} key={id} />)
+          : null}
+      </div>
       {(review.recommend)
         ? <div className={styles.templateRecommendsBar}>I recommend this product</div>
         : <div />}

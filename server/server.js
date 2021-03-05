@@ -56,30 +56,22 @@ app.get('/products/:product_id/related', (req, res) => {
 });
 
 //REVIEWS
-app.get('/reviews/:id/:expanded/:sort', (req, res) => {
-  const { id, expanded, sort } = req.params;
+app.get('/reviews/sort/:id/:sort', (req, res) => {
+  const { id, sort } = req.params;
   const lowerSort = sort.toLowerCase();
-  let count;
-  if (expanded === 'true') {
-    count = 100;
-  } else {
-    count = 2;
-  }
+  const reviewsURL = `${options.url}/reviews/?product_id=${id}&count=100&sort=${lowerSort}`;
   axios
-    .get(
-      `${options.url}/reviews/?product_id=${id}&count=${count}&sort=${lowerSort}`,
-      options,
-    ).then(({ data }) => res.send(data.results))
+    .get(reviewsURL, options)
+    .then(({ data }) => res.send(data.results))
     .catch((err) => console.log(err));
 });
 
 app.get('/reviews/meta/:id', (req, res) => {
   const { id } = req.params;
+  const metaReviewsURL = `${options.url}/reviews/meta/?product_id=${id}`;
   axios
-    .get(
-      `${options.url}/reviews/meta/?product_id=${id}`,
-      options,
-    ).then(({ data }) => res.send(data))
+    .get(metaReviewsURL, options)
+    .then(({ data }) => res.send(data))
     .catch((err) => console.log(err));
 });
 
