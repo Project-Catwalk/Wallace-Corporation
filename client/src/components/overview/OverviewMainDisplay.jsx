@@ -3,7 +3,7 @@ import styles from '../../styleComponents/Overview.module.css';
 
 const MainDisplay = (props) => {
   // Create overlay of the other thumbnails in vertical alignment to the left of the display, max of 7
-  // Mouse hover over diplay should change mouse icon to mag glass, exclude buttons and thumbnails from this feature
+  // Make thumbnail of main display opacity change on button click to new main display
   // Make main image clickable to blow up to fill most of page
   // Mouse icon changes to a "+" on hover
   // Thumbnails change to small icons with distinct icon of which item is displayed
@@ -78,6 +78,7 @@ const MainDisplay = (props) => {
       {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
       <div className={styles.slider}>
         {mainGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
+        {/* {mainGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={(mainGallery[imgIndex] ? styles.active : null)}/>)} */}
       </div>
       {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
     </div>
