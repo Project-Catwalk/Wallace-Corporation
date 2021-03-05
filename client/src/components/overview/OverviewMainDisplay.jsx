@@ -28,10 +28,14 @@ const MainDisplay = (props) => {
   const [thumbnailGallery, setThumbnailGallery] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
+  const [styleName, setStyleName] = useState('');
+
+  console.log('stylesArr: ', stylesArr);
 
   useEffect(() => {
     const thumbnails = [];
     const normal = [];
+    const altName = [];
 
     for (let i = 0; i < photos.length; i++) {
       thumbnails.push(photos[i].thumbnail_url);
@@ -86,15 +90,16 @@ const MainDisplay = (props) => {
   return (
     <div>
       <div className={styles.mainDisplay}>
-        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Left</button>)}
+        {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
         <img src={displayedImg} onClick={expandView}/>
-        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
+        {imgIndex !== mainGallery.length - 1
+        && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
       </div>
-      {imgIndex !== 0 && (<button onClick={slideThumbnailsUp}>Up</button>)}
+      {imgIndex !== 0 && (<button type="submit" onClick={slideThumbnailsUp}>Up</button>)}
       <div className={styles.slider}>
         {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
       </div>
-      {imgIndex !== mainGallery.length - 1 && (<button onClick={slideThumbnailsDown}>Down</button>)}
+      {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={slideThumbnailsDown}>Down</button>)}
     </div>
   );
 };

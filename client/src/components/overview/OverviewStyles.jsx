@@ -19,8 +19,6 @@ const OverviewStyles = (props) => {
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
 
-  console.log('stylesArr: ', stylesArr);
-
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
   useEffect(() => {
@@ -41,17 +39,6 @@ const OverviewStyles = (props) => {
       }
     }
   }, [styleChoice]);
-
-  // useEffect(() => {
-  //   const thumbnails = [];
-
-  //   for (let i = 0; i < photos.length; i++) {
-  //     thumbnails.push(photos[i].thumbnail_url);
-  //   }
-
-  //   setListOfImgs(thumbnails);
-  //   setImgIndex(0);
-  // }, [photos]);
 
   const sizesAndQuantities = [];
 
@@ -86,11 +73,8 @@ const OverviewStyles = (props) => {
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>
       <div className={styles.productStyles}>
-        <label>
-          Style:
-          {styleButtonNames.map((styleName, index) =>
-            <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
-        </label>
+        Style:
+        {styleButtonNames.map((styleName, index) => <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
       </div>
       <div className={styles.sizeDropDown}>
         <OverviewSize sizesAndQuantities={sizesAndQuantities} />
