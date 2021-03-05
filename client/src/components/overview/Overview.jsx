@@ -13,6 +13,9 @@ const Overview = (props) => {
 
   return (
     <div className={styles.wrapper}>
+      <div>
+        <OverviewStyles stylesArr={productStyles} />
+      </div>
       <div className={styles.reviews}>
         <ReviewStars />
       </div>
@@ -21,9 +24,6 @@ const Overview = (props) => {
       </div>
       <div className={styles.productTitle}>
         {name}
-      </div>
-      <div>
-        <OverviewStyles stylesArr={productStyles} />
       </div>
       <div className={styles.cart}>
         <AddToCart />
