@@ -3,7 +3,6 @@ import styles from '../../styleComponents/App.module.css';
 
 const Photo = (props) => {
   const { photo } = props;
-  // console.log(photo);
   return (
     <img className={styles.imgThumbnail} src={photo} />
   );

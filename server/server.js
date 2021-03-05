@@ -14,6 +14,18 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(fileUpload());
 
+const storage = multer.diskStorage({
+  destination: '../public/uploads',
+  fileName: function(req, file, cb) {
+    cb(null, 'test');
+  }
+});
+
+const upload = multer({
+  storage: storage
+}).single('photo');
+// app.use(upload.single('email'));
+
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',
   headers: {
@@ -83,18 +95,17 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     .catch(console.log);
 });
 
+app.put('/reviews/:review_id/report', (req, res) => {
+  const { review_id } = req.params;
+  axios.put(`${options.url}/reviews/${review_id}/report`, { body: { review_id: review_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
+});
+
 // Q&A
-app.get('/qa/questions/:id/:expanded', (req, res) => {
-  const { id, expanded } = req.params;
-  // console.log(expanded);
-  var count;
-  if (expanded === 'true') {
-    count = 100;
-  } else {
-    count = 2;
-  }
-  console.log(count);
-  axios.get(`${options.url}/qa/questions/?product_id=${id}&count=${count}`, options)
+app.get('/qa/questions/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`${options.url}/qa/questions/?product_id=${id}&count=100`, options)
     .then(({ data }) => {
       res.send(data.results);
     })
@@ -104,6 +115,20 @@ app.get('/qa/questions/:id/:expanded', (req, res) => {
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   const { question_id } = req.params;
   axios.put(`${options.url}/qa/questions/${question_id}/helpful`, { body: { question_id: question_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  const { answer_id } = req.params;
+  axios.put(`${options.url}/qa/answers/${answer_id}/report`, { body: { answer_id: answer_id } }, options)
+    .then(() => res.send(204))
+    .catch(console.log);
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  const { question_id } = req.params;
+  axios.put(`${options.url}/qa/questions/${question_id}/report`, { body: { question_id: question_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });
@@ -118,18 +143,24 @@ app.post('/qa/questions', (req, res) => {
 
 app.post(`/qa/questions/:question_id/answers`, (req, res) => {
   const { question_id } = req.params;
-  console.log(req.body);
-  // const file = req.files.file;
-  // file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
-  //   if (err) {
-  //     console.log(err);
-  //     return res.status(500).send(err);
-  //   }
-  // });
+  const { photo } = req.files;
+  photo.mv(`../public/uploads/${photo.name}`, err => {
+    if (err) {
+      console.log(err);
+    }
+  });
+  upload(req, res, (err) => {
+    if (err) {
+      console.log(error);
+    } else {
+      res.send(201);
+    }
+  });
 
-  axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
-    .then(() => res.send(201))
-    .catch(console.log);
+
+  // axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
+  //   .then(() => res.send(201))
+  //   .catch(console.log);
 });
 
 app.listen(port, () => {

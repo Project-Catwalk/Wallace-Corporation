@@ -37,7 +37,7 @@ function Modal({ open, onClose, getQuestions, productId }) {
       return;
     }
     axios.post('/qa/questions', questionInfo)
-      .then(() => getQuestions(productId))
+      .then(() => getQuestions(20111))
       // .then(() => clearForm())
       .catch(console.log);
   };

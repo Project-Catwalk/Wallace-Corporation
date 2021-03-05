@@ -4,17 +4,12 @@ import axios from 'axios';
 
 const Helpful = (props) => {
   const { helpfulness } = props;
-  const [count, setCount] = useState({ yes: helpfulness });
+  const [count, setCount] = useState(helpfulness);
+  const [reported, setReported] = useState('Report');
 
   const handleCount = (e) => {
-    const { value } = e.target;
-    if (value === 'yes') {
-      const tempCount = count.yes + 1;
-      setCount({ yes: tempCount });
-    } else if (count.yes > 0 && value === 'no') {
-      const tempCount = count.yes - 1;
-      setCount({ yes: tempCount });
-    }
+    setCount(helpfulness + 1);
+
     if (props.review_id) {
       const { review_id } = props;
       axios.put(`/reviews/${review_id}/helpful`)
@@ -28,17 +23,35 @@ const Helpful = (props) => {
     }
   };
 
+  const report = () => {
+    setReported('Reported');
+    console.log(props);
+    if (props.answer_id) {
+      console.log(props.answer_id)
+      axios.put(`/qa/answers/${props.answer_id}/report`)
+        .then(() => console.log(status.status))
+        .catch(console.log);
+    } else if (props.review_id) {
+      axios.put(`/reviews/${props.review_id}/report`)
+        .then(() => console.log(status.status))
+        .catch(console.log);
+    } else {
+      axios.put(`/qa/questions/${props.question_id}/report`)
+        .then(() => console.log(status.status))
+        .catch(console.log);
+    }
+  };
+
   return (
     <div className={styles.helpful}>
       <div className={styles.helpful}>Was this helpful?</div>
       <button type="submit" onClick={handleCount} value="yes">Yes</button>
-      <button type="submit" onClick={handleCount} value="no">No</button>
       <div className={styles.helpful}>
         (
-        {count.yes}
+        {count}
         )
       </div>
-      <button type="submit">Report</button>
+      <button onClick={report} type="submit">{reported}</button>
     </div>
   );
 };
