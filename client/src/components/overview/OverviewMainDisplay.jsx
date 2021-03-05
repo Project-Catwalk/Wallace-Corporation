@@ -13,12 +13,14 @@ const MainDisplay = (props) => {
   // Clicking in zoomed mode will return to expanded view
 
   // Limit quantity of thumbnails??
-//   body.single-product div.images div.thumbnails {
-//     max-height: 380px;
-//     overflow: hidden;
-// /* Optional - create a gradient fade at bottom for webkit browsers */
-//     -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-//   }
+  // body.single-product div.images div.thumbnails {
+  //   max-height: 380px;
+  //   overflow: hidden;
+  // /* Optional - create a gradient fade at bottom for webkit browsers */
+  //   -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  // }
+
+  // Possibly .box { overflow, scroll }
 
   const { photos } = props;
 
@@ -68,16 +70,16 @@ const MainDisplay = (props) => {
 
   return (
     <div>
-      <div>
+      <div className={styles.mainDisplay}>
         {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Left</button>)}
-        <img className={styles.mainDisplay} src={displayedImg}/>
+        <img src={displayedImg}/>
         {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
       </div>
-      <div>
-        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
-        {mainGallery.map((img, index) => <input type="image" className={styles.thumbnails} key={index} onClick={thumbnailClickHandler} src={img}/>)}
-        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
+      {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
+      <div className={styles.slider}>
+        {mainGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
       </div>
+      {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
     </div>
   );
 };
