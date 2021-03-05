@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 
 const MainDisplay = (props) => {
-  // Import thumbnail_urls
-  // Set a default thumbnail and make that the primary image
-  // Create arrow buttons to the right and left of the image for scrolling
-  // Hide the button if on the corresponding start or end index
   // Create overlay of the other thumbnails in vertical alignment to the left of the display, max of 7
-  // Create button above and below for scrolling and hide like above buttons
-  // Link the displayed image to the style section buttons
   // Mouse hover over diplay should change mouse icon to mag glass, exclude buttons and thumbnails from this feature
   // Make main image clickable to blow up to fill most of page
   // Mouse icon changes to a "+" on hover
@@ -17,9 +11,17 @@ const MainDisplay = (props) => {
   // Sliding the mouse should re-orient the image display accordingly
   // Thumbnail icons disappear and mouse icon changes to "-"
   // Clicking in zoomed mode will return to expanded view
+
+  // Limit quantity of thumbnails??
+//   body.single-product div.images div.thumbnails {
+//     max-height: 380px;
+//     overflow: hidden;
+// /* Optional - create a gradient fade at bottom for webkit browsers */
+//     -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+//   }
+
   const { photos } = props;
 
-  // const [defaultImage, setDefaultImage] = useState('');
   const [mainGallery, setMainGallery] = useState([]);
   const [expandedImg, setExpandedImg] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
@@ -45,14 +47,12 @@ const MainDisplay = (props) => {
 
   const decrementImgIndex = (event) => {
     event.preventDefault();
-    // Need conditional to make arrow disappear if at start index
 
     setImgIndex(imgIndex - 1);
   };
 
   const incrementImgIndex = (event) => {
     event.preventDefault();
-    // Need conditional to make arrow disappear if at end index
 
     setImgIndex(imgIndex + 1);
   };
