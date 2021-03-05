@@ -68,11 +68,17 @@ app.get('/products/:product_id/related', (req, res) => {
 });
 
 //REVIEWS
-app.get('/reviews/:id', (req, res) => {
-  const { id } = req.params;
+app.get('/reviews/:id/:expanded', (req, res) => {
+  const { id, expanded } = req.params;
+  let count;
+  if (expanded === 'true') {
+    count = 100;
+  } else {
+    count = 2;
+  }
   axios
     .get(
-      `${options.url}/reviews/?product_id=${id}`,
+      `${options.url}/reviews/?product_id=${id}&count=${count}`,
       options,
     ).then(({ data }) => res.send(data.results))
     .catch((err) => console.log(err));

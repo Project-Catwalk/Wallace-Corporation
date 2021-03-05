@@ -1,34 +1,26 @@
-import React from 'react';
-// import axios from "axios";
+import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Reviews.module.css';
 import Helpful from '../Helpful';
 
-const ReviewTemplate = ({ reviews }) => (
+const ReviewTemplate = ({ review }) => (
   <div>
-
-    {reviews.map((review, id) => (
-      <div key={id} className={styles.reviewTemplate}>
-        <StarRating rating={review.rating} />
-        <div className={styles.templateSummary}>{review.summary}</div>
-        <div className={styles.templateBody}>{review.body}</div>
-        <div className={styles.templateUserDateBar}>
-          <UserDateBar review={review} />
-        </div>
-        <div className={styles.templateHelpfulReportBar}>
-          <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
-        </div>
-        {/* {(review.response.length > 0)
-          ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
-          : <div />} */}
-        {/* // <div className={styles.templateResponseFromSeller}>{review.response}</div> */}
-        {(review.photos.length > 0)
-          ? <div className={styles.templateImages}>{review.photos.url}</div>
-          : null}
-        {(review.recommend)
-          ? <div className={styles.templateRecommendsBar}>I recommend this product</div>
-          : <div />}
+    <div className={styles.reviewTemplate}>
+      <StarRating rating={review.rating} />
+      <div className={styles.templateSummary}>{review.summary}</div>
+      <div className={styles.templateBody}>{review.body}</div>
+      <div className={styles.templateUserDateBar}>
+        <UserDateBar review={review} />
       </div>
-    ))}
+      <div className={styles.templateHelpfulReportBar}>
+        <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
+      </div>
+      {(review.response)
+        ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
+        : null}
+      {(review.recommend)
+        ? <div className={styles.templateRecommendsBar}>I recommend this product</div>
+        : <div />}
+    </div>
   </div>
 );
 
@@ -73,5 +65,8 @@ const UserDateBar = ({ review }) => {
     </div>
   );
 };
-
 export default ReviewTemplate;
+
+//         {/* {(review.photos.length > 0)
+//           ? <div className={styles.templateImages}>{review.photos.url}</div>
+//           : null} */}

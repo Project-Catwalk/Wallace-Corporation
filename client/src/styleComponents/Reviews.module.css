@@ -2,7 +2,7 @@
   display: grid;
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 50px 300px 50px/27% auto;
+  grid: 50px auto 50px/27% auto;
   margin: 15px;
 }
 
@@ -96,7 +96,7 @@
 
 .footerButton {
   height: 40px;
-  width: 115px;
+  width: 150px;
   display: inline;
 }
 
