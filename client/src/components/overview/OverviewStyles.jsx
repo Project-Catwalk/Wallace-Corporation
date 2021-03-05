@@ -18,8 +18,8 @@ const OverviewStyles = (props) => {
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
-  // const [listOfImgs, setListOfImgs] = useState([]);
-  // const [imgIndex, setImgIndex] = useState(0);
+
+  console.log('stylesArr: ', stylesArr);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -77,34 +77,19 @@ const OverviewStyles = (props) => {
     setStyleChoice(event.target.innerText);
   };
 
-  // const thumbnailClickHandler = (event) => {
-  //   event.preventDefault();
-
-  //   console.log('evt: ', event.target);
-
-  //   for (let i = 0; i < listOfImgs.length; i++) {
-  //     console.log('listOfImgs[i]: ', listOfImgs[i]);
-  //   }
-
-  //   // setImgIndex(event.target.value);
-  // };
-
   return (
     <>
       <div>
-        <MainDisplay photos={photos} />
+        <MainDisplay photos={photos} stylesArr={stylesArr} />
       </div>
-      {/* <div>
-        {listOfImgs.map((img, index) => <img className={styles.thumbnails} key={index} onClick={styleButtonHandler} src={img}/>)}
-        {listOfImgs.map((img, index) => <input type="image" className={styles.thumbnails} key={listOfImgs[imgIndex]} onClick={thumbnailClickHandler} src={img}/>)}
-      </div> */}
       <div className={styles.productPrice}>
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>
       <div className={styles.productStyles}>
         <label>
           Style:
-          {styleButtonNames.map((styleName, index) => <button key={index} onClick={styleButtonHandler}>{styleName}</button>)}
+          {styleButtonNames.map((styleName, index) =>
+            <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
         </label>
       </div>
       <div className={styles.sizeDropDown}>

@@ -22,7 +22,7 @@ const MainDisplay = (props) => {
 
   // Possibly .box { overflow, scroll }
 
-  const { photos } = props;
+  const { photos, stylesArr } = props;
 
   const [mainGallery, setMainGallery] = useState([]);
   const [thumbnailGallery, setThumbnailGallery] = useState([]);
@@ -59,7 +59,16 @@ const MainDisplay = (props) => {
     setImgIndex(imgIndex + 1);
   };
 
+  const slideThumbnailsDown = (event) => {
+    event.preventDefault();
+  };
+
+  const slideThumbnailsUp = (event) => {
+    event.preventDefault();
+  };
+
   const expandView = (event) => {
+    // Still needs fleshed out to expand image
     event.preventDefault();
 
     setDisplayedImg(mainGallery[imgIndex]);
@@ -68,7 +77,7 @@ const MainDisplay = (props) => {
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
-    let displayedImgIndex = mainGallery.indexOf(event.target.src);
+    let displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
 
     setImgIndex(displayedImgIndex);
     setDisplayedImg(event.target.src);
@@ -81,12 +90,11 @@ const MainDisplay = (props) => {
         <img src={displayedImg} onClick={expandView}/>
         {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
       </div>
-      {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
+      {imgIndex !== 0 && (<button onClick={slideThumbnailsUp}>Up</button>)}
       <div className={styles.slider}>
         {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
-        {/* {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={(mainGallery[imgIndex] ? styles.active : null)}/>)} */}
       </div>
-      {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
+      {imgIndex !== mainGallery.length - 1 && (<button onClick={slideThumbnailsDown}>Down</button>)}
     </div>
   );
 };
