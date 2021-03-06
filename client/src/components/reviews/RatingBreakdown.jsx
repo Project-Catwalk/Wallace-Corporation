@@ -3,7 +3,7 @@ import StarRating from '../StarRating';
 import styles from '../../styleComponents/Reviews.module.css';
 
 const RatingBreakdown = ({ reviews, metaReviews }) => {
-  const { ratings, recommend, characteristics } = metaReviews;
+  const { ratings, recommended, characteristics } = metaReviews;
   const [average, setAverage] = useState();
   const [starBreakdown, setStarBreakdown] = useState({
     1: '',
@@ -14,15 +14,24 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
   });
   const [breakdownChars, setBreakdownChars] = useState(characteristics);
   const [total, setTotal] = useState(0);
+  const [recommend, setRecommend] = useState(0);
 
   Object.assign(starBreakdown, ratings);
 
-  const getTotal = (x) => {
-    if (x) {
-      const total = Object.values(x).reduce((z, y) => {
-        return z += Number(y)}
-        , 0);
-      setTotal(total);
+  const getTotal = (obj) => {
+    if (obj) {
+      const ratingTotal = Object.values(obj).reduce((z, y) => {
+        return z += Number(y)},
+      0);
+      setTotal(ratingTotal);
+    }
+  };
+
+  const getRecommended = (obj) => {
+    if (obj) {
+      const percentRecommended =
+        Math.round((Number(obj.true) / (Number(obj.true) + Number(obj.false))) * 100);
+      setRecommend(percentRecommended);
     }
   };
 
@@ -41,6 +50,7 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
     averageRating();
     Object.assign(starBreakdown, ratings);
     getTotal(ratings);
+    getRecommended(recommended);
   }, [metaReviews]);
 
   return (
@@ -66,6 +76,7 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
           </div>
         );
       })}
+      <h4>{recommend}% recommend this product</h4>
       {Object.entries(metaReviews).map((char) => {
         if (char[0] === 'characteristics') {
           return Object.entries(char[1]).map((x) => {
