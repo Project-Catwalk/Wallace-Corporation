@@ -59,12 +59,25 @@ const MainDisplay = (props) => {
     setImgIndex(imgIndex + 1);
   };
 
+  // const refs = list.reduce((acc, value) => {
+  //   acc[value.id] = React.createRef();
+  //   return acc;
+  // }, {});
+
+  // const handleClick = id =>
+  //   refs[id].current.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //   });
+
   const slideThumbnailsDown = (event) => {
     event.preventDefault();
+
   };
 
   const slideThumbnailsUp = (event) => {
     event.preventDefault();
+
   };
 
   const expandView = (event) => {
@@ -78,6 +91,8 @@ const MainDisplay = (props) => {
     event.preventDefault();
 
     let displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
+
+    inputRef.current.focus();
 
     setImgIndex(displayedImgIndex);
     setDisplayedImg(event.target.src);
@@ -101,35 +116,3 @@ const MainDisplay = (props) => {
 };
 
 export default MainDisplay;
-
-
-
-// const List = () => (
-//   <ul>
-//     {list.map(item => {
-//       const ref = React.createRef();
-
-//       const handleClick = () =>
-//         ref.current.scrollIntoView({
-//           behavior: 'smooth',
-//           block: 'start',
-//         });
-
-//       return (
-//         <li
-//           key={item.id}
-//           ref={ref}
-//           style={{ height: '250px', border: '1px solid black' }}
-//         >
-//           <div>{item.id}</div>
-//           <div>{item.firstname}</div>
-//           <div>{item.lastname}</div>
-//           <div>{item.year}</div>
-//           <button type="button" onClick={handleClick}>
-//             Scroll Into View
-//           </button>
-//         </li>
-//       );
-//     })}
-//   </ul>
-// );
