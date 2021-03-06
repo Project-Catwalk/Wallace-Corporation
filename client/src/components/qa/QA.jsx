@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styleComponents/QA.modules.css';
+import qastyles from '../../styleComponents/QA.modules.css';
 import QASearchBar from './QASearchBar.jsx'
 import Question from './Question';
 import Modal from './QuestionModal';
@@ -41,7 +41,7 @@ const QA = (props) => {
       .then((results) => {
         const sorted = sortQuestions(results.data);
         setQuestions(sorted);
-        setDisplayedQuestions(sorted.slice(0, 2));
+        setDisplayedQuestions(sorted.slice(0, 4));
       })
       .catch(console.log);
   };
@@ -79,22 +79,23 @@ const QA = (props) => {
   };
 
   return (
-    <>
-    <div className={styles.QA}>
-      
-      <div className={styles.search}>
-        <QASearchBar searchQuestions={searchQuestions} />
+    <div className={qastyles.border}>
+      <div className={qastyles.headerBox}>
+        <h2 className={qastyles.qaheader}>Questions & Answers</h2>
       </div>
-      <div style={{ maxHeight: '1000px', overflowY: 'scroll' }} className={styles.qa}>
+      <div className={qastyles.search}>
+        <QASearchBar searchQuestions={searchQuestions} />
+        {questions.length === 0 ? <button className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
+      </div>
+      <div className={qastyles.qaSection}>
         {displayedQuestions.map((question, idx) => <Question key={idx} productId={productId} getQuestions={getQuestions} question={question} />)}
       </div>
-      <div className={styles.buttons}>
-        {searching ? null : <button onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
-        <button onClick={() => setIsOpen(true)}>Add A Question + </button>
+      <div className={qastyles.buttons}>
+        {searching ? null : <button className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
+        {questions.length > 0 ? <button className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
         <Modal productId={productId} getQuestions={getQuestions} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
       </div>
     </div>
-    </>
   );
 };
 
