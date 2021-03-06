@@ -6,7 +6,7 @@ const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={expanded ? styles.overlayPhoto : ''}>
+    <div className={expanded ? styles.overlayPhoto : ''} onClick={() => (expanded) ? setExpanded(!expanded) : null }>
       <div className={styles.reviewTemplate}>
         <StarRating rating={review.rating} />
         <div className={styles.templateSummary}>{review.summary}</div>

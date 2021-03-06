@@ -68,13 +68,13 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
           const avg = (Number(star[1]) / 12) * 100;
           return (
             <div key={star[0]}>
-              <span style={{ fontStyle: 'italic' }}>
+              <span style={{ fontStyle: 'italic', textDecoration: 'underline' }}>
                 {star[0]} Star
               </span>
               <div className={styles.progressContainer}>
                 <div className={styles.progressbar} style={{ width: avg }} />
               </div>
-              <span>{star[1]}</span>
+              <span style={{ fontStyle: 'italic' }}>{star[1]}</span>
               <br />
             </div>
           );
