@@ -12,7 +12,6 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
     4: '',
     5: '',
   });
-  const [breakdownChars, setBreakdownChars] = useState(characteristics);
   const [total, setTotal] = useState(0);
   const [recommend, setRecommend] = useState(0);
 
@@ -54,43 +53,51 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
   }, [metaReviews]);
 
   return (
-    <div>
-      <h3>Ratings & Reviews</h3>
-      <StarRating average={average} />
-      <h1>{`${(average / 20)}/5` }</h1>
-      <h4>
-        Rating Breakdown: (out of {total}
-        )
+    <div className={styles.breakdownGrid}>
+      <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
+      <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
+        <StarRating average={average} />
+      </div>
+      <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
+      <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
+      <h4 className={styles.breakdownSubheader}>
+        Rating Breakdown: (out of {total} reviews)
       </h4>
-      {Object.entries(starBreakdown).map((star) => {
-        const avg = (Number(star[1]) / 12) * 100;
-        return (
-          <div key={star[0]}>
-            <span>
-              {star[0]} 
-              Star
-            </span>
-            <progress id="file" max="100" value={avg} />
-            <span>{star[1]}</span>
-            <br />
-          </div>
-        );
-      })}
-      <h4>{recommend}% recommend this product</h4>
-      {Object.entries(metaReviews).map((char) => {
-        if (char[0] === 'characteristics') {
-          return Object.entries(char[1]).map((x) => {
-            const value = (x[1].value / 5) * 100;
-            return (
-              <div key={x[0]}>
-                <div>{x[0]}</div>
-                <progress id="file" max="100" value={value} />
-                <br />
+      <div className={styles.breakdownStarBreakdown}>
+        {Object.entries(starBreakdown).map((star) => {
+          const avg = (Number(star[1]) / 12) * 100;
+          return (
+            <div key={star[0]}>
+              <span style={{ fontStyle: 'italic' }}>
+                {star[0]} Star
+              </span>
+              <div className={styles.progressContainer}>
+                <div className={styles.progressbar} style={{ width: avg }} />
               </div>
-            );
-          });
-        }
-      })}
+              <span>{star[1]}</span>
+              <br />
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.breakdownCharacteristics}>
+        {Object.entries(metaReviews).map((char) => {
+          if (char[0] === 'characteristics') {
+            return Object.entries(char[1]).map((x) => {
+              const value = (x[1].value / 5) * 100;
+              return (
+                <div key={x[0]} className={styles.breakdownCharacteristics}>
+                  <div style={{ fontStyle: 'italic' }}>{x[0]}</div>
+                  <div className={styles.progressContainer}>
+                    <div className={styles.progressbar} style={{ width: value }} />
+                  </div>
+                  <br />
+                </div>
+              );
+            });
+          }
+        })}
+      </div>
     </div>
   );
 };
