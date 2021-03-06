@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
+import OverviewExpandedModal from './OverviewExpandedModal';
 
 const MainDisplay = (props) => {
   // Create overlay of the other thumbnails in vertical alignment to the left of the display, max of 7
@@ -28,6 +29,7 @@ const MainDisplay = (props) => {
   const [thumbnailGallery, setThumbnailGallery] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const thumbnails = [];
@@ -81,20 +83,22 @@ const MainDisplay = (props) => {
   };
 
   const expandView = (event) => {
-    // Still needs fleshed out to expand image
     event.preventDefault();
 
-    console.log('clicked');
-
+    setIsOpen(true);
     setDisplayedImg(mainGallery[imgIndex]);
+  };
+
+  const onClose = (event) => {
+    event.preventDefault();
+
+    setIsOpen(false);
   };
 
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
     let displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
-
-    inputRef.current.focus();
 
     setImgIndex(displayedImgIndex);
     setDisplayedImg(event.target.src);
@@ -107,10 +111,13 @@ const MainDisplay = (props) => {
         <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
+        <OverviewExpandedModal open={isOpen} close={onClose}>
+          <img src={displayedImg} alt={styleChoice} className={styles.expandedImg} />
+        </OverviewExpandedModal>
       </div>
       {imgIndex !== 0 && (<button type="submit" onClick={slideThumbnailsUp}>Up</button>)}
       <div className={styles.slider}>
-        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice}/>)}
+        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
       </div>
       {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={slideThumbnailsDown}>Down</button>)}
     </div>

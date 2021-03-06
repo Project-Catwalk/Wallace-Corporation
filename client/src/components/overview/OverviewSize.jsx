@@ -8,18 +8,18 @@ const OverviewSize = (props) => {
 
   const { sizesAndQuantities } = props;
 
-  const [defaultString, setDefaultString] = useState('');
+  const [defaultString, setDefaultString] = useState('Select Size');
   const [currentSize, setCurrentSize] = useState('');
   const [currentQuantityAvailable, setCurrentQuantityAvailable] = useState(0);
 
-  useEffect(() => {
-    setDefaultString('Select Size');
-    return (
-      <select>
-        {defaultString}
-      </select>
-    );
-  }, []);
+  // useEffect(() => {
+  //   setDefaultString('Select Size');
+  //   return (
+  //     <select>
+  //       {defaultString}
+  //     </select>
+  //   );
+  // }, []);
 
   const selectedSizeHandler = (event) => {
     event.preventDefault();
@@ -42,6 +42,20 @@ const OverviewSize = (props) => {
   //     <select onChange={selectedSizeHandler}>
   //       {defaultString}
   //     </select>
+  //   );
+  // }
+
+  // Line 57 is how to disable a button
+  // function App() {
+
+  //   const [name, setName] = useState('');
+  //   const nameChange = e => setName(e.target.value);
+
+  //   return (
+  //     <div className="App">
+  //       <input value={name} onChange={nameChange} placeholder="Name"/>
+  //       <button disabled={!name}>Search</button>
+  //     </div>
   //   );
   // }
 

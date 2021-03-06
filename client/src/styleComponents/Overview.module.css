@@ -15,11 +15,12 @@
   border-color: black;
   cursor: zoom-in;
   height: 400px;
+  width: auto;
 }
 
 img {
   height: 100%;
-  width: 100%;
+  width: auto;
 }
 
 /* .sliderWrapper {
@@ -175,4 +176,31 @@ img {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em; */
+}
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  bottom: 10%;
+  right: 10%;
+  transform: 'translate(-50%, -50%)';
+  background-color: white;
+  padding: 15px;
+  z-index: 1000;
+  justify-content: right;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.50);
+  z-index: 999;
+}
+
+.expandedImg {
+  /* width: calc(25% - 10px); */
 }
