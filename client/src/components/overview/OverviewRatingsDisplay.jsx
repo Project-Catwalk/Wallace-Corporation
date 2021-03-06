@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const ReviewStars = (props) => {
   // Import the stars display from Luci's review section
@@ -6,8 +6,15 @@ const ReviewStars = (props) => {
   // If no reviews exist yet, this should be hidden
 
   // Need to add ability to see a link of "Read all reviews" next to stars
+  const inputRef = useRef();
 
-  return <p>Read all reviews</p>;
+  const handleClick = () =>
+    inputRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+  return <button type="submit" ref={inputRef} onClick={handleClick}>Read all reviews</button>;
 };
 
 export default ReviewStars;
