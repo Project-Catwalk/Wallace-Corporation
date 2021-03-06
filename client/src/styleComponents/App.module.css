@@ -84,11 +84,3 @@ button:hover {
 
 /* for a text area, could be for reviews as well Lu */
 
-.qInput {
-  width: 500px;
-  height: 100px;
-  resize: none;
-  outline: none;
-  border-width: thin;
-}
-
