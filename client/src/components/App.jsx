@@ -4,6 +4,7 @@ import QA from './qa/QA';
 import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
 import StarRating from './StarRating';
+import style from '../styleComponents/App.module.css';
 
 const titleBarStyle = {
   backgroundColor: '#6D8C8C',
@@ -27,9 +28,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20104);
-    this.getStyles(20104);
-    this.getRelated(20104);
+    this.defaultProduct(20101);
+    this.getStyles(20101);
+    this.getRelated(20101);
   }
 
   getStyles(id) {

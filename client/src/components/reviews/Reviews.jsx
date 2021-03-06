@@ -21,7 +21,11 @@ const Reviews = ({ productId, name }) => {
     axios.get(reviewsURL)
       .then(({ data }) => {
         setReviews(data);
-        setDisplayedReviews(data.slice(0, 2));
+        if (expanded) {
+          setDisplayedReviews(data);
+        } else {
+          setDisplayedReviews(data.slice(0, 2));
+        }
       })
       .catch(console.log);
   };
@@ -36,11 +40,11 @@ const Reviews = ({ productId, name }) => {
   };
 
   useEffect(() => {
-    getReviews(20100);
+    getReviews(20101);
     setExpanded(expanded);
   }, [sort]);
 
-  useEffect(() => getMetaReviews(20100), []);
+  useEffect(() => getMetaReviews(20101), []);
 
   useEffect(() => {
     expanded
@@ -88,14 +92,14 @@ const Reviews = ({ productId, name }) => {
             </button>
           )
           : null}
-        <button className={styles.footerButton} type="submit" onClick={() => setIsOpen(true)}>Add Review</button>
+        <button className={styles.footerButton} type="submit" onClick={() => setIsOpen(true)}>Add Review  + </button>
         <ReviewsModal
           productId={productId}
           getReviews={getReviews}
           onClose={() => setIsOpen(false)}
           open={isOpen}
           name={name}
-          metaReviews={metaReviews.characteristics}
+          metaReviews={metaReviews}
         />
       </div>
     </div>

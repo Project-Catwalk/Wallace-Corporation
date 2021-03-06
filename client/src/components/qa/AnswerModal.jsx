@@ -21,8 +21,16 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
     setAnswer('');
     setUsername('');
     setEmail('');
+    setThumbnails([]);
     setPhotos([]);
   };
+
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,24 +38,40 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
       body: answer,
       name: username,
       email: email,
-      photos: photos,
+      photos: [],
     };
+
     if (!validEmailRegex.test(email)) {
       setError('*You must enter a valid email');
       return;
     }
 
-    // console.log(photos);
-    // console.log(answerInfo);
-    // console.log('----------------')
-    const formData = new FormData();
-    formData.append('photo', photos[0]);
-    console.log(formData);
+    const promises = [];
+    
+    for (const photo of photos) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      } 
 
-    axios.post(`/qa/questions/${question_id}/answers`, formData)
-      .then(() => getQuestions(20111))
-      .then(() => clearForm())
-      .catch(console.log);
+      const promise = toBase64(photo)
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post(`/upload_images`, payload))
+        .then(({data}) => {return data})
+        .catch(console.log);
+      promises.push(promise);
+    }
+
+  Promise.all(promises)
+    .then((results) => answerInfo.photos = results)
+    .then(() => {
+      return axios.post(`/qa/questions/${question_id}/answers`, answerInfo)
+    })
+    .then(() => getQuestions(20111))
+    .then(() => clearForm())
+    .catch(console.log);
+
+    
   };
 
   const handleChange = (e) => {
@@ -102,7 +126,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
             <input value={email} required="required" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack@email.com" />
             <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div>
-              {photos.length < 5 ? <input onChange={handleChange} type="file" /> : null}
+              {photos.length < 5 ? <input value={''} onChange={handleChange} type="file" /> : null}
               {thumbnails.map((photo, idx) => <Photo key={idx} photo={photo}/>)}
             </div>
             <button type="submit" className={styles.modalButton}>Submit Answer</button>

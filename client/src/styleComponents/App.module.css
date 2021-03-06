@@ -12,6 +12,35 @@
   display: inline;
 }
 
+.helpfulButton {
+  border: none;
+  color: blue;
+  background: transparent;
+}
+
+.helpfulButton:hover {
+  color: #F2B694;
+}
+
+.helpfulCount {
+  border-right: 1px solid gray;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  margin-right: .5%;
+  padding-right: .5%
+}
+
+.reported {
+  border: none;
+  background-color: transparent;
+  color: blue;
+  margin-right: 1%;
+}
+
+.reported:hover {
+  color: #F2B694;
+}
 /* MODAL */
 .modal {
   position: fixed;
@@ -52,6 +81,10 @@
   cursor: pointer;
 }
 
+button {
+  outline: none;
+}
+
 button:hover {
   cursor:pointer;
 }
@@ -80,6 +113,11 @@ button:hover {
 .imgThumbnail {
   height: 50px;
   width: 50px;
+}
+
+.imgThumbnail:hover {
+  cursor: pointer;
+  opacity: 80%;
 }
 
 /* for a text area, could be for reviews as well Lu */

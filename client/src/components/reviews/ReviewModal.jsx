@@ -28,16 +28,29 @@ const ReviewsModal = ({
     //   .catch(console.log);
   };
 
+  const clearForm = () => {
+    setReview({
+      product_id: '',
+      rating: 0,
+      summary: '',
+      body: '',
+      recommend: '',
+      name: '',
+      email: '',
+      photos: [],
+    });
+  };
+
   return (
     <>
-      <div 
+      <div
+        role="presentation"
         onClick={() => {
           onClose();
           clearForm();
-        }} 
+        }}
         className={open ? styles.overlay : ''}
-      >
-      </div>
+      />
       <div
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)',
@@ -50,12 +63,13 @@ const ReviewsModal = ({
             About the {name}
             ...
           </h4>
-          <p 
-            className={styles.closeModal} 
+          <p
+            role="presentation"
+            className={styles.closeModal}
             onClick={() => {
               onClose();
               clearForm();
-            } }
+            }}
           >
             x
           </p>
@@ -64,11 +78,41 @@ const ReviewsModal = ({
           <form onSubmit={(e) => handleSubmit(e)} action="">
             <p>Overall Rating:</p>
             <div className={Rstyles.starRating}>
-              <span onClick={() => setReview({ rating: 1 })}>★</span>
-              <span onClick={() => setReview({ rating: 2 })}>★</span>
-              <span onClick={() => setReview({ rating: 3 })}>★</span>
-              <span onClick={() => setReview({ rating: 4 })}>★</span>
-              <span onClick={() => setReview({ rating: 5 })}>★</span>
+              <span
+                role="presentation"
+                onKeyDown={() => setReview({ rating: 1 })}
+                onClick={() => setReview({ rating: 1 })}
+              >
+                ★
+              </span>
+              <span
+                role="presentation"
+                onKeyDown={() => setReview({ rating: 2 })}
+                onClick={() => setReview({ rating: 2 })}
+              >
+                ★
+              </span>
+              <span
+                role="presentation"
+                onKeyDown={() => setReview({ rating: 3 })}
+                onClick={() => setReview({ rating: 3 })}
+              >
+                ★
+              </span>
+              <span
+                role="presentation"
+                onKeyDown={() => setReview({ rating: 4 })}
+                onClick={() => setReview({ rating: 4 })}
+              >
+                ★
+              </span>
+              <span
+                role="presentation"
+                onKeyDown={() => setReview({ rating: 5 })}
+                onClick={() => setReview({ rating: 5 })}
+              >
+                ★
+              </span>
             </div>
             <p>Would you recommend this product?</p>
             <div>
