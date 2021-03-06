@@ -10,7 +10,6 @@
   background-color: #6d8c8c;
   grid-column: 2;
   grid-row: 1/2;
-  font-weight: bolder;
 }
 
 .parentIndividualReview {
@@ -214,10 +213,6 @@ progress[value]::-webkit-progress-bar {
   border-radius: 10px;
 }
 
-.image {
-  width: 300px;
-}
-
 .photo {
   position: relative;
   top: auto;
@@ -228,7 +223,6 @@ progress[value]::-webkit-progress-bar {
   z-index: 1000;
   border-radius: 10px;
   margin: 20px;
-  /* transition: all 0.7s ease; */
 }
 
 .overlayPhoto {

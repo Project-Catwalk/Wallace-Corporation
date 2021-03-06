@@ -4,7 +4,6 @@ import Helpful from '../Helpful';
 
 const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
-  console.log(expanded)
 
   return (
     <div className={expanded ? styles.overlayPhoto : ''}>
