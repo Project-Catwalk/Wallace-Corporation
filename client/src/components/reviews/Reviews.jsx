@@ -21,7 +21,11 @@ const Reviews = ({ productId, name }) => {
     axios.get(reviewsURL)
       .then(({ data }) => {
         setReviews(data);
-        setDisplayedReviews(data.slice(0, 2));
+        if (expanded) {
+          setDisplayedReviews(data);
+        } else {
+          setDisplayedReviews(data.slice(0, 2));
+        }
       })
       .catch(console.log);
   };

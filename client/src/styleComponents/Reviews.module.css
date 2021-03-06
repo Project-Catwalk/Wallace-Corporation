@@ -134,4 +134,14 @@
 .imgThumbnail {
   height: 50px;
   width: 50px;
+  margin: 5px;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: lightgrey;
 }
