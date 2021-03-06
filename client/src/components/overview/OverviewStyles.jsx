@@ -67,7 +67,7 @@ const OverviewStyles = (props) => {
   return (
     <>
       <div>
-        <MainDisplay photos={photos} stylesArr={stylesArr} />
+        <MainDisplay photos={photos} styleChoice={styleChoice} />
       </div>
       <div className={styles.productPrice}>
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />

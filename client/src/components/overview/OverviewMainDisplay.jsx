@@ -22,20 +22,16 @@ const MainDisplay = (props) => {
 
   // Possibly .box { overflow, scroll }
 
-  const { photos, stylesArr } = props;
+  const { photos, styleChoice } = props;
 
   const [mainGallery, setMainGallery] = useState([]);
   const [thumbnailGallery, setThumbnailGallery] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
-  const [styleName, setStyleName] = useState('');
-
-  console.log('stylesArr: ', stylesArr);
 
   useEffect(() => {
     const thumbnails = [];
     const normal = [];
-    const altName = [];
 
     for (let i = 0; i < photos.length; i++) {
       thumbnails.push(photos[i].thumbnail_url);
@@ -91,13 +87,13 @@ const MainDisplay = (props) => {
     <div>
       <div className={styles.mainDisplay}>
         {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
-        <img src={displayedImg} onClick={expandView}/>
+        <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
       </div>
       {imgIndex !== 0 && (<button type="submit" onClick={slideThumbnailsUp}>Up</button>)}
       <div className={styles.slider}>
-        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg}/>)}
+        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice}/>)}
       </div>
       {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={slideThumbnailsDown}>Down</button>)}
     </div>
@@ -105,3 +101,35 @@ const MainDisplay = (props) => {
 };
 
 export default MainDisplay;
+
+
+
+// const List = () => (
+//   <ul>
+//     {list.map(item => {
+//       const ref = React.createRef();
+
+//       const handleClick = () =>
+//         ref.current.scrollIntoView({
+//           behavior: 'smooth',
+//           block: 'start',
+//         });
+
+//       return (
+//         <li
+//           key={item.id}
+//           ref={ref}
+//           style={{ height: '250px', border: '1px solid black' }}
+//         >
+//           <div>{item.id}</div>
+//           <div>{item.firstname}</div>
+//           <div>{item.lastname}</div>
+//           <div>{item.year}</div>
+//           <button type="button" onClick={handleClick}>
+//             Scroll Into View
+//           </button>
+//         </li>
+//       );
+//     })}
+//   </ul>
+// );
