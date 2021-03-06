@@ -3,7 +3,7 @@ import styles from '../../styleComponents/Overview.module.css';
 
 const MainDisplay = (props) => {
   // Create overlay of the other thumbnails in vertical alignment to the left of the display, max of 7
-  // Mouse hover over diplay should change mouse icon to mag glass, exclude buttons and thumbnails from this feature
+  // Make thumbnail of main display opacity change on button click to new main display
   // Make main image clickable to blow up to fill most of page
   // Mouse icon changes to a "+" on hover
   // Thumbnails change to small icons with distinct icon of which item is displayed
@@ -13,32 +13,34 @@ const MainDisplay = (props) => {
   // Clicking in zoomed mode will return to expanded view
 
   // Limit quantity of thumbnails??
-//   body.single-product div.images div.thumbnails {
-//     max-height: 380px;
-//     overflow: hidden;
-// /* Optional - create a gradient fade at bottom for webkit browsers */
-//     -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-//   }
+  // body.single-product div.images div.thumbnails {
+  //   max-height: 380px;
+  //   overflow: hidden;
+  // /* Optional - create a gradient fade at bottom for webkit browsers */
+  //   -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  // }
 
-  const { photos } = props;
+  // Possibly .box { overflow, scroll }
+
+  const { photos, styleChoice } = props;
 
   const [mainGallery, setMainGallery] = useState([]);
-  const [expandedImg, setExpandedImg] = useState([]);
+  const [thumbnailGallery, setThumbnailGallery] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
 
   useEffect(() => {
     const thumbnails = [];
-    const expanded = [];
+    const normal = [];
 
     for (let i = 0; i < photos.length; i++) {
       thumbnails.push(photos[i].thumbnail_url);
-      expanded.push(photos[i].url);
+      normal.push(photos[i].url);
     }
 
-    setMainGallery(thumbnails);
-    setExpandedImg(expanded);
-    setDisplayedImg(thumbnails[imgIndex]);
+    setMainGallery(normal);
+    setThumbnailGallery(thumbnails);
+    setDisplayedImg(normal[imgIndex]);
   }, [photos]);
 
   useEffect(() => {
@@ -57,27 +59,60 @@ const MainDisplay = (props) => {
     setImgIndex(imgIndex + 1);
   };
 
+  // const refs = list.reduce((acc, value) => {
+  //   acc[value.id] = React.createRef();
+  //   return acc;
+  // }, {});
+
+  // const handleClick = id =>
+  //   refs[id].current.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //   });
+
+  const slideThumbnailsDown = (event) => {
+    event.preventDefault();
+
+  };
+
+  const slideThumbnailsUp = (event) => {
+    event.preventDefault();
+
+  };
+
+  const expandView = (event) => {
+    // Still needs fleshed out to expand image
+    event.preventDefault();
+
+    console.log('clicked');
+
+    setDisplayedImg(mainGallery[imgIndex]);
+  };
+
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
-    let displayedThumbnailIndex = mainGallery.indexOf(event.target.src);
+    let displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
 
-    setImgIndex(displayedThumbnailIndex);
+    inputRef.current.focus();
+
+    setImgIndex(displayedImgIndex);
     setDisplayedImg(event.target.src);
   };
 
   return (
     <div>
-      <div>
-        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Left</button>)}
-        <img className={styles.mainDisplay} src={displayedImg}/>
-        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Right</button>)}
+      <div className={styles.mainDisplay}>
+        {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
+        <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
+        {imgIndex !== mainGallery.length - 1
+        && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
       </div>
-      <div>
-        {imgIndex !== 0 && (<button onClick={decrementImgIndex}>Up</button>)}
-        {mainGallery.map((img, index) => <input type="image" className={styles.thumbnails} key={index} onClick={thumbnailClickHandler} src={img}/>)}
-        {imgIndex !== mainGallery.length - 1 && (<button onClick={incrementImgIndex}>Down</button>)}
+      {imgIndex !== 0 && (<button type="submit" onClick={slideThumbnailsUp}>Up</button>)}
+      <div className={styles.slider}>
+        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice}/>)}
       </div>
+      {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={slideThumbnailsDown}>Down</button>)}
     </div>
   );
 };
