@@ -84,6 +84,8 @@ const MainDisplay = (props) => {
     // Still needs fleshed out to expand image
     event.preventDefault();
 
+    console.log('clicked');
+
     setDisplayedImg(mainGallery[imgIndex]);
   };
 
