@@ -4,6 +4,7 @@ import QA from './qa/QA';
 import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
 import StarRating from './StarRating';
+import style from '../styleComponents/App.module.css';
 
 const titleBarStyle = {
   backgroundColor: '#6D8C8C',

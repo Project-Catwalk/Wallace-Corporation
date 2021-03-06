@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
-import styles from '../../styleComponents/QA.modules.css';
+import qastyles from '../../styleComponents/QA.modules.css';
 import Helpful from '../Helpful';
 import Modal from './AnswerModal';
 
@@ -61,15 +61,25 @@ const Question = (props) => {
   };
 
   return (
-    <div className={styles.question}>
-      <div>Q: {question_body}</div>
-      <Helpful question_id={question_id} helpfulness={question_helpfulness} />
-      <button onClick={() => setIsOpen(true)} type="button">Add Answer</button>
-      <Modal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
-      <div>
-        A:
-        {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
-        {answerList.length > 2 ? <button onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
+    <div className={qastyles.questionAndAnswer}>
+      <div className={qastyles.questionGrid}>
+        <h4 className={qastyles.q}>Q:</h4>
+        <div className={qastyles.question}>
+          <p className={qastyles.questionBody} >{question_body}</p>
+        </div>
+        <div className={qastyles.questionHelpful}>
+          <Helpful question_id={question_id} helpfulness={question_helpfulness} />
+          <button className={qastyles.addAnswerButton} onClick={() => setIsOpen(true)} type="button">Add Answer</button>
+        </div>
+        <Modal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
+      </div>
+
+      <div className={qastyles.answerGrid}>
+        <h4 className={qastyles.a}>A:</h4>
+        <div className={qastyles.answerList}>
+          {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
+        </div>
+        {answerList.length > 2 ? <button className={qastyles.showMoreAnswersButton} onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
       </div>
     </div>
   );

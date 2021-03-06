@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Helpful from '../Helpful';
 import Photo from './Photo';
+import qastyles from '../../styleComponents/QA.modules.css';
 
 const Answer = (props) => {
   const { answer } = props;
@@ -16,12 +17,16 @@ const Answer = (props) => {
   };
 
   return (
-    <>
-      <p>{body}</p>
-      <p>by {answerer_name}, {getProperDate(date)}</p>
-      <Helpful answer_id={id} helpfulness={helpfulness} />
-      {photos.map((photo, idx) => <Photo key={idx} photo={photo} />)}
-    </>
+    <div className={qastyles.answer}>
+      <span className={qastyles.answerBody} >{body}</span>
+      <div className={qastyles.answerPhotos}>
+        {photos.map((photo, idx) => <Photo key={idx} photo={photo} />)}
+      </div>
+      <div>
+        <p className={qastyles.userAndDate}>by {answerer_name}, {getProperDate(date)}</p>
+        <Helpful className={qastyles.answerHelpful} answer_id={id} helpfulness={helpfulness} />
+      </div>
+    </div>
   );
 };
 

@@ -45,13 +45,14 @@ const Helpful = (props) => {
   return (
     <div className={styles.helpful}>
       <div className={styles.helpful}>Was this helpful?</div>
-      <button type="submit" onClick={handleCount} value="yes">Yes</button>
-      <div className={styles.helpful}>
+      <button type="submit" onClick={handleCount} className={styles.helpfulButton} value="yes">Yes</button>
+      <div className={`${styles.helpful} ${styles.helpfulCount}`}>
         (
         {count}
         )
+        {' '}
       </div>
-      <button onClick={report} type="submit">{reported}</button>
+      <button className={styles.reported} onClick={report} type="submit">{reported}</button>
     </div>
   );
 };

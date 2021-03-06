@@ -4,27 +4,14 @@ const app = express();
 const port = 3000;
 const axios = require('axios');
 const path = require('path');
-const multer = require('multer');
 const morgan = require('morgan');
-const fileUpload = require('express-fileupload');
 const ATELIER_API_KEY = require('./config.js');
+const { BlobServiceClient } = require('@azure/storage-blob');
+const { v1: uuidv1 } = require('uuid');
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(fileUpload());
-
-const storage = multer.diskStorage({
-  destination: '../public/uploads',
-  fileName: function(req, file, cb) {
-    cb(null, 'test');
-  }
-});
-
-const upload = multer({
-  storage: storage
-}).single('photo');
-// app.use(upload.single('email'));
 
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',
@@ -142,24 +129,42 @@ app.post('/qa/questions', (req, res) => {
 
 app.post(`/qa/questions/:question_id/answers`, (req, res) => {
   const { question_id } = req.params;
-  const { photo } = req.files;
-  photo.mv(`../public/uploads/${photo.name}`, err => {
-    if (err) {
-      console.log(err);
-    }
-  });
-  upload(req, res, (err) => {
-    if (err) {
-      console.log(error);
-    } else {
-      res.send(201);
-    }
-  });
 
+  axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
+    .then(() => res.send(201))
+    .catch(console.log);
+});
 
-  // axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
-  //   .then(() => res.send(201))
-  //   .catch(console.log);
+app.post(`/upload_images`, (req, res) => {
+  // Create the BlobServiceClient object which will be used to create a container client
+  const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=louisajeseetest;AccountKey=OfksQDg0FrsOSHMeg3HKWkt359/rSBFhuI2Vf3GQZQrK+UDBoSHzHwCnzoId9DMXIpQivrKMzx94+/d4lSnOJA==;EndpointSuffix=core.windows.net");
+
+  // Create a unique name for the container
+  const containerName = 'louisaandjesse';
+
+  console.log('\nCreating container...');
+  console.log('\t', containerName);
+
+  // Get a reference to a container
+  const containerClient = blobServiceClient.getContainerClient(containerName);
+
+  // Create the container
+  // const createContainerResponse = await containerClient.create();
+  // console.log("Container was created successfully. requestId: ", createContainerResponse.requestId);
+  const blobName = 'img' + uuidv1() + `.${req.body.name}`;
+
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+  console.log('\nUploading to Azure storage as blob:\n\t', blobName);
+
+  // Upload data to the blob
+  const data = Buffer.from(req.body.data, 'base64');
+  blockBlobClient.upload(data, data.length)
+    .then((blobUploadResponse) => {
+      console.log("Blob was uploaded successfully. requestId: ", blobUploadResponse);
+      res.send(`https://louisajeseetest.blob.core.windows.net/louisaandjesse/${blobName}`);
+    })
+    .catch(console.log);
 });
 
 app.listen(port, () => {
