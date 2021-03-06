@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import ReviewStars from './OverviewRatingsDisplay';
 import OverviewStyles from './OverviewStyles';
-import AddToCart from './OverviewCart';
 import RelatedProducts from './OverviewRelatedProducts';
 import Description from './OverviewProductDescription';
 import Slogan from './OverviewProductSlogan';
@@ -24,9 +23,6 @@ const Overview = (props) => {
       </div>
       <div className={styles.productTitle}>
         {name}
-      </div>
-      <div className={styles.cart}>
-        <AddToCart />
       </div>
       <div className={styles.relatedProducts}>
         <RelatedProducts relatedArr={relatedProducts} />

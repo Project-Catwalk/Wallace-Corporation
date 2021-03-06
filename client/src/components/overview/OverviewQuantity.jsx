@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import OverviewCart from './OverviewCart';
+import styles from '../../styleComponents/Overview.module.css';
 
 const OverviewQuantity = (props) => {
   // Import quantity
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { quantityForSize } = props;
+  const { quantityForSize, currentSize } = props;
 
-  const [defaultQuan, setDefaultQuan] = useState('');
+  const [currentQuantity, setCurrentQuantity] = useState([]);
 
   useEffect(() => {
-    setDefaultQuan('-');
-    return (
-      <select>
-        {defaultQuan}
-      </select>
-    );
-  }, []);
+    const integers = [];
 
-  let integers = [];
+    if (quantityForSize > 15) {
+      for (let i = 1; i <= 15; i++) {
+        integers.push(i);
+      }
+    } else {
+      for (let i = 1; i <= quantityForSize || i === 15; i++) {
+        integers.push(i);
+      }
+    }
 
-  if (quantityForSize > 15) {
-    for (let i = 1; i <= 15; i++) {
-      integers.push(i);
-    }
-  } else {
-    for (let i = 1; i <= quantityForSize || i === 15; i++) {
-      integers.push(i);
-    }
-  }
+    setCurrentQuantity(integers);
+  }, [quantityForSize]);
 
   // if (defaultQuan === '-') {
   //   return (
@@ -53,9 +50,14 @@ const OverviewQuantity = (props) => {
   // }
 
   return (
-    <select>
-      {integers.map((num, index) => <option key={index}>{num}</option>)}
-    </select>
+    <>
+      <select>
+        {currentQuantity.map((num, index) => <option key={index}>{num}</option>)}
+      </select>
+      <div className={styles.cart}>
+        <OverviewCart currentSize={currentSize} currentQuantity={currentQuantity} />
+      </div>
+    </>
   );
 };
 

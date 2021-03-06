@@ -8,18 +8,8 @@ const OverviewSize = (props) => {
 
   const { sizesAndQuantities } = props;
 
-  const [defaultString, setDefaultString] = useState('Select Size');
   const [currentSize, setCurrentSize] = useState('');
   const [currentQuantityAvailable, setCurrentQuantityAvailable] = useState(0);
-
-  // useEffect(() => {
-  //   setDefaultString('Select Size');
-  //   return (
-  //     <select>
-  //       {defaultString}
-  //     </select>
-  //   );
-  // }, []);
 
   const selectedSizeHandler = (event) => {
     event.preventDefault();
@@ -33,19 +23,7 @@ const OverviewSize = (props) => {
     setCurrentSize(event.target.value);
   };
 
-  const sizeOptions = sizesAndQuantities.map((productSize, index) => (
-    <option key={index}>{productSize.size}</option>
-  ));
-
-  // if (currentSize === '') {
-  //   return (
-  //     <select onChange={selectedSizeHandler}>
-  //       {defaultString}
-  //     </select>
-  //   );
-  // }
-
-  // Line 57 is how to disable a button
+  // Line 43 is how to disable a button
   // function App() {
 
   //   const [name, setName] = useState('');
@@ -61,11 +39,13 @@ const OverviewSize = (props) => {
 
   return (
     <div>
-      <select onChange={selectedSizeHandler}>
-        {sizeOptions}
+      <select onChange={selectedSizeHandler} defaultValue="Select Size">
+        {sizesAndQuantities.map((productSize, index) => (
+          <option key={index}>{productSize.size}</option>
+        ))}
       </select>
       <div>
-        <OverviewQuantity quantityForSize={currentQuantityAvailable} />
+        <OverviewQuantity quantityForSize={currentQuantityAvailable} currentSize={currentSize} />
       </div>
     </div>
   );
