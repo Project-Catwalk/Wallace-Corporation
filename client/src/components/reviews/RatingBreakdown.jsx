@@ -57,7 +57,7 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
       ? (
         <div className={styles.breakdownGrid}>
           <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
-          <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
+          <div className={styles.breakdownStars} style={{ justifySelf: 'left'}}>
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>

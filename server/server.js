@@ -14,7 +14,8 @@ const { v1: uuidv1 } = require('uuid');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 100000, extended: true }));
 
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',

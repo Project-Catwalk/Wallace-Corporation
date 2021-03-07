@@ -84,11 +84,14 @@ const Reviews = ({ productId, name }) => {
   };
 
   useEffect(() => {
-    getReviews(20101);
+    getReviews(20103);
     setExpanded(expanded);
   }, [sort]);
 
-  useEffect(() => getMetaReviews(20101), []);
+  useEffect(() => {
+    getMetaReviews(20103);
+    getReviews(20103);
+  }, [productId]);
 
   useEffect(() => {
     (expanded)
