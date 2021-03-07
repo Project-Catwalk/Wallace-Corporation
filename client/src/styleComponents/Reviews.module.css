@@ -134,6 +134,10 @@
   margin: 5px;
   border-radius: 50%;
 }
+.imgThumbnail:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
 /* 
 progress[value] {
   -webkit-appearance: none;
@@ -211,7 +215,7 @@ progress[value]::-webkit-progress-bar {
 
 .dialog {
   box-shadow: 0 8px 6px -6px black;
-  position: static;
+  position: fixed;
   left: 20%;
   top: 10%;
   border-radius: 10px;
@@ -246,3 +250,4 @@ progress[value]::-webkit-progress-bar {
   margin: .75em;
   border-radius: 50%;
 }
+

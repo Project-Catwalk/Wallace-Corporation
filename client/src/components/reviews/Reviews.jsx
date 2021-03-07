@@ -99,6 +99,20 @@ const Reviews = ({ productId, name }) => {
     : setDisplayedReviews(reviews.slice(0, 2))
   }, [expanded]);
 
+  const handleStarFilters = (filters) => {
+    const reviewArray = [];
+    if (filters.length === 0) {
+      setDisplayedReviews(reviews.slice(0, 2));
+    } else {
+      filters.map((filter) => {
+        reviews.filter((review) => {
+          if (review.rating === Number(filter)) reviewArray.push(review);
+        });
+      });
+      setDisplayedReviews(reviewArray);
+    }
+  };
+
   return (
     (metaReviews && reviews && productId)
       ? (
@@ -107,6 +121,7 @@ const Reviews = ({ productId, name }) => {
             <RatingBreakdown
               reviews={reviews}
               metaReviews={metaReviews}
+              handleStarFilters={handleStarFilters}
             />
           </div>
           <div className={styles.parentHeader} style={{ display: 'flex' }}>

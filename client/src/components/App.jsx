@@ -28,9 +28,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20104);
-    this.getStyles(20104);
-    this.getRelated(20104);
+    this.defaultProduct(20103);
+    this.getStyles(20103);
+    this.getRelated(20103);
   }
 
   getStyles(id) {
@@ -77,7 +77,7 @@ class App extends React.Component {
       (questions, id, overview, styles, name, related)
         ? (
           <div>
-            <h1 style={titleBarStyle}>Hello!</h1>
+            <h1 style={titleBarStyle}>Wallace Corporation</h1>
             <Overview overview={overview} productStyles={styles} relatedProducts={related} />
             <Reviews
               productId={id}

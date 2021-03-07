@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../StarRating';
 import styles from '../../styleComponents/Reviews.module.css';
 
-const RatingBreakdown = ({ reviews, metaReviews }) => {
+const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
   const { ratings, recommended, characteristics } = metaReviews;
   const [average, setAverage] = useState();
+  const [starFilters, setStarFilters] = useState([]);
   const [starBreakdown, setStarBreakdown] = useState({
     1: '',
     2: '',
@@ -45,6 +46,18 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
     setAverage(avg);
   };
 
+  const handleFilters = (star) => {
+    const currentFilters = starFilters;
+    currentFilters.push(star);
+    setStarFilters(currentFilters);
+    handleStarFilters(starFilters);
+  };
+
+  const removeFilters = () => {
+    setStarFilters([]);
+    handleStarFilters([]);
+  };
+
   useEffect(() => {
     averageRating();
     Object.assign(starBreakdown, ratings);
@@ -70,7 +83,14 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
               const avg = (Number(star[1]) / 12) * 100;
               return (
                 <div key={star[0]}>
-                  <span style={{ fontStyle: 'italic', textDecoration: 'underline' }}>
+                  <span
+                    role="presentation"
+                    onKeyDown={handleFilters}
+                    style={{ fontStyle: 'italic', textDecoration: 'underline' }}
+                    onClick={() => {
+                      handleFilters(star[0]);
+                    }}
+                  >
                     {star[0]} Star
                   </span>
                   <div className={styles.progressContainer}>
@@ -81,6 +101,15 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
                 </div>
               );
             })}
+            {starFilters.length > 0
+              ? (
+                <div style={{ fontStyle: 'italic' }}>
+                  <span>Current Filters:</span>
+                  {starFilters.map((x) => <span>{x} Stars</span>)}
+                  <p onClick={removeFilters}>Remove all filters</p>
+                </div>
+              )
+              : null}
           </div>
           <div className={styles.breakdownCharacteristics}>
             {Object.entries(metaReviews).map((char) => {
