@@ -58,6 +58,24 @@ app.get('/products/:product_id/related', (req, res) => {
     .catch(console.error);
 });
 
+app.get('/cart', (req, res) => {
+  axios
+    .get(`${options.url}/cart`, options)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch(console.error);
+});
+
+app.post('/cart', (req, res) => {
+  axios
+    .post(`${options.url}/cart`, req.body, options)
+    .then(() => res.sendStatus(201))
+    .catch((error) => {
+      console.log('Error: ', error);
+    });
+});
+
 //REVIEWS
 app.get('/reviews/sort/:id/:sort', (req, res) => {
   const { id, sort } = req.params;

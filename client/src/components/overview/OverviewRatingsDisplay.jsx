@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 
 const ReviewStars = (props) => {
-  // Import the stars display from Luci's review section
-  // Create a "Read all reviews" link to scroll down to the Reviews section
-  // If no reviews exist yet, this should be hidden
+  // STILL TO DO:
 
-  // Need to add ability to see a link of "Read all reviews" next to stars
+  // Import Luci's stars to this display on this section
+  // Reset imputRef to the top of her section
+
   const inputRef = useRef();
 
   const handleClick = () =>
