@@ -6,7 +6,7 @@ const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={expanded ? styles.overlayPhoto : ''}>
+    <div>
       <div className={styles.reviewTemplate}>
         <StarRating rating={review.rating} />
         <div className={styles.templateSummary}>{review.summary}</div>
@@ -20,7 +20,7 @@ const ReviewTemplate = ({ review }) => {
         {(review.response && review.response !== 'null')
           ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
           : null}
-        <div className={styles.templateImages}>
+        <div className={`${styles.templateImages} ${expanded ? styles.overlayPhoto : ''}`}>
           {(review.photos.length > 0)
             ? review.photos.map((photo, id) => (
               (!expanded)
