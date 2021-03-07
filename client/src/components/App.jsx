@@ -74,15 +74,19 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        <h1 style={titleBarStyle}>Hello!</h1>
-        <Overview overview={overview} productStyles={styles} relatedProducts={related} />
-        <Reviews
-          productId={id}
-          name={name}
-        />
-        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
-      </div>
+      (questions, id, overview, styles, name, related)
+        ? (
+          <div>
+            <h1 style={titleBarStyle}>Hello!</h1>
+            <Overview overview={overview} productStyles={styles} relatedProducts={related} />
+            <Reviews
+              productId={id}
+              name={name}
+            />
+            <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
+          </div>
+        )
+        : null
     );
   }
 }
