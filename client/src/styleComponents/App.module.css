@@ -10,6 +10,8 @@
 
 .helpful {
   display: inline;
+  font-size: .8em;
+  color: rgb(128, 127, 127);
 }
 
 .helpfulButton {
@@ -104,6 +106,10 @@ button:hover {
   align-self: flex-end;
   margin: 15px 0 0 0;
   border-radius: 8px;
+}
+
+.modalButton:hover {
+  opacity: 90%
 }
 
 .finePrint {

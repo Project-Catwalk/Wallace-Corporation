@@ -27,7 +27,6 @@ const Helpful = (props) => {
     setReported('Reported');
     console.log(props);
     if (props.answer_id) {
-      console.log(props.answer_id)
       axios.put(`/qa/answers/${props.answer_id}/report`)
         .then(() => console.log(status.status))
         .catch(console.log);
@@ -44,15 +43,15 @@ const Helpful = (props) => {
 
   return (
     <div className={styles.helpful}>
-      <div className={styles.helpful}>Was this helpful?</div>
-      <button type="submit" onClick={handleCount} className={styles.helpfulButton} value="yes">Yes</button>
-      <div className={`${styles.helpful} ${styles.helpfulCount}`}>
+      <div data-testid="helpfulText" className={styles.helpful}>Was this helpful?</div>
+      <button data-testid="helpful-button" type="submit" onClick={handleCount} className={styles.helpfulButton} value="yes">Yes</button>
+      <div data-testid="helpful-count" className={`${styles.helpful} ${styles.helpfulCount}`}>
         (
         {count}
         )
         {' '}
       </div>
-      <button className={styles.reported} onClick={report} type="submit">{reported}</button>
+      <button data-testid="report-button" className={styles.reported} onClick={report} type="submit">{reported}</button>
     </div>
   );
 };

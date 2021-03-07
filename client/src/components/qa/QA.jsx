@@ -81,7 +81,7 @@ const QA = (props) => {
   return (
     <div className={qastyles.border}>
       <div className={qastyles.headerBox}>
-        <h2 className={qastyles.qaheader}>Questions & Answers</h2>
+        <h2 data-testid="qa-heading" className={qastyles.qaheader}>Questions & Answers</h2>
       </div>
       <div className={qastyles.search}>
         <QASearchBar searchQuestions={searchQuestions} />
