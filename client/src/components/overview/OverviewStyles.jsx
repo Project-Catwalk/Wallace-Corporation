@@ -21,6 +21,8 @@ const OverviewStyles = (props) => {
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
+  console.log('stylesArr: ', stylesArr);
+
   useEffect(() => {
     if (stylesArr.length > 0) {
       setStyleChoice(defaultStyle[0].name);

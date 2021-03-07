@@ -63,6 +63,7 @@ const OverviewQuantity = (props) => {
   return (
     <>
       <select onChange={quantitySelected}>
+        <option>-</option>
         {quantityAvailable.map((num, index) => <option key={index}>{num}</option>)}
       </select>
       <div className={styles.cart}>

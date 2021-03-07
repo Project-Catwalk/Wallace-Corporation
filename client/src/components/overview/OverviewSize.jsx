@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import OverviewQuantity from './OverviewQuantity';
 
 const OverviewSize = (props) => {
-  // Import all possible sizes of a product
-  // Import cart data to check count, if count = 0 disable button and label "OUT OF STOCK"
-  // Map over sizes and place in an option
+  // STILL TO DO:
+
+  // Any style that has a quantity of 0 or null should not be listed in the size dropdown
+  // If currentQuantityAvailable = 0 or null, set size selector to "OUT OF STOCK"
+  //
 
   const { skuOfChoice, styleChoice } = props;
 
@@ -37,7 +39,9 @@ const OverviewSize = (props) => {
     event.preventDefault();
 
     for (let i = 0; i < sizesAndQuantities.length; i++) {
-      if (event.target.value === sizesAndQuantities[i].size) {
+      if (sizesAndQuantities[i].quantity === 0) {
+        continue;
+      } else if (event.target.value === sizesAndQuantities[i].size) {
         setCurrentQuantityAvailable(sizesAndQuantities[i].quantity);
         setSingleSkuId(skuIds[i]);
       }
@@ -62,7 +66,8 @@ const OverviewSize = (props) => {
 
   return (
     <div>
-      <select onChange={selectedSizeHandler} defaultValue="Select Size">
+      <select onChange={selectedSizeHandler}>
+        <option>Select Size</option>
         {sizesAndQuantities.map((productSize, index) => (
           <option key={index}>{productSize.size}</option>
         ))}
