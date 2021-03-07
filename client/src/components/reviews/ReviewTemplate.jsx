@@ -6,7 +6,7 @@ const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={expanded ? styles.overlayPhoto : ''} onClick={() => (expanded) ? setExpanded(!expanded) : null }>
+    <div className={expanded ? styles.overlayPhoto : ''}>
       <div className={styles.reviewTemplate}>
         <StarRating rating={review.rating} />
         <div className={styles.templateSummary}>{review.summary}</div>
@@ -66,7 +66,7 @@ const StarRating = ({ rating }) => {
   const roundedPercentage = (Math.round(starPercentage * 5) / 5);
 
   return (
-    <div className={styles.starRating}>
+    <div className={styles.starRating} style={{ justifyContent: 'left' }}>
       <div className={styles.starRatingTop} style={{ width: roundedPercentage }}>
         <span>★</span>
         <span>★</span>

@@ -1,5 +1,7 @@
 const express = require('express');
 
+const bodyParser = require('body-parser');
+
 const app = express();
 const port = 3000;
 const axios = require('axios');
@@ -12,6 +14,8 @@ const { v1: uuidv1 } = require('uuid');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(bodyParser.json({ limit: '50mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 100000, extended: true }));
 
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',
@@ -81,9 +85,15 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     .catch(console.log);
 });
 
+app.post('/reviews', (req, res) => {
+  axios.post(`${options.url}/reviews`, req.body, options)
+    .then(() => res.send(204))
+    .catch(console.log);
+});
+
 app.put('/reviews/:review_id/report', (req, res) => {
   const { review_id } = req.params;
-  axios.put(`${options.url}/reviews/${review_id}/report`, { body: { review_id: review_id } }, options)
+  axios.put(`${options.url}/reviews/${review_id}/report`, { body: { review_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });
