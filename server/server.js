@@ -1,5 +1,7 @@
 const express = require('express');
 
+const bodyParser = require('body-parser');
+
 const app = express();
 const port = 3000;
 const axios = require('axios');
@@ -12,6 +14,7 @@ const { v1: uuidv1 } = require('uuid');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',

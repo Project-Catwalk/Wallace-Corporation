@@ -23,8 +23,29 @@ const ReviewsModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/reviews', review)
-      .then(() => console.log('successful post'))
+    const finalReview = { ...review };
+    const promises = [];
+    
+    for (const photo of finalReview.photos) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      } 
+
+    const promise = toBase64(photo)
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post(`/upload_images`, payload))
+        .then(({data}) => {return data})
+        .catch(console.log);
+      promises.push(promise);
+    }
+
+    Promise.all(promises)
+      .then((results) => {
+        finalReview.photos = results;
+      })
+      .then(() => axios.post('/reviews', finalReview))
+      .then(() => getReviews(productId))
       .catch(console.log);
   };
 
@@ -41,8 +62,25 @@ const ReviewsModal = ({
     }
   };
 
+  const toBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
   const clearForm = () => {
-    console.log('clear');
+    setReview({
+      product_id: productId,
+      rating: 0,
+      summary: '',
+      body: '',
+      recommend: '',
+      name: '',
+      email: '',
+      photos: [],
+      characteristics: {},
+    });
   };
 
   return (
@@ -81,7 +119,13 @@ const ReviewsModal = ({
               </p>
             </div>
             <div className={styles.modalBody}>
-              <form onSubmit={(e) => handleSubmit(e)} action="">
+              <form
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                  onClose();
+                }}
+                action=""
+              >
                 <p>Overall Rating:</p>
                 <div className={Rstyles.starRating}>
                   <span
