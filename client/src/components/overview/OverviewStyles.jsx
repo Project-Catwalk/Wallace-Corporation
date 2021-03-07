@@ -10,7 +10,7 @@ const OverviewStyles = (props) => {
   // Turn style buttons into the default image of the selected style
   // Need a checkmark overlay on the style button that is currently selected
 
-  const { stylesArr } = props;
+  const { stylesArr, name } = props;
 
   const [styleChoice, setStyleChoice] = useState('');
   const [skuOfChoice, setSkuOfChoice] = useState({});
@@ -20,8 +20,6 @@ const OverviewStyles = (props) => {
   const [thumbnailPhotos, setThumbnailPhotos] = useState([]);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
-
-  console.log('stylesArr: ', stylesArr);
 
   useEffect(() => {
     if (stylesArr.length > 0) {
@@ -83,7 +81,7 @@ const OverviewStyles = (props) => {
           src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
       </div>
       <div className={styles.sizeDropDown}>
-        <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} />
+        <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
       </div>
     </>
   );

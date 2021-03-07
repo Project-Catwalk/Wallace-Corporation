@@ -3,11 +3,7 @@ import OverviewCart from './OverviewCart';
 import styles from '../../styleComponents/Overview.module.css';
 
 const OverviewQuantity = (props) => {
-  // Import quantity
-  // If quantity is greater than 15, only display 1-15
-  // If less than 15 only display 1-whatever there is
-  // Use map to add options with integers
-  const { quantityForSize, currentSize, singleSkuId, styleChoice } = props;
+  const { quantityForSize, currentSize, singleSkuId, styleChoice, name } = props;
 
   const [quantityAvailable, setQuantityAvailable] = useState([]);
   const [countChosen, setCountChosen] = useState(0);
@@ -63,11 +59,11 @@ const OverviewQuantity = (props) => {
   return (
     <>
       <select onChange={quantitySelected}>
-        <option>-</option>
+        <option disabled>-</option>
         {quantityAvailable.map((num, index) => <option key={index}>{num}</option>)}
       </select>
       <div className={styles.cart}>
-        <OverviewCart currentSize={currentSize} countChosen={countChosen} singleSkuId={singleSkuId} styleChoice={styleChoice} />
+        <OverviewCart currentSize={currentSize} countChosen={countChosen} singleSkuId={singleSkuId} styleChoice={styleChoice} name={name} />
       </div>
     </>
   );

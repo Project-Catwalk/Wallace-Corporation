@@ -3,14 +3,11 @@ import axios from 'axios';
 import OverviewCartModal from './OverviewCartModal';
 
 const OverviewCart = (props) => {
-  // Check if size says "OUT OF STOCK", if so, hide this button
-  // Check if valid size and quantity are selected
-  // If it is, add to cart functionality should happen
-  // If not, open size drop down and display message above drop down saying "Please select size"
-  const { countChosen, currentSize, singleSkuId, styleChoice } = props;
+  // STILL TO DO:
 
-  // {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
-  //   <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
+  // If "Select Size" is still present on size dropdown open size drop down and display message above drop down saying "Please select a size"
+
+  const { countChosen, currentSize, singleSkuId, styleChoice, name } = props;
 
   const [count, setCount] = useState(0);
   const [sizeForCart, setSizeForCart] = useState('');
@@ -78,6 +75,9 @@ const OverviewCart = (props) => {
       <OverviewCartModal open={isOpen} close={onClose}>
         <form>
           Item:
+          <p>{name}</p>
+          <br />
+          Style:
           <p>{styleChoice}</p>
           <br />
           Size:

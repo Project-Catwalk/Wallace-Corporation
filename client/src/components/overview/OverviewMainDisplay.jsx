@@ -6,8 +6,7 @@ const MainDisplay = (props) => {
   // STILL TO DO:
 
   // Need to find a way to scroll through the thumbnails that are beyond the 7 in view
-  // Need to make thumbnail icons show up on expanded view of main image
-  // Need to have parallax effect on zoomed in view of main image
+  // Need to have highlighted/opaque image exist even if thumbnail isn't used to change images
 
   const { photos, styleChoice } = props;
 

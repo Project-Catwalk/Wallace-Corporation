@@ -13,7 +13,7 @@
   grid-row: 1 / 8;
   border-style: solid;
   border-color: black;
-  cursor: crosshair;
+  cursor: zoom-in;
   height: 400px;
   width: auto;
 }

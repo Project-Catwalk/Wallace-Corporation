@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import ReviewStars from './OverviewRatingsDisplay';
 import OverviewStyles from './OverviewStyles';
-import RelatedProducts from './OverviewRelatedProducts';
-import Description from './OverviewProductDescription';
-import Slogan from './OverviewProductSlogan';
 
 const Overview = (props) => {
-  const { overview, productStyles, relatedProducts } = props;
+  const { overview, productStyles } = props;
   const { category, description, name, slogan } = overview;
 
   return (
     <div className={styles.wrapper}>
       <div>
-        <OverviewStyles stylesArr={productStyles} />
+        <OverviewStyles stylesArr={productStyles} name={name} />
       </div>
       <div className={styles.reviews}>
         <ReviewStars />
@@ -25,22 +22,24 @@ const Overview = (props) => {
         {name}
       </div>
       <div className={styles.relatedProducts}>
-        <RelatedProducts relatedArr={relatedProducts} />
+        <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
+          <button type="submit">Related Products</button>
+        </a>
       </div>
       <div className={styles.slogan}>
-        <Slogan slogan={slogan} />
+        {slogan !== null && (<p>{slogan}</p>)}
       </div>
       <div className={styles.productDescription}>
-        <Description description={description} />
+        {description !== null && (<p>{description}</p>)}
       </div>
       <div className={styles.socialMedia}>
-        <a href="https://www.facebook.com/BladeRunner.original1982/">
+        <a target="_blank" rel="noreferrer" href="https://www.facebook.com/BladeRunner.original1982/">
           <button type="submit">Facebook</button>
         </a>
-        <a href="https://twitter.com/bladerunner">
+        <a target="_blank" rel="noreferrer" href="https://twitter.com/bladerunner">
           <button type="submit">Twitter</button>
         </a>
-        <a href="https://www.pinterest.com/umbersun/blade-runner/">
+        <a target="_blank" rel="noreferrer" href="https://www.pinterest.com/umbersun/blade-runner/">
           <button type="submit">Pinterest</button>
         </a>
       </div>
