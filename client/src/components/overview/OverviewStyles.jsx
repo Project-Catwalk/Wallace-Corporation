@@ -40,16 +40,6 @@ const OverviewStyles = (props) => {
     }
   }, [styleChoice]);
 
-  const sizesAndQuantities = [];
-
-  const skuWithoutNumber = Object.values(skuOfChoice);
-
-  if (skuWithoutNumber.length > 0) {
-    for (let i = 0; i < skuWithoutNumber.length; i++) {
-      sizesAndQuantities.push(skuWithoutNumber[i]);
-    }
-  }
-
   const styleButtonNames = [];
 
   if (stylesArr.length > 0) {
@@ -77,7 +67,7 @@ const OverviewStyles = (props) => {
         {styleButtonNames.map((styleName, index) => <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
       </div>
       <div className={styles.sizeDropDown}>
-        <OverviewSize sizesAndQuantities={sizesAndQuantities} />
+        <OverviewSize skuOfChoice={skuOfChoice} />
       </div>
     </>
   );

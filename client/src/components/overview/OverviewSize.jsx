@@ -6,10 +6,32 @@ const OverviewSize = (props) => {
   // Import cart data to check count, if count = 0 disable button and label "OUT OF STOCK"
   // Map over sizes and place in an option
 
-  const { sizesAndQuantities } = props;
+  const { skuOfChoice } = props;
 
   const [currentSize, setCurrentSize] = useState('');
   const [currentQuantityAvailable, setCurrentQuantityAvailable] = useState(0);
+  const [singleSkuId, setSingleSkuId] = useState('');
+
+  const skuWithoutNumber = Object.values(skuOfChoice);
+
+  const skuIdsOfChoice = Object.keys(skuOfChoice);
+
+  const sizesAndQuantities = [];
+
+  const skuIds = [];
+
+
+  if (skuWithoutNumber.length > 0) {
+    for (let i = 0; i < skuWithoutNumber.length; i++) {
+      sizesAndQuantities.push(skuWithoutNumber[i]);
+    }
+  }
+
+  if (skuIdsOfChoice.length > 0) {
+    for (let i = 0; i < skuIdsOfChoice.length; i++) {
+      skuIds.push(skuIdsOfChoice[i]);
+    }
+  }
 
   const selectedSizeHandler = (event) => {
     event.preventDefault();
@@ -17,6 +39,7 @@ const OverviewSize = (props) => {
     for (let i = 0; i < sizesAndQuantities.length; i++) {
       if (event.target.value === sizesAndQuantities[i].size) {
         setCurrentQuantityAvailable(sizesAndQuantities[i].quantity);
+        setSingleSkuId(skuIds[i]);
       }
     }
 
@@ -45,7 +68,7 @@ const OverviewSize = (props) => {
         ))}
       </select>
       <div>
-        <OverviewQuantity quantityForSize={currentQuantityAvailable} currentSize={currentSize} />
+        <OverviewQuantity quantityForSize={currentQuantityAvailable} currentSize={currentSize} singleSkuId={singleSkuId} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const OverviewQuantity = (props) => {
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { quantityForSize, currentSize } = props;
+  const { quantityForSize, currentSize, singleSkuId } = props;
 
   const [currentQuantity, setCurrentQuantity] = useState([]);
 
@@ -55,7 +55,7 @@ const OverviewQuantity = (props) => {
         {currentQuantity.map((num, index) => <option key={index}>{num}</option>)}
       </select>
       <div className={styles.cart}>
-        <OverviewCart currentSize={currentSize} currentQuantity={currentQuantity} />
+        <OverviewCart currentSize={currentSize} currentQuantity={currentQuantity} singleSkuId={singleSkuId} />
       </div>
     </>
   );

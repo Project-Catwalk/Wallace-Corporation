@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import OverviewCartModal from './OverviewCartModal';
 
 const OverviewCart = (props) => {
   // Check if size says "OUT OF STOCK", if so, hide this button
   // Check if valid size and quantity are selected
   // If it is, add to cart functionality should happen
   // If not, open size drop down and display message above drop down saying "Please select size"
-  const { currentQuantity, currentSize } = props;
+  const { currentQuantity, currentSize, singleSkuId } = props;
 
   // {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
   //   <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
 
   const [quantityForCart, setQuantityForCart] = useState(0);
   const [sizeForCart, setSizeForCart] = useState('');
+  const [sku_id, setSku_id] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (currentSize === 'OUT OF STOCK') {
@@ -19,7 +23,8 @@ const OverviewCart = (props) => {
     }
     setQuantityForCart(currentQuantity);
     setSizeForCart(currentSize);
-  }, [currentSize, currentQuantity]);
+    setSku_id(parseInt(singleSkuId));
+  }, [currentSize, currentQuantity, singleSkuId]);
 
   const handleCart = (event) => {
     event.preventDefault();
@@ -29,12 +34,44 @@ const OverviewCart = (props) => {
       console.log('Please select a size');
     }
 
-    console.log('Added Item to Cart');
+    setIsOpen(true);
+  };
+
+  const onClose = (event) => {
+    event.preventDefault();
+
+    axios
+      .put(`/cart/${sku_id}`, { sku_id: `${sku_id}`, count: `${quantityForCart}` })
+      .then((status) => {
+        console.log('Status: ', status);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
+
+    axios
+      .get('/cart')
+      .then((results) => {
+        console.log('Results: ', results);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
+
+    setIsOpen(false);
   };
 
   return (
     <>
       {sizeForCart !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
+      <OverviewCartModal open={isOpen} close={onClose}>
+        <form>
+          <p>One Product</p>
+          <br />
+          Quantity:
+          <p>{quantityForCart}</p>
+        </form>
+      </OverviewCartModal>
     </>
   );
 };
