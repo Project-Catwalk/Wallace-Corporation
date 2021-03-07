@@ -200,6 +200,19 @@ img {
   z-index: 999;
 }
 
+.cartModal {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  bottom: 10%;
+  right: 10%;
+  transform: 'translate(-50%, -50%)';
+  background-color: white;
+  padding: 15px;
+  z-index: 1000;
+  width: 75%;
+}
+
 .cartOverlay {
   position: fixed;
   top: 0;

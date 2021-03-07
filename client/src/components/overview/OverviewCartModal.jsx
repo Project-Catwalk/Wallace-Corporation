@@ -13,7 +13,10 @@ const OverviewCartModal = (props) => {
       <div className={styles.cartOverlay} />
       <div className={styles.modal}>
         {children}
-        <button type="submit" onClick={close}>Close</button>
+        <br />
+        Is this correct?:
+        <br />
+        <button type="submit" onClick={close}>Confirm</button>
       </div>
     </div>
   );

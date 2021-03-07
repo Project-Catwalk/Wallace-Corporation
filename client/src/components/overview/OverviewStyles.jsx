@@ -67,7 +67,7 @@ const OverviewStyles = (props) => {
         {styleButtonNames.map((styleName, index) => <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
       </div>
       <div className={styles.sizeDropDown}>
-        <OverviewSize skuOfChoice={skuOfChoice} />
+        <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} />
       </div>
     </>
   );

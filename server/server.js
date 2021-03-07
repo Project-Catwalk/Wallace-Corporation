@@ -63,14 +63,10 @@ app.get('/cart', (req, res) => {
     .catch(console.error);
 });
 
-app.post('/cart/:sku_id', (req, res) => {
-  let { sku_id } = req.params;
-
-  console.log('req.body: ', req.body);
-
+app.post('/cart', (req, res) => {
   axios
-    .post(`${options.url}/cart/${sku_id}`, options)
-    .then(() => {res.sendStatus(204)})
+    .post(`${options.url}/cart`, req.body, options)
+    .then(() => res.sendStatus(201))
     .catch((error) => {
       console.log('Error: ', error);
     });

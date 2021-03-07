@@ -7,12 +7,12 @@ const OverviewCart = (props) => {
   // Check if valid size and quantity are selected
   // If it is, add to cart functionality should happen
   // If not, open size drop down and display message above drop down saying "Please select size"
-  const { currentQuantity, currentSize, singleSkuId } = props;
+  const { countChosen, currentSize, singleSkuId, styleChoice } = props;
 
   // {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
   //   <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
 
-  const [quantityForCart, setQuantityForCart] = useState(0);
+  const [count, setCount] = useState(0);
   const [sizeForCart, setSizeForCart] = useState('');
   const [sku_id, setSku_id] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -21,10 +21,10 @@ const OverviewCart = (props) => {
     if (currentSize === 'OUT OF STOCK') {
       setSizeForCart('OUT OF STOCK');
     }
-    setQuantityForCart(currentQuantity);
+    setCount(countChosen);
     setSizeForCart(currentSize);
     setSku_id(parseInt(singleSkuId));
-  }, [currentSize, currentQuantity, singleSkuId]);
+  }, [currentSize, countChosen, singleSkuId]);
 
   const handleCart = (event) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ const OverviewCart = (props) => {
     event.preventDefault();
 
     axios
-      .put(`/cart/${sku_id}`, { sku_id: `${sku_id}`, count: `${quantityForCart}` })
+      .post('/cart', { sku_id: `${sku_id}`, count: `${count}` })
       .then((status) => {
         console.log('Status: ', status);
       })
@@ -66,10 +66,14 @@ const OverviewCart = (props) => {
       {sizeForCart !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
       <OverviewCartModal open={isOpen} close={onClose}>
         <form>
-          <p>One Product</p>
+          Item:
+          <p>{styleChoice}</p>
+          <br />
+          Size:
+          <p>{sizeForCart}</p>
           <br />
           Quantity:
-          <p>{quantityForCart}</p>
+          <p>{count}</p>
         </form>
       </OverviewCartModal>
     </>

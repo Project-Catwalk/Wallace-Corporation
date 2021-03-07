@@ -7,9 +7,10 @@ const OverviewQuantity = (props) => {
   // If quantity is greater than 15, only display 1-15
   // If less than 15 only display 1-whatever there is
   // Use map to add options with integers
-  const { quantityForSize, currentSize, singleSkuId } = props;
+  const { quantityForSize, currentSize, singleSkuId, styleChoice } = props;
 
-  const [currentQuantity, setCurrentQuantity] = useState([]);
+  const [quantityAvailable, setQuantityAvailable] = useState([]);
+  const [countChosen, setCountChosen] = useState(0);
 
   useEffect(() => {
     const integers = [];
@@ -24,7 +25,7 @@ const OverviewQuantity = (props) => {
       }
     }
 
-    setCurrentQuantity(integers);
+    setQuantityAvailable(integers);
   }, [quantityForSize]);
 
   // if (defaultQuan === '-') {
@@ -49,13 +50,23 @@ const OverviewQuantity = (props) => {
   //   );
   // }
 
+  const quantitySelected = (event) => {
+    event.preventDefault();
+
+    for (let i = 0; i < quantityAvailable.length; i++) {
+      if (parseInt(event.target.value) === quantityAvailable[i]) {
+        setCountChosen(parseInt(event.target.value));
+      }
+    }
+  };
+
   return (
     <>
-      <select>
-        {currentQuantity.map((num, index) => <option key={index}>{num}</option>)}
+      <select onChange={quantitySelected}>
+        {quantityAvailable.map((num, index) => <option key={index}>{num}</option>)}
       </select>
       <div className={styles.cart}>
-        <OverviewCart currentSize={currentSize} currentQuantity={currentQuantity} singleSkuId={singleSkuId} />
+        <OverviewCart currentSize={currentSize} countChosen={countChosen} singleSkuId={singleSkuId} styleChoice={styleChoice} />
       </div>
     </>
   );
