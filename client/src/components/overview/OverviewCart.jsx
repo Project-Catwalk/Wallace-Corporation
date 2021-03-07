@@ -49,21 +49,32 @@ const OverviewCart = (props) => {
         console.log('Error: ', error);
       });
 
-    axios
-      .get('/cart')
-      .then((results) => {
-        console.log('Results: ', results);
-      })
-      .catch((error) => {
-        console.log('Error: ', error);
-      });
-
     setIsOpen(false);
   };
+
+  // const cartCheck = (event) => {
+  //   // To make this work, will need to loop over results.data
+  //   // Then, need to use the sku id to compare against stylesArr from parent/parent/parent component
+  //   // Then, populate the fields
+  //   // Then make a new close function that is just an X to get out of the modal without a post req
+  //   event.preventDefault();
+
+  //   axios
+  //     .get('/cart')
+  //     .then((results) => {
+  //       console.log('Results: ', results);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error: ', error);
+  //     });
+
+  //   setIsOpen(true);
+  // };
 
   return (
     <>
       {sizeForCart !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
+      {/* <button onClick={cartCheck}>Check Cart</button> */}
       <OverviewCartModal open={isOpen} close={onClose}>
         <form>
           Item:

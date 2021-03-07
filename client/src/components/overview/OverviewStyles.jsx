@@ -5,12 +5,11 @@ import Price from './OverviewPrice';
 import MainDisplay from './OverviewMainDisplay';
 
 const OverviewStyles = (props) => {
-  // Map over all possible styles and place in a button
-  // Keep the hardcoded "Style: ", but will need text update next to it depending on style selected
-  // Make a checkmark overlay to indicate which button/style is currently selected
-  // Ensure button is disabled after the first click and re-enables if another button is clicked
-  // Ensure only one button can be selected at a time
-  // Ensure a default style is selected on page load
+  // STILL TO DO:
+
+  // Turn style buttons into the default image of the selected style
+  // Need a checkmark overlay on the style button that is currently selected
+
   const { stylesArr } = props;
 
   const [styleChoice, setStyleChoice] = useState('');
@@ -18,6 +17,7 @@ const OverviewStyles = (props) => {
   const [originalPriceOfChoice, setOriginalPriceOfChoice] = useState('');
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [thumbnailPhotos, setThumbnailPhotos] = useState([]);
 
   const defaultStyle = stylesArr.filter((style) => style['default?']);
 
@@ -26,6 +26,14 @@ const OverviewStyles = (props) => {
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
       setPhotos(defaultStyle[0].photos);
+
+      const thumbnails = [];
+
+      for (let i = 0; i < stylesArr.length; i++) {
+        thumbnails.push(stylesArr[i].photos);
+      }
+
+      setThumbnailPhotos(thumbnails);
     }
   }, [stylesArr]);
 
@@ -51,7 +59,11 @@ const OverviewStyles = (props) => {
   const styleButtonHandler = (event) => {
     event.preventDefault();
 
-    setStyleChoice(event.target.innerText);
+    for (let i = 0; i < stylesArr.length; i++) {
+      if (event.target.src === stylesArr[i].photos[0].thumbnail_url) {
+        setStyleChoice(stylesArr[i].name);
+      }
+    }
   };
 
   return (
@@ -63,8 +75,10 @@ const OverviewStyles = (props) => {
         <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
       </div>
       <div className={styles.productStyles}>
-        Style:
-        {styleButtonNames.map((styleName, index) => <button type="submit" key={(styleName + index).toString()} onClick={styleButtonHandler}>{styleName}</button>)}
+        Style: {styleChoice}
+        {thumbnailPhotos.map((styleNamePic, index) =>
+          <img className={styles.stylesButtonsImgs} key={index.toString()} onClick={styleButtonHandler}
+          src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
       </div>
       <div className={styles.sizeDropDown}>
         <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} />
