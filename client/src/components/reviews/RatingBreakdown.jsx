@@ -84,9 +84,9 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
               return (
                 <div key={star[0]}>
                   <span
+                    className={styles.starCount}
                     role="presentation"
                     onKeyDown={handleFilters}
-                    style={{ fontStyle: 'italic', textDecoration: 'underline' }}
                     onClick={() => {
                       handleFilters(star[0]);
                     }}
@@ -103,10 +103,18 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
             })}
             {starFilters.length > 0
               ? (
-                <div style={{ fontStyle: 'italic' }}>
+                <div style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>
                   <span>Current Filters:</span>
-                  {starFilters.map((x) => <span>{x} Stars</span>)}
-                  <p onClick={removeFilters}>Remove all filters</p>
+                  {starFilters.map((x) => <span style={{ padding: '5px' }} key={x}>{x} Stars</span>)}
+                  <br />
+                  <span
+                    role="presentation"
+                    onKeyDown={removeFilters}
+                    className={styles.starCount}
+                    onClick={removeFilters}
+                  >
+                    Remove all filters
+                  </span>
                 </div>
               )
               : null}

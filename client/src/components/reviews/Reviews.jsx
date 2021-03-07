@@ -113,6 +113,16 @@ const Reviews = ({ productId, name }) => {
     }
   };
 
+  const handleMoreButton = () => {
+    (displayedReviews.length <= 2)
+      ? setMoreButton('More Reviews')
+      : setMoreButton('Show Less Reviews');
+  };
+
+  useEffect(() => {
+    handleMoreButton();
+  }, [displayedReviews]);
+
   return (
     (metaReviews && reviews && productId)
       ? (
@@ -147,9 +157,6 @@ const Reviews = ({ productId, name }) => {
                   type="submit"
                   onClick={() => {
                     setExpanded(!expanded);
-                    (expanded)
-                      ? setMoreButton('More Reviews')
-                      : setMoreButton('Show Less Reviews');
                   }}
                 >
                   {moreButton}

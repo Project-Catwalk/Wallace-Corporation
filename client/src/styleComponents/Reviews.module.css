@@ -247,7 +247,15 @@ progress[value]::-webkit-progress-bar {
 }
 
 .reviewPhoto {
-  margin: .75em;
+  margin: 0.75em;
   border-radius: 50%;
 }
 
+.starCount {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.starCount:hover {
+  color: blue;
+}
