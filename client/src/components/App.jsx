@@ -75,13 +75,13 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1 style={titleBarStyle}>Hello!</h1>
+        <h1 data-testid="logo" style={titleBarStyle}>Hello!</h1>
         <Overview overview={overview} productStyles={styles} relatedProducts={related} />
+        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
         <Reviews
           productId={id}
           name={name}
         />
-        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
       </div>
     );
   }

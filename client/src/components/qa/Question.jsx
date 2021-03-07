@@ -69,7 +69,7 @@ const Question = (props) => {
         </div>
         <div className={qastyles.questionHelpful}>
           <Helpful question_id={question_id} helpfulness={question_helpfulness} />
-          <button className={qastyles.addAnswerButton} onClick={() => setIsOpen(true)} type="button">Add Answer</button>
+          <button data-testid="add-answer-button" className={qastyles.addAnswerButton} onClick={() => setIsOpen(true)} type="button">Add Answer</button>
         </div>
         <Modal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
       </div>
