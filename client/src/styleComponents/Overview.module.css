@@ -6,6 +6,10 @@
   grid-auto-rows: minmax(50px); */
 }
 
+.mainButtonOverlay {
+
+}
+
 .mainDisplay {
   background-color: #f2b694;
   grid-column: 1 / 2;
@@ -33,6 +37,53 @@ img {
   left: 2%;
   border: solid;
   border-color: black;
+}
+
+.upButton {
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 15px;
+  background-color: transparent;
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
+  transform: translateY(25%) rotate(225deg);
+  height: 12px;
+  width: 12px;
+}
+
+.downButton {
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
+  transform: translateY(25%) rotate(45deg);
+  height: 12px;
+  width: 12px;
+}
+
+.mainDisplayButtonLeft {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  border: 3px solid;
+  border-radius: 50%;
+  background-color: transparent;
+  color: black;
+}
+
+.mainDisplayButtonRight {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  border: 3px solid;
+  border-radius: 50%;
+  background-color: transparent;
+  color: black;
 }
 
 .slider {
