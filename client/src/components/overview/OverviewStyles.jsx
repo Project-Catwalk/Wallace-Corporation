@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewSize from './OverviewSize';
-import Price from './OverviewPrice';
 import MainDisplay from './OverviewMainDisplay';
 
 const OverviewStyles = (props) => {
@@ -9,6 +8,8 @@ const OverviewStyles = (props) => {
 
   // Turn style buttons into the default image of the selected style
   // Need a checkmark overlay on the style button that is currently selected
+  // If sale price is present, style to be red color and shift the normal price to the right
+  // Strike through normal price
 
   const { stylesArr, name } = props;
 
@@ -66,13 +67,25 @@ const OverviewStyles = (props) => {
     }
   };
 
+  const setPriceDisplay = () => {
+    if (salePriceOfChoice !== null) {
+      return (
+        salePriceOfChoice
+      );
+    }
+
+    return (
+      originalPriceOfChoice
+    );
+  };
+
   return (
     <>
       <div>
         <MainDisplay photos={photos} styleChoice={styleChoice} />
       </div>
       <div className={styles.productPrice}>
-        <Price normalPrice={originalPriceOfChoice} salePrice={salePriceOfChoice} />
+        <p>{setPriceDisplay()}</p>
       </div>
       <div className={styles.productStyles}>
         Style: {styleChoice}

@@ -5,15 +5,14 @@
 
 .overviewWrapper {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto;
   grid-template-rows: 1fr min-content;
-  /* grid-template-rows: repeat(9, 1fr); */
   grid-auto-rows: minmax(50px);
 }
 
 .reviews {
   background-color: #a8bfbf;
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
   border-top: solid;
   border-color: black;
@@ -21,10 +20,51 @@
   max-height: 50px;
 }
 
+.productCategory {
+  background-color: #a8bfbf;
+  grid-column: 2;
+  grid-row: 2;
+  border-color: black;
+  border-right: solid;
+}
+
+.productTitle {
+  background-color: #a8bfbf;
+  grid-column: 2;
+  grid-row: 3;
+  border-color: black;
+  border-right: solid;
+}
+
+/* ========= NEW GRID =========== */
+
+/* Parent: OverviewStyles.jsx */
+/* Children: OverviewPrice.jsx, OverviewMainDisplay.jsx, OverviewSize.jsx */
+
+/* .styleInfoWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr min-content;
+  grid-auto-rows: minmax(50px);
+} */
+
+.styleTest {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.productPrice {
+  background-color: #a8bfbf;
+  grid-column: 2;
+  grid-row: 1;
+  border-color: black;
+  border-right: solid;
+}
+
 .productStyles {
   background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 5;
+  grid-column: 2;
+  grid-row: 2;
   border-color: black;
   border-right: solid;
 }
@@ -48,77 +88,6 @@
   width: 50px;
   border: 1px black;
 } */
-
-.productCategory {
-  background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 2;
-  border-color: black;
-  border-right: solid;
-}
-
-.productTitle {
-  background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 3;
-  border-color: black;
-  border-right: solid;
-}
-
-.relatedProducts {
-  background-color: #a8bfbf;
-  grid-column: 4;
-  grid-row: 7;
-  border-color: black;
-  border-right: solid;
-  border-bottom: solid;
-}
-
-.slogan {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 8;
-  border-left: solid;
-  border-color: black;
-}
-
-
-.productDescription {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 9;
-  border-left: solid;
-  border-bottom: solid;
-  border-color: black;
-  grid-auto-rows: minmax(50px, auto);
-}
-
-.socialMedia {
-  background-color: #d98982;
-  grid-column: 3;
-  grid-row: 9;
-  /* align-self: end;
-  border-right: solid;
-  border-bottom: solid;
-  border-color: black;
-  justify-items: right;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em; */
-}
-
-/* ========= NEW GRID =========== */
-
-/* Parent: OverviewStyles.jsx */
-/* Children: OverviewPrice.jsx, OverviewMainDisplay.jsx, OverviewSize.jsx */
-
-.productPrice {
-  background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 4;
-  border-color: black;
-  border-right: solid;
-}
 
 .sizeDropDown {
   grid-column: 3;
@@ -252,4 +221,56 @@ img {
   bottom: 0;
   background: rgba(0, 0, 0, 0.50);
   z-index: 999;
+}
+
+/* ========= NEW GRID =========== */
+
+/* Bottom of the Page */
+
+.endOfPageWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr min-content;
+  grid-auto-rows: minmax(50px);
+}
+
+.relatedProducts {
+  background-color: #a8bfbf;
+  grid-column: 2;
+  grid-row: 1;
+  border-color: black;
+  border-right: solid;
+  border-bottom: solid;
+}
+
+.slogan {
+  background-color: #d98982;
+  grid-column: 1;
+  grid-row: 1;
+  border-left: solid;
+  border-color: black;
+}
+
+.productDescription {
+  background-color: #d98982;
+  grid-column: 1;
+  grid-row: 2;
+  border-left: solid;
+  border-bottom: solid;
+  border-color: black;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.socialMedia {
+  background-color: #d98982;
+  grid-column: 2;
+  grid-row: 2;
+  /* align-self: end;
+  border-right: solid;
+  border-bottom: solid;
+  border-color: black;
+  justify-items: right;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em; */
 }
