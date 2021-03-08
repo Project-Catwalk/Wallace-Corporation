@@ -92,7 +92,7 @@ const MainDisplay = (props) => {
   return (
     <>
       <div className={styles.mainDisplay}>
-        {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
+        {imgIndex !== 0 && (<button className={styles.upButton} type="submit" onClick={decrementImgIndex}>Left</button>)}
         <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
@@ -100,11 +100,13 @@ const MainDisplay = (props) => {
           <img src={displayedImg} alt={styleChoice} className={styles.expandedImg} />
         </OverviewExpandedModal>
       </div>
-      {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Up</button>)}
-      <div className={styles.slider}>
-        {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
+      <div className={styles.thumbnailContainer}>
+        {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Up</button>)}
+        <div className={styles.slider}>
+          {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
+        </div>
+        {imgIndex !== mainGallery.length - 1 && (<button className={styles.downButton} type="submit" onClick={incrementImgIndex}>Down</button>)}
       </div>
-      {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={incrementImgIndex}>Down</button>)}
     </>
   );
 };

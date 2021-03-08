@@ -75,33 +75,31 @@ const Overview = (props) => {
   };
 
   return (
-    <div>
-      <div className={styles.overviewWrapper}>
-        <div className={styles.reviews}>
-          <ReviewStars />
-        </div>
-        <div className={styles.productCategory}>
-          {category}
-        </div>
-        <div className={styles.productTitle}>
-          {name}
-        </div>
-        <div>
-          <MainDisplay photos={photos} styleChoice={styleChoice} />
-        </div>
-        <div className={styles.productPrice}>
-          <p>{setPriceDisplay()}</p>
-        </div>
-        <div className={styles.productStyles}>
-          Style: {styleChoice}
-          {thumbnailPhotos.map((styleNamePic, index) =>
-            <img className={styles.stylesButtonsImgs}
-              key={index.toString()} onClick={styleButtonHandler}
-              src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
-        </div>
-        <div className={styles.sizeDropDown}>
-          <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
-        </div>
+    <div className={styles.overviewWrapper}>
+      <div className={styles.reviews}>
+        <ReviewStars />
+      </div>
+      <div className={styles.productCategory}>
+        {category}
+      </div>
+      <div className={styles.productTitle}>
+        {name}
+      </div>
+      <div>
+        <MainDisplay photos={photos} styleChoice={styleChoice} />
+      </div>
+      <div className={styles.productPrice}>
+        <p>{setPriceDisplay()}</p>
+      </div>
+      <div className={styles.productStyles}>
+        Style: {styleChoice}
+        {thumbnailPhotos.map((styleNamePic, index) =>
+          <img className={styles.stylesButtonsImgs}
+            key={index.toString()} onClick={styleButtonHandler}
+            src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
+      </div>
+      <div className={styles.sizeDropDown}>
+        <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
       </div>
       <div className={styles.relatedProducts}>
         <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
