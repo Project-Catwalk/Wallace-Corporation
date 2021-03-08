@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../StarRating';
 import styles from '../../styleComponents/Reviews.module.css';
 
-const RatingBreakdown = ({ reviews, metaReviews }) => {
+const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
   const { ratings, recommended, characteristics } = metaReviews;
   const [average, setAverage] = useState();
+  const [starFilters, setStarFilters] = useState([]);
   const [starBreakdown, setStarBreakdown] = useState({
     1: '',
     2: '',
@@ -45,6 +46,18 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
     setAverage(avg);
   };
 
+  const handleFilters = (star) => {
+    const currentFilters = starFilters;
+    currentFilters.push(star);
+    setStarFilters(currentFilters);
+    handleStarFilters(starFilters);
+  };
+
+  const removeFilters = () => {
+    setStarFilters([]);
+    handleStarFilters([]);
+  };
+
   useEffect(() => {
     averageRating();
     Object.assign(starBreakdown, ratings);
@@ -53,52 +66,80 @@ const RatingBreakdown = ({ reviews, metaReviews }) => {
   }, [metaReviews]);
 
   return (
-    <div className={styles.breakdownGrid}>
-      <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
-      <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
-        <StarRating average={average} />
-      </div>
-      <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
-      <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
-      <h4 className={styles.breakdownSubheader}>
-        Rating Breakdown: (out of {total} reviews)
-      </h4>
-      <div className={styles.breakdownStarBreakdown}>
-        {Object.entries(starBreakdown).map((star) => {
-          const avg = (Number(star[1]) / 12) * 100;
-          return (
-            <div key={star[0]}>
-              <span style={{ fontStyle: 'italic', textDecoration: 'underline' }}>
-                {star[0]} Star
-              </span>
-              <div className={styles.progressContainer}>
-                <div className={styles.progressbar} style={{ width: avg }} />
-              </div>
-              <span style={{ fontStyle: 'italic' }}>{star[1]}</span>
-              <br />
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.breakdownCharacteristics}>
-        {Object.entries(metaReviews).map((char) => {
-          if (char[0] === 'characteristics') {
-            return Object.entries(char[1]).map((x) => {
-              const value = (x[1].value / 5) * 100;
+    (metaReviews && average)
+      ? (
+        <div className={styles.breakdownGrid}>
+          <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
+          <div className={styles.breakdownStars} style={{ justifySelf: 'left'}}>
+            <StarRating average={average} />
+          </div>
+          <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
+          <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
+          <h4 className={styles.breakdownSubheader}>
+            Rating Breakdown: (out of {total} reviews)
+          </h4>
+          <div className={styles.breakdownStarBreakdown}>
+            {Object.entries(starBreakdown).map((star) => {
+              const avg = (Number(star[1]) / 12) * 100;
               return (
-                <div key={x[0]} className={styles.breakdownCharacteristics}>
-                  <div style={{ fontStyle: 'italic' }}>{x[0]}</div>
+                <div key={star[0]}>
+                  <span
+                    className={styles.starCount}
+                    role="presentation"
+                    onKeyDown={handleFilters}
+                    onClick={() => {
+                      handleFilters(star[0]);
+                    }}
+                  >
+                    {star[0]} Star
+                  </span>
                   <div className={styles.progressContainer}>
-                    <div className={styles.progressbar} style={{ width: value }} />
+                    <div className={styles.progressbar} style={{ width: avg }} />
                   </div>
+                  <span style={{ fontStyle: 'italic' }}>{star[1]}</span>
                   <br />
                 </div>
               );
-            });
-          }
-        })}
-      </div>
-    </div>
+            })}
+            {starFilters.length > 0
+              ? (
+                <div style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>
+                  <span>Current Filters:</span>
+                  {starFilters.map((x) => <span style={{ padding: '5px' }} key={x}>{x} Stars</span>)}
+                  <br />
+                  <span
+                    role="presentation"
+                    onKeyDown={removeFilters}
+                    className={styles.starCount}
+                    onClick={removeFilters}
+                  >
+                    Remove all filters
+                  </span>
+                </div>
+              )
+              : null}
+          </div>
+          <div className={styles.breakdownCharacteristics}>
+            {Object.entries(metaReviews).map((char) => {
+              if (char[0] === 'characteristics') {
+                return Object.entries(char[1]).map((x) => {
+                  const value = (x[1].value / 5) * 100;
+                  return (
+                    <div key={x[0]} className={styles.breakdownCharacteristics}>
+                      <div style={{ fontStyle: 'italic' }}>{x[0]}</div>
+                      <div className={styles.progressContainer}>
+                        <div className={styles.progressbar} style={{ width: value }} />
+                      </div>
+                      <br />
+                    </div>
+                  );
+                });
+              }
+            })}
+          </div>
+        </div>
+      )
+      : null
   );
 };
 

@@ -28,9 +28,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20101);
-    this.getStyles(20101);
-    this.getRelated(20101);
+    this.defaultProduct(20103);
+    this.getStyles(20103);
+    this.getRelated(20103);
   }
 
   getStyles(id) {
@@ -72,17 +72,20 @@ class App extends React.Component {
     const {
       questions, id, overview, styles, name, related,
     } = this.state;
-
     return (
-      <div>
-        <h1 data-testid="logo" style={titleBarStyle}>Hello!</h1>
-        <Overview overview={overview} productStyles={styles} relatedProducts={related} />
-        <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
-        <Reviews
-          productId={id}
-          name={name}
-        />
-      </div>
+      (questions, id, overview, styles, name, related)
+        ? (
+        <div>
+          <h1 data-testid="logo" style={titleBarStyle}>Hello!</h1>
+          <Overview overview={overview} productStyles={styles} relatedProducts={related} />
+          <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
+          <Reviews
+            productId={id}
+            name={name}
+          />
+        </div>
+       )
+       : null
     );
   }
 }
