@@ -77,8 +77,9 @@ const OverviewStyles = (props) => {
       <div className={styles.productStyles}>
         Style: {styleChoice}
         {thumbnailPhotos.map((styleNamePic, index) =>
-          <img className={styles.stylesButtonsImgs} key={index.toString()} onClick={styleButtonHandler}
-          src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
+          <img className={styles.stylesButtonsImgs}
+            key={index.toString()} onClick={styleButtonHandler}
+            src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
       </div>
       <div className={styles.sizeDropDown}>
         <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />

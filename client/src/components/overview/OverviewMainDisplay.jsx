@@ -90,7 +90,7 @@ const MainDisplay = (props) => {
   // };
 
   return (
-    <div>
+    <>
       <div className={styles.mainDisplay}>
         {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Left</button>)}
         <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
@@ -105,7 +105,7 @@ const MainDisplay = (props) => {
         {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
       </div>
       {imgIndex !== mainGallery.length - 1 && (<button type="submit" onClick={incrementImgIndex}>Down</button>)}
-    </div>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ const OverviewCart = (props) => {
   // STILL TO DO:
 
   // If "Select Size" is still present on size dropdown open size drop down and display message above drop down saying "Please select a size"
+  // Make a "X" button to close cart
 
   const { countChosen, currentSize, singleSkuId, styleChoice, name } = props;
 

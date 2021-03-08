@@ -8,7 +8,7 @@ const Overview = (props) => {
   const { category, description, name, slogan } = overview;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.overviewWrapper}>
       <div>
         <OverviewStyles stylesArr={productStyles} name={name} />
       </div>
