@@ -93,7 +93,7 @@ const MainDisplay = (props) => {
     <>
       <div className={styles.mainDisplay}>
         {imgIndex !== 0 && (<button className={styles.upButton} type="submit" onClick={decrementImgIndex}>Left</button>)}
-        <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
+        <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
         <OverviewExpandedModal open={isOpen} close={onClose}>
