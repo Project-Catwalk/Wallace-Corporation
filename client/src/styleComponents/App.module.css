@@ -10,7 +10,7 @@
 
 .helpful {
   display: inline;
-  font-size: .8em;
+  font-size: 0.8em;
   color: rgb(128, 127, 127);
 }
 
@@ -109,7 +109,7 @@ button:hover {
 }
 
 .modalButton:hover {
-  opacity: 90%
+  opacity: 90%;
 }
 
 .finePrint {
@@ -121,6 +121,7 @@ button:hover {
 .imgThumbnail {
   height: 50px;
   width: 50px;
+  border-radius: 50%;
 }
 
 .imgThumbnail:hover {
