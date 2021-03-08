@@ -21,8 +21,8 @@ const ReviewTemplate = ({ review }) => {
         {(review.response && review.response !== 'null')
           ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
           : null}
-        <div className={`${styles.templateImages} ${expanded ? styles.overlayPhoto : ''}`}>
-          <ExpandedPhotos photos={review.photos} />
+        <div className={styles.templateImages}>
+          {review.photos.map((photo, id) => <ExpandedPhotos photo={photo} key={id} />)}
         </div>
         {(review.recommend)
           ? (
