@@ -105,7 +105,7 @@ const ReviewsModal = ({
       ? (
         <>
           <div
-            style={{ maxHeight: '80%' }}
+            style={{ maxHeight: '100%' }}
             role="presentation"
             onClick={() => {
               onClose();
