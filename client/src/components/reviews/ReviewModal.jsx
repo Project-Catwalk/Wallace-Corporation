@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
 import Characteristics from './Characteristics';
+import InteractiveStars from './InteractiveStars';
 
 const ReviewsModal = ({
   productId, onClose, open, getReviews, name, metaReviews, charObject
@@ -30,6 +30,7 @@ const ReviewsModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(review.rating)
     const finalReview = { ...review };
     const promises = [];
 
@@ -125,44 +126,10 @@ const ReviewsModal = ({
                 }}
                 action=""
               >
-                <p>Overall Rating:</p>
-                <div className={Rstyles.starRating}>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 1 })}
-                    onClick={() => setReview({ ...review, rating: 1 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 2 })}
-                    onClick={() => setReview({ ...review, rating: 2 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 3 })}
-                    onClick={() => setReview({ ...review, rating: 3 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 4 })}
-                    onClick={() => setReview({ ...review, rating: 4 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 5 })}
-                    onClick={() => setReview({ ...review, rating: 5 })}
-                  >
-                    ★
-                  </span>
-                </div>
+                <p style={{ margin: '5px' }}>Overall Rating:</p>
+                <span className={Rstyles.starRating}>
+                  <InteractiveStars review={review} setReview={setReview}/>
+                </span>
                 <p>Would you recommend this product?</p>
                 <div>
                   <input type="radio" id="Yes" name="recommend" onClick={() => setReview({ ...review, recommend: true })} />

@@ -212,14 +212,14 @@ progress[value]::-webkit-progress-bar {
   grid-row: 6/7;
   margin-top: 10px;
 }
-
+/* 
 .dialog {
   box-shadow: 0 8px 6px -6px black;
   position: fixed;
   left: 20%;
   top: 10%;
   border-radius: 10px;
-}
+} */
 
 .photo {
   position: relative;
@@ -258,4 +258,17 @@ progress[value]::-webkit-progress-bar {
 
 .starCount:hover {
   color: blue;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #ebd61f;
+}
+.off {
+  color: #ccc;
 }
