@@ -75,33 +75,40 @@ const Overview = (props) => {
   };
 
   return (
-    <div className={styles.overviewWrapper}>
-      <div>
-        <MainDisplay photos={photos} styleChoice={styleChoice} />
-      </div>
-      <div className={styles.rightColumn}>
-        <div className={styles.reviews}>
-          <ReviewStars />
-        </div>
-        <div className={styles.productCategory}>
-          {category}
-        </div>
-        <div className={styles.productTitle}>
-          {name}
-        </div>
-        <div className={styles.productPrice}>
-          <p>{setPriceDisplay()}</p>
-        </div>
-        <div className={styles.simpleStyleLine}>Style: {styleChoice}</div>
-        <div className={styles.productStyles}>
-          {thumbnailPhotos.map((styleNamePic, index) =>
-            <img className={styles.stylesButtonsImgs}
-              key={index.toString()} onClick={styleButtonHandler}
-              src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
-        </div>
+    <div>
+      <div className={styles.overviewDisplay}>
         <div>
-          <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
+          <MainDisplay photos={photos} styleChoice={styleChoice} />
         </div>
+        <div className={styles.slogan}>
+          {slogan !== null && (<p>{slogan}</p>)}
+        </div>
+        <div className={styles.rightColumn}>
+          <div className={styles.reviews}>
+            <ReviewStars />
+          </div>
+          <div className={styles.productCategory}>
+            {category}
+          </div>
+          <div className={styles.productTitle}>
+            {name}
+          </div>
+          <div className={styles.productPrice}>
+            <p>{setPriceDisplay()}</p>
+          </div>
+          <div>Style: {styleChoice}</div>
+          <div className={styles.productStyles}>
+            {thumbnailPhotos.map((styleNamePic, index) =>
+              <img className={styles.stylesButtonsImgs}
+                key={index.toString()} onClick={styleButtonHandler}
+                src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
+          </div>
+          <div>
+            <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
+          </div>
+        </div>
+      </div>
+      <div className={styles.overviewFooter}>
         <div className={styles.relatedProducts}>
           <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
             <button type="submit">Related Products</button>
@@ -117,11 +124,6 @@ const Overview = (props) => {
           <a target="_blank" rel="noreferrer" href="https://www.pinterest.com/umbersun/blade-runner/">
             <button type="submit">Pinterest</button>
           </a>
-        </div>
-      </div>
-      <div>
-        <div className={styles.slogan}>
-          {slogan !== null && (<p>{slogan}</p>)}
         </div>
         <div className={styles.productDescription}>
           {description !== null && (<p>{description}</p>)}
