@@ -1,13 +1,58 @@
-/* ========= NEW GRID =========== */
-
-/* Parent: Overview.jsx */
-/* Children: OverviewRatingsDisplay.jsx, OverviewStyles.jsx */
-
 .overviewWrapper {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 1fr min-content;
   grid-auto-rows: minmax(50px);
+}
+
+.mainDisplay {
+  background-color: #f2b694;
+  grid-column-start: 1;
+  grid-row: 1 / 6;
+  border-style: solid;
+  border-color: black;
+  cursor: zoom-in;
+  height: 400px;
+  width: auto;
+  justify-content: right;
+}
+
+img {
+  height: 100%;
+  width: auto;
+}
+
+.slider {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  position: absolute;
+  top: 12%;
+  left: 2%;
+  width: 45px;
+  padding: 2px;
+  max-height: 400px;
+  max-width: fit-content;
+  overflow-y: hidden;
+}
+
+.thumbnailImg {
+  height: 56px;
+  padding: 1px;
+  opacity: 0.5;
+}
+
+.thumbnailImg:hover {
+  opacity: 1;
+}
+
+.thumbnailImg:focus {
+  opacity: 1;
+}
+
+.active {
+  opacity: 1;
 }
 
 .reviews {
@@ -36,27 +81,10 @@
   border-right: solid;
 }
 
-/* ========= NEW GRID =========== */
-
-/* Parent: OverviewStyles.jsx */
-/* Children: OverviewPrice.jsx, OverviewMainDisplay.jsx, OverviewSize.jsx */
-
-/* .styleInfoWrapper {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 1fr min-content;
-  grid-auto-rows: minmax(50px);
-} */
-
-.styleTest {
-  grid-column: 2;
-  grid-row: 4;
-}
-
 .productPrice {
   background-color: #a8bfbf;
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 4;
   border-color: black;
   border-right: solid;
 }
@@ -64,12 +92,14 @@
 .productStyles {
   background-color: #a8bfbf;
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 5;
   border-color: black;
   border-right: solid;
 }
 
 .stylesButtonsImgs {
+  /* display: grid;
+  grid-column: auto auto auto auto; */
   height: 50px;
   width: auto;
   padding: 1px;
@@ -89,60 +119,24 @@
   border: 1px black;
 } */
 
+/* ========= NESTED GRID LAYER 1 =========== */
+
+/* Parent: OverviewSize.jsx */
+/* Children: OverviewQuantity.jsx */
+
 .sizeDropDown {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 6;
 }
 
-.mainDisplay {
-  background-color: #f2b694;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row: 1 / 8;
-  border-style: solid;
+.quantityDropDown {
+  grid-column: 4;
+  grid-row: 6;
   border-color: black;
-  cursor: zoom-in;
-  height: 400px;
-  width: auto;
+  border-right: solid;
 }
 
-img {
-  height: 100%;
-  width: auto;
-}
-
-.slider {
-  grid-column: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-  width: 45px;
-  padding: 2px;
-  max-height: 400px;
-  max-width: fit-content;
-  overflow-y: hidden;
-}
-
-.thumbnailImg {
-  height: 56px;
-  /* width: auto; */
-  padding: 1px;
-  opacity: 0.5;
-}
-
-.thumbnailImg:hover {
-  opacity: 1;
-}
-
-.thumbnailImg:focus {
-  opacity: 1;
-}
-
-.active {
-  opacity: 1;
-}
-
-/* ========= NEW GRID =========== */
+/* ========= NESTED GRID LAYER 2 =========== */
 
 /* Parent: OverviewMainDisplay.jsx */
 /* Children: OverviewExpandedModal.jsx */
@@ -169,19 +163,7 @@ img {
   z-index: 999;
 }
 
-/* ========= NEW GRID =========== */
-
-/* Parent: OverviewSize.jsx */
-/* Children: OverviewQuantity.jsx */
-
-.quantityDropDown {
-  grid-column: 4;
-  grid-row: 6;
-  border-color: black;
-  border-right: solid;
-}
-
-/* ========= NEW GRID =========== */
+/* ========= NESTED GRID LAYER 3 =========== */
 
 /* Parent: OverviewQuantity.jsx */
 /* Children: OverviewCart.jsx */
@@ -195,7 +177,7 @@ img {
   border-color: black;
 }
 
-/* ========= NEW GRID =========== */
+/* ========= NESTED GRID LAYER 4 =========== */
 
 /* Parent: OverviewCart.jsx */
 /* Children: OverviewCartModal.jsx */
@@ -223,21 +205,12 @@ img {
   z-index: 999;
 }
 
-/* ========= NEW GRID =========== */
-
-/* Bottom of the Page */
-
-.endOfPageWrapper {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 1fr min-content;
-  grid-auto-rows: minmax(50px);
-}
+/* ========= END NESTED GRIDS =========== */
 
 .relatedProducts {
   background-color: #a8bfbf;
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 6;
   border-color: black;
   border-right: solid;
   border-bottom: solid;
@@ -246,7 +219,7 @@ img {
 .slogan {
   background-color: #d98982;
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 6;
   border-left: solid;
   border-color: black;
 }
@@ -254,7 +227,7 @@ img {
 .productDescription {
   background-color: #d98982;
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 7;
   border-left: solid;
   border-bottom: solid;
   border-color: black;
@@ -264,7 +237,7 @@ img {
 .socialMedia {
   background-color: #d98982;
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 7;
   /* align-self: end;
   border-right: solid;
   border-bottom: solid;
