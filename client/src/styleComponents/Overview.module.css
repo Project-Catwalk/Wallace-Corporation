@@ -1,13 +1,13 @@
 .overviewWrapper {
   display: grid;
-  /* grid-template-columns: auto auto;
+  grid-template-columns: auto auto;
   grid-template-rows: 1fr min-content;
-  grid-auto-rows: minmax(50px); */
+  grid-auto-rows: minmax(50px);
 }
 
 .mainDisplay {
   background-color: #f2b694;
-  grid-column-start: 1;
+  grid-column-start: 1 / 2;
   grid-row: 1 / 7;
   cursor: zoom-in;
   height: 500px;
@@ -58,33 +58,33 @@ img {
 
 .reviews {
   background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
   max-height: 50px;
 }
 
 .productCategory {
   background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 2;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
 }
 
 .productTitle {
   background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 3;
+  grid-column: 2 / 3;
+  grid-row: 3 /4;
 }
 
 .productPrice {
   background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 4;
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
 }
 
 .productStyles {
   background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 5;
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
 }
 
 .stylesButtonsImgs {
@@ -109,25 +109,54 @@ img {
   border: 1px black;
 } */
 
-/* ========= NESTED GRID LAYER 1 =========== */
-
-/* Parent: OverviewSize.jsx */
-/* Children: OverviewQuantity.jsx */
-
 .sizeDropDown {
-  grid-column: 2;
-  grid-row: 6;
+  grid-column: 2 / 3;
+  grid-row: 6 / 7;
 }
 
 .quantityDropDown {
-  grid-column: 4;
-  grid-row: 6;
+  grid-column: 2 / 3;
+  grid-row: 6 / 7;
 }
 
-/* ========= NESTED GRID LAYER 2 =========== */
+.cart {
+  background-color: #a8bfbf;
+  grid-column: 2 / 3;
+  grid-row: 7 / 8;
+}
 
-/* Parent: OverviewMainDisplay.jsx */
-/* Children: OverviewExpandedModal.jsx */
+.relatedProducts {
+  background-color: #a8bfbf;
+  grid-column: 2 / 3;
+  grid-row: 6 / 7;
+}
+
+.slogan {
+  background-color: #d98982;
+  grid-column: 1 / 2;
+  grid-row: 6 / 7;
+}
+
+.productDescription {
+  background-color: #d98982;
+  grid-column: 1 / 2;
+  grid-row: 7 / 8;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.socialMedia {
+  background-color: #d98982;
+  grid-column: 2 / 3;
+  grid-row: 7 / 8;
+  /* align-self: end;
+  border-right: solid;
+  border-bottom: solid;
+  border-color: black;
+  justify-items: right;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em; */
+}
 
 .modal {
   position: fixed;
@@ -151,22 +180,6 @@ img {
   z-index: 999;
 }
 
-/* ========= NESTED GRID LAYER 3 =========== */
-
-/* Parent: OverviewQuantity.jsx */
-/* Children: OverviewCart.jsx */
-
-.cart {
-  background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 7;
-}
-
-/* ========= NESTED GRID LAYER 4 =========== */
-
-/* Parent: OverviewCart.jsx */
-/* Children: OverviewCartModal.jsx */
-
 .cartModal {
   position: fixed;
   top: 10%;
@@ -188,39 +201,4 @@ img {
   bottom: 0;
   background: rgba(0, 0, 0, 0.50);
   z-index: 999;
-}
-
-/* ========= END NESTED GRIDS =========== */
-
-.relatedProducts {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 6;
-}
-
-.slogan {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 6;
-}
-
-.productDescription {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 7;
-  grid-auto-rows: minmax(50px, auto);
-}
-
-.socialMedia {
-  background-color: #d98982;
-  grid-column: 2;
-  grid-row: 7;
-  /* align-self: end;
-  border-right: solid;
-  border-bottom: solid;
-  border-color: black;
-  justify-items: right;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em; */
 }

@@ -98,7 +98,7 @@ const Overview = (props) => {
             key={index.toString()} onClick={styleButtonHandler}
             src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
       </div>
-      <div className={styles.sizeDropDown}>
+      <div>
         <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
       </div>
       <div className={styles.relatedProducts}>
