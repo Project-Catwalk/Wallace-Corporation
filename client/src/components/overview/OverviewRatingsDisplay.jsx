@@ -9,7 +9,7 @@ const ReviewStars = (props) => {
 
   // const { el } = props;
 
-  console.log('props: ', props);
+
 
   const inputRef = useRef();
   // const inputRef = React.createRef();

@@ -38,13 +38,17 @@ const ReviewsModal = ({
     e.preventDefault();
     const finalReview = { ...review };
     const promises = [];
-
+    console.log(finalReview)
     if (!validEmailRegex.test(finalReview.email)) {
       setError('*You must enter a valid email');
       return;
     }
 
     finalReview.photos.map((photo) => {
+      if (photo.size > 100000) {
+        setError('*The images selected are invalid or unable to be uploaded.');
+        return;
+      }
       const payload = {
         name: photo.name,
         data: '',
@@ -68,9 +72,7 @@ const ReviewsModal = ({
 
   const handleCountChange = (e) => {
     const { value } = e.target;
-    (value.length === (50 - characterCount + 1))
-    ? setCharacterCount(characterCount - 1)
-    : setCharacterCount(characterCount + 1);
+    setCharacterCount(50 - value.length);
   };
 
   const handleChange = (e) => {
@@ -87,17 +89,7 @@ const ReviewsModal = ({
   };
 
   // const clearForm = () => {
-  //   setReview({
-  //     product_id: productId,
-  //     rating: 0,
-  //     summary: '',
-  //     body: '',
-  //     recommend: '',
-  //     name: '',
-  //     email: '',
-  //     photos: [],
-  //     characteristics: {},
-  //   });
+  //   setReview(state);
   // };
 
   return (
@@ -109,7 +101,7 @@ const ReviewsModal = ({
             role="presentation"
             onClick={() => {
               onClose();
-              // clearForm();
+              clearForm();
             }}
             className={open ? styles.overlay : ''}
           />
@@ -143,6 +135,7 @@ const ReviewsModal = ({
                 }}
                 action=""
                 encType="multipart/form-data"
+                style={{ fontSize: '14px' }}
               >
                 <p style={{ margin: '5px' }}>Overall Rating: *</p>
                 <span className={Rstyles.starRating}>
