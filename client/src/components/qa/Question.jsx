@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
 import qastyles from '../../styleComponents/QA.modules.css';
 import Helpful from '../Helpful';
-import Modal from './AnswerModal';
+import AnswerModal from './AnswerModal';
 
 const Question = (props) => {
   const { question, getQuestions, productId } = props;
@@ -71,7 +71,7 @@ const Question = (props) => {
           <Helpful question_id={question_id} helpfulness={question_helpfulness} />
           <button data-testid="add-answer-button" className={qastyles.addAnswerButton} onClick={() => setIsOpen(true)} type="button">Add Answer</button>
         </div>
-        <Modal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
+        <AnswerModal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></AnswerModal>
       </div>
 
       <div className={qastyles.answerGrid}>
@@ -79,7 +79,7 @@ const Question = (props) => {
         <div className={qastyles.answerList}>
           {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
         </div>
-        {answerList.length > 2 ? <button className={qastyles.showMoreAnswersButton} onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
+        {answerList.length > 2 ? <button data-testid="show-more-answers-button" className={qastyles.showMoreAnswersButton} onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
       </div>
     </div>
   );
