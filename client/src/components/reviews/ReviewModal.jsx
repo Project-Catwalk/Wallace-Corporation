@@ -10,7 +10,7 @@ const ReviewsModal = ({
 }) => {
   const [review, setReview] = useState({
     product_id: productId,
-    rating: 0,
+    rating: '',
     summary: '',
     body: '',
     recommend: '',
@@ -20,7 +20,11 @@ const ReviewsModal = ({
     characteristics: {},
   });
   const [thumbnails, setThumbnails] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState({
+    email: '',
+    photoSize: '',
+    missingFields: '',
+  });
   const [characterCount, setCharacterCount] = useState(50);
 
   const validEmailRegex = RegExp(
@@ -38,15 +42,20 @@ const ReviewsModal = ({
     e.preventDefault();
     const finalReview = { ...review };
     const promises = [];
-    console.log(finalReview)
+
     if (!validEmailRegex.test(finalReview.email)) {
-      setError('*You must enter a valid email');
+      setError({ ...error, email: '*You must enter a valid email' });
+      return;
+    }
+
+    if (finalReview.body.length < 50 || finalReview.rating === '' || finalReview.recommend === '' || finalReview.name === '' || Object.keys(finalReview.characteristics) !== Object.keys(metaReviews.characteristics)) {
+      setError({ ...error, missingFields: '*One or more mandatory fields is missing' });
       return;
     }
 
     finalReview.photos.map((photo) => {
       if (photo.size > 100000) {
-        setError('*The images selected are invalid or unable to be uploaded.');
+        setError({ ...error, photoSize: '*The images selected are invalid or unable to be uploaded' });
         return;
       }
       const payload = {
@@ -101,7 +110,6 @@ const ReviewsModal = ({
             role="presentation"
             onClick={() => {
               onClose();
-              clearForm();
             }}
             className={open ? styles.overlay : ''}
           />
@@ -113,10 +121,10 @@ const ReviewsModal = ({
           >
             <div className={styles.modalHeader}>
               <h3>Write Your Review</h3>
-              <h4>
+              <p>
                 About the {name}
                 ...
-              </h4>
+              </p>
               <p
                 role="presentation"
                 className={styles.closeModal}
@@ -135,7 +143,7 @@ const ReviewsModal = ({
                 }}
                 action=""
                 encType="multipart/form-data"
-                style={{ fontSize: '14px' }}
+                style={{ fontSize: '12px' }}
               >
                 <p style={{ margin: '5px' }}>Overall Rating: *</p>
                 <span className={Rstyles.starRating}>
@@ -176,7 +184,7 @@ const ReviewsModal = ({
                   type="text"
                 />
                 <p
-                  style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}
+                  className={Rstyles.comment}
                 >
                   {characterCount <= 0 ? 'Minimum Characters Reached' : `Minimum required characters left: ${characterCount}`}
                 </p>
@@ -205,7 +213,10 @@ const ReviewsModal = ({
                   {review.photos.length < 5 ? <input value="" onChange={handleChange} type="file" /> : null}
                   {thumbnails.map((photo) => <img alt={photo} key={photo} className={`${Rstyles.imgThumbnail} ${Rstyles.reviewPhoto}`} src={photo} />)}
                 </div>
-                <p style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>* Mandatory Fields</p>
+                <p className={Rstyles.comment}>* Mandatory Fields</p>
+                <p className={styles.finePrint}>{error.email}</p>
+                <p className={styles.finePrint}>{error.photoSize}</p>
+                <p className={styles.finePrint}>{error.missingFields}</p>
                 <button
                   type="submit"
                   className={styles.modalButton}

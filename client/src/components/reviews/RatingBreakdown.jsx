@@ -130,11 +130,11 @@ const RatingBreakdown = ({
                   return (
                     <div key={x[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
                       <div style={{ fontStyle: 'italic', margin: '2px' }}>{x[0]}</div>
-                      <div className={styles.progressContainer}>
-                        <div className={styles.progressbar} style={{ width: value }} />
+                      <div className={styles.progressContainerChars}>
+                        <div className={styles.progressbarChars} style={{ width: value }} />
                       </div>
                       <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
-                        <span className={styles.comment}>(1) {charObject[x[0]][1]}</span>
+                        <span className={styles.comment} style={{ marginLeft: '5%' }}>(1) {charObject[x[0]][1]}</span>
                         <span className={styles.comment}>(5) {charObject[x[0]][5]}</span>
                       </div>
                       <br />

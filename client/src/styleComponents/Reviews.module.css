@@ -7,11 +7,9 @@
 }
 
 .parentHeader {
-  background-color: #85aaaa;
+  background-color: #f8beb97e;
   grid-column: 2;
   grid-row: 1/2;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
 }
 
 .parentIndividualReview {
@@ -21,30 +19,24 @@
 }
 
 .parentFooter {
-  background-color: #d98982;
   grid-column: 2;
   grid-row: 3;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
 }
 
 .parentBreakdown {
   grid-column: 1;
   grid-row: 1/4;
   background-color: #f2b694;
-  border-right: solid 1px black;
-  border-left: solid 1px black;
 }
 
 .reviewTemplate {
   display: grid;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px rgb(190, 190, 190);
   justify-items: stretch;
   gap: 5px 5px;
   grid: 30px auto auto auto 25px / auto auto;
   margin: 20px;
-  background-color: #d5eeee;
+  background-color: #d7ebeb4b;
   padding: 10px;
 }
 
@@ -105,6 +97,9 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+.footerButton:hover {
+  color: #f2b694;
 }
 
 .starRating {
@@ -169,6 +164,24 @@ progress[value]::-webkit-progress-bar {
   margin-right: 5px;
 }
 .progressbar {
+  background-color: #99ee93;
+  height: 100%;
+  position: absolute;
+  line-height: inherit;
+  border-radius: 16px;
+}
+
+.progressContainerChars {
+  width: 70%;
+  height: 8px;
+  position: relative;
+  background-color: #e0dbdb;
+  border-radius: 16px;
+  display: inline-block;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.progressbarChars {
   background-color: #99ee93;
   height: 100%;
   position: absolute;
