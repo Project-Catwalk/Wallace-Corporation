@@ -12,7 +12,6 @@ const ReviewStars = (props) => {
   console.log('props: ', props);
 
   const inputRef = useRef();
-  // const inputRef = React.createRef();
 
   const handleClick = () =>
     inputRef.current.scrollIntoView({
