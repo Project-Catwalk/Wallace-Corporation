@@ -20,17 +20,23 @@ class App extends React.Component {
       overview: [],
       styles: [],
       related: [],
+      reviewRating: 0,
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.getRelated = this.getRelated.bind(this);
+    this.handleReviewAverage = this.handleReviewAverage.bind(this);
   }
 
   componentDidMount() {
     this.defaultProduct(20103);
     this.getStyles(20103);
     this.getRelated(20103);
+  }
+
+  handleReviewAverage(average) {
+    this.setState({ reviewRating: average });
   }
 
   getStyles(id) {
@@ -70,22 +76,29 @@ class App extends React.Component {
 
   render() {
     const {
-      questions, id, overview, styles, name, related,
+      id, overview, styles, name, related, reviewRating,
     } = this.state;
+
     return (
-      (questions, id, overview, styles, name, related)
+      (id, overview, styles, name, related)
         ? (
-        <div>
-          <h1 data-testid="logo" style={titleBarStyle}>Hello!</h1>
-          <Overview overview={overview} productStyles={styles} relatedProducts={related} />
-          <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
-          <Reviews
-            productId={id}
-            name={name}
-          />
-        </div>
-       )
-       : null
+          <div>
+            <h1 data-testid="logo" style={titleBarStyle}>Hello!</h1>
+            <Overview
+              overview={overview}
+              productStyles={styles}
+              relatedProducts={related}
+              average={reviewRating}
+            />
+            <QA productId={id} />
+            <Reviews
+              productId={id}
+              name={name}
+              handleReviewAverage={this.handleReviewAverage}
+            />
+          </div>
+        )
+        : null
     );
   }
 }

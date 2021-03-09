@@ -42,7 +42,7 @@ const ReviewsModal = ({
     if (!validEmailRegex.test(finalReview.email)) {
       setError('*You must enter a valid email');
       return;
-    } 
+    }
 
     finalReview.photos.map((photo) => {
       const payload = {
