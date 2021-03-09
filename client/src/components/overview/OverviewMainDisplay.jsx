@@ -91,21 +91,23 @@ const MainDisplay = (props) => {
 
   return (
     <>
-      <div className={styles.mainDisplay}>
-        {imgIndex !== 0 && (<button className={styles.upButton} type="submit" onClick={decrementImgIndex}>Left</button>)}
-        <img src={displayedImg} onClick={expandView} alt={styleChoice}/>
+      <div className={styles.mainButtonOverlay}>
+        {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
+        <div className={styles.mainDisplay}>
+          <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
+          <OverviewExpandedModal open={isOpen} close={onClose}>
+            <img src={displayedImg} alt={styleChoice} className={styles.expandedImg} />
+          </OverviewExpandedModal>
+        </div>
         {imgIndex !== mainGallery.length - 1
-        && (<button type="submit" onClick={incrementImgIndex}>Right</button>)}
-        <OverviewExpandedModal open={isOpen} close={onClose}>
-          <img src={displayedImg} alt={styleChoice} className={styles.expandedImg} />
-        </OverviewExpandedModal>
+        && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
       </div>
       <div className={styles.thumbnailContainer}>
-        {imgIndex !== 0 && (<button type="submit" onClick={decrementImgIndex}>Up</button>)}
+        {imgIndex !== 0 && (<button type="submit" className={styles.upButton} onClick={decrementImgIndex}></button>)}
         <div className={styles.slider}>
           {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
         </div>
-        {imgIndex !== mainGallery.length - 1 && (<button className={styles.downButton} type="submit" onClick={incrementImgIndex}>Down</button>)}
+        {imgIndex !== mainGallery.length - 1 && (<button className={styles.downButton} type="submit" onClick={incrementImgIndex}></button>)}
       </div>
     </>
   );
