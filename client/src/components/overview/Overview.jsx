@@ -5,7 +5,7 @@ import OverviewSize from './OverviewSize';
 import MainDisplay from './OverviewMainDisplay';
 
 const Overview = (props) => {
-  const { overview, productStyles } = props;
+  const { overview, productStyles, average } = props;
   const { category, description, name, slogan } = overview;
 
   const [styleChoice, setStyleChoice] = useState('');

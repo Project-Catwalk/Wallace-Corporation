@@ -10,7 +10,7 @@
 
 .helpful {
   display: inline;
-  font-size: .8em;
+  font-size: 0.8em;
   color: rgb(128, 127, 127);
 }
 
@@ -66,6 +66,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  height: auto;
   background-color: rgba(0, 0, 0, 0.555);
   z-index: 1000;
   transition: all 3;
@@ -109,7 +110,7 @@ button:hover {
 }
 
 .modalButton:hover {
-  opacity: 90%
+  opacity: 90%;
 }
 
 .finePrint {
@@ -121,6 +122,8 @@ button:hover {
 .imgThumbnail {
   height: 50px;
   width: 50px;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 .imgThumbnail:hover {
@@ -136,4 +139,29 @@ button:hover {
   resize: none;
   outline: none;
   border-width: thin;
+}
+
+.photo {
+  position: relative;
+  top: 5%;
+  left: 10%;
+  max-height: 80%;
+  max-width: 80%;
+  background-color: rgb(92, 85, 85);
+  z-index: 1000;
+  border-radius: 20px;
+  margin: 20px;
+  overflow-y: scroll;
+}
+
+.overlayPhoto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.555);
+  z-index: 1000;
+  transition: all 3;
+  overflow-y: scroll;
 }

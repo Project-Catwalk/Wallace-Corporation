@@ -17,7 +17,7 @@ const Characteristics = ({ characteristics, charObject, setReview, review }) => 
     (characteristics)
       ? Object.entries(characteristics).map((x) => (
         <div key={x[1].id} onChange={handleCharacteristics}>
-          <p style={{ fontWeight: 'bolder' }}>{x[0]}</p>
+          <p style={{ fontWeight: 'bolder' }}>{x[0]} *</p>
           <label htmlFor="one">{charObject[x[0]][1]}</label>
           <input
             type="radio"
