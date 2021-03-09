@@ -103,13 +103,21 @@ const MainDisplay = (props) => {
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
       </div>
-      {imgIndex !== 0 && (<button type="submit" className={styles.upButton} onClick={decrementImgIndex}></button>)}
+      {imgIndex !== 0 && (<button type="submit"  className={styles.upButton} onClick={decrementImgIndex}>
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+        </svg>
+      </button>)}
       <div className={styles.slider}>
         <div className={styles.thumbnailContainer}>
           {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
         </div>
       </div>
-      {imgIndex !== mainGallery.length - 1 && (<button className={styles.downButton} type="submit" onClick={incrementImgIndex}></button>)}
+      {imgIndex !== mainGallery.length - 1 && (<button type="submit" className={styles.downButton} onClick={incrementImgIndex}>
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </button>)}
     </>
   );
 };

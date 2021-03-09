@@ -29,20 +29,22 @@ img {
 }
 
 .upButton {
-  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 275px;
+  left: 38px;
   z-index: 1000;
-  background-image: url("../../../public/img/expand_arrow1600.png");
+  background-color: #a8bfbf;
 }
 
 .downButton {
-  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-image: url("../../../public/img/expand_arrow1600.png");
+  top: 725px;
+  left: 38px;
+  background-color: #a8bfbf;
 }
 
 .mainDisplayButtonLeft {
