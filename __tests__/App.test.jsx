@@ -3,6 +3,7 @@ import axiosMock from 'axios';
 import axios from 'axios';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import App from '../client/src/components/App';
+import StarRating from '../client/src/components/StarRating';
 import Helpful from '../client/src/components/Helpful';
 // import 'jest-dom/extend-expect';
 // jest.mock('axios');
@@ -34,7 +35,7 @@ jest.mock("axios", () => ({
 it('renders the correct logo', () => {
   // const root = document.createElement('div');
   const { getByTestId } = render(<App />);
-  expect(getByTestId('logo').textContent).toBe('Hello!');
+  expect(getByTestId('logo').textContent).toBe('The Wallace Corporation');
 });
 
 it('fetches and displays data', async () => {
@@ -107,5 +108,10 @@ describe('Helpful Component', () => {
   });
 });
 
-/*                  OVERVIEW TESTS                   */
-
+describe('Star Rating', () => {
+  it('Should conditionally render star ratings if there is an average', () => {
+    const { queryByTestId } = render(<StarRating average={5} />);
+    const stars = queryByTestId('star-rating');
+    expect(stars).toBeTruthy;
+  });
+});

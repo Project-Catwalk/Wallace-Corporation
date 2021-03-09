@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
 
-function Modal({ open, onClose, getQuestions, productId }) {
+function QuestionModal({ open, onClose, getQuestions, productId }) {
   // if (!open) {
   //   return null;
   // }
@@ -38,7 +38,7 @@ function Modal({ open, onClose, getQuestions, productId }) {
     }
     axios.post('/qa/questions', questionInfo)
       .then(() => getQuestions(20111))
-      // .then(() => clearForm())
+      .then(() => clearForm())
       .catch(console.log);
   };
 
@@ -50,15 +50,16 @@ function Modal({ open, onClose, getQuestions, productId }) {
           onClose();
           clearForm();
         }} 
+        data-testid="question-overlay"
         className={open ? styles.overlay : ''}
-      >
+        >
       </div>
       <div 
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
         }}
         className={styles.modal}
-      >
+        >
         <div className={styles.modalHeader}>
           <h3>Ask Your Question about the Product</h3>
           <p 
@@ -74,15 +75,15 @@ function Modal({ open, onClose, getQuestions, productId }) {
         <div className={styles.modalBody}>
           <form id="questionForm" onSubmit={(e) => handleSubmit(e)} action="">
             <p>Question *</p>
-            <textarea value={question} required="required" onChange={(e) => setQuestion(e.target.value)} maxLength="1000" className={styles.qInput} type="text" />
+            <textarea data-testid="question-input" value={question} required="required" onChange={(e) => setQuestion(e.target.value)} maxLength="1000" className={styles.qInput} type="text" />
             <p>What is your nickname? *</p>
-            <input value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} maxLength="60" placeholder="example: jackson11!" type="text" />
+            <input data-testid="question-username-input" value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} maxLength="60" placeholder="example: jackson11!" type="text" />
             <p className={styles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
             <p>Your Email *</p>
-            <input value={email} required="required" placeholder="example: jackson11!@gmail.com" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} maxLength="60" type="text" />
+            <input data-testid="question-email-input" value={email} required="required" placeholder="example: jackson11!@gmail.com" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} maxLength="60" type="text" />
             <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div />
-            <button type="submit" className={styles.modalButton}>Submit Question</button>
+            <button data-testid="question-modal-submit-button" type="submit" className={styles.modalButton}>Submit Question</button>
             <p className={styles.finePrint}>{error}</p>
           </form>
         </div>
@@ -91,4 +92,4 @@ function Modal({ open, onClose, getQuestions, productId }) {
   );
 }
 
-export default Modal;
+export default QuestionModal;

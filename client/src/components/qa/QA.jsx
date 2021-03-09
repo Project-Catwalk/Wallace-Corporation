@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import qastyles from '../../styleComponents/QA.modules.css';
 import QASearchBar from './QASearchBar.jsx'
 import Question from './Question';
-import Modal from './QuestionModal';
+import QuestionModal from './QuestionModal';
 import axios from 'axios';
 
 const QA = (props) => {
@@ -55,10 +55,10 @@ const QA = (props) => {
       setDisplayedQuestions(questions);
       setMoreQuestionsButton('Show Less Questions');
     } else {
-      setDisplayedQuestions(questions.slice(0, 2));
-      setMoreQuestionsButton('More Answered Question');
+      setDisplayedQuestions(questions.slice(0, 4));
+      setMoreQuestionsButton('More Answered Questions');
     }
-  }, [expanded])
+  }, [expanded]);
 
   const increaseNumOfQuestions = () => {
     setExpanded(!expanded);
@@ -85,15 +85,15 @@ const QA = (props) => {
       </div>
       <div className={qastyles.search}>
         <QASearchBar searchQuestions={searchQuestions} />
-        {questions.length === 0 ? <button className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
+        {questions.length === 0 ? <button data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
       </div>
       <div className={qastyles.qaSection}>
         {displayedQuestions.map((question, idx) => <Question key={idx} productId={productId} getQuestions={getQuestions} question={question} />)}
       </div>
       <div className={qastyles.buttons}>
-        {searching ? null : <button className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
-        {questions.length > 0 ? <button className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
-        <Modal productId={productId} getQuestions={getQuestions} onClose={() => setIsOpen(false)} open={isOpen}></Modal>
+        {searching ? null : <button data-testid="show-more-questions-button" className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
+        {questions.length > 0 ? <button data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
+      <QuestionModal productId={productId} getQuestions={getQuestions} onClose={() => setIsOpen(false)} open={isOpen}></QuestionModal>
       </div>
     </div>
   );
