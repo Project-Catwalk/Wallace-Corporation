@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import Rstyles from '../../styleComponents/Reviews.module.css';
 import styles from '../../styleComponents/App.module.css';
 import Characteristics from './Characteristics';
+import InteractiveStars from './InteractiveStars';
 
 const ReviewsModal = ({
   productId, onClose, open, getReviews, name, metaReviews, charObject
@@ -20,6 +20,12 @@ const ReviewsModal = ({
     characteristics: {},
   });
   const [thumbnails, setThumbnails] = useState([]);
+  const [error, setError] = useState('');
+  const [characterCount, setCharacterCount] = useState(50);
+
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
 
   const toBase64 = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -32,8 +38,17 @@ const ReviewsModal = ({
     e.preventDefault();
     const finalReview = { ...review };
     const promises = [];
+    console.log(finalReview)
+    if (!validEmailRegex.test(finalReview.email)) {
+      setError('*You must enter a valid email');
+      return;
+    }
 
     finalReview.photos.map((photo) => {
+      if (photo.size > 100000) {
+        setError('*The images selected are invalid or unable to be uploaded.');
+        return;
+      }
       const payload = {
         name: photo.name,
         data: '',
@@ -50,8 +65,14 @@ const ReviewsModal = ({
         })
         .then(() => axios.post('/reviews', finalReview))
         .then(() => getReviews(productId))
+        .then(() => onClose())
         .catch(console.log);
     });
+  };
+
+  const handleCountChange = (e) => {
+    const { value } = e.target;
+    setCharacterCount(50 - value.length);
   };
 
   const handleChange = (e) => {
@@ -67,26 +88,16 @@ const ReviewsModal = ({
     }
   };
 
-  const clearForm = () => {
-    setReview({
-      product_id: productId,
-      rating: 0,
-      summary: '',
-      body: '',
-      recommend: '',
-      name: '',
-      email: '',
-      photos: [],
-      characteristics: {},
-    });
-  };
+  // const clearForm = () => {
+  //   setReview(state);
+  // };
 
   return (
     (metaReviews && review && review.photos)
       ? (
         <>
           <div
-            style={{ maxHeight: '80%' }}
+            style={{ maxHeight: '100%' }}
             role="presentation"
             onClick={() => {
               onClose();
@@ -111,7 +122,7 @@ const ReviewsModal = ({
                 className={styles.closeModal}
                 onClick={() => {
                   onClose();
-                  clearForm();
+                  // clearForm();
                 }}
               >
                 x
@@ -121,49 +132,16 @@ const ReviewsModal = ({
               <form
                 onSubmit={(e) => {
                   handleSubmit(e);
-                  onClose();
                 }}
                 action=""
+                encType="multipart/form-data"
+                style={{ fontSize: '14px' }}
               >
-                <p>Overall Rating:</p>
-                <div className={Rstyles.starRating}>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 1 })}
-                    onClick={() => setReview({ ...review, rating: 1 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 2 })}
-                    onClick={() => setReview({ ...review, rating: 2 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 3 })}
-                    onClick={() => setReview({ ...review, rating: 3 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 4 })}
-                    onClick={() => setReview({ ...review, rating: 4 })}
-                  >
-                    ★
-                  </span>
-                  <span
-                    role="presentation"
-                    onKeyDown={() => setReview({ ...review, rating: 5 })}
-                    onClick={() => setReview({ ...review, rating: 5 })}
-                  >
-                    ★
-                  </span>
-                </div>
-                <p>Would you recommend this product?</p>
+                <p style={{ margin: '5px' }}>Overall Rating: *</p>
+                <span className={Rstyles.starRating}>
+                  <InteractiveStars review={review} setReview={setReview} />
+                </span>
+                <p>Would you recommend this product? *</p>
                 <div>
                   <input type="radio" id="Yes" name="recommend" onClick={() => setReview({ ...review, recommend: true })} />
                   <label htmlFor="Yes">Yes</label>
@@ -184,35 +162,50 @@ const ReviewsModal = ({
                   placeholder="Example: Best purchase ever!"
                   type="text"
                 />
+                <p>Review Body: *</p>
                 <textarea
-                  onChange={(e) => setReview({ ...review, body: e.target.value })}
+                  required="required"
+                  onChange={(e) => {
+                    setReview({ ...review, body: e.target.value });
+                    handleCountChange(e);
+                  }}
                   minLength="50"
                   maxLength="1000"
                   className={styles.qInput}
                   placeholder="Why did you like the product or not?"
                   type="text"
                 />
-                <p>What is your nickname?</p>
+                <p
+                  style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}
+                >
+                  {characterCount <= 0 ? 'Minimum Characters Reached' : `Minimum required characters left: ${characterCount}`}
+                </p>
+                <p>What is your nickname? *</p>
                 <input
+                  required="required"
                   onChange={(e) => setReview({ ...review, name: e.target.value })}
                   className={Rstyles.modalInput}
                   maxLength="60"
                   type="text"
                   placeholder="Example: jackson11!"
                 />
-                <p>What is your email?</p>
+                <p className={styles.finePrint}>{review.name.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
+                <p>What is your email? *</p>
                 <input
+                  required="required"
                   onChange={(e) => setReview({ ...review, email: e.target.value })}
                   className={Rstyles.modalInput}
                   maxLength="60"
                   type="text"
                   placeholder="Example: jackson11@email.com"
                 />
+                <p className={styles.finePrint}>{review.email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
                 <div />
                 <div>
-                  {review.photos.length < 5 ? <input value={''} onChange={handleChange} type="file" /> : null}
-                  {thumbnails.map((photo) => <img key={photo} className={`${Rstyles.imgThumbnail} ${Rstyles.reviewPhoto}`} src={photo} />)}
+                  {review.photos.length < 5 ? <input value="" onChange={handleChange} type="file" /> : null}
+                  {thumbnails.map((photo) => <img alt={photo} key={photo} className={`${Rstyles.imgThumbnail} ${Rstyles.reviewPhoto}`} src={photo} />)}
                 </div>
+                <p style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>* Mandatory Fields</p>
                 <button
                   type="submit"
                   className={styles.modalButton}

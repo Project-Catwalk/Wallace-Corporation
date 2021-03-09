@@ -5,7 +5,7 @@ import OverviewSize from './OverviewSize';
 import MainDisplay from './OverviewMainDisplay';
 
 const Overview = (props) => {
-  const { overview, productStyles } = props;
+  const { overview, productStyles, average } = props;
   const { category, description, name, slogan } = overview;
 
   const [styleChoice, setStyleChoice] = useState('');
@@ -75,53 +75,59 @@ const Overview = (props) => {
   };
 
   return (
-    <div className={styles.overviewWrapper}>
-      <div className={styles.reviews}>
-        <ReviewStars />
+    <div>
+      <div className={styles.overviewDisplay}>
+        <div>
+          <MainDisplay photos={photos} styleChoice={styleChoice} />
+        </div>
+        <div className={styles.slogan}>
+          {slogan !== null && (<p>{slogan}</p>)}
+        </div>
+        <div className={styles.rightColumn}>
+          <div className={styles.reviews}>
+            <ReviewStars average={average} />
+          </div>
+          <div className={styles.productCategory}>
+            {category}
+          </div>
+          <div className={styles.productTitle}>
+            {name}
+          </div>
+          <div className={styles.productPrice}>
+            <p>{setPriceDisplay()}</p>
+          </div>
+          <div style={{paddingLeft: '5px'}}>Style: {styleChoice}</div>
+          <div className={styles.productStyles}>
+            {thumbnailPhotos.map((styleNamePic, index) =>
+              <img className={styles.stylesButtonsImgs}
+                key={index.toString()} onClick={styleButtonHandler}
+                src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
+          </div>
+          <div>
+            <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
+          </div>
+        </div>
       </div>
-      <div className={styles.productCategory}>
-        {category}
-      </div>
-      <div className={styles.productTitle}>
-        {name}
-      </div>
-      <div>
-        <MainDisplay photos={photos} styleChoice={styleChoice} />
-      </div>
-      <div className={styles.productPrice}>
-        <p>{setPriceDisplay()}</p>
-      </div>
-      <div className={styles.productStyles}>
-        Style: {styleChoice}
-        {thumbnailPhotos.map((styleNamePic, index) =>
-          <img className={styles.stylesButtonsImgs}
-            key={index.toString()} onClick={styleButtonHandler}
-            src={styleNamePic[0].thumbnail_url} alt={styleChoice} />)}
-      </div>
-      <div className={styles.sizeDropDown}>
-        <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
-      </div>
-      <div className={styles.relatedProducts}>
-        <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
-          <button type="submit">Related Products</button>
-        </a>
-      </div>
-      <div className={styles.slogan}>
-        {slogan !== null && (<p>{slogan}</p>)}
-      </div>
-      <div className={styles.productDescription}>
-        {description !== null && (<p>{description}</p>)}
-      </div>
-      <div className={styles.socialMedia}>
-        <a target="_blank" rel="noreferrer" href="https://www.facebook.com/BladeRunner.original1982/">
-          <button type="submit">Facebook</button>
-        </a>
-        <a target="_blank" rel="noreferrer" href="https://twitter.com/bladerunner">
-          <button type="submit">Twitter</button>
-        </a>
-        <a target="_blank" rel="noreferrer" href="https://www.pinterest.com/umbersun/blade-runner/">
-          <button type="submit">Pinterest</button>
-        </a>
+      <div className={styles.overviewFooter}>
+        <div className={styles.relatedProducts}>
+          <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
+            <button type="submit">Related Products</button>
+          </a>
+        </div>
+        <div className={styles.socialMedia}>
+          <a target="_blank" rel="noreferrer" href="https://www.facebook.com/BladeRunner.original1982/">
+            <button type="submit">Facebook</button>
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://twitter.com/bladerunner">
+            <button type="submit">Twitter</button>
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://www.pinterest.com/umbersun/blade-runner/">
+            <button type="submit">Pinterest</button>
+          </a>
+        </div>
+        <div className={styles.productDescription}>
+          {description !== null && (<p>{description}</p>)}
+        </div>
       </div>
     </div>
   );

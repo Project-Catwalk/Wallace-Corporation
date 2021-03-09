@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styleComponents/Reviews.module.css';
 import Helpful from '../Helpful';
+import ExpandedPhotos from '../ExpandedPhotos';
 
 const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
@@ -20,34 +21,8 @@ const ReviewTemplate = ({ review }) => {
         {(review.response && review.response !== 'null')
           ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
           : null}
-        <div className={`${styles.templateImages} ${expanded ? styles.overlayPhoto : ''}`}>
-          {(review.photos.length > 0)
-            ? review.photos.map((photo, id) => (
-              (!expanded)
-                ? (
-                  <img
-                    role="presentation"
-                    src={photo.url}
-                    alt="review"
-                    className={styles.imgThumbnail}
-                    key={id}
-                    onClick={() => setExpanded(!expanded)}
-                    onKeyDown={() => setExpanded(!expanded)}
-                  />
-                )
-                : (
-                  <img
-                    role="presentation"
-                    src={photo.url}
-                    alt="review"
-                    className={styles.photo}
-                    key={id}
-                    onClick={() => setExpanded(!expanded)}
-                    onKeyDown={() => setExpanded(!expanded)}
-                  />
-                )
-            ))
-            : null}
+        <div className={styles.templateImages}>
+          {review.photos.map((photo, id) => <ExpandedPhotos photo={photo} key={id} />)}
         </div>
         {(review.recommend)
           ? (
@@ -55,7 +30,7 @@ const ReviewTemplate = ({ review }) => {
               &#10003; Yes, I recommend this product
             </div>
           )
-          : <div />}
+          : null}
       </div>
     </div>
   );
