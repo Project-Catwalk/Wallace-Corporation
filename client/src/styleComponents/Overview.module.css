@@ -85,7 +85,7 @@ img {
 
 .slider {
   position: absolute;
-  top: 45%;
+  top: 41.5%;
   left: 2%;
   width: 50px;
   height: 409px;
@@ -131,9 +131,8 @@ img {
 }
 
 .reviewsButton {
-  /* display: flex; */
-  justify-self: center;
-
+  position: relative;
+  left: 176px;
   margin-top: 5px;
   background: none!important;
   border: none;
@@ -181,10 +180,16 @@ img {
   align-self: center;
 }
 
+.styleButtonsOverlay {
+
+}
+
 .sizeDropDown {
   margin-top: 6%;
   margin-bottom: 6%;
   padding-left: 5px;
+  position: relative;
+  left: 5px;
 }
 
 .quantityDropDown {

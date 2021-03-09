@@ -7,7 +7,7 @@ const port = 3000;
 const axios = require('axios');
 const path = require('path');
 const morgan = require('morgan');
-const ATELIER_API_KEY = require('./config.js');
+const keys = require('./config.js');
 const { BlobServiceClient } = require('@azure/storage-blob');
 const { v1: uuidv1 } = require('uuid');
 
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 100000, extended:
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea',
   headers: {
-    Authorization: `${ATELIER_API_KEY}`,
+    Authorization: `${keys.ATELIER_API_KEY}`,
   },
 };
 
@@ -165,7 +165,7 @@ app.post(`/qa/questions/:question_id/answers`, (req, res) => {
 
 app.post(`/upload_images`, (req, res) => {
   // Create the BlobServiceClient object which will be used to create a container client
-  const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=louisajeseetest;AccountKey=OfksQDg0FrsOSHMeg3HKWkt359/rSBFhuI2Vf3GQZQrK+UDBoSHzHwCnzoId9DMXIpQivrKMzx94+/d4lSnOJA==;EndpointSuffix=core.windows.net");
+  const blobServiceClient = BlobServiceClient.fromConnectionString(keys.BLOB_SERVICE_KEY);
 
   // Create a unique name for the container
   const containerName = 'louisaandjesse';

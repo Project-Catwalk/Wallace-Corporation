@@ -7,8 +7,6 @@ import OverviewCartModal from './OverviewCartModal';
 const OverviewSize = (props) => {
   // STILL TO DO:
 
-  // Any style that has a quantity of 0 or null should not be listed in the size dropdown
-  // If currentQuantityAvailable = 0 or null, set size selector to "OUT OF STOCK"
   // If "Select Size" is still present on size dropdown open size drop down and display message above drop down saying "Please select a size"
   // Make a "X" button to close cart
 
@@ -175,7 +173,7 @@ const OverviewSize = (props) => {
   return (
     <>
       <select onChange={selectedSizeHandler} className={styles.sizeDropDown}>
-        <option style={{paddingLeft: '5px'}}>Select Size</option>
+        <option style={ {paddingLeft: '5px'} }>Select Size</option>
         {allSizesAndQuantities.map((productSize, index) => (
           <option key={index}>{productSize.size}</option>
         ))}
@@ -202,11 +200,7 @@ const OverviewSize = (props) => {
             <p>{countChosen}</p>
           </form>
         </OverviewCartModal>
-        {/* <OverviewCart currentSize={currentSize} countChosen={countChosen} singleSkuId={singleSkuId} styleChoice={styleChoice} name={name} /> */}
       </div>
-      {/* <div>
-        <OverviewQuantity currentQuantityAvailable={currentQuantityAvailable} currentSize={currentSize} singleSkuId={singleSkuId} styleChoice={styleChoice} name={name} />
-      </div> */}
     </>
   );
 };
