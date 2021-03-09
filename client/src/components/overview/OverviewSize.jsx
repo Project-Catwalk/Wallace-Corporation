@@ -175,7 +175,7 @@ const OverviewSize = (props) => {
   return (
     <>
       <select onChange={selectedSizeHandler} className={styles.sizeDropDown}>
-        <option>Select Size</option>
+        <option style={{paddingLeft: '5px'}}>Select Size</option>
         {allSizesAndQuantities.map((productSize, index) => (
           <option key={index}>{productSize.size}</option>
         ))}
