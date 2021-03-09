@@ -31,14 +31,6 @@ img {
   overflow: hidden;
 }
 
-.thumbnailContainer {
-  position: absolute;
-  top: 17%;
-  left: 2%;
-  border: solid;
-  border-color: black;
-}
-
 .upButton {
   align-items: center;
   justify-content: center;
@@ -86,6 +78,16 @@ img {
   color: black;
 }
 
+.thumbnailContainer {
+  position: absolute;
+  top: 17%;
+  left: 2%;
+  width: 45px;
+  height: auto;
+  border: solid;
+  border-color: black;
+}
+
 .slider {
   display: flex;
   flex-direction: column;
@@ -119,6 +121,7 @@ img {
   background-color: transparent;
   grid-column: 1 / 2;
   grid-row: 5 / 6;
+  padding-left: 5px;
 }
 
 .rightColumn {
@@ -132,28 +135,44 @@ img {
   margin-bottom: 6%;
 }
 
+.reviewsButton {
+  /* display: flex; */
+  justify-self: center;
+
+  margin-top: 5px;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .productCategory {
   margin-top: 6%;
   margin-bottom: 6%;
+  padding-left: 5px;
 }
 
 .productTitle {
   margin-top: 3%;
   margin-bottom: 3%;
+  padding-left: 5px;
 }
 
 .productPrice {
   margin-top: 6%;
   margin-bottom: 6%;
+  padding-left: 5px;
 }
 
 .productStyles {
   margin-top: 6%;
   margin-bottom: 6%;
-  /* padding-top: 2px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-left: 5px;
 }
 
 .stylesButtonsImgs {
@@ -161,33 +180,29 @@ img {
   flex: 1 0 21%;
   height: 100px;
   max-width: 100px;
-  padding: 2px;
+  padding: 4px;
   cursor: pointer;
   border-radius: 50%;
   align-self: center;
 }
 
-/* .styleButtons {
-  background-color: #a8bfbf;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  border: 1px black;
-} */
-
 .sizeDropDown {
   margin-top: 6%;
   margin-bottom: 6%;
+  padding-left: 5px;
 }
 
 .quantityDropDown {
   margin-top: 6%;
   margin-bottom: 6%;
+  padding-left: 5px;
+  justify-self: right;
 }
 
 .cart {
   margin-top: 6%;
   margin-bottom: 3%;
+  padding-left: 5px;
 }
 
 .overviewFooter {
@@ -200,6 +215,7 @@ img {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   justify-self: right;
+  padding-right: 5px;
 }
 
 .socialMedia {
@@ -210,12 +226,14 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+  padding-right: 5px;
 }
 
 .productDescription {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   grid-auto-rows: minmax(50px, auto);
+  padding-left: 5px;
 }
 
 .modal {

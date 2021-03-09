@@ -62,10 +62,10 @@ const MainDisplay = (props) => {
   const thumbnailClickHandler = (event) => {
     event.preventDefault();
 
-    let displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
+    const displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
 
     setImgIndex(displayedImgIndex);
-    setDisplayedImg(event.target.src);
+    // setDisplayedImg(event.target.src);
   };
 
   // const refs = list.reduce((acc, value) => {

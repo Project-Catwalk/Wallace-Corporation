@@ -85,7 +85,7 @@ const Overview = (props) => {
         </div>
         <div className={styles.rightColumn}>
           <div className={styles.reviews}>
-            <ReviewStars />
+            <ReviewStars average={average} />
           </div>
           <div className={styles.productCategory}>
             {category}
@@ -96,7 +96,7 @@ const Overview = (props) => {
           <div className={styles.productPrice}>
             <p>{setPriceDisplay()}</p>
           </div>
-          <div>Style: {styleChoice}</div>
+          <div style={{paddingLeft: '5px'}}>Style: {styleChoice}</div>
           <div className={styles.productStyles}>
             {thumbnailPhotos.map((styleNamePic, index) =>
               <img className={styles.stylesButtonsImgs}
