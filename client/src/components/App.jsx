@@ -29,17 +29,23 @@ class App extends React.Component {
       overview: [],
       styles: [],
       related: [],
+      reviewRating: 0,
     };
 
     this.defaultProduct = this.defaultProduct.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.getRelated = this.getRelated.bind(this);
+    this.handleReviewAverage = this.handleReviewAverage.bind(this);
   }
 
   componentDidMount() {
-    this.defaultProduct(20103);
-    this.getStyles(20103);
-    this.getRelated(20103);
+    this.defaultProduct(20104);
+    this.getStyles(20104);
+    this.getRelated(20104);
+  }
+
+  handleReviewAverage(average) {
+    this.setState({ reviewRating: average });
   }
 
   getStyles(id) {
@@ -79,10 +85,11 @@ class App extends React.Component {
 
   render() {
     const {
-      questions, id, overview, styles, name, related,
+      id, overview, styles, name, related, reviewRating,
     } = this.state;
+
     return (
-      (questions, id, overview, styles, name, related)
+      (id, overview, styles, name, related)
         ? (
         <div>
           <div className={style.headerSale}>
@@ -96,11 +103,17 @@ class App extends React.Component {
               <h5 className={`${style.headerText} ${style.community}`}>COMMUNITY</h5>
               <h5 className={`${style.headerText} ${style.about}`}>ABOUT</h5>
           </div>
-          <Overview overview={overview} productStyles={styles} relatedProducts={related} />
-          <QA productId={id} getQuestions={this.getQuestions} questions={questions} />
+          <Overview 
+              overview={overview}
+              productStyles={styles}
+              relatedProducts={related}
+              average={reviewRating}
+          />
+          <QA productId={id} />
           <Reviews
             productId={id}
             name={name}
+            handleReviewAverage={this.handleReviewAverage}
           />
           <div className={style.footer}>
             <div className={style.emailSignUp}>

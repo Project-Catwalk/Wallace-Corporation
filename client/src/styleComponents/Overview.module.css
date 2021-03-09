@@ -1,33 +1,87 @@
-.overviewWrapper {
+.overviewDisplay {
+  background-color: #f2b694;
   display: grid;
-  /* grid-template-columns: auto auto;
-  grid-template-rows: 1fr min-content;
+  grid-template-columns: 2fr 1fr;
+  /* grid-template-rows: 1fr min-content;
   grid-auto-rows: minmax(50px); */
 }
 
 .mainDisplay {
   background-color: #f2b694;
-  grid-column-start: 1;
+  grid-column: 1 / 2;
   grid-row: 1 / 7;
+  display: flex;
   cursor: zoom-in;
-  height: 500px;
-  width: 100%;
+  height: 600px;
+  width: auto;
+  justify-content: center;
   position: relative;
-  justify-content: right;
 }
 
 img {
-  height: 100%;
-  justify-content: right;
+  align-self: center;
+  vertical-align: middle;
+  height: auto;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.upButton {
+  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 15px;
+  background-color: transparent;
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
+  transform: translateY(25%) rotate(225deg);
+  height: 12px;
+  width: 12px;
+}
+
+.downButton {
+  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
+  transform: translateY(25%) rotate(45deg);
+  height: 12px;
+  width: 12px;
+}
+
+.mainDisplayButtonLeft {
+  text-decoration: none;
+  /* display: inline-block; */
+  top: 100px;
+  left: 300px;
+  padding: 8px 16px;
+  border: 3px solid;
+  border-radius: 50%;
+  background-color: transparent;
+  color: black;
+}
+
+.mainDisplayButtonRight {
+  text-decoration: none;
+  /* display: inline-block; */
+  top: 100px;
+  left: 500px;
+  padding: 8px 16px;
+  /* border: 3px solid; */
+  border-radius: 50%;
+  background-color: transparent;
+  color: black;
 }
 
 .thumbnailContainer {
-  position: absolute;
-  top: 12%;
-  left: 2%;
-}
-
-.slider {
   display: flex;
   flex-direction: column;
   background-color: transparent;
@@ -35,7 +89,18 @@ img {
   padding: 2px;
   max-height: 400px;
   max-width: fit-content;
-  overflow-y: hidden;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 32%;
+  left: 2%;
+  width: 50px;
+  height: 409px;
+  border: solid;
+  border-color: black;
+  overflow: hidden;
 }
 
 .thumbnailImg {
@@ -56,78 +121,124 @@ img {
   opacity: 1;
 }
 
+.slogan {
+  background-color: transparent;
+  grid-column: 1 / 2;
+  grid-row: 5 / 6;
+  padding-left: 5px;
+}
+
+.rightColumn {
+  grid-column: 2 / 3;
+  grid-row: 1 / 6;
+  background-color: #a8bfbf;
+}
+
 .reviews {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 1;
-  max-height: 50px;
+  margin-top: 3%;
+  margin-bottom: 6%;
 }
 
-.productCategory {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 2;
-}
+.reviewsButton {
+  /* display: flex; */
+  justify-self: center;
 
-.productTitle {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 3;
-}
-
-.productPrice {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 4;
-}
-
-.productStyles {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 5;
-}
-
-.stylesButtonsImgs {
-  /* display: grid;
-  grid-column: auto auto auto auto; */
-  height: 50px;
-  width: auto;
-  padding: 1px;
+  margin-top: 5px;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
   cursor: pointer;
 }
 
-/* .styleButtons {
-  background-color: #a8bfbf;
-  grid-column: 3 / 5;
-  grid-row: 6;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em;
+.productCategory {
+  margin-top: 6%;
+  margin-bottom: 6%;
+  padding-left: 5px;
+}
+
+.productTitle {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding-left: 5px;
+}
+
+.productPrice {
+  margin-top: 6%;
+  margin-bottom: 6%;
+  padding-left: 5px;
+}
+
+.productStyles {
+  margin-top: 6%;
+  margin-bottom: 6%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 5px;
+}
+
+.stylesButtonsImgs {
+  display: inline-block;
+  flex: 1 0 21%;
+  height: 100px;
+  max-width: 100px;
+  padding: 4px;
+  cursor: pointer;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  border: 1px black;
-} */
-
-/* ========= NESTED GRID LAYER 1 =========== */
-
-/* Parent: OverviewSize.jsx */
-/* Children: OverviewQuantity.jsx */
+  align-self: center;
+}
 
 .sizeDropDown {
-  grid-column: 2;
-  grid-row: 6;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  padding-left: 5px;
 }
 
 .quantityDropDown {
-  grid-column: 4;
-  grid-row: 6;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  padding-left: 5px;
+  justify-self: right;
 }
 
-/* ========= NESTED GRID LAYER 2 =========== */
+.cart {
+  margin-top: 6%;
+  margin-bottom: 3%;
+  padding-left: 5px;
+}
 
-/* Parent: OverviewMainDisplay.jsx */
-/* Children: OverviewExpandedModal.jsx */
+.overviewFooter {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: #d98982;
+}
+
+.relatedProducts {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: right;
+  padding-right: 5px;
+}
+
+.socialMedia {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  align-self: end;
+  justify-items: right;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  padding-right: 5px;
+}
+
+.productDescription {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  grid-auto-rows: minmax(50px, auto);
+  padding-left: 5px;
+}
 
 .modal {
   position: fixed;
@@ -151,22 +262,6 @@ img {
   z-index: 999;
 }
 
-/* ========= NESTED GRID LAYER 3 =========== */
-
-/* Parent: OverviewQuantity.jsx */
-/* Children: OverviewCart.jsx */
-
-.cart {
-  background-color: #a8bfbf;
-  grid-column: 3;
-  grid-row: 7;
-}
-
-/* ========= NESTED GRID LAYER 4 =========== */
-
-/* Parent: OverviewCart.jsx */
-/* Children: OverviewCartModal.jsx */
-
 .cartModal {
   position: fixed;
   top: 10%;
@@ -188,39 +283,4 @@ img {
   bottom: 0;
   background: rgba(0, 0, 0, 0.50);
   z-index: 999;
-}
-
-/* ========= END NESTED GRIDS =========== */
-
-.relatedProducts {
-  background-color: #a8bfbf;
-  grid-column: 2;
-  grid-row: 6;
-}
-
-.slogan {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 6;
-}
-
-.productDescription {
-  background-color: #d98982;
-  grid-column: 1;
-  grid-row: 7;
-  grid-auto-rows: minmax(50px, auto);
-}
-
-.socialMedia {
-  background-color: #d98982;
-  grid-column: 2;
-  grid-row: 7;
-  /* align-self: end;
-  border-right: solid;
-  border-bottom: solid;
-  border-color: black;
-  justify-items: right;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em; */
 }

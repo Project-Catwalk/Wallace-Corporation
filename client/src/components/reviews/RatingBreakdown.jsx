@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../StarRating';
 import styles from '../../styleComponents/Reviews.module.css';
 
-const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
+const RatingBreakdown = ({
+  reviews, metaReviews, handleStarFilters, handleReviewAverage, charObject
+}) => {
   const { ratings, recommended, characteristics } = metaReviews;
   const [average, setAverage] = useState();
   const [starFilters, setStarFilters] = useState([]);
@@ -44,6 +46,7 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
     const roundedAvg = (Math.round(temp));
     const avg = Math.round(roundedAvg / 5) * 5;
     setAverage(avg);
+    handleReviewAverage(avg);
   };
 
   const handleFilters = (star) => {
@@ -70,7 +73,7 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
       ? (
         <div className={styles.breakdownGrid}>
           <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
-          <div className={styles.breakdownStars} style={{ justifySelf: 'left'}}>
+          <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
@@ -103,7 +106,7 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
             })}
             {starFilters.length > 0
               ? (
-                <div style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>
+                <div className={styles.comment}>
                   <span>Current Filters:</span>
                   {starFilters.map((x) => <span style={{ padding: '5px' }} key={x}>{x} Stars</span>)}
                   <br />
@@ -125,10 +128,14 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
                 return Object.entries(char[1]).map((x) => {
                   const value = (x[1].value / 5) * 100;
                   return (
-                    <div key={x[0]} className={styles.breakdownCharacteristics}>
-                      <div style={{ fontStyle: 'italic' }}>{x[0]}</div>
+                    <div key={x[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
+                      <div style={{ fontStyle: 'italic', margin: '2px' }}>{x[0]}</div>
                       <div className={styles.progressContainer}>
                         <div className={styles.progressbar} style={{ width: value }} />
+                      </div>
+                      <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
+                        <span className={styles.comment}>(1) {charObject[x[0]][1]}</span>
+                        <span className={styles.comment}>(5) {charObject[x[0]][5]}</span>
                       </div>
                       <br />
                     </div>
