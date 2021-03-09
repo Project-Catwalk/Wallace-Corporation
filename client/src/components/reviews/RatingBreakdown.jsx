@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../StarRating';
 import styles from '../../styleComponents/Reviews.module.css';
 
-const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
+const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters, handleReviewAverage }) => {
   const { ratings, recommended, characteristics } = metaReviews;
   const [average, setAverage] = useState();
   const [starFilters, setStarFilters] = useState([]);
@@ -44,6 +44,7 @@ const RatingBreakdown = ({ reviews, metaReviews, handleStarFilters }) => {
     const roundedAvg = (Math.round(temp));
     const avg = Math.round(roundedAvg / 5) * 5;
     setAverage(avg);
+    handleReviewAverage(avg);
   };
 
   const handleFilters = (star) => {

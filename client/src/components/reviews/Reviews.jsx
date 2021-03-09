@@ -6,7 +6,7 @@ import styles from '../../styleComponents/Reviews.module.css';
 import ReviewsModal from './ReviewModal';
 import StarRating from '../StarRating';
 
-const Reviews = ({ productId, name }) => {
+const Reviews = ({ productId, name, handleReviewAverage }) => {
   const [reviews, setReviews] = useState([]);
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [metaReviews, setMetaReviews] = useState([]);
@@ -132,6 +132,7 @@ const Reviews = ({ productId, name }) => {
               reviews={reviews}
               metaReviews={metaReviews}
               handleStarFilters={handleStarFilters}
+              handleReviewAverage={handleReviewAverage}
             />
           </div>
           <div className={styles.parentHeader} style={{ display: 'flex' }}>
