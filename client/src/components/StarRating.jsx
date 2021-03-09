@@ -4,7 +4,7 @@ import styles from '../styleComponents/Reviews.module.css';
 const StarRating = ({ average }) => (
   (average)
     ? (
-      <div className={styles.starRating}>
+      <div data-testid="star-rating" className={styles.starRating}>
         <div className={styles.starRatingTop} style={{ width: average }}>
           <span>★</span>
           <span>★</span>

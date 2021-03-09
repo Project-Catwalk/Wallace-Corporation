@@ -44,11 +44,12 @@
 }
 
 .searchBar {
-  width: 60%;
+  width: 95%;
   line-height: 20%;
   padding: 10px 10px;
   outline: none;
   border: none;
+  background: transparent;
 }
 
 /* Q & A */

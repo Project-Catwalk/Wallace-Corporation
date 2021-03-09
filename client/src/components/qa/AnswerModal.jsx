@@ -5,7 +5,7 @@ import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
 import Photo from './Photo';
 
-function Modal({open, onClose, question_id, getQuestions, productId}) {
+function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
   const [answer, setAnswer] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -26,6 +26,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
   };
 
   const toBase64 = file => new Promise((resolve, reject) => {
+    console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
@@ -75,6 +76,7 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
   };
 
   const handleChange = (e) => {
+    console.log(e.target.files[0]);
     if (photos.length < 5) {
       setPhotos([
         ...photos,
@@ -118,18 +120,18 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
         <div className={styles.modalBody}>
           <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)} action="">
             <p>Your Answer *</p>
-            <textarea value={answer} required="required" onChange={(e) => setAnswer(e.target.value)} className={styles.qInput} maxLength="1000" />
+            <textarea data-testid="answer-input" value={answer} required="required" onChange={(e) => setAnswer(e.target.value)} className={styles.qInput} maxLength="1000" />
             <p>What is your nickname? *</p>
-            <input value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack543!" />
+            <input data-testid="answer-username-input" value={username} required="required" onChange={(e) => setUsername(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack543!" />
             <p className={styles.finePrint}>{username.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
             <p>Your Email *</p>
-            <input value={email} required="required" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack@email.com" />
+            <input data-testid="answer-email-input" value={email} required="required" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack@email.com" />
             <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div>
-              {photos.length < 5 ? <input value={''} onChange={handleChange} type="file" /> : null}
+              {photos.length < 5 ? <input data-testid="answer-photo-upload" value={''} onChange={handleChange} type="file" /> : null}
               {thumbnails.map((photo, idx) => <Photo key={idx} photo={photo}/>)}
             </div>
-            <button type="submit" className={styles.modalButton}>Submit Answer</button>
+            <button data-testid="answer-modal-submit-button" type="submit" className={styles.modalButton}>Submit Answer</button>
             <p className={styles.finePrint}>{error}</p>
           </form>
         </div>
@@ -138,4 +140,4 @@ function Modal({open, onClose, question_id, getQuestions, productId}) {
   )
 }
 
-export default Modal;
+export default AnswerModal;

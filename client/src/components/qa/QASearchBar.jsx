@@ -6,21 +6,21 @@ import magnifyingGlass from '@iconify-icons/entypo/magnifying-glass';
 const QASearchBar = (props) => {
   const {searchQuestions} = props;
 
-  const [searchField, setSearchField] = useState('');
+  // const [searchField, setSearchField] = useState('');
 
-  const handleChange = ({target}) => {
-    const { value } = target
-    setSearchField(value);
-    console.log(searchField);
-    if (value.length >= 3) {
-      searchQuestions(value);
-    }
-  };
+  // const handleChange = ({target}) => {
+  //   const { value } = target;
+  //   setSearchField(value);
+  //   if (value.length >= 3) {
+  //     searchQuestions(value);
+  //   }
+  // };
   return (
     <>
       <div className={qastyles.searchBarSection}>
         <Icon className={qastyles.magnifyingGlass} icon={magnifyingGlass} />
         <input
+          data-testid="search-input"
           type="search"
           onChange={(e) => searchQuestions(e.target.value)}
           className={qastyles.searchBar}
