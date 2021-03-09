@@ -32,52 +32,41 @@ img {
   /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  margin-left: 15px;
-  background-color: transparent;
-  border-left: 2px solid rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgba(0, 0, 0, 0.3);
-  transform: translateY(25%) rotate(225deg);
-  height: 12px;
-  width: 12px;
+  position: absolute;
+  z-index: 1000;
+  background-image: url("../../../public/img/expand_arrow1600.png");
 }
 
 .downButton {
   /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  background-color: transparent;
-  border-left: 2px solid rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgba(0, 0, 0, 0.3);
-  transform: translateY(25%) rotate(45deg);
-  height: 12px;
-  width: 12px;
+  position: absolute;
+  background-image: url("../../../public/img/expand_arrow1600.png");
 }
 
 .mainDisplayButtonLeft {
   text-decoration: none;
-  /* display: inline-block; */
-  top: 100px;
-  left: 300px;
+  position: absolute;
+  top: 500px;
+  left: 100px;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: #a8bfbf;
   color: black;
+  z-index: 1000;
 }
 
 .mainDisplayButtonRight {
   text-decoration: none;
-  /* display: inline-block; */
-  top: 100px;
-  left: 500px;
+  position: absolute;
+  top: 500px;
+  left: 850px;
   padding: 8px 16px;
-  /* border: 3px solid; */
+  border: 3px solid;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: #a8bfbf;
   color: black;
 }
 
@@ -94,7 +83,7 @@ img {
 
 .slider {
   position: absolute;
-  top: 32%;
+  top: 45%;
   left: 2%;
   width: 50px;
   height: 409px;
