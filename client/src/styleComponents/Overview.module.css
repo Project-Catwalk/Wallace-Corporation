@@ -6,10 +6,6 @@
   grid-auto-rows: minmax(50px); */
 }
 
-.mainButtonOverlay {
-
-}
-
 .mainDisplay {
   background-color: #f2b694;
   grid-column: 1 / 2;
@@ -19,6 +15,7 @@
   height: 600px;
   width: auto;
   justify-content: center;
+  position: relative;
 }
 
 img {
@@ -32,6 +29,7 @@ img {
 }
 
 .upButton {
+  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -45,6 +43,7 @@ img {
 }
 
 .downButton {
+  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -60,7 +59,9 @@ img {
 
 .mainDisplayButtonLeft {
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
+  top: 100px;
+  left: 300px;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
@@ -70,25 +71,17 @@ img {
 
 .mainDisplayButtonRight {
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
+  top: 100px;
+  left: 500px;
   padding: 8px 16px;
-  border: 3px solid;
+  /* border: 3px solid; */
   border-radius: 50%;
   background-color: transparent;
   color: black;
 }
 
 .thumbnailContainer {
-  position: absolute;
-  top: 17%;
-  left: 2%;
-  width: 45px;
-  height: auto;
-  border: solid;
-  border-color: black;
-}
-
-.slider {
   display: flex;
   flex-direction: column;
   background-color: transparent;
@@ -96,7 +89,18 @@ img {
   padding: 2px;
   max-height: 400px;
   max-width: fit-content;
-  overflow-y: hidden;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 32%;
+  left: 2%;
+  width: 50px;
+  height: 409px;
+  border: solid;
+  border-color: black;
+  overflow: hidden;
 }
 
 .thumbnailImg {
