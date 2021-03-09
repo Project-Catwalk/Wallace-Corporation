@@ -133,6 +133,7 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
               metaReviews={metaReviews}
               handleStarFilters={handleStarFilters}
               handleReviewAverage={handleReviewAverage}
+              charObject={charObject}
             />
           </div>
           <div className={styles.parentHeader} style={{ display: 'flex' }}>

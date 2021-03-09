@@ -7,7 +7,6 @@ const ReviewStars = (props) => {
   // STILL TO DO:
 
   // Reset imputRef to the top of Luci's section
-
   const { average } = props;
 
   const inputRef = useRef();
