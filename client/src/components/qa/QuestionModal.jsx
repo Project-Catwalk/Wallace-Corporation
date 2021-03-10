@@ -5,10 +5,6 @@ import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
 
 function QuestionModal({ open, onClose, getQuestions, productId }) {
-  // if (!open) {
-  //   return null;
-  // }
-
   const [question, setQuestion] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +14,7 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   );
 
-  const clearForm = (e) => {
+  const clearForm = () => {
     setQuestion('');
     setUsername('');
     setEmail('');

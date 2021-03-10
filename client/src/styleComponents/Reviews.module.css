@@ -7,11 +7,8 @@
 }
 
 .parentHeader {
-  background-color: #85aaaa;
   grid-column: 2;
   grid-row: 1/2;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
 }
 
 .parentIndividualReview {
@@ -21,31 +18,25 @@
 }
 
 .parentFooter {
-  background-color: #d98982;
   grid-column: 2;
   grid-row: 3;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
 }
 
 .parentBreakdown {
   grid-column: 1;
   grid-row: 1/4;
-  background-color: #f2b694;
-  border-right: solid 1px black;
-  border-left: solid 1px black;
+  background-color: #f8beb99c;
 }
 
 .reviewTemplate {
   display: grid;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px rgb(190, 190, 190);
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 30px auto auto auto 25px / auto auto;
+  grid: 30px auto auto auto auto 25px / auto auto;
   margin: 20px;
-  background-color: #d5eeee;
-  padding: 10px;
+  background-color: #d7ebeb4b;
+  padding: 10px 20px 10px 20px;
 }
 
 .templateSummary {
@@ -55,14 +46,18 @@
 }
 
 .templateRating {
+  display: flex;
   grid-column: 1/2;
   grid-row: 1/2;
+  justify-content: left;
 }
 
 .templateUserDateBar {
   grid-column: 2;
   grid-row: 1/2;
   justify-self: end;
+  font-size: 0.8em;
+  color: rgb(128, 127, 127);
 }
 
 .templateBody {
@@ -83,7 +78,7 @@
 .templateResponseFromSeller {
   grid-column: 1/3;
   grid-row: 5/6;
-  background-color: #a8bfbf;
+  background-color: #a8bfbfa4;
 }
 .templateRecommendsBar {
   grid-column: 2;
@@ -106,20 +101,23 @@
   outline: none;
   cursor: pointer;
 }
+.footerButton:hover {
+  color: #f2b694;
+}
 
 .starRating {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
-  font-size: 20px;
-  height: 20px;
+  font-size: 15px;
+  height: 15px;
   width: 100px;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
   padding: 0;
   text-shadow: 0px 1px 0 #a2a2a2;
 }
 .starRatingTop {
-  color: #ebd61f;
+  color: #f0e36c;
   padding: 0;
   position: absolute;
   z-index: 1;
@@ -162,25 +160,48 @@ progress[value]::-webkit-progress-bar {
   width: 70%;
   height: 8px;
   position: relative;
-  background-color: #e0dbdb;
+  background-color: #c5c5c5;
   border-radius: 16px;
   display: inline-block;
   margin-left: 5px;
   margin-right: 5px;
 }
 .progressbar {
-  background-color: #99ee93;
+  background-color: #7bc575;
   height: 100%;
   position: absolute;
   line-height: inherit;
   border-radius: 16px;
 }
 
+.progressContainerChars {
+  width: 70%;
+  height: 8px;
+  position: relative;
+  background-color: #c5c5c5;
+  border-radius: 16px;
+  display: inline-block;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.progressbarChars {
+  /* background-color: #7bc575; */
+  height: 100%;
+  position: absolute;
+  line-height: 10px;
+  /* border-radius: 16px; */
+  width: 2%;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 17px solid #7bc575;
+}
+
 .breakdownGrid {
   display: grid;
   gap: 5px 5px;
-  grid: auto auto auto auto auto/35% auto;
+  grid: auto auto auto auto auto/27% auto;
   margin: 15px;
+  padding-left: 10px;
 }
 
 .breakdownHeader {
@@ -192,30 +213,36 @@ progress[value]::-webkit-progress-bar {
 .breakdownTotal {
   grid-column: 1/2;
   grid-row: 2/3;
-  justify-self: center;
+  justify-self: right;
   font-size: 50px;
   margin: 0;
 }
 .breakdownStars {
+  display: flex;
   grid-column: 2/3;
   grid-row: 2/3;
-  align-self: center;
+  align-self: flex-start;
   margin: 0;
+  padding-top: 10px;
 }
 .breakdownRecommended {
   grid-column: 1/3;
   grid-row: 3/4;
   font-style: italic;
-  margin: 0;
+  padding-left: 13px;
+  font-size: 13px;
 }
 .breakdownSubheader {
   grid-column: 1/3;
   grid-row: 4/5;
   margin: 0;
+  padding-left: 13px;
+  padding-bottom: 5px;
 }
 .breakdownStarBreakdown {
   grid-column: 1/3;
   grid-row: 5/6;
+  margin-left: 21px;
 }
 .breakdownCharacteristics {
   grid-column: 1/3;

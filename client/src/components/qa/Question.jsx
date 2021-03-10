@@ -6,7 +6,6 @@ import AnswerModal from './AnswerModal';
 
 const Question = (props) => {
   const { question, getQuestions, productId } = props;
-  // console.log(props);
   const { question_body, answers, question_id, question_helpfulness } = question;
   const [answerList, setAnswerList] = useState([]);
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
@@ -73,7 +72,6 @@ const Question = (props) => {
         </div>
         <AnswerModal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></AnswerModal>
       </div>
-
       <div className={qastyles.answerGrid}>
         <h4 className={qastyles.a}>A:</h4>
         <div className={qastyles.answerList}>

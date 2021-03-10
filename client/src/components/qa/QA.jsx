@@ -15,11 +15,7 @@ const QA = (props) => {
   const [searching, setSearching] = useState(false);
   const [moreQuestionsButton, setMoreQuestionsButton] = useState('More Answered Questions');
 
-  // console.log(displayedQuestions);
-  // console.log('------');
-  // console.log(productId);
   const sortQuestions = (questionArr) => {
-    // console.log(questionArr);
     const length = questionArr.length;
     let checked;
     do {
