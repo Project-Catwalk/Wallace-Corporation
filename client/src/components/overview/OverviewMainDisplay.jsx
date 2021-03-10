@@ -5,8 +5,7 @@ import OverviewExpandedModal from './OverviewExpandedModal';
 const MainDisplay = (props) => {
   // STILL TO DO:
 
-  // Need to find a way to scroll through the thumbnails that are beyond the 7 in view
-  // Need to have highlighted/opaque image exist even if thumbnail isn't used to change images
+  // Need to have highlighted/opaque image exist even if thumbnail click handler isn't used to change images
 
   const { photos, styleChoice } = props;
 
@@ -17,6 +16,7 @@ const MainDisplay = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const moveThumbnails = useRef();
+  const focused = useRef();
 
   useEffect(() => {
     const thumbnails = [];
@@ -69,7 +69,7 @@ const MainDisplay = (props) => {
     setImgIndex(displayedImgIndex);
   };
 
-  const slideDown = (pixels) => {
+  const slideDown = () => {
     if (imgIndex > 5) {
       const num = -56 * (imgIndex - 5);
 

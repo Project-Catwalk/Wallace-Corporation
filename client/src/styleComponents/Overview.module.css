@@ -182,7 +182,6 @@ img {
 
 .stylesButtonsImgs {
   display: inline-block;
-  position: relative;
   flex: 1 0 21%;
   height: 90px;
   width: 90px;
