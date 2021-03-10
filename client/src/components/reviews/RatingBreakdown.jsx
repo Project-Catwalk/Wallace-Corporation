@@ -69,17 +69,18 @@ const RatingBreakdown = ({
   }, [metaReviews]);
 
   return (
-    (metaReviews && average)
+    (metaReviews && average && characteristics)
       ? (
-        <div className={styles.breakdownGrid}>
+        
+        <div className={styles.breakdownGrid} data-testid="breakdown-render">
           <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
-          <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
+          <h4 className={styles.breakdownRecommended}>{recommend}% of reviews recommend this product</h4>
           <h4 className={styles.breakdownSubheader}>
-            Rating Breakdown: (out of {total} reviews)
+            Rating Breakdown: (out of {total})
           </h4>
           <div className={styles.breakdownStarBreakdown}>
             {Object.entries(starBreakdown).map((star) => {
@@ -87,7 +88,7 @@ const RatingBreakdown = ({
               return (
                 <div key={star[0]}>
                   <span
-                    className={styles.starCount}
+                    className={`${styles.starCount} ${styles.comment}`}
                     role="presentation"
                     onKeyDown={handleFilters}
                     onClick={() => {
@@ -99,7 +100,7 @@ const RatingBreakdown = ({
                   <div className={styles.progressContainer}>
                     <div className={styles.progressbar} style={{ width: avg }} />
                   </div>
-                  <span style={{ fontStyle: 'italic' }}>{star[1]}</span>
+                  <span className={styles.comment} style={{ fontStyle: 'italic' }}>{star[1]}</span>
                   <br />
                 </div>
               );
@@ -123,25 +124,21 @@ const RatingBreakdown = ({
               : null}
           </div>
           <div className={styles.breakdownCharacteristics}>
-            {Object.entries(metaReviews).map((char) => {
-              if (char[0] === 'characteristics') {
-                return Object.entries(char[1]).map((x) => {
-                  const value = (x[1].value / 5) * 100;
-                  return (
-                    <div key={x[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
-                      <div style={{ fontStyle: 'italic', margin: '2px' }}>{x[0]}</div>
-                      <div className={styles.progressContainer}>
-                        <div className={styles.progressbar} style={{ width: value }} />
-                      </div>
-                      <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
-                        <span className={styles.comment}>(1) {charObject[x[0]][1]}</span>
-                        <span className={styles.comment}>(5) {charObject[x[0]][5]}</span>
-                      </div>
-                      <br />
-                    </div>
-                  );
-                });
-              }
+            {Object.entries(characteristics).map((char) => {
+              const value = (char[1].value / 5) * 100;
+              return (
+                <div key={char[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
+                  <div style={{ margin: '2px', paddingLeft: '13px' }}>{char[0]}</div>
+                  <div className={styles.progressContainerChars}>
+                    <div className={styles.progressbarChars} style={{ left: `${value}%` }} />
+                  </div>
+                  <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
+                    <span className={styles.comment} style={{ marginLeft: '9%' }}>(1) {charObject[char[0]][1]}</span>
+                    <span className={styles.comment}>(5) {charObject[char[0]][5]}</span>
+                  </div>
+                  <br />
+                </div>
+              );
             })}
           </div>
         </div>

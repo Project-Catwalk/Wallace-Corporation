@@ -84,13 +84,13 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
   };
 
   useEffect(() => {
-    getReviews(20103);
+    getReviews(20101);
     setExpanded(expanded);
   }, [sort]);
 
   useEffect(() => {
-    getMetaReviews(20103);
-    getReviews(20103);
+    getMetaReviews(20101);
+    getReviews(20101);
   }, [productId]);
 
   useEffect(() => {
@@ -137,7 +137,10 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
             />
           </div>
           <div className={styles.parentHeader} style={{ display: 'flex' }}>
-            <div style={{ alignSelf: 'center', paddingLeft: '20px' }}>
+            <div
+              style={{ alignSelf: 'center', paddingLeft: '20px' }}
+              data-testid="sort-on-dropdown"
+            >
               Sort on:
               <select onChange={(e) => setSort(e.target.value)}>
                 <option>Relevant</option>

@@ -37,11 +37,11 @@ const InteractiveStars = ({ review, setReview }) => {
             }}
             onMouseLeave={() => setHover(rating)}
           >
-            <span>★</span>
+            <span data-testid="interactive-stars">★</span>
           </button>
         );
       })}
-      <p style={{ margin: '5px', fontSize: '12px', fontStyle: 'italic' }}>{value}</p>
+      <p className={styles.comment}>{value}</p>
     </div>
   );
 };

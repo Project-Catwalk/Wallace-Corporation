@@ -7,20 +7,12 @@ const Reviews = lazy(() => import('./reviews/Reviews'));
 import Overview from './overview/Overview';
 import StarRating from './StarRating';
 import style from '../styleComponents/App.module.css';
-// import logo from '../../../public/img/wallacecorp.png';
 import { Icon, InlineIcon } from '@iconify/react';
 import messageOutlined from '@iconify-icons/ant-design/message-outlined';
 import facebookIcon from '@iconify-icons/gg/facebook';
 import twitterIcon from '@iconify-icons/gg/twitter';
 import instagramIcon from '@iconify-icons/gg/instagram';
 import pinterestFill from '@iconify-icons/akar-icons/pinterest-fill';
-
-
-
-// const titleBarStyle = {
-//   backgroundColor: '#6D8C8C',
-// };
-
 class App extends React.Component {
   constructor(props) {
     super(props);
