@@ -45,8 +45,8 @@ const OverviewExpandedModal = (props) => {
     if (isZoomed) {
       setMove({ x: event.clientX, y: event.clientY });
       // console.log('event: ', event);
-      console.log('event.clientX: ', event.clilentX);
-      console.log('event.clientY: ', event.clientY);
+      // console.log('event.clientX: ', event.clilentX);
+      // console.log('event.clientY: ', event.clientY);
     }
   };
 
