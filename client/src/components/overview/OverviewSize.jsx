@@ -4,6 +4,10 @@ import styles from '../../styleComponents/Overview.module.css';
 import OverviewCartModal from './OverviewCartModal';
 
 const OverviewSize = (props) => {
+  // STILL TO DO:
+
+  // Clicking "Add to Cart" when size isn't selected should open the size dropdown
+
   const { skuOfChoice, styleChoice, name } = props;
 
   const [currentSize, setCurrentSize] = useState('');

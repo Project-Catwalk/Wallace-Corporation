@@ -7,7 +7,7 @@ const OverviewExpandedModal = (props) => {
   // Need to make thumbnail icons instead of images show up on expanded view (pagination)
   // Need to have parallax/scroll effect on zoomed in view of main image
 
-  const { children, open, close } = props;
+  const { children, open, close, } = props;
 
   const [height, setHeight] = useState(null);
   const [width, setWidth] = useState(null);
@@ -44,9 +44,9 @@ const OverviewExpandedModal = (props) => {
   const mouseMove = (event) => {
     if (isZoomed) {
       setMove({ x: event.clientX, y: event.clientY });
-      console.log('event: ', event);
-      // console.log('event.screenX: ', event.screenX);
-      // console.log('event.screenY: ', event.screenY);
+      // console.log('event: ', event);
+      console.log('event.clientX: ', event.clilentX);
+      console.log('event.clientY: ', event.clientY);
     }
   };
 

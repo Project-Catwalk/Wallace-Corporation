@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewExpandedModal from './OverviewExpandedModal';
 
@@ -15,6 +15,8 @@ const MainDisplay = (props) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [displayedImg, setDisplayedImg] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+
+  const moveThumbnails = useRef();
 
   useEffect(() => {
     const thumbnails = [];
@@ -65,30 +67,31 @@ const MainDisplay = (props) => {
     const displayedImgIndex = thumbnailGallery.indexOf(event.target.src);
 
     setImgIndex(displayedImgIndex);
-
-    // Shift thumbnailContainer 56px
   };
 
-  // const refs = list.reduce((acc, value) => {
-  //   acc[value.id] = React.createRef();
-  //   return acc;
-  // }, {});
+  const slideDown = (pixels) => {
+    if (imgIndex > 5) {
+      const num = -56 * (imgIndex - 5);
 
-  // const handleClick = id =>
-  //   refs[id].current.scrollIntoView({
-  //     behavior: 'smooth',
-  //     block: 'start',
-  //   });
+      const pixels = num + 'px';
 
-  // const slideThumbnailsDown = (event) => {
-  //   event.preventDefault();
+      moveThumbnails.current.style.top = pixels;
+    }
 
-  // };
+    setImgIndex(imgIndex === thumbnailGallery.length - 1 ? 0 : imgIndex + 1);
+  };
 
-  // const slideThumbnailsUp = (event) => {
-  //   event.preventDefault();
+  const slideUp = () => {
+    if (imgIndex > 5) {
+      const num = -56 * (imgIndex - 6);
 
-  // };
+      const pixels = num + 'px';
+
+      moveThumbnails.current.style.top = pixels;
+    }
+
+    setImgIndex(imgIndex === 0 ? thumbnailGallery.length - 1 : imgIndex - 1);
+  };
 
   return (
     <>
@@ -96,28 +99,32 @@ const MainDisplay = (props) => {
         {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
           <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
-          <OverviewExpandedModal open={isOpen} close={onClose}>
+          <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
             <img src={displayedImg} alt={styleChoice} className={styles.expandedImg} />
           </OverviewExpandedModal>
         </div>
         {imgIndex !== mainGallery.length - 1
         && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
       </div>
-      {imgIndex !== 0 && (<button type="submit"  className={styles.upButton} onClick={decrementImgIndex}>
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-        </svg>
-      </button>)}
+      {imgIndex !== 0 && (
+        <button type="submit"  className={styles.upButton} onClick={slideUp}>
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+          </svg>
+        </button>
+      )}
       <div className={styles.slider}>
-        <div className={styles.thumbnailContainer}>
+        <div ref={moveThumbnails} className={styles.thumbnailContainer}>
           {thumbnailGallery.map((img, index) => <input type="image" key={index} onClick={thumbnailClickHandler} src={img} className={styles.thumbnailImg} alt={styleChoice} />)}
         </div>
       </div>
-      {imgIndex !== mainGallery.length - 1 && (<button type="submit" className={styles.downButton} onClick={incrementImgIndex}>
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-        </svg>
-      </button>)}
+      {imgIndex !== mainGallery.length - 1 && (
+        <button type="submit" className={styles.downButton} onClick={slideDown}>
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+          </svg>
+        </button>
+      )}
     </>
   );
 };
