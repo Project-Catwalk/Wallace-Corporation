@@ -214,6 +214,20 @@ img {
   padding-left: 5px;
 }
 
+.cartXToClose{
+  cursor: pointer;
+  position: absolute;
+  left: 950px;
+
+}
+
+.mainModalXToClose{
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 950px;
+}
+
 .overviewFooter {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -255,6 +269,8 @@ img {
   background-color: white;
   padding: 15px;
   z-index: 1000;
+  max-width: 1000px;
+  max-height: 800px;
 }
 
 .modalOverlay {

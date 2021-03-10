@@ -138,6 +138,12 @@ const OverviewSize = (props) => {
     setIsOpen(false);
   };
 
+  const exitCart = (event) => {
+    event.preventDefault();
+
+    setIsOpen(false);
+  };
+
   // const cartCheck = (event) => {
   //   // To make this work, will need to loop over results.data
   //   // Then, need to use the sku id to compare against stylesArr from parent/parent/parent component
@@ -177,7 +183,7 @@ const OverviewSize = (props) => {
       <div className={styles.cart}>
         {currentSize !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
         {/* <button onClick={cartCheck}>Check Cart</button> */}
-        <OverviewCartModal open={isOpen} close={onClose}>
+        <OverviewCartModal open={isOpen} close={onClose} exitCart={exitCart}>
           <form>
             Item:
             <p>{name}</p>
