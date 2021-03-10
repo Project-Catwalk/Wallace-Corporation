@@ -6,29 +6,7 @@ import QASearchBar from '../client/src/components/qa/QASearchBar';
 import Answer from '../client/src/components/qa/Answer';
 import AnswerModal from '../client/src/components/qa/AnswerModal';
 import QuestionModal from '../client/src/components/qa/QuestionModal';
-import App from '../client/src/components/App';
-import { query } from 'express';
 import axios from 'axios';
-
-
-// jest.mock("axios", () => ({
-//   put: jest.fn((_url, _body) => {
-//     return new Promise((resolve, reject) => {
-//       url = _url
-//       body = _body
-//       resolve(true)
-//       reject(false)
-//     })
-//   }),
-//   get: jest.fn((_url) => {
-//     return new Promise((resolve, reject) => {
-//       url = _url
-//       body = _body
-//       resolve(true)
-//       reject(false)
-//     })
-//   }),
-// }));
 
 const questions = [
   {
@@ -76,11 +54,6 @@ describe('QA Section', () => {
     expect(queryByText('qa-heading')).toBeTruthy;
   });
 
-  // it('Should properly get questions from the database upon rendering', () => {
-  //   const {queryByText} = render(<QA questions={questions} />);
-  //   expect(queryByText('First Question')).toBeTruthy;
-  // });
-
   it('Should trigger a modal popup', () => {
     const { queryByTestId, queryByPlaceholderText } = render(<QA questions={questions} />);
     const addAQuestion = queryByTestId('add-a-question-button');
@@ -106,7 +79,6 @@ describe('Search Bar', () => {
 
   it('Should search for a question', () => {
     const { queryByTestId, queryByText } = render(<QA questions={questions} />);
-    // const { queryByTestId } = render(<QASearchBar />);
     const searchBar = queryByTestId('search-input');
     fireEvent.change(searchBar, { target: { value: 'First Question' } });
     expect(queryByText('First Question')).toBeTruthy;
@@ -120,7 +92,6 @@ describe('Question Section', () => {
   });
 
   it('Should show more answers upon clicking the "show more answers button"', () => {
-    // const { queryByTestId, queryByText } = render(<QA questions={questions} />);
     const { queryByTestId, queryByText } = render(<Question question={questions[0]} />);
     const showMoreAnswersButton = queryByTestId('show-more-answers-button');
     expect(queryByText('Answer 3')).toBeFalsy;
@@ -139,7 +110,7 @@ describe('Question Section', () => {
 
 describe('Answer Section', () => {
   it('Should properly render to the page', () => {
-    const { queryByTestId, queryByText } = render(<Answer answer={questions[0].answers.first} />);
+    const { queryByText } = render(<Answer answer={questions[0].answers.first} />);
     expect(queryByText('Answer 1')).toBeTruthy;
   });
 });

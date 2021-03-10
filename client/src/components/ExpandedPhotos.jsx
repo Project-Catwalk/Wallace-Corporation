@@ -12,7 +12,7 @@ const ExpandedPhotos = ({ photo }) => {
             ? (
               <img
                 role="presentation"
-                src={photo.url}
+                src={photo.url ? photo.url : photo}
                 alt="review"
                 className={styles.imgThumbnail}
                 onClick={() => setExpanded(!expanded)}
@@ -22,7 +22,7 @@ const ExpandedPhotos = ({ photo }) => {
             : (
               <img
                 role="presentation"
-                src={photo.url}
+                src={photo.url ? photo.url : photo}
                 alt="review"
                 className={styles.photo}
                 onClick={() => setExpanded(!expanded)}
