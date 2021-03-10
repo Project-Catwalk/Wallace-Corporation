@@ -4,19 +4,18 @@ import RatingBreakdown from '../reviews/RatingBreakdown';
 import StarRating from '../StarRating';
 
 const ReviewStars = (props) => {
-  // STILL TO DO:
-
-  // Reset imputRef to the top of Luci's section
   const { average } = props;
 
-  const inputRef = useRef();
-  // const inputRef = React.createRef();
+  const inputRef = document.getElementById('scrollTarget');
 
-  const handleClick = () =>
-    inputRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+  const handleClick = () => {
+    if (inputRef !== null) {
+      inputRef.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
 
   return (
     <>

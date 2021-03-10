@@ -94,8 +94,8 @@ class App extends React.Component {
               <h5 className={`${style.headerText} ${style.apparel}`} >APPAREL</h5>
               <h5 className={`${style.headerText} ${style.community}`}>COMMUNITY</h5>
               <h5 className={`${style.headerText} ${style.about}`}>ABOUT</h5>
-            </div>
-            <Overview
+          </div>
+          <Overview
               overview={overview}
               productStyles={styles}
               relatedProducts={related}

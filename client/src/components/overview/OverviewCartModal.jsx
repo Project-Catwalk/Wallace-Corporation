@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 
 const OverviewCartModal = (props) => {
-  const { children, open, close } = props;
+  const { children, open, close, exitCart } = props;
 
   if (!open) {
     return null;
@@ -12,6 +12,7 @@ const OverviewCartModal = (props) => {
     <div>
       <div className={styles.cartOverlay} />
       <div className={styles.modal}>
+        <div onClick={exitCart} className={styles.cartXToClose}>X</div>
         {children}
         <br />
         Is this correct?:

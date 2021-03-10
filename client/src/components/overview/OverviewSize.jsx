@@ -3,14 +3,10 @@ import axios from 'axios';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewCartModal from './OverviewCartModal';
 
-
 const OverviewSize = (props) => {
   // STILL TO DO:
 
-  // Any style that has a quantity of 0 or null should not be listed in the size dropdown
-  // If currentQuantityAvailable = 0 or null, set size selector to "OUT OF STOCK"
-  // If "Select Size" is still present on size dropdown open size drop down and display message above drop down saying "Please select a size"
-  // Make a "X" button to close cart
+  // Clicking "Add to Cart" when size isn't selected should open the size dropdown
 
   const { skuOfChoice, styleChoice, name } = props;
 
@@ -23,7 +19,7 @@ const OverviewSize = (props) => {
   const [countChosen, setCountChosen] = useState(1);
   const [sku_id, setSku_id] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [cartButtonClicked, setCartButtonClicked] = useState(false);
 
   useEffect(() => {
     const skuWithoutNumber = Object.values(skuOfChoice);
@@ -45,11 +41,11 @@ const OverviewSize = (props) => {
         skuIds.push(skuIdsOfChoice[i]);
       }
     }
-
+    setCartButtonClicked(false);
+    setCurrentSize('Select Size');
     setAllSizesAndQuantities(sizesAndQuantities);
     setAllSkuIds(skuIds);
   }, [skuOfChoice, styleChoice]);
-
 
   const selectedSizeHandler = (event) => {
     event.preventDefault();
@@ -65,20 +61,6 @@ const OverviewSize = (props) => {
 
     setCurrentSize(event.target.value);
   };
-
-  // Line 43 is how to disable a button
-  // function App() {
-
-  //   const [name, setName] = useState('');
-  //   const nameChange = e => setName(e.target.value);
-
-  //   return (
-  //     <div className="App">
-  //       <input value={name} onChange={nameChange} placeholder="Name"/>
-  //       <button disabled={!name}>Search</button>
-  //     </div>
-  //   );
-  // }
 
   useEffect(() => {
     if (currentQuantityAvailable === null) {
@@ -130,12 +112,11 @@ const OverviewSize = (props) => {
   const handleCart = (event) => {
     event.preventDefault();
 
-    if (currentSize === 'Select Size') {
-      // Create functionality to open select size dropdown and create a message above size dropdown saying "Please select a size"
-      console.log('Please select a size');
-    }
+    setCartButtonClicked(true);
 
-    setIsOpen(true);
+    if (currentSize !== 'Select Size') {
+      setIsOpen(true);
+    }
   };
 
   const onClose = (event) => {
@@ -151,6 +132,14 @@ const OverviewSize = (props) => {
       });
 
     setIsOpen(false);
+    setCartButtonClicked(false);
+  };
+
+  const exitCart = (event) => {
+    event.preventDefault();
+
+    setIsOpen(false);
+    setCartButtonClicked(false);
   };
 
   // const cartCheck = (event) => {
@@ -174,8 +163,13 @@ const OverviewSize = (props) => {
 
   return (
     <>
+      {(currentSize === 'Select Size' && cartButtonClicked === true)
+        ? (
+          <div className={styles.hiddenCartSentence}>Please select a size</div>
+        )
+        : null}
       <select onChange={selectedSizeHandler} className={styles.sizeDropDown}>
-        <option style={{paddingLeft: '5px'}}>Select Size</option>
+        <option style={{ paddingLeft: '5px' }}>Select Size</option>
         {allSizesAndQuantities.map((productSize, index) => (
           <option key={index}>{productSize.size}</option>
         ))}
@@ -187,7 +181,7 @@ const OverviewSize = (props) => {
       <div className={styles.cart}>
         {currentSize !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
         {/* <button onClick={cartCheck}>Check Cart</button> */}
-        <OverviewCartModal open={isOpen} close={onClose}>
+        <OverviewCartModal open={isOpen} close={onClose} exitCart={exitCart}>
           <form>
             Item:
             <p>{name}</p>
@@ -202,11 +196,7 @@ const OverviewSize = (props) => {
             <p>{countChosen}</p>
           </form>
         </OverviewCartModal>
-        {/* <OverviewCart currentSize={currentSize} countChosen={countChosen} singleSkuId={singleSkuId} styleChoice={styleChoice} name={name} /> */}
       </div>
-      {/* <div>
-        <OverviewQuantity currentQuantityAvailable={currentQuantityAvailable} currentSize={currentSize} singleSkuId={singleSkuId} styleChoice={styleChoice} name={name} />
-      </div> */}
     </>
   );
 };
