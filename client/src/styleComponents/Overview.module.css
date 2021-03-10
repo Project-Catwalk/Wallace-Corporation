@@ -72,8 +72,6 @@ img {
   left: 2%;
   width: 50px;
   height: 409px;
-  border: solid;
-  border-color: black;
   overflow: hidden;
 }
 
@@ -99,6 +97,7 @@ img {
 .thumbnailImg {
   height: 56px;
   padding: 1px;
+  outline: black;
   opacity: 0.5;
   transition-duration: 1s;
 }
@@ -178,15 +177,17 @@ img {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-left: 5px;
+  margin-left: 5px;
 }
 
 .stylesButtonsImgs {
   display: inline-block;
+  position: relative;
   flex: 1 0 21%;
   height: 90px;
-  max-width: 90px;
+  width: 90px;
   padding: 4px;
+  margin-left: 5px;
   cursor: pointer;
   border-radius: 50%;
   align-self: center;
