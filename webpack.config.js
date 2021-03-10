@@ -4,7 +4,7 @@ const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/public');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: `${SRC_DIR}/index.js`,
   output: {
     filename: 'bundle.js',
@@ -26,8 +26,16 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },

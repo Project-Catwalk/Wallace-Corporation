@@ -1,0 +1,64 @@
+import React, { useState, useEffect, useRef } from 'react';
+import styles from '../../styleComponents/Overview.module.css';
+
+const OverviewExpandedModal = (props) => {
+  // STILL TO DO:
+
+  // Need to make thumbnail icons instead of images show up on expanded view (pagination)
+  // Need to have parallax/scroll effect on zoomed in view of main image
+
+  const { children, open, close, } = props;
+
+  const [height, setHeight] = useState(null);
+  const [width, setWidth] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [cursorString, setcursorString] = useState('crosshair');
+
+  const [move, setMove] = useState({ x: 0, y: 0 });
+
+  const imgRef = useRef();
+
+  if (!open) {
+    return null;
+  }
+
+  const zoom = (event) => {
+    event.preventDefault();
+
+    const currentHeight = imgRef.current.clientHeight;
+    const currentWidth = imgRef.current.clientWidth;
+
+    if (isZoomed === false) {
+      setIsZoomed(true);
+      setHeight(currentHeight * 2.5);
+      setWidth(currentWidth * 2.5);
+      setcursorString('zoom-out');
+    } else {
+      setIsZoomed(false);
+      setHeight(currentHeight / 2.5);
+      setWidth(currentWidth / 2.5);
+      setcursorString('crosshair');
+    }
+  };
+
+  const mouseMove = (event) => {
+    if (isZoomed) {
+      setMove({ x: event.clientX, y: event.clientY });
+      // console.log('event: ', event);
+      // console.log('event.clientX: ', event.clilentX);
+      // console.log('event.clientY: ', event.clientY);
+    }
+  };
+
+  return (
+    <>
+      <div className={styles.modalOverlay} />
+      <div className={styles.modal} ref={imgRef} onClick={zoom} onMouseMove={mouseMove} style={{ height, width, cursor: cursorString}}>
+        {children}
+        <p className={styles.mainModalXToClose} onClick={close}>X</p>
+      </div>
+    </>
+  );
+};
+
+export default OverviewExpandedModal;
