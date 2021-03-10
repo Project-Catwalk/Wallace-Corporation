@@ -6,10 +6,6 @@ import MainDisplay from './OverviewMainDisplay';
 import OverviewCheckmark from './OverviewCheckmark';
 
 const Overview = (props) => {
-  // STILL TO DO:
-
-  // Style the sale price conditional to be red text and display normal price struck through
-
   const { overview, productStyles, average } = props;
   const { category, description, name, slogan } = overview;
 
@@ -74,14 +70,14 @@ const Overview = (props) => {
     if (salePriceOfChoice !== null) {
       return (
         <>
-          <div className={styles.salePrice}>{salePriceOfChoice}</div>
-          <div className={styles.strikeThroughPrice}>{originalPriceOfChoice}</div>
+          <div className={styles.salePrice}>{'$' + salePriceOfChoice}</div>
+          <div className={styles.strikeThroughPrice}>{'$' + originalPriceOfChoice}</div>
         </>
       );
     }
 
     return (
-      <div>{originalPriceOfChoice}</div>
+      <div>{'$' + originalPriceOfChoice}</div>
     );
   };
 

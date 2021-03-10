@@ -3,7 +3,6 @@ import axios from 'axios';
 import styles from '../../styleComponents/Overview.module.css';
 import OverviewCartModal from './OverviewCartModal';
 
-
 const OverviewSize = (props) => {
   const { skuOfChoice, styleChoice, name } = props;
 
