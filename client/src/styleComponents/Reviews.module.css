@@ -33,10 +33,10 @@
   border-bottom: solid 1px rgb(190, 190, 190);
   justify-items: stretch;
   gap: 5px 5px;
-  grid: 30px auto auto auto 25px / auto auto;
+  grid: 30px auto auto auto auto 25px / auto auto;
   margin: 20px;
   background-color: #d7ebeb4b;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
 }
 
 .templateSummary {
@@ -46,14 +46,18 @@
 }
 
 .templateRating {
+  display: flex;
   grid-column: 1/2;
   grid-row: 1/2;
+  justify-content: left;
 }
 
 .templateUserDateBar {
   grid-column: 2;
   grid-row: 1/2;
   justify-self: end;
+  font-size: 0.8em;
+  color: rgb(128, 127, 127);
 }
 
 .templateBody {
@@ -74,7 +78,7 @@
 .templateResponseFromSeller {
   grid-column: 1/3;
   grid-row: 5/6;
-  background-color: #a8bfbf;
+  background-color: #a8bfbfa4;
 }
 .templateRecommendsBar {
   grid-column: 2;
@@ -107,7 +111,7 @@
   font-size: 20px;
   height: 20px;
   width: 100px;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
   padding: 0;
   text-shadow: 0px 1px 0 #a2a2a2;
@@ -191,8 +195,9 @@ progress[value]::-webkit-progress-bar {
 .breakdownGrid {
   display: grid;
   gap: 5px 5px;
-  grid: auto auto auto auto auto/35% auto;
+  grid: auto auto auto auto auto/27% auto;
   margin: 15px;
+  padding-left: 10px;
 }
 
 .breakdownHeader {
@@ -204,30 +209,36 @@ progress[value]::-webkit-progress-bar {
 .breakdownTotal {
   grid-column: 1/2;
   grid-row: 2/3;
-  justify-self: center;
+  justify-self: right;
   font-size: 50px;
   margin: 0;
 }
 .breakdownStars {
+  display: flex;
   grid-column: 2/3;
   grid-row: 2/3;
-  align-self: center;
+  align-self: flex-start;
   margin: 0;
+  padding-top: 10px;
 }
 .breakdownRecommended {
   grid-column: 1/3;
   grid-row: 3/4;
   font-style: italic;
-  margin: 0;
+  padding-left: 13px;
+  font-size: 13px;
 }
 .breakdownSubheader {
   grid-column: 1/3;
   grid-row: 4/5;
   margin: 0;
+  padding-left: 13px;
+  padding-bottom: 5px;
 }
 .breakdownStarBreakdown {
   grid-column: 1/3;
   grid-row: 5/6;
+  margin-left: 21px;
 }
 .breakdownCharacteristics {
   grid-column: 1/3;

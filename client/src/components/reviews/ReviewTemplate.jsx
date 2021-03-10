@@ -11,22 +11,27 @@ const ReviewTemplate = ({ review }) => {
       <div className={styles.reviewTemplate}>
         <StarRating rating={review.rating} />
         <div className={styles.templateSummary}>{review.summary}</div>
-        <div className={styles.templateBody}>{review.body}</div>
+        <div className={styles.templateBody} style={{ fontSize: '15px' }}>{review.body}</div>
         <div className={styles.templateUserDateBar}>
           <UserDateBar review={review} />
         </div>
         <div className={styles.templateHelpfulReportBar}>
           <Helpful review_id={review.review_id} helpfulness={review.helpfulness} />
         </div>
-        {(review.response && review.response !== 'null')
-          ? <div className={styles.templateResponseFromSeller}>{review.response}</div>
+        {(review.response)
+          ? (
+            <div className={styles.templateResponseFromSeller}>
+              <p style={{ margin: '0px', fontWeight: 'bolder', padding: '10px 10px 0 10px' }}>Response from Seller:</p>
+              <p style={{ margin: '0px', padding: '10px', fontSize: '15px' }}>{review.response}</p>
+            </div>
+          )
           : null}
         <div className={styles.templateImages}>
           {review.photos.map((photo, id) => <ExpandedPhotos photo={photo} key={id} />)}
         </div>
         {(review.recommend)
           ? (
-            <div className={styles.templateRecommendsBar}>
+            <div className={styles.templateRecommendsBar} style={{ paddingRight: '10px', fontSize: '12px'}}>
               &#10003; Yes, I recommend this product
             </div>
           )

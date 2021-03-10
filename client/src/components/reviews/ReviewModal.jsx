@@ -126,6 +126,7 @@ const ReviewsModal = ({
                 ...
               </p>
               <p
+                data-testid="review-modal"
                 role="presentation"
                 className={styles.closeModal}
                 onClick={() => {

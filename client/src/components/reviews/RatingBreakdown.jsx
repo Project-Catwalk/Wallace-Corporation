@@ -71,7 +71,7 @@ const RatingBreakdown = ({
   return (
     (metaReviews && average && characteristics)
       ? (
-        <div className={styles.breakdownGrid}>
+        <div className={styles.breakdownGrid} data-testid="breakdown-render">
           <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
@@ -79,7 +79,7 @@ const RatingBreakdown = ({
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
           <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
           <h4 className={styles.breakdownSubheader}>
-            Rating Breakdown: (out of {total} reviews)
+            Rating Breakdown: (out of {total})
           </h4>
           <div className={styles.breakdownStarBreakdown}>
             {Object.entries(starBreakdown).map((star) => {
@@ -127,9 +127,9 @@ const RatingBreakdown = ({
               const value = (char[1].value / 5) * 100;
               return (
                 <div key={char[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
-                  <div style={{ fontStyle: 'italic', margin: '2px' }}>{char[0]}</div>
+                  <div style={{ margin: '2px', paddingLeft: '13px' }}>{char[0]}</div>
                   <div className={styles.progressContainerChars}>
-                    <div className={styles.progressbarChars} style={{ width: value }} />
+                    <div className={styles.progressbarChars} style={{ paddingLeft: value }} />
                   </div>
                   <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
                     <span className={styles.comment} style={{ marginLeft: '5%' }}>(1) {charObject[char[0]][1]}</span>
