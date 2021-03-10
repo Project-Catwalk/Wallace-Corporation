@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
-import Photo from './Photo';
+import ExpandedPhotos from '../ExpandedPhotos';
 
 function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
   const [answer, setAnswer] = useState('');
@@ -129,7 +128,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
             <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div>
               {photos.length < 5 ? <input data-testid="answer-photo-upload" value={''} onChange={handleChange} type="file" /> : null}
-              {thumbnails.map((photo, idx) => <Photo key={idx} photo={photo}/>)}
+              {thumbnails.map((photo, idx) => <ExpandedPhotos key={idx} photo={photo} />)}
             </div>
             <button data-testid="answer-modal-submit-button" type="submit" className={styles.modalButton}>Submit Answer</button>
             <p className={styles.finePrint}>{error}</p>

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import styles from '../styleComponents/App.module.css';
 import axios from 'axios';
+import { Icon, InlineIcon } from '@iconify/react';
+import flagSolid from '@iconify-icons/clarity/flag-solid';
+
 
 const Helpful = (props) => {
   const { helpfulness } = props;
   const [count, setCount] = useState(helpfulness);
   const [reported, setReported] = useState('Report');
+  const [isReported, setIsReported] = useState(false);
 
   const handleCount = (e) => {
     setCount(helpfulness + 1);
@@ -20,12 +24,17 @@ const Helpful = (props) => {
       axios.put(`/qa/questions/${question_id}/helpful`)
         .then((status) => console.log(status.status))
         .catch((err) => console.log(err));
+    } else if (props.answer_id) {
+      const { answer_id } = props;
+      axios.put(`/qa/answers/${answer_id}/helpful`)
+        .then((status) => console.log(status.status))
+        .catch((err) => console.log(err));
     }
   };
 
   const report = () => {
     setReported('Reported');
-    console.log(props);
+    setIsReported(true);
     if (props.answer_id) {
       axios.put(`/qa/answers/${props.answer_id}/report`)
         .then(() => console.log(status.status))
@@ -51,7 +60,8 @@ const Helpful = (props) => {
         )
         {' '}
       </div>
-      <button data-testid="report-button" className={styles.reported} onClick={report} type="submit">{reported}</button>
+      <button data-testid="report-button" className={isReported ? styles.reportedTrue : styles.reported} onClick={report} type="submit">{reported}</button>
+      {isReported ? <Icon className={styles.flag} icon={flagSolid} /> : null}
     </div>
   );
 };
