@@ -73,12 +73,15 @@ const Overview = (props) => {
   const setPriceDisplay = () => {
     if (salePriceOfChoice !== null) {
       return (
-        salePriceOfChoice
+        <>
+          <div className={styles.salePrice}>{salePriceOfChoice}</div>
+          <div className={styles.strikeThroughPrice}>{originalPriceOfChoice}</div>
+        </>
       );
     }
 
     return (
-      originalPriceOfChoice
+      <div>{originalPriceOfChoice}</div>
     );
   };
 

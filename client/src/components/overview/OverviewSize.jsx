@@ -5,11 +5,6 @@ import OverviewCartModal from './OverviewCartModal';
 
 
 const OverviewSize = (props) => {
-  // STILL TO DO:
-
-  // If "Select Size" is still present on size dropdown open size drop down and display message above drop down saying "Please select a size"
-  // Make a "X" button to close cart
-
   const { skuOfChoice, styleChoice, name } = props;
 
   const [currentSize, setCurrentSize] = useState('');
@@ -43,6 +38,7 @@ const OverviewSize = (props) => {
         skuIds.push(skuIdsOfChoice[i]);
       }
     }
+    setCartButtonClicked(false);
     setCurrentSize('Select Size');
     setAllSizesAndQuantities(sizesAndQuantities);
     setAllSkuIds(skuIds);
@@ -118,9 +114,6 @@ const OverviewSize = (props) => {
     if (currentSize !== 'Select Size') {
       setIsOpen(true);
     }
-    // Create functionality to open select size dropdown and create a message above size dropdown saying "Please select a size"
-    // setIsOpen(false);
-    console.log('Please select a size');
   };
 
   const onClose = (event) => {
@@ -136,12 +129,14 @@ const OverviewSize = (props) => {
       });
 
     setIsOpen(false);
+    setCartButtonClicked(false);
   };
 
   const exitCart = (event) => {
     event.preventDefault();
 
     setIsOpen(false);
+    setCartButtonClicked(false);
   };
 
   // const cartCheck = (event) => {
