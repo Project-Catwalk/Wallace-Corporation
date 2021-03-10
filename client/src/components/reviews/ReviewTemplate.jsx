@@ -21,7 +21,7 @@ const ReviewTemplate = ({ review }) => {
         {(review.response)
           ? (
             <div className={styles.templateResponseFromSeller}>
-              <p style={{ margin: '0px', fontWeight: 'bolder', padding: '10px 10px 0 10px' }}>Response from Seller:</p>
+              <p style={{ margin: '0px', fontWeight: 'bolder', padding: '10px 10px 0 10px', fontSize: '15px' }}>Response from seller:</p>
               <p style={{ margin: '0px', padding: '10px', fontSize: '15px' }}>{review.response}</p>
             </div>
           )

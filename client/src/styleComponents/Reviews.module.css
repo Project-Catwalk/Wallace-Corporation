@@ -25,7 +25,7 @@
 .parentBreakdown {
   grid-column: 1;
   grid-row: 1/4;
-  background-color: #f8beb97e;
+  background-color: #f8beb99c;
 }
 
 .reviewTemplate {
@@ -108,8 +108,8 @@
 .starRating {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
-  font-size: 20px;
-  height: 20px;
+  font-size: 15px;
+  height: 15px;
   width: 100px;
   margin: 0;
   position: relative;
@@ -117,7 +117,7 @@
   text-shadow: 0px 1px 0 #a2a2a2;
 }
 .starRatingTop {
-  color: #ebd61f;
+  color: #f0e36c;
   padding: 0;
   position: absolute;
   z-index: 1;
@@ -160,14 +160,14 @@ progress[value]::-webkit-progress-bar {
   width: 70%;
   height: 8px;
   position: relative;
-  background-color: #e0dbdb;
+  background-color: #c5c5c5;
   border-radius: 16px;
   display: inline-block;
   margin-left: 5px;
   margin-right: 5px;
 }
 .progressbar {
-  background-color: #99ee93;
+  background-color: #7bc575;
   height: 100%;
   position: absolute;
   line-height: inherit;
@@ -178,18 +178,22 @@ progress[value]::-webkit-progress-bar {
   width: 70%;
   height: 8px;
   position: relative;
-  background-color: #e0dbdb;
+  background-color: #c5c5c5;
   border-radius: 16px;
   display: inline-block;
   margin-left: 15%;
   margin-right: 15%;
 }
 .progressbarChars {
-  background-color: #99ee93;
+  /* background-color: #7bc575; */
   height: 100%;
   position: absolute;
-  line-height: inherit;
-  border-radius: 16px;
+  line-height: 10px;
+  /* border-radius: 16px; */
+  width: 2%;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 17px solid #7bc575;
 }
 
 .breakdownGrid {

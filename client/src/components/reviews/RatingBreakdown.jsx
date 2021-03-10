@@ -77,7 +77,7 @@ const RatingBreakdown = ({
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
-          <h4 className={styles.breakdownRecommended}>{recommend}% recommend this product</h4>
+          <h4 className={styles.breakdownRecommended}>{recommend}% of reviews recommend this product</h4>
           <h4 className={styles.breakdownSubheader}>
             Rating Breakdown: (out of {total})
           </h4>
@@ -87,7 +87,7 @@ const RatingBreakdown = ({
               return (
                 <div key={star[0]}>
                   <span
-                    className={styles.starCount}
+                    className={`${styles.starCount} ${styles.comment}`}
                     role="presentation"
                     onKeyDown={handleFilters}
                     onClick={() => {
@@ -99,7 +99,7 @@ const RatingBreakdown = ({
                   <div className={styles.progressContainer}>
                     <div className={styles.progressbar} style={{ width: avg }} />
                   </div>
-                  <span style={{ fontStyle: 'italic' }}>{star[1]}</span>
+                  <span className={styles.comment} style={{ fontStyle: 'italic' }}>{star[1]}</span>
                   <br />
                 </div>
               );
@@ -129,10 +129,10 @@ const RatingBreakdown = ({
                 <div key={char[0]} className={styles.breakdownCharacteristics} style={{ margin: '0' }}>
                   <div style={{ margin: '2px', paddingLeft: '13px' }}>{char[0]}</div>
                   <div className={styles.progressContainerChars}>
-                    <div className={styles.progressbarChars} style={{ paddingLeft: value }} />
+                    <div className={styles.progressbarChars} style={{ left: `${value}%` }} />
                   </div>
                   <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
-                    <span className={styles.comment} style={{ marginLeft: '5%' }}>(1) {charObject[char[0]][1]}</span>
+                    <span className={styles.comment} style={{ marginLeft: '9%' }}>(1) {charObject[char[0]][1]}</span>
                     <span className={styles.comment}>(5) {charObject[char[0]][5]}</span>
                   </div>
                   <br />
