@@ -181,7 +181,11 @@ img {
 }
 
 .styleButtonsOverlay {
-
+  background-color: #f2b694;
+  border-radius: 50%;
+  position: relative;
+  top: -42px;
+  left: 101px;
 }
 
 .sizeDropDown {

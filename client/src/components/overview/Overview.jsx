@@ -20,6 +20,7 @@ const Overview = (props) => {
   const [salePriceOfChoice, setSalePriceOfChoice] = useState('');
   const [photos, setPhotos] = useState([]);
   const [thumbnailPhotos, setThumbnailPhotos] = useState([]);
+  const [styleImgSelected, setStyleImgSelected] = useState('');
 
   const defaultStyle = productStyles.filter((style) => style['default?']);
 
@@ -28,6 +29,7 @@ const Overview = (props) => {
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
       setPhotos(defaultStyle[0].photos);
+      setStyleImgSelected(defaultStyle[0].photos[0].thumbnail_url);
 
       const thumbnails = [];
 
@@ -64,6 +66,7 @@ const Overview = (props) => {
     for (let i = 0; i < productStyles.length; i++) {
       if (event.target.src === productStyles[i].photos[0].thumbnail_url) {
         setStyleChoice(productStyles[i].name);
+        setStyleImgSelected(event.target.src);
       }
     }
   };
@@ -111,7 +114,7 @@ const Overview = (props) => {
           <div style={{ paddingLeft: '5px' }}>Style: {styleChoice}</div>
           <div className={styles.productStyles}>
             {thumbnailPhotos.map((styleNamePic, index) =>
-              <OverviewCheckmark styleNamePic={styleNamePic} styleButtonHandler={styleButtonHandler} styleChoice={styleChoice} key={index.toString()} />)};
+              <OverviewCheckmark styleNamePic={styleNamePic} styleButtonHandler={styleButtonHandler} styleChoice={styleChoice} key={index.toString()} styleImgSelected={styleImgSelected} />)}
           </div>
           <div>
             <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
