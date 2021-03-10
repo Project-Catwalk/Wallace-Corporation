@@ -97,10 +97,6 @@ const ReviewsModal = ({
     }
   };
 
-  // const clearForm = () => {
-  //   setReview(state);
-  // };
-
   return (
     (metaReviews && review && review.photos)
       ? (
@@ -131,7 +127,6 @@ const ReviewsModal = ({
                 className={styles.closeModal}
                 onClick={() => {
                   onClose();
-                  // clearForm();
                 }}
               >
                 x
@@ -170,6 +165,7 @@ const ReviewsModal = ({
                   maxLength="60"
                   placeholder="Example: Best purchase ever!"
                   type="text"
+                  style={{ fontSize: '12px' }}
                 />
                 <p>Review Body: *</p>
                 <textarea
@@ -197,6 +193,7 @@ const ReviewsModal = ({
                   maxLength="60"
                   type="text"
                   placeholder="Example: jackson11!"
+                  style={{ fontSize: '12px' }}
                 />
                 <p className={styles.finePrint}>{review.name.length > 0 ? 'For privacy reasons, do not use your full name or email address' : ''}</p>
                 <p>What is your email? *</p>
@@ -207,6 +204,7 @@ const ReviewsModal = ({
                   maxLength="60"
                   type="text"
                   placeholder="Example: jackson11@email.com"
+                  style={{ fontSize: '12px' }}
                 />
                 <p className={styles.finePrint}>{review.email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
                 <div />
