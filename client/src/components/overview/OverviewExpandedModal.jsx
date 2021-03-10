@@ -4,7 +4,7 @@ import styles from '../../styleComponents/Overview.module.css';
 const OverviewExpandedModal = (props) => {
   // STILL TO DO:
 
-  // Need to make thumbnail icons instead of images show up on expanded view (think little dots, highlighted to demonstrate which image is selected)
+  // Need to make thumbnail icons instead of images show up on expanded view (pagination)
   // Need up and down arrows for the thumbnails to slide the image by fixed amount of pixels
   // Need to have parallax/scroll effect on zoomed in view of main image
   // Add accessibility to the click handler

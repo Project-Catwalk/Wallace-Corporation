@@ -21,7 +21,7 @@ const OverviewSize = (props) => {
   const [countChosen, setCountChosen] = useState(1);
   const [sku_id, setSku_id] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [cartButtonClicked, setCartButtonClicked] = useState(false);
 
   useEffect(() => {
     const skuWithoutNumber = Object.values(skuOfChoice);
@@ -43,11 +43,10 @@ const OverviewSize = (props) => {
         skuIds.push(skuIdsOfChoice[i]);
       }
     }
-
+    setCurrentSize('Select Size');
     setAllSizesAndQuantities(sizesAndQuantities);
     setAllSkuIds(skuIds);
   }, [skuOfChoice, styleChoice]);
-
 
   const selectedSizeHandler = (event) => {
     event.preventDefault();
@@ -63,20 +62,6 @@ const OverviewSize = (props) => {
 
     setCurrentSize(event.target.value);
   };
-
-  // Line 43 is how to disable a button
-  // function App() {
-
-  //   const [name, setName] = useState('');
-  //   const nameChange = e => setName(e.target.value);
-
-  //   return (
-  //     <div className="App">
-  //       <input value={name} onChange={nameChange} placeholder="Name"/>
-  //       <button disabled={!name}>Search</button>
-  //     </div>
-  //   );
-  // }
 
   useEffect(() => {
     if (currentQuantityAvailable === null) {
@@ -128,12 +113,14 @@ const OverviewSize = (props) => {
   const handleCart = (event) => {
     event.preventDefault();
 
-    if (currentSize === 'Select Size') {
-      // Create functionality to open select size dropdown and create a message above size dropdown saying "Please select a size"
-      console.log('Please select a size');
-    }
+    setCartButtonClicked(true);
 
-    setIsOpen(true);
+    if (currentSize !== 'Select Size') {
+      setIsOpen(true);
+    }
+    // Create functionality to open select size dropdown and create a message above size dropdown saying "Please select a size"
+    // setIsOpen(false);
+    console.log('Please select a size');
   };
 
   const onClose = (event) => {
@@ -172,8 +159,13 @@ const OverviewSize = (props) => {
 
   return (
     <>
+      {(currentSize === 'Select Size' && cartButtonClicked === true)
+        ? (
+          <div className={styles.hiddenCartSentence}>Please select a size</div>
+        )
+        : null}
       <select onChange={selectedSizeHandler} className={styles.sizeDropDown}>
-        <option style={ {paddingLeft: '5px'} }>Select Size</option>
+        <option style={{ paddingLeft: '5px' }}>Select Size</option>
         {allSizesAndQuantities.map((productSize, index) => (
           <option key={index}>{productSize.size}</option>
         ))}

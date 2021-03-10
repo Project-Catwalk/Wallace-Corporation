@@ -172,8 +172,8 @@ img {
 .stylesButtonsImgs {
   display: inline-block;
   flex: 1 0 21%;
-  height: 100px;
-  max-width: 100px;
+  height: 90px;
+  max-width: 90px;
   padding: 4px;
   cursor: pointer;
   border-radius: 50%;
@@ -186,6 +186,11 @@ img {
   position: relative;
   top: -42px;
   left: 101px;
+}
+
+.hiddenCartSentence {
+  margin-top: 6%;
+  color: red;
 }
 
 .sizeDropDown {
