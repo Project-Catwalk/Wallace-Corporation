@@ -28,56 +28,28 @@ img {
   overflow: hidden;
 }
 
-.upButton {
-  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  margin-left: 15px;
-  background-color: transparent;
-  border-left: 2px solid rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgba(0, 0, 0, 0.3);
-  transform: translateY(25%) rotate(225deg);
-  height: 12px;
-  width: 12px;
-}
-
-.downButton {
-  /* NEED TO CHANGE IMAGE TO DOWNLOADED ONE */
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  background-color: transparent;
-  border-left: 2px solid rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgba(0, 0, 0, 0.3);
-  transform: translateY(25%) rotate(45deg);
-  height: 12px;
-  width: 12px;
-}
-
 .mainDisplayButtonLeft {
   text-decoration: none;
-  /* display: inline-block; */
-  top: 100px;
-  left: 300px;
+  position: absolute;
+  top: 500px;
+  left: 100px;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: #a8bfbf;
   color: black;
+  z-index: 1000;
 }
 
 .mainDisplayButtonRight {
   text-decoration: none;
-  /* display: inline-block; */
-  top: 100px;
-  left: 500px;
+  position: absolute;
+  top: 500px;
+  left: 850px;
   padding: 8px 16px;
-  /* border: 3px solid; */
+  border: 3px solid;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: #a8bfbf;
   color: black;
 }
 
@@ -89,24 +61,45 @@ img {
   padding: 2px;
   max-height: 400px;
   max-width: fit-content;
-  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  /* overflow: hidden; */
 }
 
 .slider {
   position: absolute;
-  top: 32%;
+  top: 41.5%;
   left: 2%;
   width: 50px;
   height: 409px;
-  border: solid;
-  border-color: black;
   overflow: hidden;
+}
+
+.upButton {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 275px;
+  left: 38px;
+  z-index: 1000;
+  background-color: #a8bfbf;
+}
+
+.downButton {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 725px;
+  left: 38px;
+  background-color: #a8bfbf;
 }
 
 .thumbnailImg {
   height: 56px;
   padding: 1px;
+  outline: black;
   opacity: 0.5;
+  transition-duration: 1s;
 }
 
 .thumbnailImg:hover {
@@ -119,6 +112,7 @@ img {
 
 .active {
   opacity: 1;
+  transition-duration: 1s;
 }
 
 .slogan {
@@ -140,9 +134,8 @@ img {
 }
 
 .reviewsButton {
-  /* display: flex; */
-  justify-self: center;
-
+  position: relative;
+  left: 176px;
   margin-top: 5px;
   background: none!important;
   border: none;
@@ -170,30 +163,54 @@ img {
   padding-left: 5px;
 }
 
+.salePrice {
+  color: red;
+}
+
+.strikeThroughPrice {
+  text-decoration: line-through;
+}
+
 .productStyles {
   margin-top: 6%;
   margin-bottom: 6%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-left: 5px;
+  margin-left: 5px;
 }
 
 .stylesButtonsImgs {
   display: inline-block;
   flex: 1 0 21%;
-  height: 100px;
-  max-width: 100px;
+  height: 90px;
+  width: 90px;
   padding: 4px;
+  margin-left: 5px;
   cursor: pointer;
   border-radius: 50%;
   align-self: center;
+}
+
+.styleButtonsOverlay {
+  background-color: #f2b694;
+  border-radius: 50%;
+  position: relative;
+  top: -42px;
+  left: 90px;
+}
+
+.hiddenCartSentence {
+  margin-top: 6%;
+  color: red;
 }
 
 .sizeDropDown {
   margin-top: 6%;
   margin-bottom: 6%;
   padding-left: 5px;
+  position: relative;
+  left: 5px;
 }
 
 .quantityDropDown {
@@ -207,6 +224,20 @@ img {
   margin-top: 6%;
   margin-bottom: 3%;
   padding-left: 5px;
+}
+
+.cartXToClose{
+  cursor: pointer;
+  position: absolute;
+  left: 950px;
+
+}
+
+.mainModalXToClose{
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 950px;
 }
 
 .overviewFooter {
