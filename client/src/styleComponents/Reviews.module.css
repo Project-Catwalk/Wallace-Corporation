@@ -7,7 +7,6 @@
 }
 
 .parentHeader {
-  background-color: #f8beb97e;
   grid-column: 2;
   grid-row: 1/2;
 }
@@ -26,7 +25,7 @@
 .parentBreakdown {
   grid-column: 1;
   grid-row: 1/4;
-  background-color: #f2b694;
+  background-color: #f8beb97e;
 }
 
 .reviewTemplate {
