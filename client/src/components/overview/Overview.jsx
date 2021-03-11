@@ -70,14 +70,16 @@ const Overview = (props) => {
     if (salePriceOfChoice !== null) {
       return (
         <>
-          <div className={styles.salePrice}>{'$' + salePriceOfChoice}</div>
-          <div className={styles.strikeThroughPrice}>{'$' + originalPriceOfChoice}</div>
+          <p className={styles.salePrice}>{'$' + salePriceOfChoice}</p>
+          <p className={styles.strikeThroughPrice}>{'$' + originalPriceOfChoice}</p>
         </>
       );
     }
 
     return (
-      <div>{'$' + originalPriceOfChoice}</div>
+      <>
+        {'$' + originalPriceOfChoice}
+      </>
     );
   };
 
@@ -101,7 +103,7 @@ const Overview = (props) => {
             {name}
           </div>
           <div className={styles.productPrice}>
-            <p>{setPriceDisplay()}</p>
+            <div>{setPriceDisplay()}</div>
           </div>
           <div style={{ paddingLeft: '5px' }}>Style: {styleChoice}</div>
           <div className={styles.productStyles}>

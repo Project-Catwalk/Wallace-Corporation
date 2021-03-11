@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 import RatingBreakdown from '../reviews/RatingBreakdown';
 import StarRating from '../StarRating';
