@@ -172,6 +172,7 @@ progress[value]::-webkit-progress-bar {
   position: absolute;
   line-height: inherit;
   border-radius: 16px;
+  max-width: 100%;
 }
 
 .progressContainerChars {
