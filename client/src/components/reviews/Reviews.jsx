@@ -84,13 +84,13 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
   };
 
   useEffect(() => {
-    getReviews(productId);
+    getReviews(20101);
     setExpanded(expanded);
   }, [sort]);
 
   useEffect(() => {
-    getMetaReviews(productId);
-    getReviews(productId);
+    getMetaReviews(20101);
+    getReviews(20101);
   }, [productId]);
 
   useEffect(() => {
