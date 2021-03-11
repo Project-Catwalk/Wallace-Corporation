@@ -71,9 +71,8 @@ const RatingBreakdown = ({
   return (
     (metaReviews && average && characteristics)
       ? (
-        
         <div className={styles.breakdownGrid} data-testid="breakdown-render">
-          <h4 className={styles.breakdownHeader}>Ratings & Reviews</h4>
+          <h4 id="scrollTarget" className={styles.breakdownHeader}>Ratings & Reviews</h4>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
           </div>
