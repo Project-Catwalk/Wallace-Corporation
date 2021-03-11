@@ -54,7 +54,6 @@ const ReviewsModal = ({
     // }
     if (finalReview.photos.length === 0) {
       axios.post('/reviews', finalReview)
-        .then((data) => console.log('1st: ', data))
         .then(() => getReviews(productId))
         .then(() => onClose())
         .catch((err) => console.log(err));
@@ -81,7 +80,6 @@ const ReviewsModal = ({
           .catch(console.log);
       })
         .then(() => axios.post('/reviews', finalReview))
-        .then((data) => console.log('2st: ', data))
         .then(() => getReviews(productId))
         .then(() => onClose())
         .catch((err) => console.log(err));
