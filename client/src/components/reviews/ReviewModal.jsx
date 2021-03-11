@@ -19,7 +19,7 @@ const ReviewsModal = ({
     photos: [],
     characteristics: {},
   });
-  console.log(productId)
+
   const [thumbnails, setThumbnails] = useState([]);
   const [error, setError] = useState({
     email: '',
