@@ -36,9 +36,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20104);
-    this.getStyles(20104);
-    this.getRelated(20104);
+    this.defaultProduct(20101);
+    this.getStyles(20101);
+    this.getRelated(20101);
   }
 
   handleReviewAverage(average) {

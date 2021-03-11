@@ -19,6 +19,7 @@ const ReviewsModal = ({
     photos: [],
     characteristics: {},
   });
+  console.log(productId)
   const [thumbnails, setThumbnails] = useState([]);
   const [error, setError] = useState({
     email: '',
@@ -43,40 +44,48 @@ const ReviewsModal = ({
     const finalReview = { ...review };
     const promises = [];
 
-    if (!validEmailRegex.test(finalReview.email)) {
-      setError({ ...error, email: '*You must enter a valid email' });
-      return;
-    }
+    // if (!validEmailRegex.test(finalReview.email)) {
+    //   setError({ ...error, email: '*You must enter a valid email' });
+    //   return;
+    // }
 
-    if (finalReview.body.length < 50 || finalReview.rating === '' || finalReview.recommend === '' || finalReview.name === '' || Object.keys(finalReview.characteristics) !== Object.keys(metaReviews.characteristics)) {
-      setError({ ...error, missingFields: '*One or more mandatory fields is missing' });
-      return;
-    }
-
-    finalReview.photos.map((photo) => {
-      if (photo.size > 100000) {
-        setError({ ...error, photoSize: '*The images selected are invalid or unable to be uploaded' });
-        return;
-      }
-      const payload = {
-        name: photo.name,
-        data: '',
-      };
-      const promise = toBase64(photo)
-        .then((result) => payload.data = result.split(',')[1])
-        .then(() => axios.post('/upload_images', payload))
-        .then(({ data }) => data)
-        .catch(console.log);
-      promises.push(promise);
-      Promise.all(promises)
-        .then((results) => {
-          finalReview.photos = results;
-        })
-        .then(() => axios.post('/reviews', finalReview))
+    // if (finalReview.body.length < 50 || finalReview.rating === '' || finalReview.recommend === '' || finalReview.name === '' || Object.keys(finalReview.characteristics) !== Object.keys(metaReviews.characteristics)) {
+    //   setError({ ...error, missingFields: '*One or more mandatory fields is missing' });
+    // }
+    if (finalReview.photos.length === 0) {
+      axios.post('/reviews', finalReview)
+        .then((data) => console.log('1st: ', data))
         .then(() => getReviews(productId))
         .then(() => onClose())
-        .catch(console.log);
-    });
+        .catch((err) => console.log(err));
+    } else {
+      finalReview.photos.map((photo) => {
+        if (photo.size > 100000) {
+          setError({ ...error, photoSize: '*The images selected are invalid or unable to be uploaded' });
+          return;
+        }
+        const payload = {
+          name: photo.name,
+          data: '',
+        };
+        const promise = toBase64(photo)
+          .then((result) => payload.data = result.split(',')[1])
+          .then(() => axios.post('/upload_images', payload))
+          .then(({ data }) => data)
+          .catch(console.log);
+        promises.push(promise);
+        Promise.all(promises)
+          .then((results) => {
+            finalReview.photos = results;
+          })
+          .catch(console.log);
+      })
+        .then(() => axios.post('/reviews', finalReview))
+        .then((data) => console.log('2st: ', data))
+        .then(() => getReviews(productId))
+        .then(() => onClose())
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleCountChange = (e) => {
