@@ -53,9 +53,11 @@ const OverviewExpandedModal = (props) => {
   return (
     <>
       <div className={styles.modalOverlay} />
-      <div className={styles.modal} ref={imgRef} onClick={zoom} onMouseMove={mouseMove} style={{ height, width, cursor: cursorString}}>
-        {children}
-        <p className={styles.mainModalXToClose} onClick={close}>X</p>
+      <div className={styles.modal} ref={imgRef} onClick={zoom} onMouseMove={mouseMove} style={{ height: height, width: width, cursor: cursorString}}>
+        <div className={styles.expandedImgAndX}>
+          <p className={styles.mainModalXToClose} onClick={close}>X</p>
+          {children}
+        </div>
       </div>
     </>
   );

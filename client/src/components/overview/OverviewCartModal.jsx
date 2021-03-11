@@ -11,7 +11,7 @@ const OverviewCartModal = (props) => {
   return (
     <div>
       <div className={styles.cartOverlay} />
-      <div className={styles.modal}>
+      <div className={styles.cartModal}>
         <div onClick={exitCart} className={styles.cartXToClose}>X</div>
         {children}
         <br />
