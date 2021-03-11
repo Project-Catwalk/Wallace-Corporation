@@ -92,7 +92,6 @@ describe('Rating Breakdown', () => {
     const { queryByText } = render(<RatingBreakdown
       reviews={exampleReviews}
       metaReviews={exampleMetaReviews}
-    //   handleStarFilters={handleStarFilters}
       handleReviewAverage={() => console.log('review average')}
       charObject={{
         quality: { 1: '1' },
@@ -104,8 +103,9 @@ describe('Rating Breakdown', () => {
 
 describe('Interactive Stars', () => {
   it('renders to the page correctly', () => {
-    const { queryByText } = render(<InteractiveStars review={{ rating: 0 }} setReview={() => console.log('hi')} />);
-    expect(queryByText('interactive-stars')).toBeTruthy;
+    const { getByText } = render(<InteractiveStars review={{ rating: 3 }} setReview={() => console.log('hi')} />);
+    
+    expect(getByText('hi')).toBeTruthy;
   });
 });
 
