@@ -29,9 +29,7 @@ img {
 .mainDisplayButtonLeft {
   text-decoration: none;
   position: absolute;
-  /* top: 500px; */
   top: 67%;
-  /* left: 100px; */
   left: 6%;
   padding: 8px 16px;
   border: 3px solid;
@@ -44,9 +42,7 @@ img {
 .mainDisplayButtonRight {
   text-decoration: none;
   position: absolute;
-  /* top: 500px; */
   top: 67%;
-  /* left: 850px; */
   left: 63%;
   padding: 8px 16px;
   border: 3px solid;
@@ -61,38 +57,31 @@ img {
   background-color: transparent;
   width: 45px;
   padding: 2px;
-  /* max-height: 400px; */
   max-width: fit-content;
   position: relative;
-  /* top: 0px; */
-  /* border: black; */
 }
 
 .slider {
-  position: absolute;
-  top: 41%;
-  left: 2%;
+  position: relative;
+  top: -47%;
+  left: 2.5%;
   width: 50px;
   height: 409px;
   overflow: hidden;
 }
 
 .upButton {
-  position: absolute;
-  /* top: 275px; */
-  top: 37%;
-  /* left: 38px; */
-  left: 2.7%;
+  position: relative;
+  top: -47%;
+  left: 3.6%;
   z-index: 1000;
   background-color: #a8bfbf;
 }
 
 .downButton {
   position: relative;
-  /* top: 725px; */
-  top: -14.6%;
-  /* left: 34px; */
-  left: 4%;
+  top: -46.9%;
+  left: 3.5%;
   background-color: #a8bfbf;
 }
 
@@ -136,8 +125,6 @@ img {
 }
 
 .reviewsButton {
-  /* position: relative; */
-  /* left: 176px; */
   background-color: #a8bfbf;
   margin-top: 5px;
   background: none!important;
@@ -229,20 +216,6 @@ img {
   padding-left: 5px;
 }
 
-.cartXToClose{
-  cursor: pointer;
-  position: absolute;
-  left: 950px;
-
-}
-
-.mainModalXToClose{
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 950px;
-}
-
 .overviewFooter {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -276,14 +249,13 @@ img {
 
 .modal {
   position: fixed;
-  top: 10%;
+  display: flex;
+  top: 5%;
   left: 10%;
   bottom: 10%;
   right: 10%;
-  transform: 'translate(-50%, -50%)';
-  background-color: white;
-  padding: 15px;
   z-index: 1000;
+  background: transparent;
 }
 
 .modalOverlay {
@@ -293,7 +265,17 @@ img {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.50);
-  z-index: 999;
+  z-index: 1000;
+}
+
+.expandedImgAndX {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mainModalXToClose{
+  cursor: pointer;
 }
 
 .cartModal {
@@ -317,4 +299,11 @@ img {
   bottom: 0;
   background: rgba(0, 0, 0, 0.50);
   z-index: 999;
+}
+
+.cartXToClose{
+  cursor: pointer;
+  /* position: relative;
+  top: 20%;
+  left: 80%; */
 }
