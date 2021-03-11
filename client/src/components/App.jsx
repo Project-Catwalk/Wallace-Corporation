@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 // import QA from './qa/QA';
 const QA = lazy(() => import('./qa/QA'));
-const Reviews = lazy(() => import('./reviews/Reviews'));
-// import Reviews from './reviews/Reviews';
+// const Reviews = lazy(() => import('./reviews/Reviews'));
+import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
 import StarRating from './StarRating';
 import style from '../styleComponents/App.module.css';
@@ -36,9 +36,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.defaultProduct(20104);
-    this.getStyles(20104);
-    this.getRelated(20104);
+    this.defaultProduct(20101);
+    this.getStyles(20101);
+    this.getRelated(20101);
   }
 
   handleReviewAverage(average) {
@@ -121,13 +121,13 @@ class App extends React.Component {
               <Suspense fallback={<div>LOADING</div>}>
                 <QA productId={id} />
               </Suspense>
-              <Suspense fallback={<div>LOADING</div>}>
-                <Reviews
-                  productId={id}
-                  name={name}
-                  handleReviewAverage={this.handleReviewAverage}
-                />
-              </Suspense>
+              {/* <Suspense fallback={<div>LOADING</div>}> */}
+              <Reviews
+                productId={id}
+                name={name}
+                handleReviewAverage={this.handleReviewAverage}
+              />
+              {/* </Suspense> */}
               <div className={style.footer}>
                 <div className={style.emailSignUp}>
                   <h2 className={style.bottomEmailHeading}>Sign up for exclusive offers</h2>

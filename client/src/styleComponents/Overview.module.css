@@ -2,8 +2,6 @@
   background-color: #f2b694;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  /* grid-template-rows: 1fr min-content;
-  grid-auto-rows: minmax(50px); */
 }
 
 .mainDisplay {
@@ -31,8 +29,10 @@ img {
 .mainDisplayButtonLeft {
   text-decoration: none;
   position: absolute;
-  top: 500px;
-  left: 100px;
+  /* top: 500px; */
+  top: 67%;
+  /* left: 100px; */
+  left: 6%;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
@@ -44,8 +44,10 @@ img {
 .mainDisplayButtonRight {
   text-decoration: none;
   position: absolute;
-  top: 500px;
-  left: 850px;
+  /* top: 500px; */
+  top: 67%;
+  /* left: 850px; */
+  left: 63%;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
@@ -59,16 +61,16 @@ img {
   background-color: transparent;
   width: 45px;
   padding: 2px;
-  max-height: 400px;
+  /* max-height: 400px; */
   max-width: fit-content;
-  position: absolute;
-  top: 0px;
-  /* overflow: hidden; */
+  position: relative;
+  /* top: 0px; */
+  /* border: black; */
 }
 
 .slider {
   position: absolute;
-  top: 41.5%;
+  top: 41%;
   left: 2%;
   width: 50px;
   height: 409px;
@@ -76,21 +78,21 @@ img {
 }
 
 .upButton {
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  top: 275px;
-  left: 38px;
+  /* top: 275px; */
+  top: 37%;
+  /* left: 38px; */
+  left: 2.7%;
   z-index: 1000;
   background-color: #a8bfbf;
 }
 
 .downButton {
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 725px;
-  left: 38px;
+  position: relative;
+  /* top: 725px; */
+  top: -14.6%;
+  /* left: 34px; */
+  left: 4%;
   background-color: #a8bfbf;
 }
 
@@ -134,8 +136,9 @@ img {
 }
 
 .reviewsButton {
-  position: relative;
-  left: 176px;
+  /* position: relative; */
+  /* left: 176px; */
+  background-color: #a8bfbf;
   margin-top: 5px;
   background: none!important;
   border: none;
@@ -186,7 +189,7 @@ img {
   height: 90px;
   width: 90px;
   padding: 4px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   cursor: pointer;
   border-radius: 50%;
   align-self: center;
@@ -196,8 +199,8 @@ img {
   background-color: #f2b694;
   border-radius: 50%;
   position: relative;
-  top: -42px;
-  left: 90px;
+  top: -37%;
+  left: 75%;
 }
 
 .hiddenCartSentence {

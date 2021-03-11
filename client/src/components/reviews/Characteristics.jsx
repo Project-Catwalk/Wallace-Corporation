@@ -18,7 +18,7 @@ const Characteristics = ({ characteristics, charObject, setReview, review }) => 
       ? Object.entries(characteristics).map((x) => (
         <div key={x[1].id} onChange={handleCharacteristics} data-testid="characteristic-map">
           <p>{x[0]} *</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 30%)', fontSize: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 25%)', fontSize: '10px' }}>
             <div style={{ display: 'grid', gridTemplateRows: 'auto auto', gridColumn: '1/2' }}>
               <label style={{ gridRow: '2/3', justifySelf: 'center' }} htmlFor="one">{charObject[x[0]][1]}</label>
               <input
