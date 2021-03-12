@@ -7,9 +7,9 @@ const port = 3000;
 const axios = require('axios');
 const path = require('path');
 const morgan = require('morgan');
-const keys = require('./config.js');
-const { BlobServiceClient } = require('@azure/storage-blob');
 const { v1: uuidv1 } = require('uuid');
+const { BlobServiceClient } = require('@azure/storage-blob');
+const keys = require('./config.js');
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
@@ -35,7 +35,7 @@ app.get('/products/:product_id', (req, res) => {
     .catch(console.error);
 });
 
-//OVERVIEW
+// OVERVIEW
 app.get('/products/:product_id/styles', (req, res) => {
   let { product_id } = req.params;
 
@@ -76,7 +76,7 @@ app.post('/cart', (req, res) => {
     });
 });
 
-//REVIEWS
+// REVIEWS
 app.get('/reviews/sort/:id/:sort', (req, res) => {
   const { id, sort } = req.params;
   const lowerSort = sort.toLowerCase();
@@ -162,7 +162,7 @@ app.post('/qa/questions', (req, res) => {
     .catch(console.log);
 });
 
-app.post(`/qa/questions/:question_id/answers`, (req, res) => {
+app.post('/qa/questions/:question_id/answers', (req, res) => {
   const { question_id } = req.params;
 
   axios.post(`${options.url}/qa/questions/${question_id}/answers`, req.body, options)
@@ -170,7 +170,7 @@ app.post(`/qa/questions/:question_id/answers`, (req, res) => {
     .catch(console.log);
 });
 
-app.post(`/upload_images`, (req, res) => {
+app.post('/upload_images', (req, res) => {
   // Create the BlobServiceClient object which will be used to create a container client
   const blobServiceClient = BlobServiceClient.fromConnectionString(keys.BLOB_SERVICE_KEY);
 
@@ -196,7 +196,7 @@ app.post(`/upload_images`, (req, res) => {
   const data = Buffer.from(req.body.data, 'base64');
   blockBlobClient.upload(data, data.length)
     .then((blobUploadResponse) => {
-      console.log("Blob was uploaded successfully. requestId: ", blobUploadResponse);
+      console.log('Blob was uploaded successfully. requestId: ', blobUploadResponse);
       res.send(`https://louisajeseetest.blob.core.windows.net/louisaandjesse/${blobName}`);
     })
     .catch(console.log);

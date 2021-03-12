@@ -63,7 +63,9 @@ const QA = (props) => {
   const searchQuestions = (value) => {
     if (value.length >= 3) {
       setSearching(true);
-      const found = questions.filter(question => question.question_body.toLowerCase().includes(value.toLowerCase()));
+      const found = questions.filter(
+        (question) => question.question_body.toLowerCase().includes(value.toLowerCase())
+      );
       setDisplayedQuestions(found);
     } else if (expanded) {
       setSearching(false);
@@ -81,15 +83,29 @@ const QA = (props) => {
       </div>
       <div className={qastyles.search}>
         <QASearchBar searchQuestions={searchQuestions} />
-        {questions.length === 0 ? <button data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
+        {questions.length === 0 ? <button type="submit" data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
       </div>
       <div className={qastyles.qaSection}>
-        {displayedQuestions.map((question, idx) => <Question key={idx} productId={productId} getQuestions={getQuestions} question={question} />)}
+        {displayedQuestions.map(
+          (question, idx) => (
+            <Question
+              key={idx}
+              productId={productId}
+              getQuestions={getQuestions}
+              question={question}
+            />
+          ),
+        )}
       </div>
       <div className={qastyles.buttons}>
-        {searching ? null : <button data-testid="show-more-questions-button" className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
-        {questions.length > 0 ? <button data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
-      <QuestionModal productId={productId} getQuestions={getQuestions} onClose={() => setIsOpen(false)} open={isOpen}></QuestionModal>
+        {searching ? null : <button type="submit" data-testid="show-more-questions-button" className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
+        {questions.length > 0 ? <button type="submit" data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
+        <QuestionModal
+          productId={productId}
+          getQuestions={getQuestions}
+          onClose={() => setIsOpen(false)}
+          open={isOpen}
+        />
       </div>
     </div>
   );

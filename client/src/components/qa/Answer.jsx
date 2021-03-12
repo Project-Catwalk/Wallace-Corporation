@@ -21,7 +21,12 @@ const Answer = (props) => {
         {photos.map((photo, idx) => <ExpandedPhotos key={idx} photo={photo} />)}
       </div>
       <div>
-        <p className={qastyles.userAndDate}>by {answerer_name}, {getProperDate(date)}</p>
+        <p className={qastyles.userAndDate}>
+          by
+          {answerer_name}
+          ,
+          {getProperDate(date)}
+        </p>
         <Helpful className={qastyles.answerHelpful} answer_id={id} helpfulness={helpfulness} />
       </div>
     </div>
