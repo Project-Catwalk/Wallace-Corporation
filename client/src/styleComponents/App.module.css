@@ -157,6 +157,7 @@ body {
   z-index: 1000;
   width: 40%;
   border-radius: 10px;
+  min-width: 630px;
   /* transform: translate(50vh, 50vh); */
   transition: all 0.7s ease;
   overflow-y: scroll;
@@ -322,6 +323,17 @@ button:hover {
   grid-template-columns: 6fr 2fr 1fr;
   grid-template-rows: 5fr 1fr;
   margin-top: 1%;
+  /* background-color: black; */
+}
+
+.bottomDarkMode {
+  /* background-color: #736363; */
+  /* height: 300px; */
+  display: grid;
+  grid-template-columns: 6fr 2fr 1fr;
+  grid-template-rows: 5fr 1fr;
+  margin-top: 1%;
+  background-color: black;
 }
 
 .social {
