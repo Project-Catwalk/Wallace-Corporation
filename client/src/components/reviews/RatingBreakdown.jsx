@@ -84,7 +84,9 @@ const RatingBreakdown = ({
           <h4 className={styles.breakdownSubheader}>
             Rating Breakdown: (
             out of
+            {' '}
             {total}
+            {' '}
             )
           </h4>
           <div className={styles.breakdownStarBreakdown}>
@@ -101,6 +103,7 @@ const RatingBreakdown = ({
                     }}
                   >
                     {star[0]}
+                    {' '}
                     Star
                   </span>
                   <div className={styles.progressContainer}>
@@ -121,10 +124,10 @@ const RatingBreakdown = ({
                       key={x}
                     >
                       {x}
+                      {' '}
                       Stars
                     </span>
-                  ),
-                  )}
+                  ))}
                   <br />
                   <span
                     role="presentation"

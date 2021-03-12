@@ -219,7 +219,6 @@ const ReviewsModal = ({
                 <p className={Rstyles.comment}>* Mandatory Fields</p>
                 <p className={styles.finePrint}>{error.email}</p>
                 <p className={styles.finePrint}>{error.photoSize}</p>
-                <p className={styles.finePrint}>{error.missingFields}</p>
                 <button
                   type="submit"
                   className={styles.modalButton}

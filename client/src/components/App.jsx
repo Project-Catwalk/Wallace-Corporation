@@ -125,6 +125,7 @@ class App extends React.Component {
                   productId={id}
                   name={name}
                   handleReviewAverage={this.handleReviewAverage}
+                  average={reviewRating}
                 />
               </Suspense>
               <div className={style.footer}>

@@ -159,6 +159,7 @@ body {
   width: 40%;
   border-radius: 10px;
   /* transform: translate(50vh, 50vh); */
+  min-width: 630px;
   transition: all 0.7s ease;
   overflow-y: scroll;
 }
@@ -168,6 +169,15 @@ body {
   border-radius: 7px;
   padding: 6px;
   font-size: 12px;
+  cursor: pointer;
+}
+
+.modal input {
+  cursor: pointer;
+}
+
+.modal button {
+  cursor: pointer;
 }
 
 .overlay {
@@ -398,16 +408,23 @@ button:hover {
 
 /* photo expansion component */
 .photo {
-  position: relative;
-  top: 5%;
-  left: 10%;
-  max-height: 80%;
-  max-width: 80%;
+  /* position: fixed; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  max-height: 70%;
+  max-width: 70%;
+  min-width: 30%;
   background-color: rgb(92, 85, 85);
   z-index: 1000;
   border-radius: 20px;
-  margin: 20px;
+  /* margin: 20px; */
   overflow-y: scroll;
+  cursor: pointer;
+}
+.photo:hover {
+  opacity: 95%;
 }
 
 .overlayPhoto {
@@ -433,13 +450,13 @@ button:hover {
 }
 
 .bottomButtonLight {
-  background-color: #F2B694;
+  background-color: #f2b694;
   color: white;
 }
 
 .bottomButtonLight:hover {
   background-color: white;
-  border: solid black .025px;
+  border: solid black 0.025px;
   color: black;
 }
 
