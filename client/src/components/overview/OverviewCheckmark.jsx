@@ -2,14 +2,20 @@ import React from 'react';
 import styles from '../../styleComponents/Overview.module.css';
 
 const OverviewCheckmark = (props) => {
-  const { styleNamePic, styleButtonHandler, styleChoice, styleImgSelected, tabIndex } = props;
+  const {
+    styleNamePic,
+    styleButtonHandler,
+    styleChoice,
+    styleImgSelected,
+  } = props;
 
   // ACCESSIBILITY TECHNICALLY PASSING, BUT WON'T CYCLE THROUGH IMAGE BUTTONS
 
   const imgForButton = (
     <input
-      tabIndex={tabIndex}
+      tabIndex={0}
       type="image"
+      role="tab"
       className={styles.stylesButtonsImgs}
       onClick={styleButtonHandler}
       onKeyDown={styleButtonHandler}

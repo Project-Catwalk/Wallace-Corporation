@@ -202,7 +202,7 @@ var Helpful = function Helpful(props) {
 
 /***/ }),
 
-/***/ 3197:
+/***/ 278:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -219,15 +219,11 @@ var react = __webpack_require__(7294);
 // EXTERNAL MODULE: ./node_modules/axios/index.js
 var axios = __webpack_require__(9669);
 var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
-// EXTERNAL MODULE: ./client/src/components/reviews/RatingBreakdown.jsx
-var RatingBreakdown = __webpack_require__(1414);
+// EXTERNAL MODULE: ./client/src/components/StarRating.jsx
+var StarRating = __webpack_require__(9698);
 // EXTERNAL MODULE: ./client/src/styleComponents/Reviews.module.css
 var Reviews_module = __webpack_require__(5981);
-// EXTERNAL MODULE: ./client/src/components/Helpful.jsx + 1 modules
-var Helpful = __webpack_require__(2529);
-// EXTERNAL MODULE: ./client/src/components/ExpandedPhotos.jsx
-var ExpandedPhotos = __webpack_require__(7615);
-;// CONCATENATED MODULE: ./client/src/components/reviews/ReviewTemplate.jsx
+;// CONCATENATED MODULE: ./client/src/components/reviews/RatingBreakdown.jsx
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -244,18 +240,227 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var RatingBreakdown = function RatingBreakdown(_ref) {
+  var reviews = _ref.reviews,
+      metaReviews = _ref.metaReviews,
+      handleStarFilters = _ref.handleStarFilters,
+      handleReviewAverage = _ref.handleReviewAverage,
+      charObject = _ref.charObject;
+  var ratings = metaReviews.ratings,
+      recommended = metaReviews.recommended,
+      characteristics = metaReviews.characteristics;
+
+  var _useState = (0,react.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      average = _useState2[0],
+      setAverage = _useState2[1];
+
+  var _useState3 = (0,react.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      starFilters = _useState4[0],
+      setStarFilters = _useState4[1];
+
+  var _useState5 = (0,react.useState)({
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: ''
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      starBreakdown = _useState6[0],
+      setStarBreakdown = _useState6[1];
+
+  var _useState7 = (0,react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      total = _useState8[0],
+      setTotal = _useState8[1];
+
+  var _useState9 = (0,react.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      recommend = _useState10[0],
+      setRecommend = _useState10[1];
+
+  Object.assign(starBreakdown, ratings);
+
+  var getTotal = function getTotal(obj) {
+    if (obj) {
+      var ratingTotal = Object.values(obj).reduce(function (z, y) {
+        return z += Number(y);
+      }, 0);
+      setTotal(ratingTotal);
+    }
+  };
+
+  var getRecommended = function getRecommended(obj) {
+    if (obj) {
+      var percentRecommended = Math.round(Number(obj["true"]) / (Number(obj["true"]) + Number(obj["false"])) * 100);
+      setRecommend(percentRecommended);
+    }
+  };
+
+  var averageRating = function averageRating() {
+    var reducedRating = reviews.reduce(function (acc, review) {
+      var total = acc + review.rating / 5 * 100;
+      return total;
+    }, 0);
+    var temp = reducedRating / reviews.length;
+    var roundedAvg = Math.round(temp);
+    var avg = Math.round(roundedAvg / 5) * 5;
+    setAverage(avg);
+    handleReviewAverage(avg);
+  };
+
+  var handleFilters = function handleFilters(star) {
+    var currentFilters = starFilters;
+    currentFilters.push(star);
+    setStarFilters(currentFilters);
+    handleStarFilters(starFilters);
+  };
+
+  var removeFilters = function removeFilters() {
+    setStarFilters([]);
+    handleStarFilters([]);
+  };
+
+  (0,react.useEffect)(function () {
+    averageRating();
+    Object.assign(starBreakdown, ratings);
+    getTotal(ratings);
+    getRecommended(recommended);
+  }, [metaReviews]);
+  return metaReviews && average && characteristics ? /*#__PURE__*/react.createElement("div", {
+    className: Reviews_module/* default.breakdownGrid */.Z.breakdownGrid,
+    "data-testid": "breakdown-render"
+  }, /*#__PURE__*/react.createElement("p", {
+    id: "scrollTarget",
+    className: Reviews_module/* default.breakdownHeader */.Z.breakdownHeader
+  }, "Ratings & Reviews"), /*#__PURE__*/react.createElement("div", {
+    className: Reviews_module/* default.breakdownStars */.Z.breakdownStars,
+    style: {
+      justifySelf: 'left'
+    }
+  }, /*#__PURE__*/react.createElement(StarRating/* default */.Z, {
+    average: average
+  })), /*#__PURE__*/react.createElement("h1", {
+    className: Reviews_module/* default.breakdownTotal */.Z.breakdownTotal
+  }, "".concat((average / 20).toFixed(1))), /*#__PURE__*/react.createElement("p", {
+    className: Reviews_module/* default.breakdownRecommended */.Z.breakdownRecommended
+  }, recommend, "% of reviews recommend this product"), /*#__PURE__*/react.createElement("p", {
+    className: Reviews_module/* default.breakdownSubheader */.Z.breakdownSubheader
+  }, "Rating Breakdown: ( out of", total, ")"), /*#__PURE__*/react.createElement("div", {
+    className: Reviews_module/* default.breakdownStarBreakdown */.Z.breakdownStarBreakdown
+  }, Object.entries(starBreakdown).map(function (star) {
+    var avg = Number(star[1]) / 12 * 100;
+    return /*#__PURE__*/react.createElement("div", {
+      key: star[0]
+    }, /*#__PURE__*/react.createElement("span", {
+      className: "".concat(Reviews_module/* default.starCount */.Z.starCount, " ").concat(Reviews_module/* default.comment */.Z.comment),
+      role: "presentation",
+      onKeyDown: handleFilters,
+      onClick: function onClick() {
+        handleFilters(star[0]);
+      }
+    }, star[0], "Star"), /*#__PURE__*/react.createElement("div", {
+      className: Reviews_module/* default.progressContainer */.Z.progressContainer
+    }, /*#__PURE__*/react.createElement("div", {
+      className: Reviews_module/* default.progressbar */.Z.progressbar,
+      style: {
+        width: avg
+      }
+    })), /*#__PURE__*/react.createElement("span", {
+      className: Reviews_module/* default.comment */.Z.comment,
+      style: {
+        fontStyle: 'italic'
+      }
+    }, star[1]), /*#__PURE__*/react.createElement("br", null));
+  }), starFilters.length > 0 ? /*#__PURE__*/react.createElement("div", {
+    className: Reviews_module/* default.comment */.Z.comment
+  }, /*#__PURE__*/react.createElement("span", null, "Current Filters:"), starFilters.map(function (x) {
+    return /*#__PURE__*/react.createElement("span", {
+      style: {
+        padding: '5px'
+      },
+      key: x
+    }, x, "Stars");
+  }), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement("span", {
+    role: "presentation",
+    onKeyDown: removeFilters,
+    className: Reviews_module/* default.starCount */.Z.starCount,
+    onClick: removeFilters
+  }, "Remove all filters")) : null), /*#__PURE__*/react.createElement("div", {
+    className: Reviews_module/* default.breakdownCharacteristics */.Z.breakdownCharacteristics
+  }, Object.entries(characteristics).map(function (_char) {
+    var value = _char[1].value / 5 * 100;
+    return /*#__PURE__*/react.createElement("div", {
+      key: _char[0],
+      className: Reviews_module/* default.breakdownCharacteristics */.Z.breakdownCharacteristics,
+      style: {
+        margin: '0'
+      }
+    }, /*#__PURE__*/react.createElement("div", {
+      style: {
+        margin: '2px',
+        paddingLeft: '13px'
+      }
+    }, _char[0]), /*#__PURE__*/react.createElement("div", {
+      className: Reviews_module/* default.progressContainerChars */.Z.progressContainerChars
+    }, /*#__PURE__*/react.createElement("div", {
+      className: Reviews_module/* default.progressbarChars */.Z.progressbarChars,
+      style: {
+        left: "".concat(value, "%")
+      }
+    })), /*#__PURE__*/react.createElement("div", {
+      style: {
+        display: 'flex',
+        width: '90%',
+        justifyContent: 'space-between'
+      }
+    }, /*#__PURE__*/react.createElement("span", {
+      className: Reviews_module/* default.comment */.Z.comment,
+      style: {
+        marginLeft: '9%'
+      }
+    }, "(1)", charObject[_char[0]][1]), /*#__PURE__*/react.createElement("span", {
+      className: Reviews_module/* default.comment */.Z.comment
+    }, "(5)", charObject[_char[0]][5])), /*#__PURE__*/react.createElement("br", null));
+  }))) : null;
+};
+
+/* harmony default export */ const reviews_RatingBreakdown = (RatingBreakdown);
+// EXTERNAL MODULE: ./client/src/components/Helpful.jsx + 1 modules
+var Helpful = __webpack_require__(2529);
+// EXTERNAL MODULE: ./client/src/components/ExpandedPhotos.jsx
+var ExpandedPhotos = __webpack_require__(7615);
+;// CONCATENATED MODULE: ./client/src/components/reviews/ReviewTemplate.jsx
+function ReviewTemplate_slicedToArray(arr, i) { return ReviewTemplate_arrayWithHoles(arr) || ReviewTemplate_iterableToArrayLimit(arr, i) || ReviewTemplate_unsupportedIterableToArray(arr, i) || ReviewTemplate_nonIterableRest(); }
+
+function ReviewTemplate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function ReviewTemplate_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return ReviewTemplate_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return ReviewTemplate_arrayLikeToArray(o, minLen); }
+
+function ReviewTemplate_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ReviewTemplate_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function ReviewTemplate_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
 
 var ReviewTemplate = function ReviewTemplate(_ref) {
   var review = _ref.review;
 
   var _useState = (0,react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = ReviewTemplate_slicedToArray(_useState, 2),
       expanded = _useState2[0],
       setExpanded = _useState2[1];
 
   return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
     className: Reviews_module/* default.reviewTemplate */.Z.reviewTemplate
-  }, /*#__PURE__*/react.createElement(StarRating, {
+  }, /*#__PURE__*/react.createElement(ReviewTemplate_StarRating, {
     rating: review.rating
   }), /*#__PURE__*/react.createElement("div", {
     className: Reviews_module/* default.templateSummary */.Z.templateSummary
@@ -304,7 +509,7 @@ var ReviewTemplate = function ReviewTemplate(_ref) {
   }, "\u2713 Yes, I recommend this product") : null));
 };
 
-var StarRating = function StarRating(_ref2) {
+var ReviewTemplate_StarRating = function StarRating(_ref2) {
   var rating = _ref2.rating;
   var starPercentage = rating / 5 * 100;
   var roundedPercentage = Math.round(starPercentage * 5) / 5;
@@ -786,7 +991,11 @@ var ReviewsModal = function ReviewsModal(_ref) {
     className: App_module/* default.modal */.Z.modal
   }, /*#__PURE__*/react.createElement("div", {
     className: App_module/* default.modalHeader */.Z.modalHeader
-  }, /*#__PURE__*/react.createElement("h3", null, "Write Your Review"), /*#__PURE__*/react.createElement("p", null, "About the ", name, "..."), /*#__PURE__*/react.createElement("p", {
+  }, /*#__PURE__*/react.createElement("p", {
+    style: {
+      fontWeight: 'bold'
+    }
+  }, "Write Your Review"), /*#__PURE__*/react.createElement("p", null, "About the ", name, "..."), /*#__PURE__*/react.createElement("p", {
     "data-testid": "review-modal",
     role: "presentation",
     className: App_module/* default.closeModal */.Z.closeModal,
@@ -927,8 +1136,6 @@ var ReviewsModal = function ReviewsModal(_ref) {
 };
 
 /* harmony default export */ const ReviewModal = (ReviewsModal);
-// EXTERNAL MODULE: ./client/src/components/StarRating.jsx
-var components_StarRating = __webpack_require__(9698);
 ;// CONCATENATED MODULE: ./client/src/components/reviews/Reviews.jsx
 function Reviews_slicedToArray(arr, i) { return Reviews_arrayWithHoles(arr) || Reviews_iterableToArrayLimit(arr, i) || Reviews_unsupportedIterableToArray(arr, i) || Reviews_nonIterableRest(); }
 
@@ -1097,7 +1304,7 @@ var Reviews = function Reviews(_ref) {
     className: Reviews_module/* default.parentContainer */.Z.parentContainer
   }, /*#__PURE__*/react.createElement("div", {
     className: Reviews_module/* default.parentBreakdown */.Z.parentBreakdown
-  }, /*#__PURE__*/react.createElement(RatingBreakdown/* default */.Z, {
+  }, /*#__PURE__*/react.createElement(reviews_RatingBreakdown, {
     reviews: reviews,
     metaReviews: metaReviews,
     handleStarFilters: handleStarFilters,

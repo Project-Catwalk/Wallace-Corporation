@@ -25,7 +25,7 @@ const OverviewExpandedModal = (props) => {
   const zoom = (event) => {
     event.preventDefault();
 
-    if (event.key === 'Enter' || event.key === 'Spacebar') {
+    if (event.key === 'Enter' || event.key === 'Space bar') {
       const currentHeight = imgRef.current.clientHeight;
       const currentWidth = imgRef.current.clientWidth;
 
