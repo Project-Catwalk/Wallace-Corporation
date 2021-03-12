@@ -138,7 +138,7 @@ const OverviewSize = (props) => {
   const exitCart = (event) => {
     event.preventDefault();
 
-    if (event.key === 'Enter' || event.key === 'Spacebar') {
+    if (event.key === 'Enter' || event.key === 'Space bar') {
       setIsOpen(false);
       setCartButtonClicked(false);
     }
@@ -147,25 +147,6 @@ const OverviewSize = (props) => {
     setCartButtonClicked(false);
   };
 
-  // const cartCheck = (event) => {
-  //   // To make this work, will need to loop over results.data
-  //   // Then, need to use the sku id to compare against stylesArr from parent/parent/parent component
-  //   // Then, populate the fields
-  //   // Then make a new close function that is just an X to get out of the modal without a post req
-  //   event.preventDefault();
-
-  //   axios
-  //     .get('/cart')
-  //     .then((results) => {
-  //       console.log('Results: ', results);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error: ', error);
-  //     });
-
-  //   setIsOpen(true);
-  // };
-
   return (
     <>
       {(currentSize === 'Select Size' && cartButtonClicked === true)
@@ -173,19 +154,18 @@ const OverviewSize = (props) => {
           <div className={styles.hiddenCartSentence}>Please select a size</div>
         )
         : null}
-      <select onChange={selectedSizeHandler} className={styles.sizeDropDown}>
+      <select role="tablist" aria-label="Select size" onChange={selectedSizeHandler} tabIndex={0} className={styles.sizeDropDown}>
         <option style={{ paddingLeft: '5px' }}>Select Size</option>
         {allSizesAndQuantities.map((productSize, index) => (
-          <option key={index}>{productSize.size}</option>
+          <option role="tab" tabIndex={0} key={index}>{productSize.size}</option>
         ))}
       </select>
-      <select onChange={quantitySelected} className={styles.quantityDropDown}>
-        <option disabled>-</option>
-        {quantityAvailable.map((num, index) => <option key={index}>{num}</option>)}
+      <select role="tablist" aria-label="Select quantity" onChange={quantitySelected} tabIndex={0} className={styles.quantityDropDown}>
+        <option role="tab" disabled>-</option>
+        {quantityAvailable.map((num, index) => <option role="tab" tabIndex={0} key={index}>{num}</option>)}
       </select>
-      <div className={styles.cart}>
-        {currentSize !== 'OUT OF STOCK' && (<button type="submit" onClick={handleCart}>Add to Cart</button>)}
-        {/* <button onClick={cartCheck}>Check Cart</button> */}
+      <div role="tablist" className={styles.cart}>
+        {currentSize !== 'OUT OF STOCK' && (<button type="submit" aria-label="Add to cart" role="tab" tabIndex={0} onClick={handleCart}>Add to Cart</button>)}
         <OverviewCartModal open={isOpen} close={onClose} exitCart={exitCart}>
           <form>
             Item:

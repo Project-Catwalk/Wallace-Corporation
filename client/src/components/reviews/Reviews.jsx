@@ -142,7 +142,8 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
               data-testid="sort-on-dropdown"
             >
               Sort on:
-              <select onChange={(e) => setSort(e.target.value)}>
+              {' '}
+              <select className={styles.selector} onChange={(e) => setSort(e.target.value)}>
                 <option>Relevant</option>
                 <option>Helpful</option>
                 <option>Newest</option>

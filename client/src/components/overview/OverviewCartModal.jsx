@@ -14,12 +14,12 @@ const OverviewCartModal = (props) => {
     <div>
       <div className={styles.cartOverlay} />
       <div className={styles.cartModal}>
-        <div role="button" tabIndex={0} onClick={exitCart} onKeyDown={exitCart} className={styles.cartXToClose}>X</div>
+        <div role="button" aria-label="Add to cart" tabIndex={0} onClick={exitCart} onKeyDown={exitCart} className={styles.cartXToClose}>X</div>
         {children}
         <br />
         Is this correct?:
         <br />
-        <button type="submit" onClick={close}>Confirm</button>
+        <button type="submit" aria-label="Confirm" tabIndex={0} onKeyDown={close} onClick={close}>Confirm</button>
       </div>
     </div>
   );

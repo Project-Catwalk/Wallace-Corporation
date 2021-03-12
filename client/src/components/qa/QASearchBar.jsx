@@ -11,6 +11,7 @@ const QASearchBar = (props) => {
       <div className={qastyles.searchBarSection}>
         <Icon className={qastyles.magnifyingGlass} icon={magnifyingGlass} />
         <input
+          aria-label="Search questions"
           data-testid="search-input"
           type="search"
           onChange={(e) => searchQuestions(e.target.value)}
