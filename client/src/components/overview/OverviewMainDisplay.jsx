@@ -46,6 +46,11 @@ const MainDisplay = (props) => {
   const expandView = (event) => {
     event.preventDefault();
 
+    if (event.key === 'Enter' || event.key === 'Spacebar') {
+      setIsOpen(true);
+      setDisplayedImg(mainGallery[imgIndex]);
+    }
+
     setIsOpen(true);
     setDisplayedImg(mainGallery[imgIndex]);
   };
@@ -97,9 +102,23 @@ const MainDisplay = (props) => {
       <div>
         {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
-          <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
+          <img
+            className={styles.img}
+            src={displayedImg}
+            onClick={expandView}
+            onKeyDown={expandView}
+            alt={styleChoice}
+          />
+          {/* <input
+            type="image"
+            className={styles.img}
+            src={displayedImg}
+            onClick={expandView}
+            alt={styleChoice}
+          /> */}
           <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
             <img src={displayedImg} alt={styleChoice} />
+            {/* <input type="image" src={displayedImg} alt={styleChoice} /> */}
           </OverviewExpandedModal>
         </div>
         {imgIndex !== mainGallery.length - 1 && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
