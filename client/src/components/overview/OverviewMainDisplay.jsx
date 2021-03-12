@@ -3,10 +3,6 @@ import styles from '../../styleComponents/Overview.module.css';
 import OverviewExpandedModal from './OverviewExpandedModal';
 
 const MainDisplay = (props) => {
-  // STILL TO DO:
-
-  // Need to have highlighted/opaque image exist even if thumbnail click handler isn't used to change images
-
   const { photos, styleChoice } = props;
 
   const [mainGallery, setMainGallery] = useState([]);
@@ -16,7 +12,6 @@ const MainDisplay = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const moveThumbnails = useRef();
-  const focused = useRef();
 
   useEffect(() => {
     const thumbnails = [];
@@ -58,6 +53,10 @@ const MainDisplay = (props) => {
   const onClose = (event) => {
     event.preventDefault();
 
+    if (event.key === 'Enter' || event.key === 'Spacebar') {
+      setIsOpen(false);
+    }
+
     setIsOpen(false);
   };
 
@@ -98,7 +97,7 @@ const MainDisplay = (props) => {
       <div>
         {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
-          <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
+          <input type="image" className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice} />
           <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
             <img src={displayedImg} alt={styleChoice} />
           </OverviewExpandedModal>
@@ -106,7 +105,7 @@ const MainDisplay = (props) => {
         {imgIndex !== mainGallery.length - 1 && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
       </div>
       {imgIndex !== 0 && (
-        <button type="submit"  className={styles.upButton} onClick={slideUp}>
+        <button type="submit" className={styles.upButton} onClick={slideUp}>
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
           </svg>

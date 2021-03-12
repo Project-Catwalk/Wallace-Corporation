@@ -172,11 +172,11 @@ img {
 
 .stylesButtonsImgs {
   display: inline-block;
+  position: relative;
   flex: 1 0 21%;
   height: 90px;
   width: 90px;
   padding: 4px;
-  /* margin-left: 5px; */
   cursor: pointer;
   border-radius: 50%;
   align-self: center;
@@ -186,8 +186,9 @@ img {
   background-color: #f2b694;
   border-radius: 50%;
   position: relative;
-  top: -37%;
+  top: -71%;
   left: 75%;
+  z-index: 100;
 }
 
 .hiddenCartSentence {
@@ -313,4 +314,5 @@ img {
   left: 90%;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
+  max-width: 10px;
 }
