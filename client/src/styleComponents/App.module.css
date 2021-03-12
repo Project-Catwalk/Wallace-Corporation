@@ -155,6 +155,7 @@ body {
   background-color: white;
   padding: 0 2em 2em 2em;
   z-index: 1000;
+  min-width: 630px;
   width: 40%;
   border-radius: 10px;
   /* transform: translate(50vh, 50vh); */
