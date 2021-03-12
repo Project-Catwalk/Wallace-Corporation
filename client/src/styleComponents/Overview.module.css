@@ -1,11 +1,14 @@
 /* .parentOfParent {
-  max-height: 500px;
+  max-height: 800px;
 } */
 
 .overviewDisplay {
   background-color: #f2b694;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  height: 660px;
+  padding-bottom: 10px;
+  /* grid-auto-rows: 200px; */
 }
 
 .mainDisplay {
@@ -78,7 +81,6 @@ img {
   position: relative;
   top: -47%;
   left: 3.6%;
-  z-index: 1000;
   background-color: #a8bfbf;
 }
 
@@ -112,15 +114,20 @@ img {
 
 .slogan {
   background-color: transparent;
-  grid-column: 1 / 2;
-  grid-row: 5 / 6;
+  /* grid-column: 1 / 2;
+  grid-row: 5 / 6; */
   padding-left: 5px;
+  position: absolute;
+  /* top: -785%; */
+  top: 111vh;
+  z-index: 100;
 }
 
 .rightColumn {
   grid-column: 2 / 3;
   grid-row: 1 / 6;
   background-color: #a8bfbf;
+  height: 670px;
 }
 
 .reviews {

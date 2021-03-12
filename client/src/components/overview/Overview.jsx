@@ -92,14 +92,16 @@ const Overview = (props) => {
   };
 
   return (
-    <div className={styles.parentOfParent}>
+    // <div className={styles.parentOfParent}>
+    <>
       <div className={styles.overviewDisplay}>
+        <div className="test" />
         <div>
           <MainDisplay photos={photos} styleChoice={styleChoice} />
         </div>
-        <div className={styles.slogan}>
+        {/* <div className={styles.slogan}>
           {slogan !== null && (<p>{slogan}</p>)}
-        </div>
+        </div> */}
         <div className={styles.rightColumn}>
           <div className={styles.reviews}>
             <ReviewStars average={average} />
@@ -132,6 +134,9 @@ const Overview = (props) => {
           <div>
             <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
           </div>
+        </div>
+        <div className={styles.slogan}>
+          {slogan !== null && (<p id="special">{slogan}</p>)}
         </div>
       </div>
       <div className={styles.overviewFooter}>
@@ -167,7 +172,8 @@ const Overview = (props) => {
           {description !== null && (<p>{description}</p>)}
         </div>
       </div>
-    </div>
+    </>
+    // </div>
   );
 };
 
