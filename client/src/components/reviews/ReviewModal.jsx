@@ -120,7 +120,8 @@ const ReviewsModal = ({
             className={styles.modal}
           >
             <div className={styles.modalHeader}>
-              <h3>Write Your Review</h3>
+              {/* <h3>Write Your Review</h3> */}
+              <p style={{ fontWeight: 'bold' }}>Write Your Review</p>
               <p>
                 About the {name}
                 ...
