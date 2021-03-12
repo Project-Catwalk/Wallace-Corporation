@@ -43,7 +43,7 @@ const QA = (props) => {
   };
 
   useEffect(() => {
-    getQuestions(20111);
+    getQuestions(20104);
   }, []);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const QA = (props) => {
       setDisplayedQuestions(questions);
     } else {
       setSearching(false);
-      setDisplayedQuestions(questions.slice(0, 2));
+      setDisplayedQuestions(questions.slice(0, 4));
     }
   };
 
