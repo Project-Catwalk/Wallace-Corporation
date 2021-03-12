@@ -132,7 +132,7 @@ img {
 
 .reviews {
   margin-top: 3%;
-  margin-bottom: 6%;
+  margin-bottom: 8%;
 }
 
 .reviewsButton {
@@ -147,8 +147,8 @@ img {
 }
 
 .productCategory {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
 }
 
@@ -159,8 +159,8 @@ img {
 }
 
 .productPrice {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
 }
 
@@ -173,8 +173,8 @@ img {
 }
 
 .productStyles {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -208,22 +208,22 @@ img {
 }
 
 .sizeDropDown {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 3%;
+  margin-bottom: 8%;
   padding-left: 5px;
   position: relative;
   left: 5px;
 }
 
 .quantityDropDown {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
   justify-self: right;
 }
 
 .cart {
-  margin-top: 6%;
+  margin-top: 8%;
   margin-bottom: 3%;
   padding-left: 5px;
 }
