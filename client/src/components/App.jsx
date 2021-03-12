@@ -1,8 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import { Icon } from '@iconify/react';
-const QA = lazy(() => import('./qa/QA'));
-const Reviews = lazy(() => import('./reviews/Reviews'));
 import messageOutlined from '@iconify-icons/ant-design/message-outlined';
 import facebookIcon from '@iconify-icons/gg/facebook';
 import twitterIcon from '@iconify-icons/gg/twitter';
@@ -10,6 +8,9 @@ import instagramIcon from '@iconify-icons/gg/instagram';
 import pinterestFill from '@iconify-icons/akar-icons/pinterest-fill';
 import Overview from './overview/Overview';
 import style from '../styleComponents/App.module.css';
+
+const QA = lazy(() => import('./qa/QA'));
+const Reviews = lazy(() => import('./reviews/Reviews'));
 
 class App extends React.Component {
   constructor(props) {
@@ -127,6 +128,7 @@ class App extends React.Component {
                   productId={id}
                   name={name}
                   handleReviewAverage={this.handleReviewAverage}
+                  average={reviewRating}
                 />
               </Suspense>
               <div className={style.footer}>
