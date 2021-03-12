@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import styles from '../../styleComponents/App.module.css';
 import qastyles from '../../styleComponents/QA.modules.css';
 
-function QuestionModal({ open, onClose, getQuestions, productId }) {
+function QuestionModal({ open, onClose, getQuestions, name}) {
   const [question, setQuestion] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -56,7 +56,11 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
         className={styles.modal}
       >
         <div className={styles.modalHeader}>
-          <h3>Ask Your Question about the Product</h3>
+          <h3>
+            Ask Your Question about the
+            {' '}
+            {name}
+          </h3>
           <p
             className={styles.closeModal}
             onClick={() => {
