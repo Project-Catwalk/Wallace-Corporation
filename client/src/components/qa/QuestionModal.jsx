@@ -41,25 +41,24 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
 
   return (
     <>
-      <div 
+      <div
         onClick={() => {
           onClose();
           clearForm();
-        }} 
+        }}
         data-testid="question-overlay"
         className={open ? styles.overlay : ''}
-        >
-      </div>
-      <div 
+      />
+      <div
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
         }}
         className={styles.modal}
-        >
+      >
         <div className={styles.modalHeader}>
           <h3>Ask Your Question about the Product</h3>
-          <p 
-            className={styles.closeModal} 
+          <p
+            className={styles.closeModal}
             onClick={() => {
               onClose();
               clearForm();

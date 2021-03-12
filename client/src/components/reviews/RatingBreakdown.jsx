@@ -77,9 +77,15 @@ const RatingBreakdown = ({
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
-          <h4 className={styles.breakdownRecommended}>{recommend}% of reviews recommend this product</h4>
+          <h4 className={styles.breakdownRecommended}>
+            {recommend}
+            % of reviews recommend this product
+          </h4>
           <h4 className={styles.breakdownSubheader}>
-            Rating Breakdown: (out of {total})
+            Rating Breakdown: (
+            out of
+            {total}
+            )
           </h4>
           <div className={styles.breakdownStarBreakdown}>
             {Object.entries(starBreakdown).map((star) => {
@@ -94,7 +100,8 @@ const RatingBreakdown = ({
                       handleFilters(star[0]);
                     }}
                   >
-                    {star[0]} Star
+                    {star[0]}
+                    Star
                   </span>
                   <div className={styles.progressContainer}>
                     <div className={styles.progressbar} style={{ width: avg }} />
@@ -108,7 +115,16 @@ const RatingBreakdown = ({
               ? (
                 <div className={styles.comment}>
                   <span>Current Filters:</span>
-                  {starFilters.map((x) => <span style={{ padding: '5px' }} key={x}>{x} Stars</span>)}
+                  {starFilters.map((x) => (
+                    <span
+                      style={{ padding: '5px' }}
+                      key={x}
+                    >
+                      {x}
+                      Stars
+                    </span>
+                  ),
+                  )}
                   <br />
                   <span
                     role="presentation"
@@ -132,8 +148,14 @@ const RatingBreakdown = ({
                     <div className={styles.progressbarChars} style={{ left: `${value}%` }} />
                   </div>
                   <div style={{ display: 'flex', width: '90%', justifyContent: 'space-between' }}>
-                    <span className={styles.comment} style={{ marginLeft: '9%' }}>(1) {charObject[char[0]][1]}</span>
-                    <span className={styles.comment}>(5) {charObject[char[0]][5]}</span>
+                    <span className={styles.comment} style={{ marginLeft: '9%' }}>
+                      (1)
+                      {charObject[char[0]][1]}
+                    </span>
+                    <span className={styles.comment}>
+                      (5)
+                      {charObject[char[0]][5]}
+                    </span>
                   </div>
                   <br />
                 </div>

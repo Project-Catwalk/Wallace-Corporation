@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import qastyles from '../../styleComponents/QA.modules.css';
-import { Icon, InlineIcon } from '@iconify/react';
+import React from 'react';
+import { Icon } from '@iconify/react';
 import magnifyingGlass from '@iconify-icons/entypo/magnifying-glass';
+import qastyles from '../../styleComponents/QA.modules.css';
 
 const QASearchBar = (props) => {
   const {searchQuestions} = props;
