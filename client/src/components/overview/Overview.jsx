@@ -129,11 +129,11 @@ const Overview = (props) => {
             <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />
           </div>
         </div>
+      </div>
+      <div className={styles.overviewFooter}>
         <div className={styles.slogan}>
           {slogan !== null && (<p>{slogan}</p>)}
         </div>
-      </div>
-      <div className={styles.overviewFooter}>
         <div className={styles.relatedProducts}>
           <a target="_blank" rel="noreferrer" href="https://rpggeek.com/rpg/3168/unofficial-blade-runner-roleplaying-game">
             <button aria-label="Related products" type="submit">Related Products</button>
