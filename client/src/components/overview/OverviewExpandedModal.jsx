@@ -25,6 +25,23 @@ const OverviewExpandedModal = (props) => {
   const zoom = (event) => {
     event.preventDefault();
 
+    if (event.key === 'Enter' || event.key === 'Spacebar') {
+      const currentHeight = imgRef.current.clientHeight;
+      const currentWidth = imgRef.current.clientWidth;
+
+      if (isZoomed === false) {
+        setIsZoomed(true);
+        setHeight(currentHeight * 2.5);
+        setWidth(currentWidth * 2.5);
+        setcursorString('zoom-out');
+      } else {
+        setIsZoomed(false);
+        setHeight(currentHeight / 2.5);
+        setWidth(currentWidth / 2.5);
+        setcursorString('crosshair');
+      }
+    }
+
     const currentHeight = imgRef.current.clientHeight;
     const currentWidth = imgRef.current.clientWidth;
 
@@ -53,9 +70,18 @@ const OverviewExpandedModal = (props) => {
   return (
     <>
       <div className={styles.modalOverlay} />
-      <div className={styles.modal} ref={imgRef} onClick={zoom} onMouseMove={mouseMove} style={{ height: height, width: width, cursor: cursorString}}>
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={zoom}
+        className={styles.modal}
+        ref={imgRef}
+        onClick={zoom}
+        onMouseMove={mouseMove}
+        style={{ height, width, cursor: cursorString }}
+      >
         <div className={styles.expandedImgAndX}>
-          <p className={styles.mainModalXToClose} onClick={close}>X</p>
+          <div role="button" tabIndex={0} className={styles.mainModalXToClose} onClick={close} onKeyDown={close}>X</div>
           {children}
         </div>
       </div>

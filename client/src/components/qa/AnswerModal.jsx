@@ -24,7 +24,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     setPhotos([]);
   };
 
-  const toBase64 = file => new Promise((resolve, reject) => {
+  const toBase64 = (file) => new Promise((resolve, reject) => {
     console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -47,12 +47,12 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     }
 
     const promises = [];
-    
+
     for (const photo of photos) {
       const payload = {
         name: photo.name,
         data: '',
-      } 
+      }
 
       const promise = toBase64(photo)
         .then((result) => payload.data = result.split(',')[1])
@@ -67,11 +67,9 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     .then(() => {
       return axios.post(`/qa/questions/${question_id}/answers`, answerInfo)
     })
-    .then(() => getQuestions(20111))
+    .then(() => getQuestions(20104))
     .then(() => clearForm())
     .catch(console.log);
-
-    
   };
 
   const handleChange = (e) => {
@@ -90,17 +88,15 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
 
   return (
     <>
-      <div 
+      <div
         onClick={() => {
           onClose();
           clearForm();
-        }} 
-        className={open ? styles.overlay : ''} 
-      >
-
-      </div>
+        }}
+        className={open ? styles.overlay : ''}
+      />
       <div style={{
-          transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
+        transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
       }}
         className={styles.modal}
       >
@@ -127,7 +123,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
             <input data-testid="answer-email-input" value={email} required="required" onChange={(e) => setEmail(e.target.value)} className={qastyles.modalInput} type="text" placeholder="Example: jack@email.com" />
             <p className={styles.finePrint}>{email.length > 0 ? 'For authentication reasons, you will not be emailed' : ''}</p>
             <div>
-              {photos.length < 5 ? <input data-testid="answer-photo-upload" value={''} onChange={handleChange} type="file" /> : null}
+              {photos.length < 5 ? <input data-testid="answer-photo-upload" value="" onChange={handleChange} type="file" /> : null}
               {thumbnails.map((photo, idx) => <ExpandedPhotos key={idx} photo={photo} />)}
             </div>
             <button data-testid="answer-modal-submit-button" type="submit" className={styles.modalButton}>Submit Answer</button>
@@ -136,7 +132,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default AnswerModal;

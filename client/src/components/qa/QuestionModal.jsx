@@ -26,14 +26,14 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
       body: question,
       name: username,
       email: email,
-      product_id: productId,
+      product_id: 20104,
     };
     if (!validEmailRegex.test(email)) {
       setError('*You must enter a valid email');
       return;
     }
     axios.post('/qa/questions', questionInfo)
-      .then(() => getQuestions(20111))
+      .then(() => getQuestions(20104))
       .then(() => clearForm())
       .catch(console.log);
   };
@@ -41,25 +41,24 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
 
   return (
     <>
-      <div 
+      <div
         onClick={() => {
           onClose();
           clearForm();
-        }} 
+        }}
         data-testid="question-overlay"
         className={open ? styles.overlay : ''}
-        >
-      </div>
-      <div 
+      />
+      <div
         style={{
           transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -150vh)'
         }}
         className={styles.modal}
-        >
+      >
         <div className={styles.modalHeader}>
           <h3>Ask Your Question about the Product</h3>
-          <p 
-            className={styles.closeModal} 
+          <p
+            className={styles.closeModal}
             onClick={() => {
               onClose();
               clearForm();
