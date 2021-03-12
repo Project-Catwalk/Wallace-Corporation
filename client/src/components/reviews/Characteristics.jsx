@@ -23,6 +23,7 @@ const Characteristics = ({ characteristics, charObject, setReview, review }) => 
               <label style={{ gridRow: '2/3', justifySelf: 'center' }} htmlFor="one">{charObject[x[0]][1]}</label>
               <input
                 type="radio"
+                required="required"
                 name={x[0]}
                 value={`1-${x[1].id}`}
                 style={{ gridRow: '1/2', justifySelf: 'center' }}
