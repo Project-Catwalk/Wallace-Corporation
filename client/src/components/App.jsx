@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 // import QA from './qa/QA';
 const QA = lazy(() => import('./qa/QA'));
-// const Reviews = lazy(() => import('./reviews/Reviews'));
-import Reviews from './reviews/Reviews';
+const Reviews = lazy(() => import('./reviews/Reviews'));
+// import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
 import StarRating from './StarRating';
 import style from '../styleComponents/App.module.css';
@@ -121,13 +121,13 @@ class App extends React.Component {
               <Suspense fallback={<div>LOADING</div>}>
                 <QA productId={id} />
               </Suspense>
-              {/* <Suspense fallback={<div>LOADING</div>}> */}
-              <Reviews
-                productId={id}
-                name={name}
-                handleReviewAverage={this.handleReviewAverage}
-              />
-              {/* </Suspense> */}
+              <Suspense fallback={<div>LOADING</div>}>
+                <Reviews
+                  productId={id}
+                  name={name}
+                  handleReviewAverage={this.handleReviewAverage}
+                />
+              </Suspense>
               <div className={style.footer}>
                 <div className={style.emailSignUp}>
                   <h2 className={style.bottomEmailHeading}>Sign up for exclusive offers</h2>
@@ -156,10 +156,9 @@ class App extends React.Component {
                     <h5 className={style.customerCareContent}>Contact Us</h5>
                   </div>
                   <div className={style.messageIconSection}>
-                      <div className={style.messageIconWrapper}>
-
-                        <Icon className={style.messageIcon} icon={messageOutlined} />
-                      </div>
+                    <div className={style.messageIconWrapper}>
+                      <Icon className={style.messageIcon} icon={messageOutlined} />
+                    </div>
                   </div>
                 </div>
               </div>
