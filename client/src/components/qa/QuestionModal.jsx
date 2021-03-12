@@ -26,14 +26,14 @@ function QuestionModal({ open, onClose, getQuestions, productId }) {
       body: question,
       name: username,
       email: email,
-      product_id: productId,
+      product_id: 20104,
     };
     if (!validEmailRegex.test(email)) {
       setError('*You must enter a valid email');
       return;
     }
     axios.post('/qa/questions', questionInfo)
-      .then(() => getQuestions(20111))
+      .then(() => getQuestions(20104))
       .then(() => clearForm())
       .catch(console.log);
   };

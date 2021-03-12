@@ -67,7 +67,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     .then(() => {
       return axios.post(`/qa/questions/${question_id}/answers`, answerInfo)
     })
-    .then(() => getQuestions(20111))
+    .then(() => getQuestions(20104))
     .then(() => clearForm())
     .catch(console.log);
   };
