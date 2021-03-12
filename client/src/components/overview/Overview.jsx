@@ -17,10 +17,9 @@ const Overview = (props) => {
   const [thumbnailPhotos, setThumbnailPhotos] = useState([]);
   const [styleImgSelected, setStyleImgSelected] = useState('');
 
-  const defaultStyle = productStyles.filter((style) => style['default?']);
-
   useEffect(() => {
     if (productStyles.length > 0) {
+      const defaultStyle = productStyles.filter((style) => style['default?']);
       setStyleChoice(defaultStyle[0].name);
       setSkuOfChoice(defaultStyle[0].skus);
       setPhotos(defaultStyle[0].photos);
@@ -58,6 +57,15 @@ const Overview = (props) => {
   const styleButtonHandler = (event) => {
     event.preventDefault();
 
+    if (event.key === 'Enter' || event.key === 'Spacebar') {
+      for (let i = 0; i < productStyles.length; i++) {
+        if (event.target.src === productStyles[i].photos[0].thumbnail_url) {
+          setStyleChoice(productStyles[i].name);
+          setStyleImgSelected(event.target.src);
+        }
+      }
+    }
+
     for (let i = 0; i < productStyles.length; i++) {
       if (event.target.src === productStyles[i].photos[0].thumbnail_url) {
         setStyleChoice(productStyles[i].name);
@@ -84,7 +92,7 @@ const Overview = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.parentOfParent}>
       <div className={styles.overviewDisplay}>
         <div>
           <MainDisplay photos={photos} styleChoice={styleChoice} />
@@ -105,10 +113,21 @@ const Overview = (props) => {
           <div className={styles.productPrice}>
             <div>{setPriceDisplay()}</div>
           </div>
-          <div style={{ paddingLeft: '5px' }}>Style: {styleChoice}</div>
+          <div style={{ paddingLeft: '5px' }}>
+            Style:
+            {styleChoice}
+          </div>
           <div className={styles.productStyles}>
-            {thumbnailPhotos.map((styleNamePic, index) =>
-              <OverviewCheckmark styleNamePic={styleNamePic} styleButtonHandler={styleButtonHandler} styleChoice={styleChoice} key={index.toString()} styleImgSelected={styleImgSelected} />)}
+            {thumbnailPhotos.map((styleNamePic, index) => (
+              <OverviewCheckmark
+                styleNamePic={styleNamePic}
+                styleButtonHandler={styleButtonHandler}
+                styleChoice={styleChoice}
+                tabIndex={index}
+                key={index.toString()}
+                styleImgSelected={styleImgSelected}
+              />
+            ))}
           </div>
           <div>
             <OverviewSize skuOfChoice={skuOfChoice} styleChoice={styleChoice} name={name} />

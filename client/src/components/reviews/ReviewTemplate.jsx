@@ -5,7 +5,6 @@ import ExpandedPhotos from '../ExpandedPhotos';
 
 const ReviewTemplate = ({ review }) => {
   const [expanded, setExpanded] = useState(false);
-
   return (
     <div>
       <div className={styles.reviewTemplate}>
@@ -77,10 +76,11 @@ const UserDateBar = ({ review }) => {
 
   return (
     <div>
-      <span style={{fontSize: 10, fontStyle: 'italic'}}>&#10003; Verified Purchaser</span>
+      <span style={{ fontSize: 10, fontStyle: 'italic' }}>&#10003; Verified Purchaser</span>
       <div className={styles.userDateBar}>{review.reviewer_name}</div>
       <div className={styles.userDateBar}>{date}</div>
     </div>
   );
 };
+
 export default ReviewTemplate;

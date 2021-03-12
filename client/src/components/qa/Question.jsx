@@ -35,7 +35,7 @@ const Question = (props) => {
     } while (checked);
     return sortAnswersBySeller(answerArr);
   };
-  
+
   useEffect(() => {
     const sortedAnswers = sortAnswersByHelpfulness(Object.values(answers));
     setAnswerList(sortedAnswers);
@@ -70,14 +70,20 @@ const Question = (props) => {
           <Helpful question_id={question_id} helpfulness={question_helpfulness} />
           <button data-testid="add-answer-button" className={qastyles.addAnswerButton} onClick={() => setIsOpen(true)} type="button">Add Answer</button>
         </div>
-        <AnswerModal productId={productId} getQuestions={getQuestions} question_id={question_id} onClose={() => setIsOpen(false)} open={isOpen}></AnswerModal>
+        <AnswerModal
+          productId={productId}
+          getQuestions={getQuestions}
+          question_id={question_id}
+          onClose={() => setIsOpen(false)}
+          open={isOpen}
+        />
       </div>
       <div className={qastyles.answerGrid}>
         <h4 className={qastyles.a}>A:</h4>
         <div className={qastyles.answerList}>
           {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
         </div>
-        {answerList.length > 2 ? <button data-testid="show-more-answers-button" className={qastyles.showMoreAnswersButton} onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
+        {answerList.length > 2 ? <button type="button" data-testid="show-more-answers-button" className={qastyles.showMoreAnswersButton} onClick={showMoreAnswers}>{seeMoreAnswersText}</button> : null}
       </div>
     </div>
   );
