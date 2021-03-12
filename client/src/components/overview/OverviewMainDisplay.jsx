@@ -97,7 +97,7 @@ const MainDisplay = (props) => {
       <div>
         {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
-          <input type="image" className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice} />
+          <img className={styles.img} src={displayedImg} onClick={expandView} alt={styleChoice}/>
           <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
             <img src={displayedImg} alt={styleChoice} />
           </OverviewExpandedModal>

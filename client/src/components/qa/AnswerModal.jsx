@@ -47,12 +47,12 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     }
 
     const promises = [];
-    
+
     for (const photo of photos) {
       const payload = {
         name: photo.name,
         data: '',
-      } 
+      }
 
       const promise = toBase64(photo)
         .then((result) => payload.data = result.split(',')[1])
@@ -71,7 +71,7 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
     .then(() => clearForm())
     .catch(console.log);
 
-    
+
   };
 
   const handleChange = (e) => {
@@ -90,12 +90,12 @@ function AnswerModal({open, onClose, question_id, getQuestions, productId}) {
 
   return (
     <>
-      <div 
+      <div
         onClick={() => {
           onClose();
           clearForm();
-        }} 
-        className={open ? styles.overlay : ''} 
+        }}
+        className={open ? styles.overlay : ''}
       >
 
       </div>

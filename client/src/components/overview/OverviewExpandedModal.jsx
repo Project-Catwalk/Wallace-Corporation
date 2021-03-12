@@ -78,7 +78,7 @@ const OverviewExpandedModal = (props) => {
         ref={imgRef}
         onClick={zoom}
         onMouseMove={mouseMove}
-        style={{ height, width, cursor: cursorString}}
+        style={{ height, width, cursor: cursorString }}
       >
         <div className={styles.expandedImgAndX}>
           <div role="button" tabIndex={0} className={styles.mainModalXToClose} onClick={close} onKeyDown={close}>X</div>
