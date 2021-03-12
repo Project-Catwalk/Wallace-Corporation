@@ -128,7 +128,7 @@
 
 .answer {
   grid-column: 2 / 3;
-  margin-top: 1%;
+  /* margin-top: 1%; */
   margin-bottom: 2%;
   padding: 1em 0 1em 1em;
 }
@@ -137,24 +137,30 @@
   background-color: #d7ebeb4b;
 }
 
-
-/* .answerBody {
-
-} */
-
 .userAndDate {
   font-size: .8em;
   color: rgb(128, 127, 127);
   display: flex;
+
 }
 
-/* .answerPhotos {
+.seller {
+  font-family: sans-serif;
+  font-size: .8em;
+  font-weight: 500;
+}
 
-} */
+.answerPhotos {
+  margin-bottom: 2%;
+}
 
 .photo {
   margin: .75em;
   border-radius: 50%;
+}
+
+.answerHelpfulWrapper {
+  margin-top: 1.5%;
 }
 
 .answerHelpful {

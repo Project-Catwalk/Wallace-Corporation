@@ -122,13 +122,17 @@ class App extends React.Component {
                 average={reviewRating}
               />
               <Suspense fallback={<div>LOADING</div>}>
-                <QA productId={id} />
+                <QA
+                  productId={id}
+                  name={name}
+                />
               </Suspense>
               <Suspense fallback={<div>LOADING</div>}>
                 <Reviews
                   productId={id}
                   name={name}
                   handleReviewAverage={this.handleReviewAverage}
+                  average={reviewRating}
                 />
               </Suspense>
               <div className={style.footer}>
@@ -137,7 +141,7 @@ class App extends React.Component {
                   <input type="text" className={style.bottomEmail} placeholder="Enter your email" />
                   <button type="submit" className={style.footerSubscribe}>SUBSCRIBE</button>
                 </div>
-                <div className={style.bottom}>
+                <div className={lightMode ? style.bottom : style.bottomDarkMode}>
                   <div className={style.social}>
                     {/* <h4 className={style.bottomHeading}>SOCIAL</h4> */}
                     <p className={style.bottomHeading}>SOCIAL</p>

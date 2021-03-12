@@ -128,28 +128,28 @@ app.get('/qa/questions/:id', (req, res) => {
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   const { question_id } = req.params;
-  axios.put(`${options.url}/qa/questions/${question_id}/helpful`, { body: { question_id: question_id } }, options)
+  axios.put(`${options.url}/qa/questions/${question_id}/helpful`, { body: { question_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });
 
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   const { answer_id } = req.params;
-  axios.put(`${options.url}/qa/answers/${answer_id}/helpful`, { body: { answer_id: answer_id } }, options)
+  axios.put(`${options.url}/qa/answers/${answer_id}/helpful`, { body: { answer_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });
 
 app.put('/qa/answers/:answer_id/report', (req, res) => {
   const { answer_id } = req.params;
-  axios.put(`${options.url}/qa/answers/${answer_id}/report`, { body: { answer_id: answer_id } }, options)
+  axios.put(`${options.url}/qa/answers/${answer_id}/report`, { body: { answer_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
   const { question_id } = req.params;
-  axios.put(`${options.url}/qa/questions/${question_id}/report`, { body: { question_id: question_id } }, options)
+  axios.put(`${options.url}/qa/questions/${question_id}/report`, { body: { question_id } }, options)
     .then(() => res.send(204))
     .catch(console.log);
 });

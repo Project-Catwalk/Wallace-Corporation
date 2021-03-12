@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const QA = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { productId } = props;
+  const { productId, name } = props;
 
   const [questions, setQuestions] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
@@ -101,6 +101,7 @@ const QA = (props) => {
         {searching ? null : <button type="submit" data-testid="show-more-questions-button" className={qastyles.footerButton} onClick={increaseNumOfQuestions} >{moreQuestionsButton}</button>}
         {questions.length > 0 ? <button type="submit" data-testid="add-a-question-button" className={qastyles.footerButton} onClick={() => setIsOpen(true)}>Add A Question + </button> : null}
         <QuestionModal
+          name={name}
           productId={productId}
           getQuestions={getQuestions}
           onClose={() => setIsOpen(false)}

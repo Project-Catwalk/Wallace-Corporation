@@ -16,17 +16,26 @@ const Answer = (props) => {
 
   return (
     <div className={qastyles.answer}>
-      <span className={qastyles.answerBody} >{body}</span>
+      <span className={qastyles.answerBody}>{body}</span>
       <div className={qastyles.answerPhotos}>
         {photos.map((photo, idx) => <ExpandedPhotos key={idx} photo={photo} />)}
       </div>
       <div>
-        <p className={qastyles.userAndDate}>
+        <p style={{ display: 'inline' }} className={qastyles.userAndDate}>
           by
+        </p>
+        <p style={{ display: 'inline' }} className={answerer_name === 'Seller' ? qastyles.seller : qastyles.userAndDate}>
+          {' '}
           {answerer_name}
+        </p>
+        <p style={{ display: 'inline' }} className={qastyles.userAndDate}>
           ,
+          {' '}
           {getProperDate(date)}
         </p>
+        <br />
+      </div>
+      <div className={qastyles.answerHelpfulWrapper}>
         <Helpful className={qastyles.answerHelpful} answer_id={id} helpfulness={helpfulness} />
       </div>
     </div>
