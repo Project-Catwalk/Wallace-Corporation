@@ -138,6 +138,11 @@ const OverviewSize = (props) => {
   const exitCart = (event) => {
     event.preventDefault();
 
+    if (event.key === 'Enter' || event.key === 'Spacebar') {
+      setIsOpen(false);
+      setCartButtonClicked(false);
+    }
+
     setIsOpen(false);
     setCartButtonClicked(false);
   };
@@ -179,7 +184,7 @@ const OverviewSize = (props) => {
         {quantityAvailable.map((num, index) => <option key={index}>{num}</option>)}
       </select>
       <div className={styles.cart}>
-        {currentSize !== 'OUT OF STOCK' && (<button onClick={handleCart}>Add to Cart</button>)}
+        {currentSize !== 'OUT OF STOCK' && (<button type="submit" onClick={handleCart}>Add to Cart</button>)}
         {/* <button onClick={cartCheck}>Check Cart</button> */}
         <OverviewCartModal open={isOpen} close={onClose} exitCart={exitCart}>
           <form>
