@@ -42,23 +42,20 @@ const ReviewsModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const finalReview = { ...review };
-    const promises = [];
 
-    // if (!validEmailRegex.test(finalReview.email)) {
-    //   setError({ ...error, email: '*You must enter a valid email' });
-    //   return;
-    // }
+    if (!validEmailRegex.test(finalReview.email)) {
+      setError({ ...error, email: '*You must enter a valid email' });
+      setReview({ ...review, email: '' });
+      return;
+    }
 
-    // if (finalReview.body.length < 50 || finalReview.rating === '' || finalReview.recommend === '' || finalReview.name === '' || Object.keys(finalReview.characteristics) !== Object.keys(metaReviews.characteristics)) {
-    //   setError({ ...error, missingFields: '*One or more mandatory fields is missing' });
-    // }
     if (finalReview.photos.length === 0) {
       axios.post('/reviews', finalReview)
-        .then((data) => console.log('1st: ', data))
         .then(() => getReviews(productId))
         .then(() => onClose())
         .catch((err) => console.log(err));
     } else {
+      const promises = [];
       finalReview.photos.map((photo) => {
         if (photo.size > 100000) {
           setError({ ...error, photoSize: '*The images selected are invalid or unable to be uploaded' });
@@ -74,14 +71,12 @@ const ReviewsModal = ({
           .then(({ data }) => data)
           .catch(console.log);
         promises.push(promise);
-        Promise.all(promises)
-          .then((results) => {
-            finalReview.photos = results;
-          })
-          .catch(console.log);
-      })
+      });
+      Promise.all(promises)
+        .then((results) => {
+          finalReview.photos = results;
+        })
         .then(() => axios.post('/reviews', finalReview))
-        .then((data) => console.log('2st: ', data))
         .then(() => getReviews(productId))
         .then(() => onClose())
         .catch((err) => console.log(err));
@@ -156,7 +151,7 @@ const ReviewsModal = ({
                 </span>
                 <p>Would you recommend this product? *</p>
                 <div>
-                  <input type="radio" id="Yes" name="recommend" onClick={() => setReview({ ...review, recommend: true })} />
+                  <input type="radio" id="Yes" name="recommend" required="required" onClick={() => setReview({ ...review, recommend: true })} />
                   <label htmlFor="Yes">Yes</label>
                   <input type="radio" id="No" name="recommend" onClick={() => setReview({ ...review, recommend: false })} />
                   <label htmlFor="No">No</label>

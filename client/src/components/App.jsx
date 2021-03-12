@@ -1,19 +1,16 @@
 import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import { Icon } from '@iconify/react';
+const QA = lazy(() => import('./qa/QA'));
+const Reviews = lazy(() => import('./reviews/Reviews'));
+import { Icon, InlineIcon } from '@iconify/react';
 import messageOutlined from '@iconify-icons/ant-design/message-outlined';
 import facebookIcon from '@iconify-icons/gg/facebook';
 import twitterIcon from '@iconify-icons/gg/twitter';
 import instagramIcon from '@iconify-icons/gg/instagram';
 import pinterestFill from '@iconify-icons/akar-icons/pinterest-fill';
-// import QA from './qa/QA';
-import Reviews from './reviews/Reviews';
 import Overview from './overview/Overview';
-// import StarRating from './StarRating';
 import style from '../styleComponents/App.module.css';
-
-const QA = lazy(() => import('./qa/QA'));
-// const Reviews = lazy(() => import('./reviews/Reviews'));
 
 class App extends React.Component {
   constructor(props) {
@@ -123,13 +120,13 @@ class App extends React.Component {
               <Suspense fallback={<div>LOADING</div>}>
                 <QA productId={id} />
               </Suspense>
-              {/* <Suspense fallback={<div>LOADING</div>}> */}
-              <Reviews
-                productId={id}
-                name={name}
-                handleReviewAverage={this.handleReviewAverage}
-              />
-              {/* </Suspense> */}
+              <Suspense fallback={<div>LOADING</div>}>
+                <Reviews
+                  productId={id}
+                  name={name}
+                  handleReviewAverage={this.handleReviewAverage}
+                />
+              </Suspense>
               <div className={style.footer}>
                 <div className={style.emailSignUp}>
                   <h2 className={style.bottomEmailHeading}>Sign up for exclusive offers</h2>
