@@ -4,10 +4,6 @@ import styles from '../../styleComponents/Overview.module.css';
 import OverviewCartModal from './OverviewCartModal';
 
 const OverviewSize = (props) => {
-  // STILL TO DO:
-
-  // Clicking "Add to Cart" when size isn't selected should open the size dropdown
-
   const { skuOfChoice, styleChoice, name } = props;
 
   const [currentSize, setCurrentSize] = useState('');
@@ -20,6 +16,7 @@ const OverviewSize = (props) => {
   const [sku_id, setSku_id] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [cartButtonClicked, setCartButtonClicked] = useState(false);
+  const [outOfStockState, setOutOfStockState] = useState(null);
 
   useEffect(() => {
     const skuWithoutNumber = Object.values(skuOfChoice);
@@ -42,7 +39,6 @@ const OverviewSize = (props) => {
       }
     }
     setCartButtonClicked(false);
-    setCurrentSize('Select Size');
     setAllSizesAndQuantities(sizesAndQuantities);
     setAllSkuIds(skuIds);
   }, [skuOfChoice, styleChoice]);
@@ -52,27 +48,16 @@ const OverviewSize = (props) => {
 
     for (let i = 0; i < allSizesAndQuantities.length; i++) {
       if (allSizesAndQuantities[i].quantity === 0) {
-        continue;
+        setCurrentSize('OUT OF STOCK');
+        setOutOfStockState('OUT OF STOCK');
       } else if (event.target.value === allSizesAndQuantities[i].size) {
+        setCurrentSize('');
         setCurrentQuantityAvailable(allSizesAndQuantities[i].quantity);
         setSingleSkuId(allSkuIds[i]);
+        setOutOfStockState(null);
       }
     }
-
-    setCurrentSize(event.target.value);
   };
-
-  useEffect(() => {
-    if (currentQuantityAvailable === null) {
-      return (
-        <div>
-          <select disabled>
-            <option>OUT OF STOCK</option>
-          </select>
-        </div>
-      );
-    }
-  }, [currentQuantityAvailable]);
 
   useEffect(() => {
     const integers = [];
@@ -101,11 +86,6 @@ const OverviewSize = (props) => {
   };
 
   useEffect(() => {
-    // if (currentSize === 'OUT OF STOCK') {
-    //   setSizeForCart('OUT OF STOCK');
-    // }
-    // setCount(countChosen);
-    // setSizeForCart(currentSize);
     setSku_id(parseInt(singleSkuId));
   }, [currentSize, countChosen, singleSkuId]);
 
@@ -164,6 +144,7 @@ const OverviewSize = (props) => {
         <option role="tab" disabled>-</option>
         {quantityAvailable.map((num, index) => <option role="tab" tabIndex={0} key={index}>{num}</option>)}
       </select>
+      <p style={{ color: 'red' }}>{outOfStockState}</p>
       <div role="tablist" className={styles.cart}>
         {currentSize !== 'OUT OF STOCK' && (<button type="submit" aria-label="Add to cart" role="tab" tabIndex={0} onClick={handleCart}>Add to Cart</button>)}
         <OverviewCartModal open={isOpen} close={onClose} exitCart={exitCart}>

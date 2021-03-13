@@ -72,7 +72,6 @@ const RatingBreakdown = ({
     (metaReviews && average && characteristics)
       ? (
         <div className={styles.breakdownGrid} data-testid="breakdown-render">
-          {/* Beginning of converting h4 elements to p tags */}
           <p id="scrollTarget" style={{ fontSize: '18px' }} className={styles.breakdownHeader}>Ratings & Reviews</p>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
@@ -90,7 +89,6 @@ const RatingBreakdown = ({
             {' '}
             )
           </p>
-          {/* End of converting h4 elements to p tags */}
           <div className={styles.breakdownStarBreakdown}>
             {Object.entries(starBreakdown).map((star) => {
               const avg = (Number(star[1]) / 12) * 100;

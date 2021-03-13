@@ -9,8 +9,6 @@ const OverviewCheckmark = (props) => {
     styleImgSelected,
   } = props;
 
-  // ACCESSIBILITY TECHNICALLY PASSING, BUT WON'T CYCLE THROUGH IMAGE BUTTONS
-
   const imgForButton = (
     <input
       tabIndex={0}

@@ -4,7 +4,6 @@ import RatingBreakdown from './RatingBreakdown';
 import ReviewTemplate from './ReviewTemplate';
 import styles from '../../styleComponents/Reviews.module.css';
 import ReviewsModal from './ReviewModal';
-import StarRating from '../StarRating';
 
 const Reviews = ({ productId, name, handleReviewAverage }) => {
   const [reviews, setReviews] = useState([]);
