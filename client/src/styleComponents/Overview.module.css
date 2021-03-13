@@ -1,14 +1,9 @@
-/* .parentOfParent {
-  max-height: 800px;
-} */
-
 .overviewDisplay {
   background-color: #f2b694;
   display: grid;
   grid-template-columns: 2fr 1fr;
   height: 660px;
   padding-bottom: 10px;
-  /* grid-auto-rows: 200px; */
 }
 
 .mainDisplay {
@@ -29,10 +24,8 @@ img {
   height: auto;
   width: auto;
   max-height: 100%;
-  /* max-width: 100%; */
+  max-width: 100%;
   overflow: hidden;
-  /* grid-row: 1 / 6; */
-  /* grid-column: 1 / 5; */
 }
 
 .photoGrid {
@@ -45,9 +38,6 @@ img {
   grid-row: 3 / 4;
   grid-column: 2 / 3;
   text-decoration: none;
-  /* position: relative;
-  top: 31vh;
-  left: 11%; */
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
@@ -62,9 +52,6 @@ img {
   grid-row: 3 / 4;
   grid-column: 4 / 5;
   text-decoration: none;
-  /* position: relative;
-  top: -27vh;
-  left: 91%; */
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
@@ -131,11 +118,7 @@ img {
 
 .slogan {
   background-color: transparent;
-  /* grid-column: 1 / 2; */
-  /* grid-row: 5 / 6; */
   padding-left: 5px;
-  /* position: absolute; */
-  /* top: -785%; */
   top: 111vh;
   z-index: 100;
 }
