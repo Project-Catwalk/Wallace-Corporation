@@ -111,16 +111,8 @@ const MainDisplay = (props) => {
             onKeyDown={expandView}
             alt={styleChoice}
           />
-          {/* <input
-            type="image"
-            className={styles.img}
-            src={displayedImg}
-            onClick={expandView}
-            alt={styleChoice}
-          /> */}
           <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
             <img role="tab" src={displayedImg} alt={styleChoice} />
-            {/* <input type="image" src={displayedImg} alt={styleChoice} /> */}
           </OverviewExpandedModal>
         </div>
         {imgIndex !== mainGallery.length - 1 && (<button type="submit" aria-label="Next image" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}

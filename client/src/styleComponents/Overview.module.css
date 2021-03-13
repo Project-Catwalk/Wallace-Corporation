@@ -125,8 +125,13 @@ img {
   grid-column: 2 / 3;
   grid-row: 1 / 6;
   background-color: #a8bfbf;
-  height: 670px;
+  max-height: 670px;
+  overflow-y: scroll;
 }
+
+.rightColumn::-webkit-scrollbar {
+  display: none;
+ }
 
 .reviews {
   margin-top: 3%;
@@ -171,6 +176,8 @@ img {
 }
 
 .productStyles {
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr); */
   margin-top: 8%;
   margin-bottom: 8%;
   display: flex;
