@@ -178,8 +178,6 @@ img {
 }
 
 .productStyles {
-  /* display: grid;
-  grid-template-columns: repeat(4, 1fr); */
   margin-top: 8%;
   margin-bottom: 8%;
   display: flex;
