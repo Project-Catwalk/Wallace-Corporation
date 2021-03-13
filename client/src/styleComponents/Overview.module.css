@@ -56,6 +56,7 @@ img {
   z-index: 10;
   height: 50px;
   width: 50px;
+  align-self: center;
 }
 
 .mainDisplayButtonRight {
@@ -73,6 +74,7 @@ img {
   z-index: 10;
   height: 50px;
   width: 50px;
+  align-self: center;
 }
 
 .thumbnailContainer {
