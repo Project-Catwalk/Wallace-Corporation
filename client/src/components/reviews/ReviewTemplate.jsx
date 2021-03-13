@@ -59,13 +59,13 @@ const UserDateBar = ({ review }) => {
   const date = getDate(review.date);
 
   return (
-    <div className={styles.userDateBar} style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={styles.userDateBar}>
+      <span style={{ fontSize: 10, fontStyle: 'italic', paddingRight: '7px' }}>&#10003; Verified Purchaser</span>
       <div className={styles.userDateBar}>
         {review.reviewer_name}
         {' '}
         {date}
       </div>
-      <span style={{ fontSize: 10, fontStyle: 'italic' }}>&#10003; Verified Purchaser</span>
     </div>
   );
 };
