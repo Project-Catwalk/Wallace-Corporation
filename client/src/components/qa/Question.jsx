@@ -11,7 +11,7 @@ const Question = (props) => {
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [seeMoreAnswersText, setSeeMoreAnswersText] = useState('See More Answers')
+  const [seeMoreAnswersText, setSeeMoreAnswersText] = useState('See More Answers');
 
   const sortAnswersBySeller = (answerArr) => {
     let sellerMessages = answerArr.filter(answer => answer.answerer_name === 'Seller');
