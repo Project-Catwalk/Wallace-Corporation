@@ -37,6 +37,7 @@ const QA = (props) => {
       .then((results) => {
         const sorted = sortQuestions(results.data);
         setQuestions(sorted);
+        setMoreQuestionsButton('More Answered Questions');
         setDisplayedQuestions(sorted.slice(0, 4));
       })
       .catch(console.log);

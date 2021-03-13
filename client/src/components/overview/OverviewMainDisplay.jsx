@@ -99,7 +99,7 @@ const MainDisplay = (props) => {
 
   return (
     <>
-      <div>
+      <div className={styles.photoGrid}>
         {imgIndex !== 0 && (<button type="submit" aria-label="Previous image" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
           <img
