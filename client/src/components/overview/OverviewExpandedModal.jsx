@@ -14,7 +14,7 @@ const OverviewExpandedModal = (props) => {
   const [isZoomed, setIsZoomed] = useState(false);
   const [cursorString, setcursorString] = useState('crosshair');
 
-  const [move, setMove] = useState({ x: 0, y: 0 });
+  // const [move, setMove] = useState({ x: 0, y: 0 });
 
   const imgRef = useRef();
 
@@ -58,14 +58,14 @@ const OverviewExpandedModal = (props) => {
     }
   };
 
-  const mouseMove = (event) => {
-    if (isZoomed) {
-      setMove({ x: event.clientX, y: event.clientY });
-      // console.log('event: ', event);
-      // console.log('event.clientX: ', event.clilentX);
-      // console.log('event.clientY: ', event.clientY);
-    }
-  };
+  // const mouseMove = (event) => {
+  //   if (isZoomed) {
+  //     setMove({ x: event.clientX, y: event.clientY });
+  //     // console.log('event: ', event);
+  //     // console.log('event.clientX: ', event.clilentX);
+  //     // console.log('event.clientY: ', event.clientY);
+  //   }
+  // };
 
   return (
     <>
@@ -77,7 +77,7 @@ const OverviewExpandedModal = (props) => {
         className={styles.modal}
         ref={imgRef}
         onClick={zoom}
-        onMouseMove={mouseMove}
+        // onMouseMove={mouseMove}
         style={{ height, width, cursor: cursorString }}
       >
         <div className={styles.expandedImgAndX}>

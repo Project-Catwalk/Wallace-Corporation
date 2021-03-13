@@ -21,10 +21,8 @@
 img {
   align-self: center;
   vertical-align: middle;
-  height: auto;
+  height: 100%;
   width: auto;
-  max-height: 100%;
-  max-width: 100%;
   overflow: hidden;
 }
 
