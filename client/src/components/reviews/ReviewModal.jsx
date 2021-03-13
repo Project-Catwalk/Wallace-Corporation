@@ -120,7 +120,7 @@ const ReviewsModal = ({
             className={styles.modal}
           >
             <div className={styles.modalHeader}>
-              <h3>Write Your Review</h3>
+              <p style={{ fontSize: '18px' }}>Write Your Review</p>
               <p>
                 About the {name}
                 ...
@@ -219,7 +219,6 @@ const ReviewsModal = ({
                 <p className={Rstyles.comment}>* Mandatory Fields</p>
                 <p className={styles.finePrint}>{error.email}</p>
                 <p className={styles.finePrint}>{error.photoSize}</p>
-                <p className={styles.finePrint}>{error.missingFields}</p>
                 <button
                   type="submit"
                   className={styles.modalButton}

@@ -106,10 +106,10 @@ class App extends React.Component {
               </div>
               <div className={style.header}>
                 <h1 data-testid="logo" className={`${style.headerText} ${style.logo}`}>The Wallace Corporation</h1>
-                <h5 className={`${style.headerText} ${style.shopAll}`}>SHOP ALL</h5>
-                <h5 className={`${style.headerText} ${style.apparel}`}>APPAREL</h5>
-                <h5 className={`${style.headerText} ${style.community}`}>COMMUNITY</h5>
-                <h5 className={`${style.headerText} ${style.about}`}>ABOUT</h5>
+                <p className={`${style.headerText} ${style.shopAll}`}>SHOP ALL</p>
+                <p className={`${style.headerText} ${style.apparel}`}>APPAREL</p>
+                <p className={`${style.headerText} ${style.community}`}>COMMUNITY</p>
+                <p className={`${style.headerText} ${style.about}`}>ABOUT</p>
               </div>
               <Overview
                 overview={overview}
@@ -118,13 +118,17 @@ class App extends React.Component {
                 average={reviewRating}
               />
               <Suspense fallback={<div>LOADING</div>}>
-                <QA productId={id} />
+                <QA
+                  productId={id}
+                  name={name}
+                />
               </Suspense>
               <Suspense fallback={<div>LOADING</div>}>
                 <Reviews
                   productId={id}
                   name={name}
                   handleReviewAverage={this.handleReviewAverage}
+                  average={reviewRating}
                 />
               </Suspense>
               <div className={style.footer}>
@@ -133,9 +137,9 @@ class App extends React.Component {
                   <input type="text" className={style.bottomEmail} placeholder="Enter your email" />
                   <button type="submit" className={style.footerSubscribe}>SUBSCRIBE</button>
                 </div>
-                <div className={style.bottom}>
+                <div className={lightMode ? style.bottom : style.bottomDarkMode}>
                   <div className={style.social}>
-                    <h4 className={style.bottomHeading}>SOCIAL</h4>
+                    <p className={style.bottomHeading}>SOCIAL</p>
                     <Icon className={style.icon} icon={facebookIcon} />
                     <Icon className={style.icon} icon={twitterIcon} />
                     <Icon className={style.icon} icon={instagramIcon} />
@@ -146,13 +150,13 @@ class App extends React.Component {
                     <button type="submit" className={`${style.bottomButton} ${style.bottomButtonDark}`} onClick={this.darkMode}>DARK</button>
                   </div>
                   <div className={style.customerCare}>
-                    <h4 className={style.bottomHeading}>CUSTOMER CARE</h4>
-                    <h5 className={style.customerCareContent}>FAQ</h5>
-                    <h5 className={style.customerCareContent}>Shipping + Returns</h5>
-                    <h5 className={style.customerCareContent}>Shop Now, Pay Later</h5>
-                    <h5 className={style.customerCareContent}>Size Guide</h5>
-                    <h5 className={style.customerCareContent}>Privacy Policy</h5>
-                    <h5 className={style.customerCareContent}>Contact Us</h5>
+                    <p className={style.bottomHeading}>CUSTOMER CARE</p>
+                    <p className={style.customerCareContent}>FAQ</p>
+                    <p className={style.customerCareContent}>Shipping + Returns</p>
+                    <p className={style.customerCareContent}>Shop Now, Pay Later</p>
+                    <p className={style.customerCareContent}>Size Guide</p>
+                    <p className={style.customerCareContent}>Privacy Policy</p>
+                    <p className={style.customerCareContent}>Contact Us</p>
                   </div>
                   <div className={style.messageIconSection}>
                     <div className={style.messageIconWrapper}>

@@ -46,7 +46,7 @@ const MainDisplay = (props) => {
   const expandView = (event) => {
     event.preventDefault();
 
-    if (event.key === 'Enter' || event.key === 'Spacebar') {
+    if (event.key === 'Enter' || event.key === 'Space bar') {
       setIsOpen(true);
       setDisplayedImg(mainGallery[imgIndex]);
     }
@@ -58,7 +58,7 @@ const MainDisplay = (props) => {
   const onClose = (event) => {
     event.preventDefault();
 
-    if (event.key === 'Enter' || event.key === 'Spacebar') {
+    if (event.key === 'Enter' || event.key === 'Space bar') {
       setIsOpen(false);
     }
 
@@ -99,32 +99,26 @@ const MainDisplay = (props) => {
 
   return (
     <>
-      <div>
-        {imgIndex !== 0 && (<button type="submit" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
+      <div className={styles.photoGrid}>
+        {imgIndex !== 0 && (<button type="submit" aria-label="Previous image" className={styles.mainDisplayButtonLeft} onClick={decrementImgIndex}>&#8249;</button>)}
         <div className={styles.mainDisplay}>
           <img
             className={styles.img}
+            tabIndex={0}
+            role="tablist"
             src={displayedImg}
             onClick={expandView}
             onKeyDown={expandView}
             alt={styleChoice}
           />
-          {/* <input
-            type="image"
-            className={styles.img}
-            src={displayedImg}
-            onClick={expandView}
-            alt={styleChoice}
-          /> */}
           <OverviewExpandedModal open={isOpen} close={onClose} displayedImg={displayedImg}>
-            <img src={displayedImg} alt={styleChoice} />
-            {/* <input type="image" src={displayedImg} alt={styleChoice} /> */}
+            <img role="tab" src={displayedImg} alt={styleChoice} />
           </OverviewExpandedModal>
         </div>
-        {imgIndex !== mainGallery.length - 1 && (<button type="submit" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
+        {imgIndex !== mainGallery.length - 1 && (<button type="submit" aria-label="Next image" className={styles.mainDisplayButtonRight} onClick={incrementImgIndex}>&#8250;</button>)}
       </div>
       {imgIndex !== 0 && (
-        <button type="submit" className={styles.upButton} onClick={slideUp}>
+        <button type="submit" aria-label="Previous thumbnail" className={styles.upButton} onClick={slideUp}>
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
           </svg>
@@ -136,7 +130,7 @@ const MainDisplay = (props) => {
         </div>
       </div>
       {imgIndex !== mainGallery.length - 1 && (
-        <button type="submit" className={styles.downButton} onClick={slideDown}>
+        <button type="submit" aria-label="Next thumbnail" className={styles.downButton} onClick={slideDown}>
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
           </svg>

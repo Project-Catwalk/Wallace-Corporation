@@ -11,7 +11,7 @@ const Question = (props) => {
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [seeMoreAnswersText, setSeeMoreAnswersText] = useState('See More Answers')
+  const [seeMoreAnswersText, setSeeMoreAnswersText] = useState('See More Answers');
 
   const sortAnswersBySeller = (answerArr) => {
     let sellerMessages = answerArr.filter(answer => answer.answerer_name === 'Seller');
@@ -62,7 +62,7 @@ const Question = (props) => {
   return (
     <div className={qastyles.questionAndAnswer}>
       <div className={qastyles.questionGrid}>
-        <h4 className={qastyles.q}>Q:</h4>
+        <p className={qastyles.q}>Q:</p>
         <div className={qastyles.question}>
           <p className={qastyles.questionBody} >{question_body}</p>
         </div>
@@ -79,7 +79,7 @@ const Question = (props) => {
         />
       </div>
       <div className={qastyles.answerGrid}>
-        <h4 className={qastyles.a}>A:</h4>
+        <p className={qastyles.a}>A:</p>
         <div className={qastyles.answerList}>
           {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
         </div>

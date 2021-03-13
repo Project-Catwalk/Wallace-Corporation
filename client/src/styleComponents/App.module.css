@@ -30,6 +30,10 @@ body {
 
 .headerSale {
   display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1001;
+  top: 0;
   align-content: center;
   justify-content: center;
   height: 3%;
@@ -151,13 +155,14 @@ body {
   top: 50%;
   left: 50%;
   max-height: 80%;
-  /* transform: translate(-50%, -50%); */
   background-color: white;
   padding: 0 2em 2em 2em;
   z-index: 1000;
+  min-width: 630px;
   width: 40%;
   border-radius: 10px;
-  /* transform: translate(50vh, 50vh); */
+  min-width: 630px;
+  min-width: 630px;
   transition: all 0.7s ease;
   overflow-y: scroll;
 }
@@ -167,6 +172,15 @@ body {
   border-radius: 7px;
   padding: 6px;
   font-size: 12px;
+  cursor: pointer;
+}
+
+.modal input {
+  cursor: pointer;
+}
+
+.modal button {
+  cursor: pointer;
 }
 
 .overlay {
@@ -228,7 +242,7 @@ button:hover {
 }
 
 .modalInput {
-  font-family: 'Open Sans', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
 }
 
 .modalInput::placeholder {
@@ -266,9 +280,6 @@ button:hover {
 /* BOTTOM */
 
 .footer {
-  /* display: grid;
-  justify-items: center;
-  align-items: center; */
   height: 800px;
   margin-top: 10%;
 }
@@ -312,16 +323,21 @@ button:hover {
 
 .bottomEmail::placeholder {
   color: white;
-  /* margin-left: 2%; */
 }
 
 .bottom {
-  /* background-color: #736363; */
-  /* height: 300px; */
   display: grid;
   grid-template-columns: 6fr 2fr 1fr;
   grid-template-rows: 5fr 1fr;
   margin-top: 1%;
+}
+
+.bottomDarkMode {
+  display: grid;
+  grid-template-columns: 6fr 2fr 1fr;
+  grid-template-rows: 5fr 1fr;
+  margin-top: 1%;
+  background-color: black;
 }
 
 .social {
@@ -371,6 +387,7 @@ button:hover {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
   justify-self: right;
+  margin-right: 16%;
 }
 
 .messageIconWrapper {
@@ -378,9 +395,10 @@ button:hover {
   padding: 10px;
   background-color: #f2b694;
   box-shadow: rgba(73, 73, 73, 0.089) 3px 3px 3px;
-  margin-right: 10%;
+  height: 46px;
+  width: 46px;
   display: flex;
-  justify-items: center;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -392,21 +410,26 @@ button:hover {
   height: 40px;
   width: 40px;
   color: white;
-  /* background-color: white; */
 }
 
 /* photo expansion component */
 .photo {
-  position: relative;
-  top: 5%;
-  left: 10%;
-  max-height: 80%;
-  max-width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  max-height: 70%;
+  max-width: 70%;
+  min-width: 30%;
   background-color: rgb(92, 85, 85);
   z-index: 1000;
   border-radius: 20px;
-  margin: 20px;
   overflow-y: scroll;
+  cursor: pointer;
+}
+
+.photo:hover {
+  opacity: 95%;
 }
 
 .overlayPhoto {
@@ -432,13 +455,13 @@ button:hover {
 }
 
 .bottomButtonLight {
-  background-color: #F2B694;
+  background-color: #f2b694;
   color: white;
 }
 
 .bottomButtonLight:hover {
   background-color: white;
-  border: solid black .025px;
+  border: solid black 0.025px;
   color: black;
 }
 

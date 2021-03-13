@@ -1,17 +1,15 @@
-/* .parentOfParent {
-  max-height: 500px;
-} */
-
 .overviewDisplay {
   background-color: #f2b694;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  height: 660px;
+  padding-bottom: 10px;
 }
 
 .mainDisplay {
   background-color: #f2b694;
-  grid-column: 1 / 2;
-  grid-row: 1 / 7;
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
   display: flex;
   cursor: zoom-in;
   height: 600px;
@@ -23,36 +21,45 @@
 img {
   align-self: center;
   vertical-align: middle;
-  height: auto;
+  height: 100%;
   width: auto;
-  max-height: 100%;
-  max-width: 100%;
   overflow: hidden;
 }
 
+.photoGrid {
+  display: grid;
+  grid-template-rows: repeat(5, 120px);
+  grid-template-columns: 10% 1fr 5fr 1fr;
+}
+
 .mainDisplayButtonLeft {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
   text-decoration: none;
-  position: absolute;
-  top: 67%;
-  left: 6%;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
   background-color: #a8bfbf;
   color: black;
-  z-index: 1000;
+  z-index: 10;
+  height: 50px;
+  width: 50px;
+  align-self: center;
 }
 
 .mainDisplayButtonRight {
+  grid-row: 3 / 4;
+  grid-column: 4 / 5;
   text-decoration: none;
-  position: absolute;
-  top: 67%;
-  left: 63%;
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
   background-color: #a8bfbf;
   color: black;
+  z-index: 10;
+  height: 50px;
+  width: 50px;
+  align-self: center;
 }
 
 .thumbnailContainer {
@@ -78,7 +85,6 @@ img {
   position: relative;
   top: -47%;
   left: 3.6%;
-  z-index: 1000;
   background-color: #a8bfbf;
 }
 
@@ -112,20 +118,26 @@ img {
 
 .slogan {
   background-color: transparent;
-  grid-column: 1 / 2;
-  grid-row: 5 / 6;
   padding-left: 5px;
+  top: 111vh;
+  z-index: 100;
 }
 
 .rightColumn {
   grid-column: 2 / 3;
   grid-row: 1 / 6;
   background-color: #a8bfbf;
+  max-height: 670px;
+  overflow-y: scroll;
 }
+
+.rightColumn::-webkit-scrollbar {
+  display: none;
+ }
 
 .reviews {
   margin-top: 3%;
-  margin-bottom: 6%;
+  margin-bottom: 8%;
 }
 
 .reviewsButton {
@@ -140,8 +152,8 @@ img {
 }
 
 .productCategory {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
 }
 
@@ -152,8 +164,8 @@ img {
 }
 
 .productPrice {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
 }
 
@@ -166,8 +178,8 @@ img {
 }
 
 .productStyles {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -201,22 +213,22 @@ img {
 }
 
 .sizeDropDown {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 3%;
+  margin-bottom: 8%;
   padding-left: 5px;
   position: relative;
   left: 5px;
 }
 
 .quantityDropDown {
-  margin-top: 6%;
-  margin-bottom: 6%;
+  margin-top: 8%;
+  margin-bottom: 8%;
   padding-left: 5px;
   justify-self: right;
 }
 
 .cart {
-  margin-top: 6%;
+  margin-top: 8%;
   margin-bottom: 3%;
   padding-left: 5px;
 }
@@ -274,8 +286,6 @@ img {
 }
 
 .expandedImgAndX {
-  display: flex;
-  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
 }
@@ -283,7 +293,8 @@ img {
 .mainModalXToClose{
   position: relative;
   cursor: pointer;
-  left: 90%;
+  top: 0.7%;
+  left: 55%;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
   max-width: 10px;

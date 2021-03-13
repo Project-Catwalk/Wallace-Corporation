@@ -4,7 +4,6 @@ import RatingBreakdown from './RatingBreakdown';
 import ReviewTemplate from './ReviewTemplate';
 import styles from '../../styleComponents/Reviews.module.css';
 import ReviewsModal from './ReviewModal';
-import StarRating from '../StarRating';
 
 const Reviews = ({ productId, name, handleReviewAverage }) => {
   const [reviews, setReviews] = useState([]);
@@ -142,7 +141,8 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
               data-testid="sort-on-dropdown"
             >
               Sort on:
-              <select onChange={(e) => setSort(e.target.value)}>
+              {' '}
+              <select className={styles.selector} onChange={(e) => setSort(e.target.value)}>
                 <option>Relevant</option>
                 <option>Helpful</option>
                 <option>Newest</option>
@@ -150,12 +150,14 @@ const Reviews = ({ productId, name, handleReviewAverage }) => {
             </div>
           </div>
           <div style={{ maxHeight: '800px', overflowY: 'scroll' }} className={styles.parentIndividualReview}>
-            {displayedReviews.map((review, id) => (
-              <ReviewTemplate review={review} key={id} />
-            ))}
+            {(displayedReviews.length > 0)
+              ? displayedReviews.map((review, id) => (
+                <ReviewTemplate review={review} key={id} />
+              ))
+              : <div style={{ paddingLeft: '30px', fontSize: '20px' }}>No reviews for this product</div>}
           </div>
           <div className={styles.parentFooter}>
-            {reviews.length > 1
+            {reviews.length > 2
               ? (
                 <button
                   className={styles.footerButton}

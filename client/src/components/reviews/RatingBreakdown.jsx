@@ -72,21 +72,23 @@ const RatingBreakdown = ({
     (metaReviews && average && characteristics)
       ? (
         <div className={styles.breakdownGrid} data-testid="breakdown-render">
-          <h4 id="scrollTarget" className={styles.breakdownHeader}>Ratings & Reviews</h4>
+          <p id="scrollTarget" style={{ fontSize: '18px' }} className={styles.breakdownHeader}>Ratings & Reviews</p>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
           </div>
           <h1 className={styles.breakdownTotal}>{`${(average / 20).toFixed(1)}` }</h1>
-          <h4 className={styles.breakdownRecommended}>
+          <p className={styles.breakdownRecommended}>
             {recommend}
             % of reviews recommend this product
-          </h4>
-          <h4 className={styles.breakdownSubheader}>
+          </p>
+          <p className={styles.breakdownSubheader}>
             Rating Breakdown: (
             out of
+            {' '}
             {total}
+            {' '}
             )
-          </h4>
+          </p>
           <div className={styles.breakdownStarBreakdown}>
             {Object.entries(starBreakdown).map((star) => {
               const avg = (Number(star[1]) / 12) * 100;
@@ -101,6 +103,7 @@ const RatingBreakdown = ({
                     }}
                   >
                     {star[0]}
+                    {' '}
                     Star
                   </span>
                   <div className={styles.progressContainer}>
@@ -121,10 +124,10 @@ const RatingBreakdown = ({
                       key={x}
                     >
                       {x}
+                      {' '}
                       Stars
                     </span>
-                  ),
-                  )}
+                  ))}
                   <br />
                   <span
                     role="presentation"
