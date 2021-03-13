@@ -73,7 +73,7 @@ const RatingBreakdown = ({
       ? (
         <div className={styles.breakdownGrid} data-testid="breakdown-render">
           {/* Beginning of converting h4 elements to p tags */}
-          <p id="scrollTarget" className={styles.breakdownHeader}>Ratings & Reviews</p>
+          <p id="scrollTarget" style={{ fontSize: '18px' }} className={styles.breakdownHeader}>Ratings & Reviews</p>
           <div className={styles.breakdownStars} style={{ justifySelf: 'left' }}>
             <StarRating average={average} />
           </div>
