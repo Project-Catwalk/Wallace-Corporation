@@ -13,8 +13,8 @@
 
 .mainDisplay {
   background-color: #f2b694;
-  grid-column: 1 / 2;
-  grid-row: 1 / 7;
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
   display: flex;
   cursor: zoom-in;
   height: 600px;
@@ -29,33 +29,50 @@ img {
   height: auto;
   width: auto;
   max-height: 100%;
-  max-width: 100%;
+  /* max-width: 100%; */
   overflow: hidden;
+  /* grid-row: 1 / 6; */
+  /* grid-column: 1 / 5; */
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-rows: repeat(5, 120px);
+  grid-template-columns: 10% 1fr 5fr 1fr;
 }
 
 .mainDisplayButtonLeft {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
   text-decoration: none;
-  position: relative;
+  /* position: relative;
   top: 31vh;
-  left: 11%;
+  left: 11%; */
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
   background-color: #a8bfbf;
   color: black;
-  z-index: 1000;
+  z-index: 10;
+  height: 50px;
+  width: 50px;
 }
 
 .mainDisplayButtonRight {
+  grid-row: 3 / 4;
+  grid-column: 4 / 5;
   text-decoration: none;
-  position: relative;
+  /* position: relative;
   top: -27vh;
-  left: 91%;
+  left: 91%; */
   padding: 8px 16px;
   border: 3px solid;
   border-radius: 50%;
   background-color: #a8bfbf;
   color: black;
+  z-index: 10;
+  height: 50px;
+  width: 50px;
 }
 
 .thumbnailContainer {
