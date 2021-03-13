@@ -39,6 +39,7 @@ const OverviewSize = (props) => {
       }
     }
     setCartButtonClicked(false);
+    setCurrentSize('Select Size');
     setAllSizesAndQuantities(sizesAndQuantities);
     setAllSkuIds(skuIds);
   }, [skuOfChoice, styleChoice]);
