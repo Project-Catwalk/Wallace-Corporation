@@ -62,7 +62,6 @@ const Question = (props) => {
   return (
     <div className={qastyles.questionAndAnswer}>
       <div className={qastyles.questionGrid}>
-        {/* <h4 className={qastyles.q}>Q:</h4> */}
         <p className={qastyles.q}>Q:</p>
         <div className={qastyles.question}>
           <p className={qastyles.questionBody} >{question_body}</p>
@@ -80,7 +79,6 @@ const Question = (props) => {
         />
       </div>
       <div className={qastyles.answerGrid}>
-        {/* <h4 className={qastyles.a}>A:</h4> */}
         <p className={qastyles.a}>A:</p>
         <div className={qastyles.answerList}>
           {displayedAnswers.map((answer, idx) => <Answer key={idx} answer={answer} />)}
