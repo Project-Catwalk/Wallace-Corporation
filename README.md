@@ -37,7 +37,7 @@ The ratings and reviews section displays the average rating for each product, sp
 <li>Microsoft Azure</li>
 <li>Babel</li>
 <li>Webpack</li>
-<ul>
+</ul>
 
 # Technical Challenges and Research
 <ul>
