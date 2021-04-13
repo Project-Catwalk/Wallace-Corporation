@@ -120,3 +120,4 @@ Add a Review:
 Workflow was managed through GitHub and utilizing Agile workflow through a Trello ticketing system.  The team also had daily standup meetings to make sure everyone was on the same page, and could communicate on areas where bugs existed or when combining the various sections into a complete website.
 
 Styling with raw CSS was a significant challenge for us, and made us really appreciate tools that exist like Bootstrap.  Making sure the page met accessibility guidlines was also a challenge without significantly impacting our CSS designs was an interesting learning experience as well.
+
